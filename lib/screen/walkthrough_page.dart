@@ -42,8 +42,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
           onTap: null,
-          child: Text(locale.selectLanguage!,
-              style: boldTextStyle(size: 15, color: Colors.white)),
+          child: Text(locale.selectLanguage!, style: boldTextStyle(size: 15,color: Colors.white)),
           value: ""),
       DropdownMenuItem(
           onTap: () {
@@ -53,8 +52,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 .changeLocale('En');
             _languageCubit.selectEngLanguage();
           },
-          child: Text("English",
-              style: boldTextStyle(size: 15, color: Colors.white)),
+          child: Text("English", style: boldTextStyle(size: 15,color: Colors.white)),
           value: "en"),
       DropdownMenuItem(
           onTap: () {
@@ -64,8 +62,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 .changeLocale('My');
             _languageCubit.selectIndonesianLanguage();
           },
-          child: Text("Bahasa Malaysia",
-              style: boldTextStyle(size: 15, color: Colors.white)),
+          child: Text("Bahasa Malaysia", style: boldTextStyle(size: 15,color: Colors.white)),
           value: "id"),
     ];
     return menuItems;
@@ -226,8 +223,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: DropdownButton(
-                      dropdownColor: Colors.grey,
+                  child: DropdownButton(dropdownColor: Colors.grey,
                       underline: Container(),
                       elevation: 2,
                       value: selectedValue,
