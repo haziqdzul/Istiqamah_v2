@@ -1121,7 +1121,6 @@ class _HomePageState extends State<HomePage>
                                         child: const Card(
                                           margin: EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 20),
-                                          elevation: 8,
                                           color: white,
                                           child: ListTile(
                                               minVerticalPadding: 16,
@@ -1172,7 +1171,6 @@ class _HomePageState extends State<HomePage>
                                                                         .symmetric(
                                                                     horizontal:
                                                                         20),
-                                                            elevation: 8,
                                                             color: white,
                                                             clipBehavior:
                                                                 Clip.antiAlias,
@@ -1315,7 +1313,7 @@ class _HomePageState extends State<HomePage>
                                                                         .symmetric(
                                                                     horizontal:
                                                                         20),
-                                                            elevation: 8,
+
                                                             color: white,
                                                             child: ExpansionTile(
                                                               leading: const Icon(
@@ -1495,101 +1493,157 @@ class _HomePageState extends State<HomePage>
                                                     body: Consumer<WaterProvider>(
                                                         builder: (context, water,
                                                             child) {
-                                                      return Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Card(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                            elevation: 8,
-                                                            color: white,
-                                                            child: ExpansionTile(
-                                                              leading: const Icon(
-                                                                  Icons
-                                                                      .keyboard_arrow_down_outlined),
-                                                              title: Text(
-                                                                locale
-                                                                    .waterReminder!,
-                                                                style: const TextStyle(
-                                                                    color: black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                              subtitle: Text(
-                                                                '$waterPerday ${locale.glassOfWater!} ($bℓ)',
-                                                                style:
-                                                                    const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                              ),
-                                                              trailing: Switch(
-                                                                value:
-                                                                    isSwitched2,
-                                                                onChanged:
-                                                                    (value) async {
+                                                      return Card(
+                                                        color: white,
+                                                        child: ExpansionTile(
+                                                          leading: const Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_outlined),
+                                                          title: Text(
+                                                            locale
+                                                                .waterReminder!,
+                                                            style: const TextStyle(
+                                                                color: black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          subtitle: Text(
+                                                            '$waterPerday ${locale.glassOfWater!} ($bℓ)',
+                                                            style:
+                                                                const TextStyle(
+                                                                    color:
+                                                                        black),
+                                                          ),
+                                                          trailing: Switch(
+                                                            value:
+                                                                isSwitched2,
+                                                            onChanged:
+                                                                (value) async {
+                                                              if (waterPerday !=
+                                                                  0) {
+                                                                SharedPreferences
+                                                                    prefs =
+                                                                    await SharedPreferences
+                                                                        .getInstance();
+                                                                await prefs
+                                                                    .setBool(
+                                                                        'W${AppUser.instance.user!.uid}',
+                                                                        value);
+                                                                firstTimeWater =
+                                                                    prefs.getBool(
+                                                                            'firstWater') ??
+                                                                        true;
+                                                                setState(() {
+                                                                  isSwitched2 =
+                                                                      value;
+                                                                });
+
+                                                                if (isSwitched2 ==
+                                                                    true) {
+                                                                  bool h =
+                                                                      await showDialog(
+                                                                    barrierDismissible:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return MyDialog(
+                                                                          waterPerday);
+                                                                    },
+                                                                  );
+                                                                  setState(
+                                                                      () {
+                                                                    isSwitched2 =
+                                                                        h;
+                                                                    prefs.setBool(
+                                                                        'W${AppUser.instance.user!.uid}',
+                                                                        h);
+                                                                  });
+                                                                  checkTime();
+                                                                }
+                                                                if (isSwitched2 ==
+                                                                    false) {
+                                                                  water
+                                                                      .cancelNotifications();
+                                                                  Fluttertoast
+                                                                      .showToast(
+                                                                          msg:
+                                                                              locale.cancelWaterReminder!);
+                                                                }
+                                                              } else {
+                                                                showDialog(
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        actions: [
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                              },
+                                                                              child: Text(locale.back!)),
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
+                                                                              },
+                                                                              child: Text(locale.update_profile!))
+                                                                        ],
+                                                                        title:
+                                                                            Text(locale.beforeWaterReminder!),
+                                                                      );
+                                                                    },
+                                                                    context:
+                                                                        context);
+                                                              }
+                                                            },
+                                                            activeColor:
+                                                                Colors.blue[
+                                                                    400],
+                                                            inactiveThumbColor:
+                                                                Colors.white,
+                                                          ),
+                                                          children: [
+                                                            ListTile(
+                                                              title:
+                                                                  ElevatedButton(
+                                                                onPressed:
+                                                                    () async {
                                                                   if (waterPerday !=
                                                                       0) {
                                                                     SharedPreferences
                                                                         prefs =
                                                                         await SharedPreferences
                                                                             .getInstance();
-                                                                    await prefs
-                                                                        .setBool(
-                                                                            'W${AppUser.instance.user!.uid}',
-                                                                            value);
-                                                                    firstTimeWater =
-                                                                        prefs.getBool(
-                                                                                'firstWater') ??
-                                                                            true;
-                                                                    setState(() {
+                                                                    bool h =
+                                                                        await showDialog(
+                                                                      barrierDismissible:
+                                                                          false,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (BuildContext
+                                                                              context) {
+                                                                        return MyDialog(
+                                                                          waterPerday,
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                    setState(
+                                                                        () {
                                                                       isSwitched2 =
-                                                                          value;
+                                                                          h;
+                                                                      prefs.setBool(
+                                                                          'W${AppUser.instance.user!.uid}',
+                                                                          h);
                                                                     });
-
-                                                                    if (isSwitched2 ==
-                                                                        true) {
-                                                                      bool h =
-                                                                          await showDialog(
-                                                                        barrierDismissible:
-                                                                            false,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (BuildContext
-                                                                                context) {
-                                                                          return MyDialog(
-                                                                              waterPerday);
-                                                                        },
-                                                                      );
-                                                                      setState(
-                                                                          () {
-                                                                        isSwitched2 =
-                                                                            h;
-                                                                        prefs.setBool(
-                                                                            'W${AppUser.instance.user!.uid}',
-                                                                            h);
-                                                                      });
-                                                                      checkTime();
-                                                                    }
-                                                                    if (isSwitched2 ==
-                                                                        false) {
-                                                                      water
-                                                                          .cancelNotifications();
-                                                                      Fluttertoast
-                                                                          .showToast(
-                                                                              msg:
-                                                                                  locale.cancelWaterReminder!);
-                                                                    }
                                                                   } else {
                                                                     showDialog(
-                                                                        builder:
-                                                                            (BuildContext
-                                                                                context) {
+                                                                        builder: (BuildContext
+                                                                            context) {
                                                                           return AlertDialog(
                                                                             actions: [
                                                                               TextButton(
@@ -1604,99 +1658,31 @@ class _HomePageState extends State<HomePage>
                                                                                   },
                                                                                   child: Text(locale.update_profile!))
                                                                             ],
-                                                                            title:
-                                                                                Text(locale.beforeWaterReminder!),
+                                                                            title: Text(locale.beforeWaterReminder!),
                                                                           );
                                                                         },
                                                                         context:
                                                                             context);
                                                                   }
                                                                 },
-                                                                activeColor:
-                                                                    Colors.blue[
-                                                                        400],
-                                                                inactiveThumbColor:
-                                                                    Colors.white,
+                                                                child: Text(
+                                                                  locale
+                                                                      .showAllReminder!,
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                                style: TextButton.styleFrom(
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .blueAccent),
                                                               ),
-                                                              children: [
-                                                                ListTile(
-                                                                  title:
-                                                                      ElevatedButton(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      if (waterPerday !=
-                                                                          0) {
-                                                                        SharedPreferences
-                                                                            prefs =
-                                                                            await SharedPreferences
-                                                                                .getInstance();
-                                                                        bool h =
-                                                                            await showDialog(
-                                                                          barrierDismissible:
-                                                                              false,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (BuildContext
-                                                                                  context) {
-                                                                            return MyDialog(
-                                                                              waterPerday,
-                                                                            );
-                                                                          },
-                                                                        );
-                                                                        setState(
-                                                                            () {
-                                                                          isSwitched2 =
-                                                                              h;
-                                                                          prefs.setBool(
-                                                                              'W${AppUser.instance.user!.uid}',
-                                                                              h);
-                                                                        });
-                                                                      } else {
-                                                                        showDialog(
-                                                                            builder: (BuildContext
-                                                                                context) {
-                                                                              return AlertDialog(
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.pop(context);
-                                                                                      },
-                                                                                      child: Text(locale.back!)),
-                                                                                  TextButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.pop(context);
-                                                                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
-                                                                                      },
-                                                                                      child: Text(locale.update_profile!))
-                                                                                ],
-                                                                                title: Text(locale.beforeWaterReminder!),
-                                                                              );
-                                                                            },
-                                                                            context:
-                                                                                context);
-                                                                      }
-                                                                    },
-                                                                    child: Text(
-                                                                      locale
-                                                                          .showAllReminder!,
-                                                                      style: const TextStyle(
-                                                                          fontWeight:
-                                                                              FontWeight
-                                                                                  .bold,
-                                                                          color: Colors
-                                                                              .white),
-                                                                    ),
-                                                                    style: TextButton.styleFrom(
-                                                                        backgroundColor:
-                                                                            Colors
-                                                                                .blueAccent),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          )
-                                                        ],
+                                                            )
+                                                          ],
+                                                        ),
                                                       );
                                                     }),
                                                   ),
@@ -1740,7 +1726,6 @@ class _HomePageState extends State<HomePage>
                                                                         .symmetric(
                                                                     horizontal:
                                                                         20),
-                                                            elevation: 8,
                                                             color: white,
                                                             child: ExpansionTile(
                                                               leading: const Icon(
@@ -2013,7 +1998,6 @@ class _HomePageState extends State<HomePage>
                                                                         .symmetric(
                                                                     horizontal:
                                                                         20),
-                                                            elevation: 8,
                                                             color: white,
                                                             child: ExpansionTile(
                                                               leading: const Icon(
