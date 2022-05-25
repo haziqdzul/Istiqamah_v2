@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 import 'package:istiqamah_app/screen/login_page.dart';
@@ -19,14 +20,30 @@ class WalktroughPage extends StatefulWidget {
 
 class _WalktroughPageState extends State<WalktroughPage> {
   int _progress = 0;
+  int currentIndex = 0;
   late LanguageCubit _languageCubit;
+  final PageController controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    _languageCubit = BlocProvider.of<LanguageCubit>(context);
+    controller.addListener(() {
+      if (controller.page!.round() != currentIndex) {
+        setState(() {
+          currentIndex = controller.page!.round();
+        });
+      }
+    });
+  }
 
   List<DropdownMenuItem<String>> get dropdownItems {
     var locale = AppLocalizations.of(context)!;
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
           onTap: null,
-          child: Text(locale.selectLanguage!, style: boldTextStyle(size: 15)),
+          child: Text(locale.selectLanguage!,
+              style: boldTextStyle(size: 15, color: Colors.white)),
           value: ""),
       DropdownMenuItem(
           onTap: () {
@@ -36,7 +53,8 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 .changeLocale('En');
             _languageCubit.selectEngLanguage();
           },
-          child: Text("English", style: boldTextStyle(size: 15)),
+          child: Text("English",
+              style: boldTextStyle(size: 15, color: Colors.white)),
           value: "en"),
       DropdownMenuItem(
           onTap: () {
@@ -46,7 +64,8 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 .changeLocale('My');
             _languageCubit.selectIndonesianLanguage();
           },
-          child: Text("Bahasa Malaysia", style: boldTextStyle(size: 15)),
+          child: Text("Bahasa Malaysia",
+              style: boldTextStyle(size: 15, color: Colors.white)),
           value: "id"),
     ];
     return menuItems;
@@ -208,6 +227,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: DropdownButton(
+                      dropdownColor: Colors.grey,
                       underline: Container(),
                       elevation: 2,
                       value: selectedValue,
@@ -271,6 +291,7 @@ class CircleProgress extends StatelessWidget {
   CircleProgress({Key? key, this.color}) : super(key: key);
 
   Color? color;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -297,6 +318,7 @@ class WalkButton extends StatelessWidget {
   final String label;
   VoidCallback? onPress;
   Color? color;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
