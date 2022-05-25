@@ -1,0 +1,118 @@
+name: istiqamah_app
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+
+  flutter_localizations:
+    sdk: flutter
+  flutter_automation: ^2.0.0
+
+  intl: ^0.17.0
+
+  provider:
+  flutter_bloc: ^7.0.0
+  flutter_phoenix: ^1.0.0
+
+  timer_button: ^2.0.0
+
+  #UI
+  flutter_spinkit: ^5.1.0
+  top_snackbar_flutter: 1.0.0
+  dots_indicator: ^2.0.0
+
+  # IMAGES
+  cached_network_image: ^3.1.0
+  image_picker: ^0.8.1+3
+  file_picker: ^3.0.1
+  photo_view: ^0.12.0
+  card_swiper: ^1.0.2
+
+  # Base
+  nb_utils: ^4.4.8
+  flutter_vector_icons: ^1.0.0
+  google_fonts: ^2.1.0
+
+  # Firebase
+  firebase_core: ^1.10.2
+  firebase_auth: ^3.3.0
+  firebase_storage: ^10.2.4
+  cloud_firestore: ^3.1.4
+  firebase_phone_auth_handler:
+
+  #device_info
+  device_info_plus: ^3.2.1
+
+  #send email
+  flutter_email_sender: ^5.0.2
+
+  #ss
+  screenshot: ^1.2.3
+  path_provider: ^2.0.8
+  image_gallery_saver: ^1.7.1
+
+  #notification
+  url_launcher: ^6.0.17
+  awesome_notifications: ^0.6.19
+  bottom_picker: ^1.4.0
+  delayed_display: ^2.0.0
+
+    #notification
+  flutter_local_notifications: ^9.1.5
+  flutter_local_notifications_linux: ^0.4.0
+  flutter_local_notifications_platform_interface: ^5.0.0
+  timezone: ^0.8.0
+  clock: ^1.1.0
+  flutter_native_timezone: ^2.0.0
+  shimmer: ^2.0.0
+  async: ^2.8.1
+
+    #Etc
+  country_code_picker: ^2.0.2
+  flutter_datetime_picker:
+  country_list_pick: ^1.0.1+5
+  numeric_keyboard: ^1.1.0
+
+
+  #local storage
+  get_storage: ^2.0.3
+  shared_preferences: ^2.0.11
+  feature_discovery: ^0.14.1
+  cool_alert: ^1.1.0
+  flare_flutter: ^3.0.2
+  vector_math: ^2.1.0
+  cron: ^0.4.0
+  package_info_plus: ^1.4.0
+  auth_with_firebase: ^0.0.25
+  flutter_background_service: ^0.2.6
+
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  floating_bottom_navigation_bar: ^1.5.2
+  change_app_package_name: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^1.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/avatar/
+    - assets/Logo As-sunnah_whitebg-02-02.png
+    - assets/Logo As-Sunnah_Malay_WBG-03.png
