@@ -908,7 +908,12 @@ class _HomePageState extends State<HomePage>
         backgroundColor: const Color.fromARGB(0, 255, 255, 255),
         elevation: 0,
         // automaticallyImplyLeading: true,
-        leading: Container(),
+        leading: IconButton(
+          icon: const Icon(Icons.menu_rounded, color: Colors.white30),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+        ),
       ),
       body: FutureBuilder(
         future: countUnReadDocuments(),
@@ -953,12 +958,12 @@ class _HomePageState extends State<HomePage>
                                         height: 75,
                                         child: InkWell(
                                           onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const NavigationDrawer()),
-                                            );
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //       builder: (context) =>
+                                            //           const NavigationDrawer()),
+                                            //);
                                           },
                                           child: ClipOval(
                                             child: SizedBox.fromSize(

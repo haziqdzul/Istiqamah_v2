@@ -5,7 +5,6 @@ import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:istiqamah_app/screen/register_page.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
-
 import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
@@ -56,6 +55,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
 
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalizations.of(context)!;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -93,21 +93,18 @@ class _WalktroughPageState extends State<WalktroughPage> {
                       child: Column(
                         children: [
                           if (_progress == 0)
-                            const WalkthroughTitleBody(
-                              title: 'Istiqamah App',
-                              body:
-                                  'As-Sunnah uses the latest innovations, science and technology to make it easier for Muslims around the world topractice sunnah in istigamah.',
+                            WalkthroughTitleBody(
+                              title: locale.asSunnahApp,
+                              body: locale.usingTechnology,
                             ),
                           if (_progress == 1)
-                            const WalkthroughTitleBody(
-                                title: 'Living The Sunnah',
-                                body:
-                                    'Whoever revives my sunnah then he has loved me. And whoever loves me. He shall be with me in paradise. [Hadith narrated by Al-Tarmizi (2678)]'),
+                            WalkthroughTitleBody(
+                                title: locale.hadith,
+                                body: locale.hadithNarrated),
                           if (_progress == 2)
-                            const WalkthroughTitleBody(
-                                title: "Let's Get Start",
-                                body:
-                                    "For first time users, let 'Register' by creating your account."),
+                            WalkthroughTitleBody(
+                                title: locale.letgetstarted,
+                                body: locale.letgetstartedmessage),
                           Center(
                             child: Container(
                               width: 100,
@@ -151,7 +148,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                                                 (Route<dynamic> route) =>
                                                     false);
                                       },
-                                      label: 'Skip',
+                                      label: "Skip",
                                     ),
                                     WalkButton(
                                       onPress: () {
@@ -159,7 +156,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                                           _progress = _progress + 1;
                                         });
                                       },
-                                      label: 'Next',
+                                      label: locale.next!,
                                       color: Colors.white,
                                     ),
                                   ],
@@ -179,7 +176,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                                                 (Route<dynamic> route) =>
                                                     false);
                                       },
-                                      label: 'Register',
+                                      label: locale.getStarted!,
                                       color: Colors.white,
                                     ),
                                     WalkButton(
@@ -193,7 +190,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                                                 (Route<dynamic> route) =>
                                                     false);
                                       },
-                                      label: 'Login',
+                                      label: locale.login!,
                                       color: Colors.white,
                                     ),
                                   ],
@@ -226,10 +223,10 @@ class _WalktroughPageState extends State<WalktroughPage> {
 }
 
 class WalkthroughTitleBody extends StatelessWidget {
-  const WalkthroughTitleBody({required this.title, required this.body});
+  const WalkthroughTitleBody({this.title, this.body});
 
-  final String title;
-  final String body;
+  final String? title;
+  final String? body;
 
   @override
   Widget build(BuildContext context) {
@@ -241,7 +238,7 @@ class WalkthroughTitleBody extends StatelessWidget {
             width: 200,
             margin: const EdgeInsets.only(right: 0),
             child: Text(
-              title,
+              title!,
               textAlign: TextAlign.end,
               style: const TextStyle(
                 color: Colors.black,
@@ -254,7 +251,7 @@ class WalkthroughTitleBody extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 80),
           child: Text(
-            body,
+            body!,
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
