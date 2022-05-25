@@ -904,36 +904,36 @@ class _HomePageState extends State<HomePage>
 
     Future<bool> showExitPopup() async {
       return await showDialog(
-        //show confirm dialogue
-        //the return value will be from "Yes" or "No" options
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(locale.exitApp!),
-          content: Text(locale.confirmExitApp!),
-          actions: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.redAccent),
-              onPressed: () => Navigator.of(context).pop(false),
-              //return false when click on "NO"
-              child: Text(locale.no!),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.green),
-              onPressed: () {
-                if (Platform.isAndroid) {
-                  SystemChannels.platform
-                      .invokeMethod('SystemNavigator.pop');
-                } else if (Platform.isIOS) {
-                  exit(0);
-                }
-              },
+            //show confirm dialogue
+            //the return value will be from "Yes" or "No" options
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(locale.exitApp!),
+              content: Text(locale.confirmExitApp!),
+              actions: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+                  onPressed: () => Navigator.of(context).pop(false),
+                  //return false when click on "NO"
+                  child: Text(locale.no!),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.green),
+                  onPressed: () {
+                    if (Platform.isAndroid) {
+                      SystemChannels.platform
+                          .invokeMethod('SystemNavigator.pop');
+                    } else if (Platform.isIOS) {
+                      exit(0);
+                    }
+                  },
 
-              //return true when click on "Yes"
-              child: Text(locale.yes!),
+                  //return true when click on "Yes"
+                  child: Text(locale.yes!),
+                ),
+              ],
             ),
-          ],
-        ),
-      ) ??
+          ) ??
           false; //if showDialogue had returned null, then return false
     }
 
@@ -947,7 +947,12 @@ class _HomePageState extends State<HomePage>
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
           // automaticallyImplyLeading: true,
-          leading: Container(),
+          leading: IconButton(
+            icon: const Icon(Icons.menu, color: Colors.white30),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),
@@ -1020,13 +1025,13 @@ class _HomePageState extends State<HomePage>
                                                 AppUser.instance.user!
                                                         .displayName ??
                                                     '',
-                                                style:
-                                                    boldTextStyle(color: black)),
+                                                style: boldTextStyle(
+                                                    color: black)),
                                             4.height,
                                             Text(locale.welcome_home!,
                                                 style: secondaryTextStyle(
-                                                    color:
-                                                        black.withOpacity(0.7))),
+                                                    color: black
+                                                        .withOpacity(0.7))),
                                           ],
                                         ),
                                       ],
@@ -1081,7 +1086,8 @@ class _HomePageState extends State<HomePage>
                                                             'Rasulullah ?',
                                                             'Rasulullah'),
                                                     style: textStyleNormal,
-                                                    textAlign: TextAlign.justify,
+                                                    textAlign:
+                                                        TextAlign.justify,
                                                   )),
                                               Align(
                                                   alignment:
@@ -1159,8 +1165,9 @@ class _HomePageState extends State<HomePage>
                                                   context: context,
                                                   builder: (context) =>
                                                       DefaultDialog(
-                                                    body: StatefulBuilder(builder:
-                                                        (context, setState) {
+                                                    body: StatefulBuilder(
+                                                        builder: (context,
+                                                            setState) {
                                                       return Column(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -1191,14 +1198,13 @@ class _HomePageState extends State<HomePage>
                                                                         color:
                                                                             black,
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold),
+                                                                            FontWeight.bold),
                                                                   ),
-                                                                  subtitle: Text(
+                                                                  subtitle:
+                                                                      Text(
                                                                     locale.HH!,
                                                                     style: TextStyle(
-                                                                        color: Colors
-                                                                                .grey[
+                                                                        color: Colors.grey[
                                                                             800],
                                                                         fontSize:
                                                                             14),
@@ -1207,11 +1213,11 @@ class _HomePageState extends State<HomePage>
                                                                 Visibility(
                                                                   visible:
                                                                       visible,
-                                                                  child: Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                                .all(
-                                                                            16.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(
+                                                                        16.0),
                                                                     child:
                                                                         RichText(
                                                                       textAlign:
@@ -1269,8 +1275,7 @@ class _HomePageState extends State<HomePage>
                                                                           locale
                                                                               .view!,
                                                                           style: const TextStyle(
-                                                                              fontWeight:
-                                                                                  FontWeight.bold,
+                                                                              fontWeight: FontWeight.bold,
                                                                               color: Colors.black),
                                                                         ),
                                                                       )
@@ -1301,8 +1306,9 @@ class _HomePageState extends State<HomePage>
                                                   context: context,
                                                   builder: (context) =>
                                                       DefaultDialog(
-                                                    body: StatefulBuilder(builder:
-                                                        (context, setState) {
+                                                    body: StatefulBuilder(
+                                                        builder: (context,
+                                                            setState) {
                                                       return Column(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -1313,9 +1319,9 @@ class _HomePageState extends State<HomePage>
                                                                         .symmetric(
                                                                     horizontal:
                                                                         20),
-
                                                             color: white,
-                                                            child: ExpansionTile(
+                                                            child:
+                                                                ExpansionTile(
                                                               leading: const Icon(
                                                                   Icons
                                                                       .keyboard_arrow_down_outlined),
@@ -1323,24 +1329,24 @@ class _HomePageState extends State<HomePage>
                                                                 locale
                                                                     .tahajjudReminder!,
                                                                 style: const TextStyle(
-                                                                    color: black,
+                                                                    color:
+                                                                        black,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold),
                                                               ),
-                                                              subtitle: (d != '')
-                                                                  ? Text(
-                                                                      '${locale.timeReminder!} $d',
-                                                                      style: const TextStyle(
-                                                                          color:
-                                                                              black),
-                                                                    )
-                                                                  : Text(
-                                                                      '${locale.timeReminder!} N/A',
-                                                                      style: const TextStyle(
-                                                                          color:
-                                                                              black),
-                                                                    ),
+                                                              subtitle:
+                                                                  (d != '')
+                                                                      ? Text(
+                                                                          '${locale.timeReminder!} $d',
+                                                                          style:
+                                                                              const TextStyle(color: black),
+                                                                        )
+                                                                      : Text(
+                                                                          '${locale.timeReminder!} N/A',
+                                                                          style:
+                                                                              const TextStyle(color: black),
+                                                                        ),
                                                               trailing: Switch(
                                                                 value:
                                                                     isSwitched4,
@@ -1350,514 +1356,38 @@ class _HomePageState extends State<HomePage>
                                                                       prefs =
                                                                       await SharedPreferences
                                                                           .getInstance();
-                                                                  await prefs.setBool(
-                                                                      'T${AppUser.instance.user!.uid}',
-                                                                      value);
-    return Scaffold(
-      drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
-      extendBodyBehindAppBar: true,
-      key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-        elevation: 0,
-        // automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: const Icon(Icons.menu_rounded, color: Colors.white30),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-        ),
-      ),
-      body: FutureBuilder(
-        future: countUnReadDocuments(),
-        builder: (context, AsyncSnapshot snapshot) {
-          return Container(
-            padding: EdgeInsets.only(top: statusbar),
-            child: Stack(
-              children: [
-                SizedBox(
-                  height: height * .2 + (appbarSize),
-                  width: width,
-                  // color: kPrimaryColor,
-                  child: Opacity(
-                    opacity: 0.5,
-                    child: Image.asset(
-                      'assets/masjid.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SingleChildScrollView(
-                    child: Container(
-                        padding: EdgeInsets.only(top: appbarSize),
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            left: 20,
-                            right: 20,
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        margin:
-                                            const EdgeInsets.only(right: 15),
-                                        width: 75,
-                                        height: 75,
-                                        child: InkWell(
-                                          onTap: () {
-                                            // Navigator.push(
-                                            //   context,
-                                            //   MaterialPageRoute(
-                                            //       builder: (context) =>
-                                            //           const NavigationDrawer()),
-                                            //);
-                                          },
-                                          child: ClipOval(
-                                            child: SizedBox.fromSize(
-                                              size: const Size.fromRadius(48),
-                                              child: Image.network(
-                                                  AppUser.instance.user!
-                                                          .photoURL ??
-                                                      'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
-                                                  width: 50,
-                                                  fit: BoxFit.cover),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              AppUser.instance.user!
-                                                      .displayName ??
-                                                  '',
-                                              style:
-                                                  boldTextStyle(color: black)),
-                                          4.height,
-                                          Text(locale.welcome_home!,
-                                              style: secondaryTextStyle(
-                                                  color:
-                                                      black.withOpacity(0.7))),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const NotificationPage(2)),
-                                      );
-                                    },
-                                    child: const Icon(
-                                      Icons.message,
-                                      size: 25,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 25,
-                              ),
-                              _list.length > 300
-                                  ? CardBody(
-                                      radius: BorderRadius.circular(16),
-                                      child: Container(
-                                        height: height * .3,
-                                        width: width,
-                                        padding: const EdgeInsets.all(15),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            ListTile(
-                                                minVerticalPadding: 16,
-                                                title: Text(
-                                                  locale.ofTheDay!,
-                                                  textAlign: TextAlign.center,
-                                                  style: textStyleNormal,
-                                                ),
-                                                subtitle: Text(
-                                                  _list[DateTime.now().month *
-                                                          DateTime.now().day]
-                                                      .trim()
-                                                      .replaceAll('�', '')
-                                                      .replaceAll('(?)', '')
-                                                      .replaceAll('?\n', '')
-                                                      .replaceAll(
-                                                          'Rasulullah ?',
-                                                          'Rasulullah'),
-                                                  style: textStyleNormal,
-                                                  textAlign: TextAlign.justify,
-                                                )),
-                                            Align(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        const AllHadis()));
-                                                      },
-                                                      child: const Text(
-                                                          'More Collection',
-                                                          style:
-                                                              textStyleNormalGrey),
-                                                      // Icon(
-                                                      //   Icons.arrow_forward_ios,
-                                                      //   size: 15,
-                                                      //   color: Colors.grey,
-                                                      // )
-                                                    )
-                                                  ],
-                                                )),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  : Shimmer.fromColors(
-                                      baseColor: Colors.grey[300],
-                                      highlightColor: Colors.grey[100],
-                                      child: const Card(
-                                        margin: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 20),
-                                        elevation: 8,
-                                        color: white,
-                                        child: ListTile(
-                                            minVerticalPadding: 16,
-                                            title: Text('loading..')),
-                                      ),
-                                    ),
-                              Container(
-                                  width: width,
-                                  margin: const EdgeInsets.only(top: 30),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(locale.reminder!,
-                                          style: textStyleBold),
-                                      const SizedBox(
-                                        height: 25,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          DefaultCircleCard(
-                                            icon: const ImageIcon(
-                                              AssetImage(
-                                                'assets/honey.png',
-                                              ),
-                                              size: 60,
-                                              // color: Color(0xFF3A5A98),
-                                            ),
-                                            label: locale.HH!,
-                                            onPress: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DefaultDialog(
-                                                  body: StatefulBuilder(builder:
-                                                      (context, setState) {
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Card(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                          elevation: 8,
-                                                          color: white,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          child: Column(
-                                                            children: [
-                                                              ListTile(
-                                                                leading: !visible
-                                                                    ? const Icon(
-                                                                        Icons
-                                                                            .keyboard_arrow_down_outlined)
-                                                                    : const Icon(
-                                                                        Icons
-                                                                            .keyboard_arrow_up_outlined),
-                                                                title: Text(
-                                                                  locale
-                                                                      .afiyahReminder!,
-                                                                  style: const TextStyle(
-                                                                      color:
-                                                                          black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                                subtitle: Text(
-                                                                  locale.HH!,
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                              .grey[
-                                                                          800],
-                                                                      fontSize:
-                                                                          14),
-                                                                ),
-                                                              ),
-                                                              Visibility(
-                                                                visible:
-                                                                    visible,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          16.0),
-                                                                  child:
-                                                                      RichText(
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .justify,
-                                                                    text: TextSpan(
-                                                                        children: [
-                                                                          TextSpan(
-                                                                              text: locale.text1!, //afiyah des
-                                                                              style: const TextStyle(color: Colors.black)),
-                                                                          TextSpan(
-                                                                              recognizer: TapGestureRecognizer()..onTap = () => launch('http://as-sunnah.com/'),
-                                                                              text: locale.text2!,
-                                                                              style: const TextStyle(color: Colors.blueAccent)),
-                                                                          TextSpan(
-                                                                              text: locale.text3!,
-                                                                              style: const TextStyle(color: Colors.black)),
-                                                                        ]),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Visibility(
-                                                                visible:
-                                                                    visible,
-                                                                child:
-                                                                    ButtonBar(
-                                                                  alignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    ElevatedButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        CoolAlert.show(
-                                                                            onCancelBtnTap: () => Navigator.pop(context),
-                                                                            title: locale.afiyahReminder!,
-                                                                            onConfirmBtnTap: () {
-                                                                              Navigator.pop(context);
-                                                                              _selectTimes(context, DateTime.now(), 'product');
-                                                                            },
-                                                                            context: context,
-                                                                            type: CoolAlertType.info,
-                                                                            text: hadis ? locale.sQuranP : locale.sHadithP,
-                                                                            showCancelBtn: true,
-                                                                            cancelBtnText: locale.back!,
-                                                                            confirmBtnText: locale.selectTime!);
-                                                                        setState(
-                                                                            () {
-                                                                          hadis =
-                                                                              !hadis;
-                                                                        });
-                                                                      },
-                                                                      child:
-                                                                          Text(
-                                                                        locale
-                                                                            .view!,
-                                                                        style: const TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            color: Colors.black),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  }),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          DefaultCircleCard(
-                                            icon: const ImageIcon(
-                                              AssetImage(
-                                                'assets/tahajjud.png',
-                                              ),
-                                              size: 60,
-                                              // color: Color(0xFF3A5A98),
-                                            ),
-                                            label: 'Tahajjud',
-                                            onPress: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DefaultDialog(
-                                                  body: StatefulBuilder(builder:
-                                                      (context, setState) {
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Card(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                          elevation: 8,
-                                                          color: white,
-                                                          child: ExpansionTile(
-                                                            leading: const Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_outlined),
-                                                            title: Text(
-                                                              locale
-                                                                  .tahajjudReminder!,
-                                                              style: const TextStyle(
-                                                                  color: black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                            subtitle: (d != '')
-                                                                ? Text(
-                                                                    '${locale.timeReminder!} $d',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                                  )
-                                                                : Text(
-                                                                    '${locale.timeReminder!} N/A',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                                  ),
-                                                            trailing: Switch(
-                                                              value:
-                                                                  isSwitched4,
-                                                              onChanged:
-                                                                  (value) async {
-                                                                SharedPreferences
-                                                                    prefs =
-                                                                    await SharedPreferences
-                                                                        .getInstance();
-                                                                await prefs.setBool(
-                                                                    'T${AppUser.instance.user!.uid}',
-                                                                    value);
+                                                                  await prefs
+                                                                      .setBool(
+                                                                          'T${AppUser.instance.user!.uid}',
+                                                                          value);
 
-                                                                firstTimeTahajjud =
-                                                                    prefs.getBool(
-                                                                            'firstTahajjud') ??
-                                                                        true;
-                                                                setState(() {
-                                                                  isSwitched4 =
-                                                                      value;
-                                                                });
+                                                                  firstTimeTahajjud =
+                                                                      prefs.getBool(
+                                                                              'firstTahajjud') ??
+                                                                          true;
+                                                                  setState(() {
+                                                                    isSwitched4 =
+                                                                        value;
+                                                                  });
 
-                                                                if (isSwitched4 ==
-                                                                    true) {
-                                                                  if (firstTimeTahajjud ==
+                                                                  if (isSwitched4 ==
                                                                       true) {
-                                                                    SharedPreferences
-                                                                        prefs =
-                                                                        await SharedPreferences
-                                                                            .getInstance();
-                                                                    CoolAlert.show(
-                                                                        onCancelBtnTap: () async {
-                                                                          Navigator.pop(
-                                                                              context);
+                                                                    if (firstTimeTahajjud ==
+                                                                        true) {
+                                                                      SharedPreferences
+                                                                          prefs =
                                                                           await SharedPreferences
                                                                               .getInstance();
-                                                                          await prefs.setBool(
-                                                                              'T${AppUser.instance.user!.uid}',
-                                                                              false);
-                                                                          setState(
-                                                                              () {
-                                                                            isSwitched4 =
-                                                                                false;
-                                                                          });
-                                                                        },
-                                                                        title: locale.tahajjudReminder!,
-                                                                        onConfirmBtnTap: () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          _selectTimes(
-                                                                              context,
-                                                                              DateTime.now(),
-                                                                              'tahajjud');
-                                                                        },
-                                                                        context: context,
-                                                                        type: CoolAlertType.info,
-                                                                        text: hadis ? locale.strongHadisT : locale.strongQuranT,
-                                                                        showCancelBtn: true,
-                                                                        cancelBtnText: locale.back!,
-                                                                        confirmBtnText: locale.selectTime!);
-                                                                    hadis =
-                                                                        !hadis;
-                                                                  } else {
-                                                                    getTime(
-                                                                        'tahajjud');
-                                                                  }
-                                                                }
-                                                                if (isSwitched4 ==
-                                                                    false) {
-                                                                  Provider.of<CancelNotificationProvider>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .cancel(
-                                                                          'tahajjud');
-                                                                }
-                                                              },
-                                                              activeColor:
-                                                                  kPrimaryColor,
-                                                              inactiveThumbColor:
-                                                                  Colors.white,
-                                                            ),
-                                                            children: <Widget>[
-                                                              ListTile(
-                                                                title: Tooltip(
-                                                                  message: locale
-                                                                      .tooltipEdit!,
-                                                                  child:
-                                                                      TextButton(
-                                                                    style: TextButton.styleFrom(
-                                                                        backgroundColor:
-                                                                            kPrimaryColor),
-                                                                    onPressed:
-                                                                        () async {
                                                                       CoolAlert.show(
-                                                                          onCancelBtnTap: () => Navigator.pop(context),
+                                                                          onCancelBtnTap: () async {
+                                                                            Navigator.pop(context);
+                                                                            await SharedPreferences.getInstance();
+                                                                            await prefs.setBool('T${AppUser.instance.user!.uid}',
+                                                                                false);
+                                                                            setState(() {
+                                                                              isSwitched4 = false;
+                                                                            });
+                                                                          },
                                                                           title: locale.tahajjudReminder!,
                                                                           onConfirmBtnTap: () {
                                                                             Navigator.pop(context);
@@ -1874,104 +1404,216 @@ class _HomePageState extends State<HomePage>
                                                                           confirmBtnText: locale.selectTime!);
                                                                       hadis =
                                                                           !hadis;
-                                                                    },
-                                                                    child: Text(
-                                                                      locale
-                                                                          .view!,
-                                                                      style: const TextStyle(
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          color:
-                                                                              Colors.black),
+                                                                    } else {
+                                                                      getTime(
+                                                                          'tahajjud');
+                                                                    }
+                                                                  }
+                                                                  if (isSwitched4 ==
+                                                                      false) {
+                                                                    Provider.of<CancelNotificationProvider>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .cancel(
+                                                                            'tahajjud');
+                                                                  }
+                                                                },
+                                                                activeColor:
+                                                                    kPrimaryColor,
+                                                                inactiveThumbColor:
+                                                                    Colors
+                                                                        .white,
+                                                              ),
+                                                              children: <
+                                                                  Widget>[
+                                                                ListTile(
+                                                                  title:
+                                                                      Tooltip(
+                                                                    message: locale
+                                                                        .tooltipEdit!,
+                                                                    child:
+                                                                        TextButton(
+                                                                      style: TextButton.styleFrom(
+                                                                          backgroundColor:
+                                                                              kPrimaryColor),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        CoolAlert.show(
+                                                                            onCancelBtnTap: () => Navigator.pop(context),
+                                                                            title: locale.tahajjudReminder!,
+                                                                            onConfirmBtnTap: () {
+                                                                              Navigator.pop(context);
+                                                                              _selectTimes(context, DateTime.now(), 'tahajjud');
+                                                                            },
+                                                                            context: context,
+                                                                            type: CoolAlertType.info,
+                                                                            text: hadis ? locale.strongHadisT : locale.strongQuranT,
+                                                                            showCancelBtn: true,
+                                                                            cancelBtnText: locale.back!,
+                                                                            confirmBtnText: locale.selectTime!);
+                                                                        hadis =
+                                                                            !hadis;
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        locale
+                                                                            .view!,
+                                                                        style: const TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            color: Colors.black),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  }),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          DefaultCircleCard(
-                                            icon: const ImageIcon(
-                                              AssetImage(
-                                                'assets/water.png',
-                                              ),
-                                              size: 60,
-                                              // color: Color(0xFF3A5A98),
+                                                        ],
+                                                      );
+                                                    }),
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                            label: 'Water',
-                                            onPress: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DefaultDialog(
-                                                  body: Consumer<WaterProvider>(
-                                                      builder: (context, water,
-                                                          child) {
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Card(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                          elevation: 8,
-                                                          color: white,
-                                                          child: ExpansionTile(
-                                                            leading: const Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_outlined),
-                                                            title: Text(
-                                                              locale
-                                                                  .waterReminder!,
-                                                              style: const TextStyle(
-                                                                  color: black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                            subtitle: Text(
-                                                              '$waterPerday ${locale.glassOfWater!} ($bℓ)',
-                                                              style:
-                                                                  const TextStyle(
-                                                                      color:
-                                                                          black),
-                                                            ),
-                                                            trailing: Switch(
-                                                              value:
-                                                                  isSwitched2,
-                                                              onChanged:
-                                                                  (value) async {
-                                                                if (waterPerday !=
-                                                                    0) {
-                                                                  SharedPreferences
-                                                                      prefs =
-                                                                      await SharedPreferences
-                                                                          .getInstance();
-                                                                  await prefs
-                                                                      .setBool(
-                                                                          'W${AppUser.instance.user!.uid}',
-                                                                          value);
-                                                                  firstTimeWater =
-                                                                      prefs.getBool(
-                                                                              'firstWater') ??
-                                                                          true;
+                                            DefaultCircleCard(
+                                              icon: const ImageIcon(
+                                                AssetImage(
+                                                  'assets/water.png',
+                                                ),
+                                                size: 60,
+                                                // color: Color(0xFF3A5A98),
+                                              ),
+                                              label: 'Water',
+                                              onPress: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      DefaultDialog(
+                                                    body:
+                                                        Consumer<WaterProvider>(
+                                                            builder: (context,
+                                                                water, child) {
+                                                      return Card(
+                                                        color: white,
+                                                        child: ExpansionTile(
+                                                          leading: const Icon(Icons
+                                                              .keyboard_arrow_down_outlined),
+                                                          title: Text(
+                                                            locale
+                                                                .waterReminder!,
+                                                            style: const TextStyle(
+                                                                color: black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          subtitle: Text(
+                                                            '$waterPerday ${locale.glassOfWater!} ($bℓ)',
+                                                            style:
+                                                                const TextStyle(
+                                                                    color:
+                                                                        black),
+                                                          ),
+                                                          trailing: Switch(
+                                                            value: isSwitched2,
+                                                            onChanged:
+                                                                (value) async {
+                                                              if (waterPerday !=
+                                                                  0) {
+                                                                SharedPreferences
+                                                                    prefs =
+                                                                    await SharedPreferences
+                                                                        .getInstance();
+                                                                await prefs.setBool(
+                                                                    'W${AppUser.instance.user!.uid}',
+                                                                    value);
+                                                                firstTimeWater =
+                                                                    prefs.getBool(
+                                                                            'firstWater') ??
+                                                                        true;
+                                                                setState(() {
+                                                                  isSwitched2 =
+                                                                      value;
+                                                                });
+
+                                                                if (isSwitched2 ==
+                                                                    true) {
+                                                                  bool h =
+                                                                      await showDialog(
+                                                                    barrierDismissible:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return MyDialog(
+                                                                          waterPerday);
+                                                                    },
+                                                                  );
                                                                   setState(() {
                                                                     isSwitched2 =
-                                                                        value;
+                                                                        h;
+                                                                    prefs.setBool(
+                                                                        'W${AppUser.instance.user!.uid}',
+                                                                        h);
                                                                   });
-
-                                                                  if (isSwitched2 ==
-                                                                      true) {
+                                                                  checkTime();
+                                                                }
+                                                                if (isSwitched2 ==
+                                                                    false) {
+                                                                  water
+                                                                      .cancelNotifications();
+                                                                  Fluttertoast.showToast(
+                                                                      msg: locale
+                                                                          .cancelWaterReminder!);
+                                                                }
+                                                              } else {
+                                                                showDialog(
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        actions: [
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                              },
+                                                                              child: Text(locale.back!)),
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
+                                                                              },
+                                                                              child: Text(locale.update_profile!))
+                                                                        ],
+                                                                        title: Text(
+                                                                            locale.beforeWaterReminder!),
+                                                                      );
+                                                                    },
+                                                                    context:
+                                                                        context);
+                                                              }
+                                                            },
+                                                            activeColor: Colors
+                                                                .blue[400],
+                                                            inactiveThumbColor:
+                                                                Colors.white,
+                                                          ),
+                                                          children: [
+                                                            ListTile(
+                                                              title:
+                                                                  ElevatedButton(
+                                                                onPressed:
+                                                                    () async {
+                                                                  if (waterPerday !=
+                                                                      0) {
+                                                                    SharedPreferences
+                                                                        prefs =
+                                                                        await SharedPreferences
+                                                                            .getInstance();
                                                                     bool h =
                                                                         await showDialog(
                                                                       barrierDismissible:
@@ -1982,7 +1624,8 @@ class _HomePageState extends State<HomePage>
                                                                           (BuildContext
                                                                               context) {
                                                                         return MyDialog(
-                                                                            waterPerday);
+                                                                          waterPerday,
+                                                                        );
                                                                       },
                                                                     );
                                                                     setState(
@@ -1993,297 +1636,164 @@ class _HomePageState extends State<HomePage>
                                                                           'W${AppUser.instance.user!.uid}',
                                                                           h);
                                                                     });
-                                                                    checkTime();
+                                                                  } else {
+                                                                    showDialog(
+                                                                        builder:
+                                                                            (BuildContext
+                                                                                context) {
+                                                                          return AlertDialog(
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                  onPressed: () {
+                                                                                    Navigator.pop(context);
+                                                                                  },
+                                                                                  child: Text(locale.back!)),
+                                                                              TextButton(
+                                                                                  onPressed: () {
+                                                                                    Navigator.pop(context);
+                                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
+                                                                                  },
+                                                                                  child: Text(locale.update_profile!))
+                                                                            ],
+                                                                            title:
+                                                                                Text(locale.beforeWaterReminder!),
+                                                                          );
+                                                                        },
+                                                                        context:
+                                                                            context);
                                                                   }
-                                                                  if (isSwitched2 ==
-                                                                      false) {
-                                                                    water
-                                                                        .cancelNotifications();
-                                                                    Fluttertoast
-                                                                        .showToast(
-                                                                            msg:
-                                                                                locale.cancelWaterReminder!);
-                                                                  }
-                                                                } else {
-                                                                  showDialog(
-                                                                      builder:
-                                                                          (BuildContext
-                                                                              context) {
-                                                                        return AlertDialog(
-                                                                          actions: [
-                                                                            TextButton(
-                                                                                onPressed: () {
-                                                                                  Navigator.pop(context);
-                                                                                },
-                                                                                child: Text(locale.back!)),
-                                                                            TextButton(
-                                                                                onPressed: () {
-                                                                                  Navigator.pop(context);
-                                                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
-                                                                                },
-                                                                                child: Text(locale.update_profile!))
-                                                                          ],
-                                                                          title:
-                                                                              Text(locale.beforeWaterReminder!),
-                                                                        );
-                                                                      },
-                                                                      context:
-                                                                          context);
-                                                                }
-                                                              },
-                                                              activeColor:
-                                                                  Colors.blue[
-                                                                      400],
-                                                              inactiveThumbColor:
-                                                                  Colors.white,
-                                                            ),
-                                                            children: [
-                                                              ListTile(
-                                                                title:
-                                                                    ElevatedButton(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    if (waterPerday !=
-                                                                        0) {
+                                                                },
+                                                                child: Text(
+                                                                  locale
+                                                                      .showAllReminder!,
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                                style: TextButton
+                                                                    .styleFrom(
+                                                                        backgroundColor:
+                                                                            Colors.blueAccent),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      );
+                                                    }),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            DefaultCircleCard(
+                                              icon: const ImageIcon(
+                                                AssetImage(
+                                                  'assets/sadaqahh.png',
+                                                ),
+                                                size: 60,
+                                                // color: Color(0xFF3A5A98),
+                                              ),
+                                              label: 'Sadaqah',
+                                              onPress: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      DefaultDialog(
+                                                    body: StatefulBuilder(
+                                                        builder: (context,
+                                                            setState) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Card(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        20),
+                                                            color: white,
+                                                            child:
+                                                                ExpansionTile(
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined),
+                                                              title: Text(
+                                                                locale
+                                                                    .sadaqahReminder!,
+                                                                style: const TextStyle(
+                                                                    color:
+                                                                        black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              subtitle:
+                                                                  (c != '')
+                                                                      ? Text(
+                                                                          '${locale.timeReminder!} $c',
+                                                                          style:
+                                                                              const TextStyle(color: black),
+                                                                        )
+                                                                      : Text(
+                                                                          '${locale.timeReminder!} N/A',
+                                                                          style:
+                                                                              const TextStyle(color: black),
+                                                                        ),
+                                                              trailing: Switch(
+                                                                value:
+                                                                    isSwitched3,
+                                                                onChanged:
+                                                                    (value) async {
+                                                                  SharedPreferences
+                                                                      prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  await prefs
+                                                                      .setBool(
+                                                                          'S${AppUser.instance.user!.uid}',
+                                                                          value);
+                                                                  firstTimeSadaqah =
+                                                                      prefs.getBool(
+                                                                              'firstSadaqah') ??
+                                                                          true;
+                                                                  setState(() {
+                                                                    isSwitched3 =
+                                                                        value;
+                                                                  });
+
+                                                                  if (isSwitched3 ==
+                                                                      true) {
+                                                                    if (firstTimeSadaqah ==
+                                                                        true) {
                                                                       SharedPreferences
                                                                           prefs =
                                                                           await SharedPreferences
                                                                               .getInstance();
-                                                                      bool h =
-                                                                          await showDialog(
-                                                                        barrierDismissible:
-                                                                            false,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (BuildContext
-                                                                                context) {
-                                                                          return MyDialog(
-                                                                            waterPerday,
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                      setState(
-                                                                          () {
-                                                                        isSwitched2 =
-                                                                            h;
-                                                                        prefs.setBool(
-                                                                            'W${AppUser.instance.user!.uid}',
-                                                                            h);
-                                                                      });
-                                                                    } else {
-                                                                      showDialog(
-                                                                          builder: (BuildContext
-                                                                              context) {
-                                                                            return AlertDialog(
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                    onPressed: () {
-                                                                                      Navigator.pop(context);
-                                                                                    },
-                                                                                    child: Text(locale.back!)),
-                                                                                TextButton(
-                                                                                    onPressed: () {
-                                                                                      Navigator.pop(context);
-                                                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
-                                                                                    },
-                                                                                    child: Text(locale.update_profile!))
-                                                                              ],
-                                                                              title: Text(locale.beforeWaterReminder!),
-                                                                            );
-                                                                          },
-                                                                          context:
-                                                                              context);
-                                                                    }
-                                                                  },
-                                                                  child: Text(
-                                                                    locale
-                                                                        .showAllReminder!,
-                                                                    style: const TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        color: Colors
-                                                                            .white),
-                                                                  ),
-                                                                  style: TextButton.styleFrom(
-                                                                      backgroundColor:
-                                                                          Colors
-                                                                              .blueAccent),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        )
-                                                      ],
-                                                    );
-                                                  }),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          DefaultCircleCard(
-                                            icon: const ImageIcon(
-                                              AssetImage(
-                                                'assets/sadaqahh.png',
-                                              ),
-                                              size: 60,
-                                              // color: Color(0xFF3A5A98),
-                                            ),
-                                            label: 'Sadaqah',
-                                            onPress: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DefaultDialog(
-                                                  body: StatefulBuilder(builder:
-                                                      (context, setState) {
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Card(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                          elevation: 8,
-                                                          color: white,
-                                                          child: ExpansionTile(
-                                                            leading: const Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_outlined),
-                                                            title: Text(
-                                                              locale
-                                                                  .sadaqahReminder!,
-                                                              style: const TextStyle(
-                                                                  color: black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                            subtitle: (c != '')
-                                                                ? Text(
-                                                                    '${locale.timeReminder!} $c',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                                  )
-                                                                : Text(
-                                                                    '${locale.timeReminder!} N/A',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                                  ),
-                                                            trailing: Switch(
-                                                              value:
-                                                                  isSwitched3,
-                                                              onChanged:
-                                                                  (value) async {
-                                                                SharedPreferences
-                                                                    prefs =
-                                                                    await SharedPreferences
-                                                                        .getInstance();
-                                                                await prefs.setBool(
-                                                                    'S${AppUser.instance.user!.uid}',
-                                                                    value);
-                                                                firstTimeSadaqah =
-                                                                    prefs.getBool(
-                                                                            'firstSadaqah') ??
-                                                                        true;
-                                                                setState(() {
-                                                                  isSwitched3 =
-                                                                      value;
-                                                                });
-
-                                                                if (isSwitched3 ==
-                                                                    true) {
-                                                                  if (firstTimeSadaqah ==
-                                                                      true) {
-                                                                    SharedPreferences
-                                                                        prefs =
-                                                                        await SharedPreferences
-                                                                            .getInstance();
-                                                                    CoolAlert.show(
-                                                                        title: locale.sadaqahReminder!,
-                                                                        onCancelBtnTap: () async {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          await SharedPreferences
-                                                                              .getInstance();
-                                                                          await prefs.setBool(
-                                                                              'S${AppUser.instance.user!.uid}',
-                                                                              false);
-                                                                          setState(
-                                                                              () {
-                                                                            isSwitched3 =
-                                                                                false;
-                                                                          });
-                                                                        },
-                                                                        onConfirmBtnTap: () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          _selectTimes(
-                                                                              context,
-                                                                              DateTime.now(),
-                                                                              'sadaqah');
-                                                                        },
-                                                                        context: context,
-                                                                        type: CoolAlertType.info,
-                                                                        text: hadis ? locale.strongHadisS : locale.strongQuranS,
-                                                                        showCancelBtn: true,
-                                                                        cancelBtnText: locale.back!,
-                                                                        confirmBtnText: locale.selectTime!);
-                                                                    hadis =
-                                                                        !hadis;
-                                                                  } else {
-                                                                    getTime(
-                                                                        'sadaqah');
-                                                                  }
-                                                                }
-                                                                if (isSwitched3 ==
-                                                                    false) {
-                                                                  Provider.of<CancelNotificationProvider>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .cancel(
-                                                                          'sadaqah');
-                                                                }
-                                                              },
-                                                              activeColor:
-                                                                  Colors.blue[
-                                                                      400],
-                                                              inactiveThumbColor:
-                                                                  Colors.white,
-                                                            ),
-                                                            children: <Widget>[
-                                                              ListTile(
-                                                                title: Tooltip(
-                                                                  message: locale
-                                                                      .tooltipEdit!,
-                                                                  child:
-                                                                      TextButton(
-                                                                    style: TextButton.styleFrom(
-                                                                        backgroundColor:
-                                                                            Colors.blueAccent),
-                                                                    onPressed:
-                                                                        () async {
                                                                       CoolAlert.show(
-                                                                          onCancelBtnTap: () => Navigator.pop(context),
                                                                           title: locale.sadaqahReminder!,
+                                                                          onCancelBtnTap: () async {
+                                                                            Navigator.pop(context);
+                                                                            await SharedPreferences.getInstance();
+                                                                            await prefs.setBool('S${AppUser.instance.user!.uid}',
+                                                                                false);
+                                                                            setState(() {
+                                                                              isSwitched3 = false;
+                                                                            });
+                                                                          },
                                                                           onConfirmBtnTap: () {
                                                                             Navigator.pop(context);
                                                                             _selectTimes(
@@ -2299,515 +1809,566 @@ class _HomePageState extends State<HomePage>
                                                                           confirmBtnText: locale.selectTime!);
                                                                       hadis =
                                                                           !hadis;
-                                                                    },
-                                                                    child: Text(
-                                                                      locale
-                                                                          .view!,
-                                                                      style: const TextStyle(
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          color:
-                                                                              Colors.white),
+                                                                    } else {
+                                                                      getTime(
+                                                                          'sadaqah');
+                                                                    }
+                                                                  }
+                                                                  if (isSwitched3 ==
+                                                                      false) {
+                                                                    Provider.of<CancelNotificationProvider>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .cancel(
+                                                                            'sadaqah');
+                                                                  }
+                                                                },
+                                                                activeColor:
+                                                                    Colors.blue[
+                                                                        400],
+                                                                inactiveThumbColor:
+                                                                    Colors
+                                                                        .white,
+                                                              ),
+                                                              children: <
+                                                                  Widget>[
+                                                                ListTile(
+                                                                  title:
+                                                                      Tooltip(
+                                                                    message: locale
+                                                                        .tooltipEdit!,
+                                                                    child:
+                                                                        TextButton(
+                                                                      style: TextButton.styleFrom(
+                                                                          backgroundColor:
+                                                                              Colors.blueAccent),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        CoolAlert.show(
+                                                                            onCancelBtnTap: () => Navigator.pop(context),
+                                                                            title: locale.sadaqahReminder!,
+                                                                            onConfirmBtnTap: () {
+                                                                              Navigator.pop(context);
+                                                                              _selectTimes(context, DateTime.now(), 'sadaqah');
+                                                                            },
+                                                                            context: context,
+                                                                            type: CoolAlertType.info,
+                                                                            text: hadis ? locale.strongHadisS : locale.strongQuranS,
+                                                                            showCancelBtn: true,
+                                                                            cancelBtnText: locale.back!,
+                                                                            confirmBtnText: locale.selectTime!);
+                                                                        hadis =
+                                                                            !hadis;
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        locale
+                                                                            .view!,
+                                                                        style: const TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            color: Colors.white),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          20.height,
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Expanded(
+                                                                child:
+                                                                    DefaultButton(
+                                                                  onPress: () {
+                                                                    showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) =>
+                                                                              DefaultDialog(
+                                                                        body: StatefulBuilder(builder:
+                                                                            (context,
+                                                                                setState) {
+                                                                          return Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: [
+                                                                              dialogBody('Coming Soon'),
+                                                                              dialogButton(
+                                                                                'Close',
+                                                                                ' ',
+                                                                                () {
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                                () {
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                              )
+                                                                            ],
+                                                                          );
+                                                                        }),
+                                                                      ),
+                                                                    );
+                                                                    // Navigator.push(
+                                                                    //   context,
+                                                                    //   MaterialPageRoute(
+                                                                    //       builder:
+                                                                    //           (context) =>
+                                                                    //               const SadaqahPage()),
+                                                                    // );
+                                                                  },
+                                                                  label:
+                                                                      'Sadaqah Now',
+                                                                  textStyle:
+                                                                      textStyleNormal,
+                                                                  decoration: BoxDecoration(
+                                                                      color:
+                                                                          kPrimaryColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              16)),
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 15,
                                                               ),
                                                             ],
                                                           ),
-                                                        ),
-                                                        20.height,
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Expanded(
-                                                              child:
-                                                                  DefaultButton(
-                                                                onPress: () {
-                                                                  showDialog(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) =>
-                                                                            DefaultDialog(
-                                                                      body: StatefulBuilder(builder:
-                                                                          (context,
-                                                                              setState) {
-                                                                        return Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          children: [
-                                                                            dialogBody('Coming Soon'),
-                                                                            dialogButton(
-                                                                              'Close',
-                                                                              ' ',
-                                                                              () {
-                                                                                Navigator.pop(context);
-                                                                              },
-                                                                              () {
-                                                                                Navigator.pop(context);
-                                                                              },
-                                                                            )
-                                                                          ],
-                                                                        );
-                                                                      }),
-                                                                    ),
-                                                                  );
-                                                                  // Navigator.push(
-                                                                  //   context,
-                                                                  //   MaterialPageRoute(
-                                                                  //       builder:
-                                                                  //           (context) =>
-                                                                  //               const SadaqahPage()),
-                                                                  // );
-                                                                },
-                                                                label:
-                                                                    'Sadaqah Now',
-                                                                textStyle:
-                                                                    textStyleNormal,
-                                                                decoration: BoxDecoration(
-                                                                    color:
-                                                                        kPrimaryColor,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            16)),
-                                                              ),
+                                                          SizedBox(
+                                                            width: 100,
+                                                            height: 50,
+                                                            child:
+                                                                DefaultButton(
+                                                              onPress: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                              label: 'Back',
+                                                              textStyle:
+                                                                  textStyleNormalGrey,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              16)),
                                                             ),
-                                                            const SizedBox(
-                                                              width: 15,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          width: 100,
-                                                          height: 50,
-                                                          child: DefaultButton(
-                                                            onPress: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                            label: 'Back',
-                                                            textStyle:
-                                                                textStyleNormalGrey,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            16)),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  }),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          DefaultCircleCard(
-                                            icon: const ImageIcon(
-                                              AssetImage(
-                                                'assets/medicine.png',
-                                              ),
-                                              size: 60,
-                                              // color: Color(0xFF3A5A98),
+                                                        ],
+                                                      );
+                                                    }),
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                            label: 'Medicine',
-                                            onPress: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DefaultDialog(
-                                                  body: Consumer<
-                                                          Medicine1Provider>(
-                                                      builder: (context,
-                                                          medicine1, child) {
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Card(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                          elevation: 8,
-                                                          color: white,
-                                                          child: ExpansionTile(
-                                                            leading: const Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_outlined),
-                                                            title: locale
-                                                                        .reminder ==
-                                                                    'Peringatan'
-                                                                ? Text(
-                                                                    '${locale.reminder!} ${medicine1.name ?? name1}',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  )
-                                                                : Text(
-                                                                    '${medicine1.name ?? name1} ${locale.reminder!}',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                            subtitle: Text(
-                                                              '${medicine1.intake} ${locale.intake!}',
-                                                              style:
-                                                                  const TextStyle(
-                                                                      color:
-                                                                          black),
-                                                            ),
-                                                            trailing: Switch(
-                                                              value: medicine1
-                                                                  .medSwitch,
-                                                              onChanged:
-                                                                  (value) async {
-                                                                SharedPreferences
-                                                                    prefs =
-                                                                    await SharedPreferences
-                                                                        .getInstance();
-                                                                medicine1
-                                                                    .changeSwitch();
-                                                                firstMed1 =
-                                                                    prefs.getBool(
-                                                                            'firstMed1') ??
-                                                                        true;
-                                                                setState(() {
-                                                                  med1 = value;
-                                                                });
-                                                                if (med1 ==
-                                                                    true) {
-                                                                  if (firstMed1 ==
+                                            DefaultCircleCard(
+                                              icon: const ImageIcon(
+                                                AssetImage(
+                                                  'assets/medicine.png',
+                                                ),
+                                                size: 60,
+                                                // color: Color(0xFF3A5A98),
+                                              ),
+                                              label: 'Medicine',
+                                              onPress: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      DefaultDialog(
+                                                    body: Consumer<
+                                                            Medicine1Provider>(
+                                                        builder: (context,
+                                                            medicine1, child) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Card(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        20),
+                                                            color: white,
+                                                            child:
+                                                                ExpansionTile(
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined),
+                                                              title: locale
+                                                                          .reminder ==
+                                                                      'Peringatan'
+                                                                  ? Text(
+                                                                      '${locale.reminder!} ${medicine1.name ?? name1}',
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    )
+                                                                  : Text(
+                                                                      '${medicine1.name ?? name1} ${locale.reminder!}',
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                              subtitle: Text(
+                                                                '${medicine1.intake} ${locale.intake!}',
+                                                                style: const TextStyle(
+                                                                    color:
+                                                                        black),
+                                                              ),
+                                                              trailing: Switch(
+                                                                value: medicine1
+                                                                    .medSwitch,
+                                                                onChanged:
+                                                                    (value) async {
+                                                                  SharedPreferences
+                                                                      prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  medicine1
+                                                                      .changeSwitch();
+                                                                  firstMed1 =
+                                                                      prefs.getBool(
+                                                                              'firstMed1') ??
+                                                                          true;
+                                                                  setState(() {
+                                                                    med1 =
+                                                                        value;
+                                                                  });
+                                                                  if (med1 ==
                                                                       true) {
-                                                                    if (medicine1
-                                                                            .intake ==
-                                                                        0) {
-                                                                      await prefs.setBool(
-                                                                          'm1${AppUser.instance.user!.uid}',
-                                                                          false);
-                                                                      setState(
-                                                                          () {
-                                                                        Timer(
-                                                                            const Duration(seconds: 2),
-                                                                            back1);
-                                                                      });
-                                                                      Fluttertoast.showToast(
-                                                                          msg: locale.water1 == 'air'
-                                                                              ? 'Sila tetapkan bilangan ubat yang perlu diambil dalam sehari dahulu'
-                                                                              : 'Please set number of medicine(s) intake in a day first');
+                                                                    if (firstMed1 ==
+                                                                        true) {
+                                                                      if (medicine1
+                                                                              .intake ==
+                                                                          0) {
+                                                                        await prefs.setBool(
+                                                                            'm1${AppUser.instance.user!.uid}',
+                                                                            false);
+                                                                        setState(
+                                                                            () {
+                                                                          Timer(
+                                                                              const Duration(seconds: 2),
+                                                                              back1);
+                                                                        });
+                                                                        Fluttertoast.showToast(
+                                                                            msg: locale.water1 == 'air'
+                                                                                ? 'Sila tetapkan bilangan ubat yang perlu diambil dalam sehari dahulu'
+                                                                                : 'Please set number of medicine(s) intake in a day first');
+                                                                      } else {
+                                                                        CoolAlert.show(
+                                                                            title: "${locale.takeYour} ${box.read('medicine1') ?? locale.medicineNo1!}",
+                                                                            onCancelBtnTap: () async {
+                                                                              Navigator.pop(context);
+                                                                              await SharedPreferences.getInstance();
+                                                                              await prefs.setBool('m1${AppUser.instance.user!.uid}', false);
+                                                                              setState(() {
+                                                                                med1 = false;
+                                                                              });
+                                                                            },
+                                                                            onConfirmBtnTap: () {
+                                                                              Navigator.pop(context);
+                                                                              medicine1.selectTimes(context, DateTime.now(), intake: 0);
+                                                                            },
+                                                                            context: context,
+                                                                            type: CoolAlertType.info,
+                                                                            text: hadis ? locale.strongHadisM : locale.strongQuranM,
+                                                                            showCancelBtn: true,
+                                                                            cancelBtnText: locale.back!,
+                                                                            confirmBtnText: locale.selectTime!);
+                                                                        hadis =
+                                                                            !hadis;
+                                                                      }
                                                                     } else {
-                                                                      CoolAlert.show(
-                                                                          title: "${locale.takeYour} ${box.read('medicine1') ?? locale.medicineNo1!}",
-                                                                          onCancelBtnTap: () async {
-                                                                            Navigator.pop(context);
-                                                                            await SharedPreferences.getInstance();
-                                                                            await prefs.setBool('m1${AppUser.instance.user!.uid}',
-                                                                                false);
-                                                                            setState(() {
-                                                                              med1 = false;
-                                                                            });
-                                                                          },
-                                                                          onConfirmBtnTap: () {
-                                                                            Navigator.pop(context);
-                                                                            medicine1.selectTimes(context,
-                                                                                DateTime.now(),
-                                                                                intake: 0);
-                                                                          },
-                                                                          context: context,
-                                                                          type: CoolAlertType.info,
-                                                                          text: hadis ? locale.strongHadisM : locale.strongQuranM,
-                                                                          showCancelBtn: true,
-                                                                          cancelBtnText: locale.back!,
-                                                                          confirmBtnText: locale.selectTime!);
-                                                                      hadis =
-                                                                          !hadis;
+                                                                      medicine1
+                                                                          .getTime();
                                                                     }
                                                                   } else {
                                                                     medicine1
-                                                                        .getTime();
+                                                                        .cancelNotifications();
+                                                                    Fluttertoast
+                                                                        .showToast(
+                                                                            msg:
+                                                                                locale.cancelReminder1!);
                                                                   }
-                                                                } else {
-                                                                  medicine1
-                                                                      .cancelNotifications();
-                                                                  Fluttertoast.showToast(
-                                                                      msg: locale
-                                                                          .cancelReminder1!);
-                                                                }
-                                                              },
-                                                              activeColor:
-                                                                  Colors.blue[
-                                                                      400],
-                                                              inactiveThumbColor:
-                                                                  Colors.white,
-                                                            ),
-                                                            children: [
-                                                              Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        70.0),
-                                                                child: Text(
-                                                                  locale
-                                                                      .takeMedicine!,
-                                                                  style: const TextStyle(
-                                                                      fontSize:
-                                                                          14),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                ),
+                                                                },
+                                                                activeColor:
+                                                                    Colors.blue[
+                                                                        400],
+                                                                inactiveThumbColor:
+                                                                    Colors
+                                                                        .white,
                                                               ),
-                                                              for (int i = 0;
-                                                                  i <
-                                                                      medicine1
-                                                                          .intake;
-                                                                  i++)
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                    Icons
-                                                                        .medical_services,
-                                                                    semanticLabel:
-                                                                        i.toString(),
-                                                                  ),
-                                                                  title: Padding(
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              8.0),
-                                                                      child: Text(
-                                                                          medicine1
-                                                                              .scheduleList![i])),
-                                                                  trailing:
-                                                                      TextButton(
-                                                                    onPressed:
-                                                                        () {
-                                                                      CoolAlert.show(
-                                                                          onCancelBtnTap: () => Navigator.pop(context),
-                                                                          title: "${locale.takeYour} ${medicine1.name ?? locale.medicineNo1!}",
-                                                                          onConfirmBtnTap: () {
-                                                                            Navigator.pop(context);
-                                                                            medicine1.selectTimes(context,
-                                                                                DateTime.now(),
-                                                                                intake: i);
-                                                                          },
-                                                                          context: context,
-                                                                          type: CoolAlertType.info,
-                                                                          text: hadis ? locale.strongHadisM : locale.strongQuranM,
-                                                                          showCancelBtn: true,
-                                                                          cancelBtnText: locale.back!,
-                                                                          confirmBtnText: locale.selectTime!);
-                                                                      hadis =
-                                                                          !hadis;
-                                                                    },
-                                                                    child: Text(
-                                                                        locale
-                                                                            .editTime!),
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      horizontal:
+                                                                          70.0),
+                                                                  child: Text(
+                                                                    locale
+                                                                        .takeMedicine!,
+                                                                    style: const TextStyle(
+                                                                        fontSize:
+                                                                            14),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
                                                                   ),
                                                                 ),
-                                                              ListTile(
-                                                                title:
-                                                                    TextButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          showDialog(
-                                                                              builder: (BuildContext context) {
-                                                                                return Consumer<Medicine1Provider>(builder: (context, medic1, child) {
-                                                                                  return AlertDialog(
-                                                                                    title: Text(locale.editMedicineTitle!),
-                                                                                    content: SizedBox(
-                                                                                      height: MediaQuery.of(context).size.height * 0.25,
-                                                                                      child: SingleChildScrollView(
-                                                                                        child: Column(
-                                                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                                          children: [
-                                                                                            if (medicine1.name != null)
-                                                                                              Column(
-                                                                                                children: [
-                                                                                                  Align(
-                                                                                                      alignment: Alignment.topLeft,
-                                                                                                      child: Text(
-                                                                                                        locale.editMedicineName!,
-                                                                                                        style: TextStyle(fontSize: 12, color: Colors.grey[800]),
-                                                                                                      )),
-                                                                                                  Align(
-                                                                                                      alignment: Alignment.topLeft,
-                                                                                                      child: Row(
-                                                                                                        children: [
-                                                                                                          Text(
-                                                                                                            medicine1.name!,
-                                                                                                          ),
-                                                                                                          const Spacer(),
-                                                                                                          IconButton(onPressed: () => Provider.of<Medicine1Provider>(context, listen: false).changeVisible(), icon: const Icon(Icons.edit))
-                                                                                                        ],
-                                                                                                      )),
-                                                                                                ],
+                                                                for (int i = 0;
+                                                                    i <
+                                                                        medicine1
+                                                                            .intake;
+                                                                    i++)
+                                                                  ListTile(
+                                                                    leading:
+                                                                        Icon(
+                                                                      Icons
+                                                                          .medical_services,
+                                                                      semanticLabel:
+                                                                          i.toString(),
+                                                                    ),
+                                                                    title: Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.all(
+                                                                                8.0),
+                                                                        child: Text(
+                                                                            medicine1.scheduleList![i])),
+                                                                    trailing:
+                                                                        TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        CoolAlert.show(
+                                                                            onCancelBtnTap: () => Navigator.pop(context),
+                                                                            title: "${locale.takeYour} ${medicine1.name ?? locale.medicineNo1!}",
+                                                                            onConfirmBtnTap: () {
+                                                                              Navigator.pop(context);
+                                                                              medicine1.selectTimes(context, DateTime.now(), intake: i);
+                                                                            },
+                                                                            context: context,
+                                                                            type: CoolAlertType.info,
+                                                                            text: hadis ? locale.strongHadisM : locale.strongQuranM,
+                                                                            showCancelBtn: true,
+                                                                            cancelBtnText: locale.back!,
+                                                                            confirmBtnText: locale.selectTime!);
+                                                                        hadis =
+                                                                            !hadis;
+                                                                      },
+                                                                      child: Text(
+                                                                          locale
+                                                                              .editTime!),
+                                                                    ),
+                                                                  ),
+                                                                ListTile(
+                                                                  title:
+                                                                      TextButton(
+                                                                          onPressed:
+                                                                              () async {
+                                                                            showDialog(
+                                                                                builder: (BuildContext context) {
+                                                                                  return Consumer<Medicine1Provider>(builder: (context, medic1, child) {
+                                                                                    return AlertDialog(
+                                                                                      title: Text(locale.editMedicineTitle!),
+                                                                                      content: SizedBox(
+                                                                                        height: MediaQuery.of(context).size.height * 0.25,
+                                                                                        child: SingleChildScrollView(
+                                                                                          child: Column(
+                                                                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                                            children: [
+                                                                                              if (medicine1.name != null)
+                                                                                                Column(
+                                                                                                  children: [
+                                                                                                    Align(
+                                                                                                        alignment: Alignment.topLeft,
+                                                                                                        child: Text(
+                                                                                                          locale.editMedicineName!,
+                                                                                                          style: TextStyle(fontSize: 12, color: Colors.grey[800]),
+                                                                                                        )),
+                                                                                                    Align(
+                                                                                                        alignment: Alignment.topLeft,
+                                                                                                        child: Row(
+                                                                                                          children: [
+                                                                                                            Text(
+                                                                                                              medicine1.name!,
+                                                                                                            ),
+                                                                                                            const Spacer(),
+                                                                                                            IconButton(onPressed: () => Provider.of<Medicine1Provider>(context, listen: false).changeVisible(), icon: const Icon(Icons.edit))
+                                                                                                          ],
+                                                                                                        )),
+                                                                                                  ],
+                                                                                                ),
+                                                                                              Visibility(
+                                                                                                visible: medicine1.name != null ? medicine1.visible : true,
+                                                                                                child: FormField<String>(
+                                                                                                  builder: (FormFieldState<String> state) {
+                                                                                                    return InputDecorator(
+                                                                                                      decoration: InputDecoration(border: InputBorder.none, errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0), label: Text(locale.editMedicineName!)),
+                                                                                                      child: TextFormField(
+                                                                                                        keyboardType: TextInputType.text,
+                                                                                                        textCapitalization: TextCapitalization.sentences,
+                                                                                                        controller: _detailM,
+                                                                                                      ),
+                                                                                                    );
+                                                                                                  },
+                                                                                                ),
                                                                                               ),
-                                                                                            Visibility(
-                                                                                              visible: medicine1.name != null ? medicine1.visible : true,
-                                                                                              child: FormField<String>(
+                                                                                              FormField<String>(
                                                                                                 builder: (FormFieldState<String> state) {
                                                                                                   return InputDecorator(
-                                                                                                    decoration: InputDecoration(border: InputBorder.none, errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0), label: Text(locale.editMedicineName!)),
-                                                                                                    child: TextFormField(
-                                                                                                      keyboardType: TextInputType.text,
-                                                                                                      textCapitalization: TextCapitalization.sentences,
-                                                                                                      controller: _detailM,
+                                                                                                    decoration: InputDecoration(errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0), hintText: '', label: Text(locale.selectIntake!)),
+                                                                                                    isEmpty: _currentSelectedValue == '',
+                                                                                                    child: DropdownButtonHideUnderline(
+                                                                                                      child: DropdownButton<String>(
+                                                                                                        value: _currentSelectedValue,
+                                                                                                        isDense: true,
+                                                                                                        onChanged: (String? newValue) {
+                                                                                                          setState(() {
+                                                                                                            _currentSelectedValue = newValue;
+                                                                                                            box.write('medicine1Intake', _currentSelectedValue);
+                                                                                                            state.didChange(newValue);
+                                                                                                          });
+                                                                                                        },
+                                                                                                        items: _no.map((String value) {
+                                                                                                          return DropdownMenuItem<String>(
+                                                                                                            value: value,
+                                                                                                            child: Text(value),
+                                                                                                          );
+                                                                                                        }).toList(),
+                                                                                                      ),
                                                                                                     ),
                                                                                                   );
                                                                                                 },
                                                                                               ),
-                                                                                            ),
-                                                                                            FormField<String>(
-                                                                                              builder: (FormFieldState<String> state) {
-                                                                                                return InputDecorator(
-                                                                                                  decoration: InputDecoration(errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0), hintText: '', label: Text(locale.selectIntake!)),
-                                                                                                  isEmpty: _currentSelectedValue == '',
-                                                                                                  child: DropdownButtonHideUnderline(
-                                                                                                    child: DropdownButton<String>(
-                                                                                                      value: _currentSelectedValue,
-                                                                                                      isDense: true,
-                                                                                                      onChanged: (String? newValue) {
-                                                                                                        setState(() {
-                                                                                                          _currentSelectedValue = newValue;
-                                                                                                          box.write('medicine1Intake', _currentSelectedValue);
-                                                                                                          state.didChange(newValue);
-                                                                                                        });
-                                                                                                      },
-                                                                                                      items: _no.map((String value) {
-                                                                                                        return DropdownMenuItem<String>(
-                                                                                                          value: value,
-                                                                                                          child: Text(value),
-                                                                                                        );
-                                                                                                      }).toList(),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                );
-                                                                                              },
-                                                                                            ),
-                                                                                          ],
+                                                                                            ],
+                                                                                          ),
                                                                                         ),
                                                                                       ),
-                                                                                    ),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                          onPressed: () async {
-                                                                                            if (medicine1.visible == true && _detailM.text != '') {
-                                                                                              setState(() {
-                                                                                                box.write('medicine1', _detailM.text);
-                                                                                              });
-                                                                                            }
-                                                                                            if (_detailM.text != '') {
-                                                                                              setState(() {
-                                                                                                box.write('medicine1', _detailM.text);
-                                                                                              });
-                                                                                            }
-                                                                                            if (_currentSelectedValue != null) {
-                                                                                              setState(() {
-                                                                                                box.write('medicine1Intake', _currentSelectedValue);
-                                                                                              });
-                                                                                            }
-                                                                                            if (medicine1.visible == true && _detailM.text == '' || _currentSelectedValue == null) {
-                                                                                              showTopSnackBar(
-                                                                                                context,
-                                                                                                CustomSnackBar.error(
-                                                                                                  icon: const Icon(
-                                                                                                    Icons.error,
-                                                                                                    size: 88,
-                                                                                                  ),
-                                                                                                  message: locale.pleaseFillAllFields!,
-                                                                                                ),
-                                                                                              );
-                                                                                            } else {
-                                                                                              _detailM.clear();
-                                                                                              _currentSelectedValue = null;
-                                                                                              Provider.of<Medicine1Provider>(context, listen: false).getMedicine();
-                                                                                              if (medicine1.visible = true) {
-                                                                                                Provider.of<Medicine1Provider>(context, listen: false).changeVisible();
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                            onPressed: () async {
+                                                                                              if (medicine1.visible == true && _detailM.text != '') {
+                                                                                                setState(() {
+                                                                                                  box.write('medicine1', _detailM.text);
+                                                                                                });
                                                                                               }
-                                                                                              Navigator.pop(context);
-                                                                                              showTopSnackBar(
-                                                                                                context,
-                                                                                                CustomSnackBar.success(
-                                                                                                  message: locale.medicineUpdated!,
-                                                                                                ),
-                                                                                              );
-                                                                                            }
-                                                                                          },
-                                                                                          child: Text(locale.update!))
-                                                                                    ],
-                                                                                  );
-                                                                                });
-                                                                              },
-                                                                              context: context);
-                                                                        },
-                                                                        child: Text(
-                                                                            locale.editMedicineTitle!)),
-                                                              ),
-                                                            ],
+                                                                                              if (_detailM.text != '') {
+                                                                                                setState(() {
+                                                                                                  box.write('medicine1', _detailM.text);
+                                                                                                });
+                                                                                              }
+                                                                                              if (_currentSelectedValue != null) {
+                                                                                                setState(() {
+                                                                                                  box.write('medicine1Intake', _currentSelectedValue);
+                                                                                                });
+                                                                                              }
+                                                                                              if (medicine1.visible == true && _detailM.text == '' || _currentSelectedValue == null) {
+                                                                                                showTopSnackBar(
+                                                                                                  context,
+                                                                                                  CustomSnackBar.error(
+                                                                                                    icon: const Icon(
+                                                                                                      Icons.error,
+                                                                                                      size: 88,
+                                                                                                    ),
+                                                                                                    message: locale.pleaseFillAllFields!,
+                                                                                                  ),
+                                                                                                );
+                                                                                              } else {
+                                                                                                _detailM.clear();
+                                                                                                _currentSelectedValue = null;
+                                                                                                Provider.of<Medicine1Provider>(context, listen: false).getMedicine();
+                                                                                                if (medicine1.visible = true) {
+                                                                                                  Provider.of<Medicine1Provider>(context, listen: false).changeVisible();
+                                                                                                }
+                                                                                                Navigator.pop(context);
+                                                                                                showTopSnackBar(
+                                                                                                  context,
+                                                                                                  CustomSnackBar.success(
+                                                                                                    message: locale.medicineUpdated!,
+                                                                                                  ),
+                                                                                                );
+                                                                                              }
+                                                                                            },
+                                                                                            child: Text(locale.update!))
+                                                                                      ],
+                                                                                    );
+                                                                                  });
+                                                                                },
+                                                                                context: context);
+                                                                          },
+                                                                          child:
+                                                                              Text(locale.editMedicineTitle!)),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  }),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          DefaultCircleCard(
-                                            icon: const Icon(
-                                              Icons.grid_view,
-                                              size: 40,
+                                                        ],
+                                                      );
+                                                    }),
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                            label: 'Others',
-                                            onPress: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    DefaultDialog(
-                                                  body: StatefulBuilder(builder:
-                                                      (context, setState) {
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        dialogBody(
-                                                            'Coming Soon'),
-                                                        dialogButton(
-                                                          'Close',
-                                                          ' ',
-                                                          () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                          () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                        )
-                                                      ],
-                                                    );
-                                                  }),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ))
-                            ],
-                          ),
-                        )))
-              ],
-            ),
-          );
-        },
+                                            DefaultCircleCard(
+                                              icon: const Icon(
+                                                Icons.grid_view,
+                                                size: 40,
+                                              ),
+                                              label: 'Others',
+                                              onPress: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      DefaultDialog(
+                                                    body: StatefulBuilder(
+                                                        builder: (context,
+                                                            setState) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          dialogBody(
+                                                              'Coming Soon'),
+                                                          dialogButton(
+                                                            'Close',
+                                                            ' ',
+                                                            () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                          )
+                                                        ],
+                                                      );
+                                                    }),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ))
+                              ],
+                            ),
+                          )))
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
