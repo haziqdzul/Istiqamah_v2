@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -22,6 +24,13 @@ class VerifyPhoneNumberScreen extends StatefulWidget {
 }
 
 class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
+  @override
+  void initState() {
+    sendOtp();
+    Timer(const Duration(seconds: 60), updateTimer);
+    super.initState();
+  }
+
   String? _enteredOTP;
 
   String text = '';
@@ -30,17 +39,15 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
 
   get smsCode => null;
 
+  void updateTimer() {
+    setState(() {});
+    timeout = !timeout;
+  }
+
   void _showSnackBar(BuildContext context, String text) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(text)),
     );
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    sendOtp();
-    super.initState();
   }
 
   @override
@@ -51,24 +58,21 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
         backgroundColor: ManyColors.textColor2,
         title: Text(locale.verifyPhoneNumber!),
         actions: [
-          if (verificationId != null)
+          if (timeout)
             TextButton(
-              child: Text(
-                locale.resentOTP!,
-                style: const TextStyle(
-                  color: Colors.cyanAccent,
-                  fontSize: 18,
+                child: Text(
+                  locale.resentOTP!,
+                  style: const TextStyle(
+                    color: Colors.cyanAccent,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              onPressed: timeout
-                  ? () async {
-                      await sendOtp();
-                      setState(() {
-                        timeout = false;
-                      });
-                    }
-                  : null,
-            ),
+                onPressed: () async {
+                  await sendOtp();
+                  setState(() {
+                    timeout = false;
+                  });
+                }),
           const SizedBox(width: 5),
         ],
       ),
@@ -222,27 +226,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
     await FirebaseAuth.instance.verifyPhoneNumber(
       timeout: const Duration(seconds: 60),
       phoneNumber: widget.phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        var locale = AppLocalizations.of(context)!;
-        await FirebaseAuth.instance.currentUser!.linkWithCredential(credential);
-        _showSnackBar(
-          context,
-          locale.successVerified!,
-        );
-        await NextUpdateProfileScreen(
-          userData.gender ?? '',
-          userData.title ?? '',
-          userData.dob ?? '',
-          userData.country ?? '',
-          userData.state ?? '',
-          userData.city ?? '',
-          userData.postcode ?? '',
-          userData.address1 ?? '',
-          userData.address2 ?? '',
-          userData.address3 ?? '',
-          '${userData.cc}${userData.phoneNo}',
-        ).launch(context);
-      },
+      verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException e) async {
         if (e.code == 'invalid-phone-number') {
           _showSnackBar(context, 'The provided phone number is not valid.');
@@ -254,11 +238,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
           verificationId = verId;
         });
       },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        setState(() {
-          timeout = true;
-        });
-      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 }

@@ -278,20 +278,20 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                                         .checkData(AppUser.instance.user!.uid);
                                     print('data $exist');
                                     if (exist) {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const MLSplashScreenHadis()));
                                     } else {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const NextProfileFormComponent()));
                                     }
                                   } else {
-                                    Navigator.push(
+                                    Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
@@ -8,6 +9,7 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -900,6 +902,457 @@ class _HomePageState extends State<HomePage>
     var locale = AppLocalizations.of(context)!;
     var name1 = locale.medicineNo1!;
 
+    Future<bool> showExitPopup() async {
+      return await showDialog(
+        //show confirm dialogue
+        //the return value will be from "Yes" or "No" options
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(locale.exitApp!),
+          content: Text(locale.confirmExitApp!),
+          actions: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+              onPressed: () => Navigator.of(context).pop(false),
+              //return false when click on "NO"
+              child: Text(locale.no!),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(primary: Colors.green),
+              onPressed: () {
+                if (Platform.isAndroid) {
+                  SystemChannels.platform
+                      .invokeMethod('SystemNavigator.pop');
+                } else if (Platform.isIOS) {
+                  exit(0);
+                }
+              },
+
+              //return true when click on "Yes"
+              child: Text(locale.yes!),
+            ),
+          ],
+        ),
+      ) ??
+          false; //if showDialogue had returned null, then return false
+    }
+
+    return WillPopScope(
+      onWillPop: () async => showExitPopup(),
+      child: Scaffold(
+        drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
+        extendBodyBehindAppBar: true,
+        key: scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+          elevation: 0,
+          // automaticallyImplyLeading: true,
+          leading: Container(),
+        ),
+        body: FutureBuilder(
+          future: countUnReadDocuments(),
+          builder: (context, AsyncSnapshot snapshot) {
+            return Container(
+              padding: EdgeInsets.only(top: statusbar),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: height * .2 + (appbarSize),
+                    width: width,
+                    // color: kPrimaryColor,
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: Image.asset(
+                        'assets/masjid.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                      child: Container(
+                          padding: EdgeInsets.only(top: appbarSize),
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                              right: 20,
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(right: 15),
+                                          width: 75,
+                                          height: 75,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const NavigationDrawer()),
+                                              );
+                                            },
+                                            child: ClipOval(
+                                              child: SizedBox.fromSize(
+                                                size: const Size.fromRadius(48),
+                                                child: Image.network(
+                                                    AppUser.instance.user!
+                                                            .photoURL ??
+                                                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
+                                                    width: 50,
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                AppUser.instance.user!
+                                                        .displayName ??
+                                                    '',
+                                                style:
+                                                    boldTextStyle(color: black)),
+                                            4.height,
+                                            Text(locale.welcome_home!,
+                                                style: secondaryTextStyle(
+                                                    color:
+                                                        black.withOpacity(0.7))),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const NotificationPage(2)),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        Icons.message,
+                                        size: 25,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 25,
+                                ),
+                                _list.length > 300
+                                    ? CardBody(
+                                        radius: BorderRadius.circular(16),
+                                        child: Container(
+                                          height: height * .3,
+                                          width: width,
+                                          padding: const EdgeInsets.all(15),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ListTile(
+                                                  minVerticalPadding: 16,
+                                                  title: Text(
+                                                    locale.ofTheDay!,
+                                                    textAlign: TextAlign.center,
+                                                    style: textStyleNormal,
+                                                  ),
+                                                  subtitle: Text(
+                                                    _list[DateTime.now().month *
+                                                            DateTime.now().day]
+                                                        .trim()
+                                                        .replaceAll('�', '')
+                                                        .replaceAll('(?)', '')
+                                                        .replaceAll('?\n', '')
+                                                        .replaceAll(
+                                                            'Rasulullah ?',
+                                                            'Rasulullah'),
+                                                    style: textStyleNormal,
+                                                    textAlign: TextAlign.justify,
+                                                  )),
+                                              Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          const AllHadis()));
+                                                        },
+                                                        child: const Text(
+                                                            'More Collection',
+                                                            style:
+                                                                textStyleNormalGrey),
+                                                        // Icon(
+                                                        //   Icons.arrow_forward_ios,
+                                                        //   size: 15,
+                                                        //   color: Colors.grey,
+                                                        // )
+                                                      )
+                                                    ],
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : Shimmer.fromColors(
+                                        baseColor: Colors.grey[300],
+                                        highlightColor: Colors.grey[100],
+                                        child: const Card(
+                                          margin: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 20),
+                                          color: white,
+                                          child: ListTile(
+                                              minVerticalPadding: 16,
+                                              title: Text('loading..')),
+                                        ),
+                                      ),
+                                Container(
+                                    width: width,
+                                    margin: const EdgeInsets.only(top: 30),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(locale.reminder!,
+                                            style: textStyleBold),
+                                        const SizedBox(
+                                          height: 25,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            DefaultCircleCard(
+                                              icon: const ImageIcon(
+                                                AssetImage(
+                                                  'assets/honey.png',
+                                                ),
+                                                size: 60,
+                                                // color: Color(0xFF3A5A98),
+                                              ),
+                                              label: locale.HH!,
+                                              onPress: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      DefaultDialog(
+                                                    body: StatefulBuilder(builder:
+                                                        (context, setState) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Card(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        20),
+                                                            color: white,
+                                                            clipBehavior:
+                                                                Clip.antiAlias,
+                                                            child: Column(
+                                                              children: [
+                                                                ListTile(
+                                                                  leading: !visible
+                                                                      ? const Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_down_outlined)
+                                                                      : const Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_up_outlined),
+                                                                  title: Text(
+                                                                    locale
+                                                                        .afiyahReminder!,
+                                                                    style: const TextStyle(
+                                                                        color:
+                                                                            black,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold),
+                                                                  ),
+                                                                  subtitle: Text(
+                                                                    locale.HH!,
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                                .grey[
+                                                                            800],
+                                                                        fontSize:
+                                                                            14),
+                                                                  ),
+                                                                ),
+                                                                Visibility(
+                                                                  visible:
+                                                                      visible,
+                                                                  child: Padding(
+                                                                    padding:
+                                                                        const EdgeInsets
+                                                                                .all(
+                                                                            16.0),
+                                                                    child:
+                                                                        RichText(
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .justify,
+                                                                      text: TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                                text: locale.text1!, //afiyah des
+                                                                                style: const TextStyle(color: Colors.black)),
+                                                                            TextSpan(
+                                                                                recognizer: TapGestureRecognizer()..onTap = () => launch('http://as-sunnah.com/'),
+                                                                                text: locale.text2!,
+                                                                                style: const TextStyle(color: Colors.blueAccent)),
+                                                                            TextSpan(
+                                                                                text: locale.text3!,
+                                                                                style: const TextStyle(color: Colors.black)),
+                                                                          ]),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Visibility(
+                                                                  visible:
+                                                                      visible,
+                                                                  child:
+                                                                      ButtonBar(
+                                                                    alignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          CoolAlert.show(
+                                                                              onCancelBtnTap: () => Navigator.pop(context),
+                                                                              title: locale.afiyahReminder!,
+                                                                              onConfirmBtnTap: () {
+                                                                                Navigator.pop(context);
+                                                                                _selectTimes(context, DateTime.now(), 'product');
+                                                                              },
+                                                                              context: context,
+                                                                              type: CoolAlertType.info,
+                                                                              text: hadis ? locale.sQuranP : locale.sHadithP,
+                                                                              showCancelBtn: true,
+                                                                              cancelBtnText: locale.back!,
+                                                                              confirmBtnText: locale.selectTime!);
+                                                                          setState(
+                                                                              () {
+                                                                            hadis =
+                                                                                !hadis;
+                                                                          });
+                                                                        },
+                                                                        child:
+                                                                            Text(
+                                                                          locale
+                                                                              .view!,
+                                                                          style: const TextStyle(
+                                                                              fontWeight:
+                                                                                  FontWeight.bold,
+                                                                              color: Colors.black),
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    }),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            DefaultCircleCard(
+                                              icon: const ImageIcon(
+                                                AssetImage(
+                                                  'assets/tahajjud.png',
+                                                ),
+                                                size: 60,
+                                                // color: Color(0xFF3A5A98),
+                                              ),
+                                              label: 'Tahajjud',
+                                              onPress: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      DefaultDialog(
+                                                    body: StatefulBuilder(builder:
+                                                        (context, setState) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Card(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        20),
+
+                                                            color: white,
+                                                            child: ExpansionTile(
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined),
+                                                              title: Text(
+                                                                locale
+                                                                    .tahajjudReminder!,
+                                                                style: const TextStyle(
+                                                                    color: black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              subtitle: (d != '')
+                                                                  ? Text(
+                                                                      '${locale.timeReminder!} $d',
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              black),
+                                                                    )
+                                                                  : Text(
+                                                                      '${locale.timeReminder!} N/A',
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              black),
+                                                                    ),
+                                                              trailing: Switch(
+                                                                value:
+                                                                    isSwitched4,
+                                                                onChanged:
+                                                                    (value) async {
+                                                                  SharedPreferences
+                                                                      prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  await prefs.setBool(
+                                                                      'T${AppUser.instance.user!.uid}',
+                                                                      value);
     return Scaffold(
       drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
       extendBodyBehindAppBar: true,
