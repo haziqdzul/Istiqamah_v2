@@ -440,7 +440,7 @@ class _AcknowledgementScreenState extends State<AcknowledgementScreen> {
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                                'images/uitm-universiti-teknologi-mara-logo.png'),
+                                'assets/uitm-universiti-teknologi-mara-logo.png'),
                           ),
                         ),
                       ),

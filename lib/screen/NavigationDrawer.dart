@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/fill_inform_page.dart';
 import 'package:istiqamah_app/screen/helpdesk_page.dart';
-import 'package:istiqamah_app/screen/next_profile_form_component.dart';
-import 'package:istiqamah_app/screen/sadaqah_page.dart';
 import 'package:istiqamah_app/screen/setting_page.dart';
+import 'package:istiqamah_app/screen/update_profile.screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../Locale/locales.dart';
 import '../components/profile_bottom.component.dart';
 import '../constants/constant.dart';
-import '../fragments/profile.fragemnt.dart';
 import '../fragments/update.profile.dart';
 import '../providers/user.provider.dart';
-import 'home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
-import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -37,12 +32,12 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
   int _index = 0;
 
-  final List<Widget> _bodyPage = [
-    const HomePage(),
-    const SadaqahPage(),
-    const HomePage(),
-    const SettingPage(),
-  ];
+  // final List<Widget> _bodyPage = [
+  //   const HomePage(),
+  //   const SadaqahPage(),
+  //   const HomePage(),
+  //   const SettingPage(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +101,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                   children: [
                                                     (_gender == "Male" ||
                                                             _gender == "Lelaki")
-                                                        ? Container(
+                                                        ? SizedBox(
                                                             height: MediaQuery.of(
                                                                         context)
                                                                     .size
@@ -158,7 +153,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -199,7 +194,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -240,7 +235,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -281,7 +276,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -322,7 +317,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -341,7 +336,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                               ],
                                                             ),
                                                           )
-                                                        : Container(
+                                                        : SizedBox(
                                                             height: MediaQuery.of(
                                                                         context)
                                                                     .size
@@ -393,7 +388,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -434,7 +429,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -475,7 +470,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -516,7 +511,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -557,7 +552,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                           color:
                                                                               Colors.white,
                                                                           child:
-                                                                              Container(
+                                                                              SizedBox(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width / 5,
                                                                             height:
@@ -705,6 +700,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   ],
                 ),
               ),
+              //update profile
               ListTile(
                 dense: true,
                 selectedColor: const Color(0xFFFFF461),
@@ -723,10 +719,34 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
+                        builder: (context) => const MLUpdateProfileScreen()),
+                  );
+                },
+              ),
+              //update BMI
+              ListTile(
+                dense: true,
+                selectedColor: const Color(0xFFFFF461),
+                hoverColor: const Color(0xFFFFF461),
+                selectedTileColor: const Color(0xFFFFF461),
+                leading: const Icon(
+                  Icons.accessibility_rounded,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                title: const Text(
+                  "Update BMI",
+                  style: textStyleNormal,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
                         builder: (context) => const UpdateProfile()),
                   );
                 },
               ),
+              //About us
               ListTile(
                 dense: true,
                 leading: const Icon(
@@ -746,6 +766,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   );
                 },
               ),
+              //Acknowledgement
               ListTile(
                 dense: true,
                 leading: const Icon(
@@ -765,6 +786,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   );
                 },
               ),
+              //helpdesk
               ListTile(
                 dense: true,
                 leading: const Icon(
@@ -784,6 +806,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   );
                 },
               ),
+              //Setting
               ListTile(
                 dense: true,
                 leading: const Icon(
@@ -803,6 +826,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   );
                 },
               ),
+              //logout
               ListTile(
                 dense: true,
                 leading: const Icon(
