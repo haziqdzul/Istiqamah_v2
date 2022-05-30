@@ -13,16 +13,16 @@ import '../models/user.model.dart';
 import '../providers/user.provider.dart';
 import '../widgets/loading.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage2 extends StatefulWidget {
   static String tag = '/RegisterPage';
 
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage2({Key? key}) : super(key: key);
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterPage2State createState() => _RegisterPage2State();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPage2State extends State<RegisterPage2> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _pass = TextEditingController();

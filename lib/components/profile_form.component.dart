@@ -7,6 +7,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import '../Locale/locales.dart';
 import '../Utils/MLColors.dart';
+import '../constants/constant.dart';
 import '../models/states.dart';
 import '../models/user.model.dart';
 import '../widgets/colors.dart';
@@ -301,7 +302,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
                 },
                 child: const Icon(
                   Icons.calendar_today_outlined,
-                  color: ManyColors.textColor2,
+                  color: kPrimaryColor,
                 )),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: mlColorLightGrey),

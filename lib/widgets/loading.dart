@@ -108,8 +108,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
     if (user.emailVerified) {
       //navigate to home page
       timer.cancel();
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MLUpdateProfileScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const MLUpdateProfileScreen()));
     }
   }
 }

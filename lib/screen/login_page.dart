@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:istiqamah_app/screen/forgot_page.dart';
-import 'package:istiqamah_app/screen/register_page.dart';
+import 'package:istiqamah_app/screen/registerPage.dart';
 import 'package:istiqamah_app/screen/splash.screen.hadis.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';

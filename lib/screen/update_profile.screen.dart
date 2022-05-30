@@ -3,11 +3,10 @@ import 'package:istiqamah_app/screen/verify.screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'package:flutter/rendering.dart';
 import '../Locale/locales.dart';
 import '../components/profile_form.component.dart';
+import '../constants/constant.dart';
 import '../models/user.model.dart';
-import '../widgets/colors.dart';
 
 class MLUpdateProfileScreen extends StatefulWidget {
   const MLUpdateProfileScreen({Key? key}) : super(key: key);
@@ -70,7 +69,7 @@ class _MLUpdateProfileScreenState extends State<MLUpdateProfileScreen> {
               child: AppButton(
                 height: 50,
                 width: context.width(),
-                color: ManyColors.textColor2,
+                color: kPrimaryColor,
                 onTap: () async {
                   if (userData.gender != null &&
                       userData.title != null &&

@@ -6,7 +6,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import '../../Locale/locales.dart';
 import '../../models/user.model.dart';
-import '../widgets/colors.dart';
+import '../constants/constant.dart';
 import 'next_update_profile.dart';
 
 // ignore: must_be_immutable
@@ -55,7 +55,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
     var locale = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ManyColors.textColor2,
+        backgroundColor: kSecondaryColor,
         title: Text(locale.verifyPhoneNumber!),
         actions: [
           if (timeout)
