@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/helpdesk_page.dart';
-import 'package:istiqamah_app/screen/login.dart';
+import 'package:istiqamah_app/screen/email.screen.dart';
+import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -376,7 +376,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               .pushAndRemoveUntil(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const LoginPage()),
+                                                          const MLLoginScreen()),
                                                   (Route<dynamic> route) =>
                                                       false);
                                         },
@@ -407,7 +407,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const HelpDeskPage()),
+                                                    const MLEmailScreen()),
                                           );
                                         },
                                     ),

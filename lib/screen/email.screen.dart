@@ -8,9 +8,8 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
 import '../Locale/locales.dart';
-import '../widgets/colors.dart';
+import '../constants/constant.dart';
 
 class MLEmailScreen extends StatefulWidget {
   static String tag = '/MLEmailScreen';
@@ -214,14 +213,14 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
                       const SizedBox(width: 15),
                       Expanded(
                           child: ElevatedButton(
-                              onPressed: () {
-                                print('no selected');
-                                Navigator.of(context).pop();
-                              },
-                              child: Text(locale.no!,
-                                  style: const TextStyle(color: Colors.black)),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
+                        onPressed: () {
+                          print('no selected');
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(locale.no!,
+                            style: const TextStyle(color: Colors.black)),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
                         ),
                       ))
                     ],
@@ -246,7 +245,7 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
         '\nBrand : ${Platform.isAndroid ? _deviceData['brand'] : _deviceData['name']}\nDevice : ${Platform.isAndroid ? _deviceData['device'] : _deviceData['systemVersion']}\nModel : ${_deviceData['model']}\nApp version : ${_packageInfo.version}';
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ManyColors.textColor2,
+        backgroundColor: kSecondaryColor,
         title: Text(
           locale.helpdesk!,
           style: boldTextStyle(color: Colors.black, size: 20),
@@ -331,7 +330,7 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
                       top: 20.0,
                     ),
                     child: AppButton(
-                      color: ManyColors.textColor2,
+                      color: kPrimaryColor,
                       width: double.infinity,
                       onTap: () async {
                         if (_formKey.currentState!.validate()) {
@@ -360,7 +359,6 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
                           style: boldTextStyle(color: black)),
                     ),
                   ),
-
                 ],
               ),
             ),

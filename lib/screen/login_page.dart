@@ -10,9 +10,9 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'dart:async';
 import '../Locale/locales.dart';
+import '../constants/constant.dart';
 import '../providers/user.provider.dart';
 import '../services/database.dart';
-import '../widgets/colors.dart';
 import '../widgets/loading.dart';
 import 'next_profile_form_component.dart';
 
@@ -166,7 +166,7 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [ManyColors.textColor2, ManyColors.textColor1])),
+                      colors: [kSecondaryColor, kPrimaryColor])),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: Stack(
@@ -228,12 +228,10 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                                           child: Theme(
                                             data: ThemeData(
                                                 unselectedWidgetColor:
-                                                    const Color(
-                                                        0xff00C8E8) // Your color
+                                                    kPrimaryColor // Your color
                                                 ),
                                             child: Checkbox(
-                                                activeColor:
-                                                    const Color(0xfffadc02),
+                                                activeColor: kPrimaryColor,
                                                 value: _isChecked,
                                                 onChanged:
                                                     emailController.text ==
@@ -259,7 +257,7 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                                     ])),
                             64.height,
                             AppButton(
-                              color: ManyColors.textColor2,
+                              color: kPrimaryColor,
                               width: double.infinity,
                               onTap: () async {
                                 setState(() {

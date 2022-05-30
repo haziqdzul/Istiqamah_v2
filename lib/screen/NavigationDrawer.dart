@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/helpdesk_page.dart';
+import 'package:istiqamah_app/screen/email.screen.dart';
 import 'package:istiqamah_app/screen/setting_page.dart';
 import 'package:istiqamah_app/screen/update_profile.screen.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -774,8 +774,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   color: Colors.black,
                   size: 20,
                 ),
-                title: const Text(
-                  'Acknowledgement',
+                title: Text(
+                  locale.Acknowledgement_profile!,
                   style: textStyleNormal,
                 ),
                 onTap: () {
@@ -802,7 +802,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const HelpDeskPage()),
+                        builder: (context) => const MLEmailScreen()),
                   );
                 },
               ),
