@@ -4,6 +4,7 @@ import 'package:istiqamah_app/screen/home_page.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../Locale/locales.dart';
+import '../constants/constant.dart';
 
 class MLSplashScreenHadis extends StatefulWidget {
   const MLSplashScreenHadis({Key? key}) : super(key: key);
@@ -33,8 +34,10 @@ class _MLSplashScreenState extends State<MLSplashScreenHadis> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: Colors.white60,
-        ),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [kSecondaryColor, kPrimaryColor])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
