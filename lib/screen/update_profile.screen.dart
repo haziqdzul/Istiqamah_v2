@@ -31,10 +31,8 @@ class _MLUpdateProfileScreenState extends State<MLUpdateProfileScreen> {
     var locale = AppLocalizations.of(context)!;
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFFFFE080), Color(0xFFCB5F00)])),
+        color: kSecondaryColor,
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(

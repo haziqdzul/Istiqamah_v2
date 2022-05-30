@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:istiqamah_app/models/user.model.dart' as us;
 import 'package:istiqamah_app/screen/splash.screen.hadis.dart';
 import 'package:nb_utils/nb_utils.dart';

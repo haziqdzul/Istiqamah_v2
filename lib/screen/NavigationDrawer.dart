@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/screen/email.screen.dart';
 import 'package:istiqamah_app/screen/setting_page.dart';
-import 'package:istiqamah_app/screen/update_profile.screen.dart';
+import 'package:istiqamah_app/screen/update_profile.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../Locale/locales.dart';
 import '../components/profile_bottom.component.dart';
@@ -719,7 +719,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MLUpdateProfileScreen()),
+                        builder: (context) => const UpdateProfilePage()),
                   );
                 },
               ),

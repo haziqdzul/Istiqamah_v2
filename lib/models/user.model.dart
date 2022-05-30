@@ -1,5 +1,6 @@
 class User {
   static final User _userData = User._internal();
+  String? name;
   String? gender;
   String? title;
   String? dob;
@@ -28,4 +29,3 @@ class User {
 }
 
 final userData = User();
-
