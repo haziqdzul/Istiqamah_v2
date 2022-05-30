@@ -68,626 +68,653 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           ),
                         )),
                     Container(
-                        margin: const EdgeInsets.only(right: 15, bottom: 10),
-                        width: 75,
-                        height: 75,
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(data.url != ''
-                              ? data.url
-                              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
-                          radius: 55,
-                          child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Positioned(
-                                right: 0,
-                                top: 0,
-                                child: ClipOval(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: Text(
-                                                locale.option_profile!,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.transparent,
-                                                ),
+                      margin: const EdgeInsets.only(right: 15, bottom: 10),
+                      width: 75,
+                      height: 75,
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(data.url != ''
+                            ? data.url
+                            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
+                        radius: 55,
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              child: ClipOval(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              locale.option_profile!,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.blue,
                                               ),
-                                              content: SingleChildScrollView(
-                                                child: ListBody(
-                                                  children: [
-                                                    (_gender == "Male" ||
-                                                            _gender == "Lelaki")
-                                                        ? SizedBox(
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height /
-                                                                5,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width /
-                                                                1.2,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: <
-                                                                  Widget>[
-                                                                Expanded(
-                                                                  child:
-                                                                      ListView(
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets//avatar/male1.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                            ),
+                                            content: SingleChildScrollView(
+                                              child: ListBody(
+                                                children: [
+                                                  (_gender == "Male" ||
+                                                          _gender == "Lelaki")
+                                                      ? SizedBox(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height /
+                                                              5,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              1.2,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: <Widget>[
+                                                              Expanded(
+                                                                child: ListView(
+                                                                  scrollDirection:
+                                                                      Axis.horizontal,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/male1.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/male1.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/male1.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets//avatar/male2.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/male2.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/male2.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/male2.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/male3.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/male3.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/male3.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/male3.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/male4.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/male4.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/male4.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/male4.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/male5.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/male5.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/male5.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/male5.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    ),
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            ),
-                                                          )
-                                                        : SizedBox(
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height /
-                                                                5,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width /
-                                                                1.2,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: <
-                                                                  Widget>[
-                                                                Expanded(
-                                                                  child:
-                                                                      ListView(
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('/avatar/female1.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      : SizedBox(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height /
+                                                              5,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              1.2,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: <Widget>[
+                                                              Expanded(
+                                                                child: ListView(
+                                                                  scrollDirection:
+                                                                      Axis.horizontal,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/female1.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/female1.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/female1.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/female2.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/female2.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/female2.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/female2.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/female3.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/female3.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/female3.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/female3.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/female4.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/female4.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/female4.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/female4.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      MaterialButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          String d = await firebase_storage
-                                                                              .FirebaseStorage
-                                                                              .instance
-                                                                              .ref('assets/avatar/female5.png')
-                                                                              .getDownloadURL();
-                                                                          await AppUser
-                                                                              .instance
-                                                                              .user!
-                                                                              .updatePhotoURL(d);
-                                                                          await init();
-                                                                          showTopSnackBar(
-                                                                            context,
-                                                                            CustomSnackBar.success(
-                                                                              message: locale.success1!,
-                                                                            ),
-                                                                          );
-                                                                          reloadPage();
-                                                                        },
+                                                                    ),
+                                                                    MaterialButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        String d = await firebase_storage
+                                                                            .FirebaseStorage
+                                                                            .instance
+                                                                            .ref('/avatar/female5.png')
+                                                                            .getDownloadURL();
+                                                                        await AppUser
+                                                                            .instance
+                                                                            .user!
+                                                                            .updatePhotoURL(d);
+                                                                        await init();
+                                                                        showTopSnackBar(
+                                                                          context,
+                                                                          CustomSnackBar
+                                                                              .success(
+                                                                            message:
+                                                                                locale.success1!,
+                                                                          ),
+                                                                        );
+                                                                        reloadPage();
+                                                                      },
+                                                                      child:
+                                                                          Material(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25.0),
+                                                                        color: Colors
+                                                                            .white,
                                                                         child:
-                                                                            Material(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25.0),
-                                                                          color:
-                                                                              Colors.white,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width / 5,
+                                                                          height:
+                                                                              MediaQuery.of(context).size.width / 5,
                                                                           child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width / 5,
+                                                                              Image.asset(
+                                                                            'assets/avatar/female5.png',
                                                                             height:
-                                                                                MediaQuery.of(context).size.width / 5,
-                                                                            child:
-                                                                                Image.asset(
-                                                                              'assets/avatar/female5.png',
-                                                                              height: 30,
-                                                                            ),
+                                                                                30,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    ),
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                    InkWell(
-                                                      onTap: () async {
-                                                        _pickImageCamera();
-                                                        Navigator.pop(context);
-                                                      },
-                                                      splashColor: Colors.blue,
-                                                      child: Row(
-                                                        children: [
-                                                          const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Icon(
-                                                              Icons.camera,
-                                                              color:
-                                                                  Colors.blue,
-                                                            ),
+                                                        ),
+                                                  InkWell(
+                                                    onTap: () async {
+                                                      _pickImageCamera();
+                                                      Navigator.pop(context);
+                                                    },
+                                                    splashColor: Colors.blue,
+                                                    child: Row(
+                                                      children: [
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Icon(
+                                                            Icons.camera,
+                                                            color: Colors.blue,
                                                           ),
-                                                          Text(
-                                                            locale
-                                                                .camera_profile!,
-                                                            style: const TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color: Colors
-                                                                    .blue),
-                                                          )
-                                                        ],
-                                                      ),
+                                                        ),
+                                                        Text(
+                                                          locale
+                                                              .camera_profile!,
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .blue),
+                                                        )
+                                                      ],
                                                     ),
-                                                    InkWell(
-                                                      onTap: () async {
-                                                        _pickImageGallery();
-                                                        Navigator.pop(context);
-                                                      },
-                                                      splashColor: Colors.blue,
-                                                      child: Row(
-                                                        children: [
-                                                          const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Icon(
-                                                              Icons.image,
-                                                              color:
-                                                                  Colors.blue,
-                                                            ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () async {
+                                                      _pickImageGallery();
+                                                      Navigator.pop(context);
+                                                    },
+                                                    splashColor: Colors.blue,
+                                                    child: Row(
+                                                      children: [
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Icon(
+                                                            Icons.image,
+                                                            color: Colors.blue,
                                                           ),
-                                                          Text(
-                                                            locale
-                                                                .gallery_profile!,
-                                                            style: const TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color: Colors
-                                                                    .blue),
-                                                          )
-                                                        ],
-                                                      ),
+                                                        ),
+                                                        Text(
+                                                          locale
+                                                              .gallery_profile!,
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .blue),
+                                                        )
+                                                      ],
                                                     ),
-                                                    InkWell(
-                                                      onTap: () async {
-                                                        _remove();
-                                                        Navigator.pop(context);
-                                                      },
-                                                      splashColor: Colors.blue,
-                                                      child: Row(
-                                                        children: [
-                                                          const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .remove_circle,
-                                                              color: Colors.red,
-                                                            ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () async {
+                                                      _remove();
+                                                      Navigator.pop(context);
+                                                    },
+                                                    splashColor: Colors.blue,
+                                                    child: Row(
+                                                      children: [
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Icon(
+                                                            Icons.remove_circle,
+                                                            color: Colors.red,
                                                           ),
-                                                          Text(
-                                                            locale
-                                                                .remove_profile!,
-                                                            style: const TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color:
-                                                                    Colors.red),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
+                                                        ),
+                                                        Text(
+                                                          locale
+                                                              .remove_profile!,
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .red),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                            );
-                                          });
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      color: Colors.white,
-                                      child: const Icon(
-                                        Icons.edit,
-                                        color: Colors.black,
-                                        size: 20,
-                                      ),
+                                            ),
+                                          );
+                                        });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    color: Colors.white,
+                                    child: const Icon(
+                                      Icons.edit,
+                                      color: Colors.black,
+                                      size: 20,
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        )),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
