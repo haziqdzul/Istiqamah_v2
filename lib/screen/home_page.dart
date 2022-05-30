@@ -89,6 +89,7 @@ class _HomePageState extends State<HomePage>
   var numbM1 = 0;
   var numbM2 = 0;
   var numbW = 0;
+
   bool hadis = false;
   late AsyncMemoizer _memoizer;
   var _currentSelectedValue;

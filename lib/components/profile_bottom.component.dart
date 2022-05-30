@@ -329,7 +329,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     text: TextSpan(children: [
                       TextSpan(
                           text: locale.visitour_profile!,
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
+                          style: const TextStyle(
+                              fontSize: 18, color: Colors.black)),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => launch('http://as-sunnah.com/'),

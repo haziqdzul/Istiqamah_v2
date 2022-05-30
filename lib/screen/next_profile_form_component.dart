@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
-
 import '../Locale/locales.dart';
 import '../Utils/MLColors.dart';
 import '../models/TableData.dart';
@@ -148,7 +146,7 @@ class NextProfileFormComponentState extends State<NextProfileFormComponent> {
               ],
             ),
             8.height,
-            Text(locale.wellnessMessage!, style: TextStyle()),
+            Text(locale.wellnessMessage!, style: const TextStyle()),
             8.height,
             Row(
               children: [
@@ -279,8 +277,8 @@ class NextProfileFormComponentState extends State<NextProfileFormComponent> {
                       width: 3.0,
                       child: Center(
                         child: Container(
-                          margin:
-                              EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
+                          margin: const EdgeInsetsDirectional.only(
+                              start: 1.0, end: 1.0),
                           height: 50.0,
                           color: Colors.grey,
                         ),
@@ -323,7 +321,7 @@ class NextProfileFormComponentState extends State<NextProfileFormComponent> {
                                                       sortColumnIndex: 1,
                                                       sortAscending: true,
                                                       columns: [
-                                                        DataColumn(
+                                                        const DataColumn(
                                                             label: Text(''),
                                                             numeric: false,
                                                             onSort: null),
@@ -506,7 +504,6 @@ class NextProfileFormComponentState extends State<NextProfileFormComponent> {
                                   },
                                 );
                               }
-                              ;
                             }),
                     )
                   : Container(),

@@ -30,7 +30,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   String hasImage = '';
   String? _gender;
   final padding = const EdgeInsets.symmetric(horizontal: 20);
-  int _index = 0;
+  //int _index = 0;
 
   // final List<Widget> _bodyPage = [
   //   const HomePage(),
