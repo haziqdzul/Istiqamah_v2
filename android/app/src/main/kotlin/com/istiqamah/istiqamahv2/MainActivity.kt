@@ -1,4 +1,4 @@
-package com.assunnah.istiqamah_v2
+package com.istiqamah.istiqamahv2
 
 import io.flutter.embedding.android.FlutterActivity
 
