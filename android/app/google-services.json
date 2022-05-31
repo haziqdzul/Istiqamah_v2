@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:793399248157:android:18b77dbd4ec7bc35370df4",
+        "mobilesdk_app_id": "1:793399248157:android:f033fd92e86b2570370df4",
         "android_client_info": {
-          "package_name": "com.assunnah.istiqamah_v2"
+          "package_name": "com.example.hhgc_as_sunnah"
         }
       },
       "oauth_client": [
         {
-          "client_id": "793399248157-ot836a9i9qqs09fe1k7n39cvgdqnrm25.apps.googleusercontent.com",
+          "client_id": "793399248157-tj1nu7lqhnje4k0skor372sjl6vf1k3h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.assunnah.istiqamah_v2",
-            "certificate_hash": "cbca6e740ad6864baf2d531b817ccd5710831025"
+            "package_name": "com.example.hhgc_as_sunnah",
+            "certificate_hash": "11d9b14121c5b404141a35abd087650a1da7587c"
           }
         },
         {
@@ -52,18 +52,18 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:793399248157:android:f033fd92e86b2570370df4",
+        "mobilesdk_app_id": "1:793399248157:android:37c61c253f19a078370df4",
         "android_client_info": {
-          "package_name": "com.example.hhgc_as_sunnah"
+          "package_name": "com.istiqamah.istiqamahv2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "793399248157-tj1nu7lqhnje4k0skor372sjl6vf1k3h.apps.googleusercontent.com",
+          "client_id": "793399248157-h8b0bpcksasdm0lk2ghd5e2af58f8656.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.hhgc_as_sunnah",
-            "certificate_hash": "11d9b14121c5b404141a35abd087650a1da7587c"
+            "package_name": "com.istiqamah.istiqamahv2",
+            "certificate_hash": "cbca6e740ad6864baf2d531b817ccd5710831025"
           }
         },
         {
