@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:istiqamah_app/constants/constant.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../Locale/locales.dart';
-import '../Utils/MLColors.dart';
 import '../models/TableData.dart';
 import '../models/user.model.dart';
 
@@ -209,8 +209,8 @@ class NextProfileFormComponentState extends State<NextProfileFormComponent> {
                   icon: const Icon(Icons.clear),
                 ),
                 hintStyle: secondaryTextStyle(size: 16),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: mlColorLightGrey),
+                enabledBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: kGreyColor),
                 ),
               ),
               controller: _heightController,
@@ -240,8 +240,8 @@ class NextProfileFormComponentState extends State<NextProfileFormComponent> {
                   icon: const Icon(Icons.clear),
                 ),
                 hintStyle: secondaryTextStyle(size: 16),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: mlColorLightGrey),
+                enabledBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: kGreyColor),
                 ),
               ),
               controller: _weightController,

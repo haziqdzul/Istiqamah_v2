@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../Locale/locales.dart';
-import '../Utils/MLColors.dart';
 import '../Utils/shimmer.dart';
 import '../providers/user.provider.dart';
 
@@ -101,7 +100,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                             boxDecorationWithRoundedCorners(
                                           backgroundColor:
                                               (status == 'Canceled')
-                                                  ? mlColorRed
+                                                  ? Colors.red
                                                   : Colors.green,
                                           borderRadius: radius(10),
                                         ),
@@ -149,7 +148,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                             boxDecorationWithRoundedCorners(
                                           backgroundColor:
                                               (status == 'Canceled')
-                                                  ? mlColorRed
+                                                  ? Colors.red
                                                   : Colors.green,
                                           borderRadius: radius(10),
                                         ),
@@ -197,7 +196,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                             boxDecorationWithRoundedCorners(
                                           backgroundColor:
                                               (status == 'Canceled')
-                                                  ? mlColorRed
+                                                  ? Colors.red
                                                   : Colors.green,
                                           borderRadius: radius(10),
                                         ),
@@ -245,7 +244,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                             boxDecorationWithRoundedCorners(
                                           backgroundColor:
                                               (status == 'Canceled')
-                                                  ? mlColorRed
+                                                  ? Colors.red
                                                   : Colors.green,
                                           borderRadius: radius(10),
                                         ),
@@ -293,7 +292,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                             boxDecorationWithRoundedCorners(
                                           backgroundColor:
                                               (status == 'Canceled')
-                                                  ? mlColorRed
+                                                  ? Colors.red
                                                   : Colors.green,
                                           borderRadius: radius(10),
                                         ),

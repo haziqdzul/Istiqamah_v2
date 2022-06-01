@@ -1,16 +1,14 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-
 import '../Locale/locales.dart';
 import '../Utils/shimmer.dart';
 import '../components/notification.component.dart';
+import '../constants/constant.dart';
 import '../models/MLNotificationData.dart';
 import '../providers/data.provider.dart';
 import '../providers/user.provider.dart';
-import '../widgets/colors.dart';
 
 class NotificationPage extends StatefulWidget {
   static String tag = '/NotificationPage';
@@ -90,7 +88,7 @@ class NotificationPageState extends State<NotificationPage> {
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.yellow, Colors.red])),
+                colors: [kSecondaryColor, kPrimaryColor])),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: FutureBuilder(
@@ -254,7 +252,7 @@ class NotificationPageState extends State<NotificationPage> {
                                   const Spacer(),
                                   IconButton(
                                     icon: const Icon(
-                                      Icons.settings,
+                                      Icons.more_vert,
                                       color: Colors.blueAccent,
                                     ),
                                     onPressed: () {

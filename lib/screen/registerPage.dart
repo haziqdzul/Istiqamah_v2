@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../Locale/locales.dart';
-import '../Utils/MLColors.dart';
 import '../Utils/common.dart';
 import '../constants/constant.dart';
 import '../models/user.model.dart';
@@ -106,8 +105,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             labelText: locale.enterEmailAddress,
                             labelStyle: secondaryTextStyle(size: 16),
                             prefixIcon: const Icon(Icons.mail),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: mlColorLightGrey),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: kGreyColor),
                             ),
                           ),
                           validator: (value) {
@@ -146,8 +145,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintText: locale.enterFullName,
                             hintStyle: secondaryTextStyle(size: 16),
                             prefixIcon: const Icon(Icons.person),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: mlColorLightGrey),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: kGreyColor),
                             ),
                           ),
                           textFieldType: TextFieldType.NAME,
@@ -211,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   color:
                                       !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
                                               .hasMatch(_pass.text)
-                                          ? mlColorLightGrey
+                                          ? kGreyColor
                                           : Colors.green),
                             ),
                           ),
@@ -269,7 +268,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderSide: BorderSide(
                                   color: textLength2 > 7
                                       ? Colors.green
-                                      : mlColorLightGrey),
+                                      : kGreyColor),
                             ),
                           ),
                           validator: (value) {

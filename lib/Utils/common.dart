@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:istiqamah_app/constants/constant.dart';
 import 'package:nb_utils/nb_utils.dart';
-
-import 'MLColors.dart';
-
 
 Widget mlBackToPrevious(BuildContext context, Color color) {
   return Align(
@@ -28,7 +26,10 @@ Widget mlRoundedIconContainer(IconData iconData, Color color) {
 Widget mlIconWithRoundedContainer(IconData iconData, Color color) {
   return Container(
     padding: const EdgeInsets.all(8.0),
-    decoration: boxDecorationWithRoundedCorners(backgroundColor: white, border: Border.all(color: Colors.grey.shade100), borderRadius: radius(24)),
+    decoration: boxDecorationWithRoundedCorners(
+        backgroundColor: white,
+        border: Border.all(color: Colors.grey.shade100),
+        borderRadius: radius(24)),
     child: Icon(iconData, size: 16, color: color),
   );
 }
@@ -36,8 +37,10 @@ Widget mlIconWithRoundedContainer(IconData iconData, Color color) {
 Widget mlSelectedNavigationbarIcon(IconData iconData) {
   return Container(
     padding: const EdgeInsets.all(10.0),
-    decoration: boxDecorationWithRoundedCorners(backgroundColor: Colors.blue.withOpacity(0.1), borderRadius: radius(24)),
-    child: Icon(iconData, size: 22, color: mlColorDarkGold),
+    decoration: boxDecorationWithRoundedCorners(
+        backgroundColor: Colors.blue.withOpacity(0.1),
+        borderRadius: radius(24)),
+    child: Icon(iconData, size: 22, color: kPrimaryColor),
   );
 }
 

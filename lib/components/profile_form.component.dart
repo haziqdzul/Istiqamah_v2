@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import '../Locale/locales.dart';
-import '../Utils/MLColors.dart';
 import '../constants/constant.dart';
 import '../models/states.dart';
 import '../models/user.model.dart';
@@ -251,8 +250,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.fillYourTitle,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
             textFieldType: TextFieldType.NAME,
@@ -304,8 +303,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
                   Icons.calendar_today_outlined,
                   color: kPrimaryColor,
                 )),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: mlColorLightGrey),
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: kGreyColor),
             ),
           ),
         ),
@@ -360,8 +359,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.enterState,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
             textFieldType: TextFieldType.NAME,
@@ -422,8 +421,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.enterCity,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
             textFieldType: TextFieldType.NAME,
@@ -479,8 +478,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.enterPostCode,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
           ),
@@ -507,8 +506,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.enterAddress1,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
           ),
@@ -535,8 +534,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.enterAddress2,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
           ),
@@ -563,8 +562,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             decoration: InputDecoration(
               hintText: locale.enterAddress3,
               hintStyle: secondaryTextStyle(size: 16),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: mlColorLightGrey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: kGreyColor),
               ),
             ),
           ),
@@ -597,8 +596,8 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
                 decoration: InputDecoration(
                   hintText: 'e.g: 12 345 6789',
                   labelStyle: secondaryTextStyle(size: 16),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: mlColorLightGrey),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: kGreyColor),
                   ),
                 ),
               ).expand(),

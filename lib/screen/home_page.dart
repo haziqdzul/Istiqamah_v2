@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage>
   bool firstMed2 = false;
   late TabController _tabController;
 
-  final _name = TextEditingController();
+  //final _name = TextEditingController();
   final _detailM = TextEditingController();
 
   bool? m1;
@@ -262,17 +262,17 @@ class _HomePageState extends State<HomePage>
                 key: "ARCHIVE",
                 label: locale.skipNotification!,
                 autoDismissible: true,
-                color: const Color(0xffbe6e29),
+                color: kPrimaryColor,
                 buttonType: ActionButtonType.Default),
             NotificationActionButton(
                 key: "TAKE",
                 label: locale.markAsDone!,
-                color: const Color(0xffbe6e29),
+                color: kPrimaryColor,
                 buttonType: ActionButtonType.Default),
             NotificationActionButton(
                 key: 'SNOOZE',
                 label: locale.snooze!,
-                color: const Color(0xffbe6e29),
+                color: kPrimaryColor,
                 autoDismissible: true)
           ],
           schedule: NotificationCalendar.fromDate(
@@ -455,17 +455,17 @@ class _HomePageState extends State<HomePage>
                 key: "ARCHIVE",
                 label: locale.skipNotification!,
                 autoDismissible: true,
-                color: const Color(0xffbe6e29),
+                color: kPrimaryColor,
                 buttonType: ActionButtonType.Default),
             NotificationActionButton(
                 key: "TAKE",
                 label: locale.markAsDone!,
-                color: const Color(0xffbe6e29),
+                color: kPrimaryColor,
                 buttonType: ActionButtonType.Default),
             NotificationActionButton(
                 key: 'SNOOZE',
                 label: locale.snooze!,
-                color: const Color(0xffbe6e29),
+                color: kPrimaryColor,
                 autoDismissible: true)
           ],
           schedule: NotificationCalendar.fromDate(
@@ -1185,13 +1185,13 @@ class _HomePageState extends State<HomePage>
                                                             child: Column(
                                                               children: [
                                                                 ListTile(
-                                                                  leading: !visible
-                                                                      ? const Icon(
-                                                                          Icons
-                                                                              .keyboard_arrow_down_outlined)
-                                                                      : const Icon(
-                                                                          Icons
-                                                                              .keyboard_arrow_up_outlined),
+                                                                  // leading: !visible
+                                                                  //     ? const Icon(
+                                                                  //         Icons
+                                                                  //             .keyboard_arrow_down_outlined)
+                                                                  //     : const Icon(
+                                                                  //         Icons
+                                                                  //             .keyboard_arrow_up_outlined),
                                                                   title: Text(
                                                                     locale
                                                                         .afiyahReminder!,
@@ -1598,8 +1598,8 @@ class _HomePageState extends State<HomePage>
                                                                         context);
                                                               }
                                                             },
-                                                            activeColor: Colors
-                                                                .blue[400],
+                                                            activeColor:
+                                                                kPrimaryColor,
                                                             inactiveThumbColor:
                                                                 Colors.white,
                                                           ),
@@ -1672,12 +1672,12 @@ class _HomePageState extends State<HomePage>
                                                                           FontWeight
                                                                               .bold,
                                                                       color: Colors
-                                                                          .white),
+                                                                          .black),
                                                                 ),
                                                                 style: TextButton
                                                                     .styleFrom(
                                                                         backgroundColor:
-                                                                            Colors.blueAccent),
+                                                                            kPrimaryColor),
                                                               ),
                                                             )
                                                           ],
@@ -1826,8 +1826,7 @@ class _HomePageState extends State<HomePage>
                                                                   }
                                                                 },
                                                                 activeColor:
-                                                                    Colors.blue[
-                                                                        400],
+                                                                    kPrimaryColor,
                                                                 inactiveThumbColor:
                                                                     Colors
                                                                         .white,
@@ -1843,7 +1842,7 @@ class _HomePageState extends State<HomePage>
                                                                         TextButton(
                                                                       style: TextButton.styleFrom(
                                                                           backgroundColor:
-                                                                              Colors.blueAccent),
+                                                                              kPrimaryColor),
                                                                       onPressed:
                                                                           () async {
                                                                         CoolAlert.show(
@@ -1869,7 +1868,7 @@ class _HomePageState extends State<HomePage>
                                                                         style: const TextStyle(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
-                                                                            color: Colors.white),
+                                                                            color: Colors.black),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1927,7 +1926,7 @@ class _HomePageState extends State<HomePage>
                                                                   label:
                                                                       'Sadaqah Now',
                                                                   textStyle:
-                                                                      textStyleNormal,
+                                                                      textStyleBoldSmall,
                                                                   decoration: BoxDecoration(
                                                                       color:
                                                                           kPrimaryColor,
@@ -2103,8 +2102,7 @@ class _HomePageState extends State<HomePage>
                                                                   }
                                                                 },
                                                                 activeColor:
-                                                                    Colors.blue[
-                                                                        400],
+                                                                    kPrimaryColor,
                                                                 inactiveThumbColor:
                                                                     Colors
                                                                         .white,
