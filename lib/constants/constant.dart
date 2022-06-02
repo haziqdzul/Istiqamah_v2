@@ -20,7 +20,7 @@ const kGreyColor = Color(0xFFF5F5F5);
 
 const kWhiteColor = Color(0xFFF5F5F5);
 
-const kDarkGreyColor = Color(0xFFC6C6C6);
+const kDarkGreyColor = Color(0xFFE3E3E3);
 
 const kBlackColor = Color(0xFF524D4D);
 

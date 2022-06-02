@@ -1056,7 +1056,7 @@ class _HomePageState extends State<HomePage>
                                 const SizedBox(
                                   height: 25,
                                 ),
-                                _list.length < 3000
+                                _list.length < 3001
                                     ? CardBody(
                                         radius: BorderRadius.circular(16),
                                         child: Container(
