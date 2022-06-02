@@ -949,7 +949,7 @@ class _HomePageState extends State<HomePage>
           elevation: 0,
           // automaticallyImplyLeading: true,
           leading: IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white30),
+            icon: const Icon(Icons.menu, color: kBlackColor),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -1056,7 +1056,7 @@ class _HomePageState extends State<HomePage>
                                 const SizedBox(
                                   height: 25,
                                 ),
-                                _list.length > 300
+                                _list.length < 3000
                                     ? CardBody(
                                         radius: BorderRadius.circular(16),
                                         child: Container(
@@ -1250,6 +1250,9 @@ class _HomePageState extends State<HomePage>
                                                                             .center,
                                                                     children: [
                                                                       ElevatedButton(
+                                                                        style: TextButton.styleFrom(
+                                                                            backgroundColor:
+                                                                                kPrimaryColor),
                                                                         onPressed:
                                                                             () {
                                                                           CoolAlert.show(
