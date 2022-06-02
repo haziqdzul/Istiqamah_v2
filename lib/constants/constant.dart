@@ -18,7 +18,7 @@ const textStyleNormalGrey = TextStyle(
 
 const kGreyColor = Color(0xFFF5F5F5);
 
-const kWhiteColor = Color(0xFFFFFFFF);
+const kWhiteColor = Color(0xFFF5F5F5);
 
 const kDarkGreyColor = Color(0xFFC6C6C6);
 
