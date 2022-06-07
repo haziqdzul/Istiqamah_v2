@@ -1,6 +1,6 @@
 class User {
   static final User _userData = User._internal();
-  String? name;
+  //TODO: add name or not!?
   String? gender;
   String? title;
   String? dob;

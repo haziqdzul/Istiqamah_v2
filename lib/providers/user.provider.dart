@@ -42,6 +42,7 @@ class AppUser extends ChangeNotifier {
     }
   }
 
+  //TODO: add name to kemas kini profil
   Future<void> updateName(String name) async {
     user!.updateDisplayName(name);
     notifyListeners();
@@ -58,7 +59,8 @@ class AppUser extends ChangeNotifier {
     required String name,
   }) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
       user!.updateDisplayName(name);
       return true;
     } catch (e) {
