@@ -943,17 +943,26 @@ class _HomePageState extends State<HomePage>
       child: Scaffold(
         drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
-        key: scaffoldKey,
+        // key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
           // automaticallyImplyLeading: true,
-          leading: IconButton(
-            icon: const Icon(Icons.menu, color: kBlackColor),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: new Icon(
+                Icons.menu,
+                color: kBlackColor,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
           ),
+          // IconButton(
+          //   icon: const Icon(Icons.menu, color: kBlackColor),
+          //   onPressed: () {
+          //     Scaffold.of(context).openDrawer();
+          //   },
+          // ),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),
