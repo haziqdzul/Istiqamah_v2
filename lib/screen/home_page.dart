@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:istiqamah_app/widgets/expended_widged.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -495,8 +496,8 @@ class _HomePageState extends State<HomePage>
             onSubmit: (index) {
               schedule = index;
               if (schedule != date) {
-                var w = document.substring(0, 5);
-                var m = document.substring(0, document.length - 1);
+                //var w = document.substring(0, 5);
+                //var m = document.substring(0, document.length - 1);
                 setState(() {
                   final now = DateTime.now();
                   final difference = schedule.difference(now).inSeconds;
@@ -1056,69 +1057,25 @@ class _HomePageState extends State<HomePage>
                                 const SizedBox(
                                   height: 25,
                                 ),
-                                _list.length < 3001
-                                    ? CardBody(
-                                        radius: BorderRadius.circular(16),
-                                        child: Container(
-                                          height: height * .3,
-                                          width: width,
-                                          padding: const EdgeInsets.all(15),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              ListTile(
-                                                  minVerticalPadding: 16,
-                                                  title: Text(
-                                                    locale.ofTheDay!,
-                                                    textAlign: TextAlign.center,
-                                                    style: textStyleNormal,
-                                                  ),
-                                                  subtitle: Text(
-                                                    _list[DateTime.now().month *
-                                                            DateTime.now().day]
-                                                        .trim()
-                                                        .replaceAll('�', '')
-                                                        .replaceAll('(?)', '')
-                                                        .replaceAll('?\n', '')
-                                                        .replaceAll(
-                                                            'Rasulullah ?',
-                                                            'Rasulullah'),
-                                                    style: textStyleNormal,
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                  )),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () {
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          const AllHadis()));
-                                                        },
-                                                        child: const Text(
-                                                            'More Collection',
-                                                            style:
-                                                                textStyleNormalGrey),
-                                                        // Icon(
-                                                        //   Icons.arrow_forward_ios,
-                                                        //   size: 15,
-                                                        //   color: Colors.grey,
-                                                        // )
-                                                      )
-                                                    ],
-                                                  )),
-                                            ],
+                                _list.length > 288
+                                    ? Card(
+                                        elevation: 10,
+                                        shadowColor: kDarkGreyColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                        ),
+                                        child: SingleChildScrollView(
+                                          child: ExpendedWidget(
+                                            title: locale.ofTheDay!,
+                                            text: _list[DateTime.now().month *
+                                                    DateTime.now().day]
+                                                .trim()
+                                                .replaceAll('�', '')
+                                                .replaceAll('(?)', '')
+                                                .replaceAll('?\n', '')
+                                                .replaceAll('Rasulullah ?',
+                                                    'Rasulullah'),
                                           ),
                                         ),
                                       )
@@ -2362,7 +2319,10 @@ class _HomePageState extends State<HomePage>
                                           ],
                                         ),
                                       ],
-                                    ))
+                                    )),
+                                const SizedBox(
+                                  height: 25,
+                                ),
                               ],
                             ),
                           )))
