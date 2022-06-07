@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/constants/constant.dart';
-
+import '../Locale/locales.dart';
 import '../screen/all.hadis.dart';
 
-class ExpendedWidget extends StatefulWidget {
+class ExpandedWidget extends StatefulWidget {
   final String text;
   final String title;
 
-  const ExpendedWidget({Key? key, required this.title, required this.text})
+  const ExpandedWidget({Key? key, required this.title, required this.text})
       : super(key: key);
 
   @override
-  State<ExpendedWidget> createState() => _ExpendedWidgetState();
+  State<ExpandedWidget> createState() => _ExpandedWidgetState();
 }
 
-class _ExpendedWidgetState extends State<ExpendedWidget> {
+class _ExpandedWidgetState extends State<ExpandedWidget> {
   late String firstHalf;
   late String secondHalf;
   bool flag = true;
@@ -23,8 +23,8 @@ class _ExpendedWidgetState extends State<ExpendedWidget> {
   void initState() {
     super.initState();
     if (widget.text.length > 150) {
-      firstHalf = widget.text.substring(0, 250);
-      secondHalf = widget.text.substring(251, widget.text.length);
+      firstHalf = widget.text.substring(0, 300);
+      secondHalf = widget.text.substring(301, widget.text.length);
     } else {
       firstHalf = widget.text;
       secondHalf = "";
@@ -33,13 +33,10 @@ class _ExpendedWidgetState extends State<ExpendedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    var locale = AppLocalizations.of(context)!;
     return Container(
         padding: const EdgeInsets.all(15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             secondHalf.length == ""
                 ? Column(

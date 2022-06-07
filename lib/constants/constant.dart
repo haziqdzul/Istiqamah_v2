@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const textStyleSmall = TextStyle(
+    color: Colors.blueAccent, fontSize: 12, fontWeight: FontWeight.bold);
+
 const textStyleBold =
     TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold);
 
