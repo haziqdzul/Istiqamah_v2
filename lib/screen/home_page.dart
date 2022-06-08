@@ -494,8 +494,6 @@ class _HomePageState extends State<HomePage>
             onSubmit: (index) {
               schedule = index;
               if (schedule != date) {
-                //var w = document.substring(0, 5);
-                //var m = document.substring(0, document.length - 1);
                 setState(() {
                   final now = DateTime.now();
                   final difference = schedule.difference(now).inSeconds;
@@ -898,7 +896,6 @@ class _HomePageState extends State<HomePage>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double appbarSize = AppBar().preferredSize.height;
-
     var statusbar = MediaQuery.of(context).viewPadding.top;
     var locale = AppLocalizations.of(context)!;
     var name1 = locale.medicineNo1!;
@@ -943,25 +940,19 @@ class _HomePageState extends State<HomePage>
       child: Scaffold(
         drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
-        // key: scaffoldKey,
+        key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
           // automaticallyImplyLeading: true,
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: new Icon(
-                Icons.menu,
-                color: kBlackColor,
-              ),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
-          ),
-          // IconButton(
-          //   icon: const Icon(Icons.menu, color: kBlackColor),
-          //   onPressed: () {
-          //     Scaffold.of(context).openDrawer();
-          //   },
+          // leading: Builder(
+          //   builder: (context) => IconButton(
+          //     icon: new Icon(
+          //       Icons.menu,
+          //       color: kBlackColor,
+          //     ),
+          //     onPressed: () => Scaffold.of(context).openDrawer(),
+          //   ),
           // ),
         ),
         body: FutureBuilder(
@@ -1005,25 +996,15 @@ class _HomePageState extends State<HomePage>
                                               const EdgeInsets.only(right: 15),
                                           width: 75,
                                           height: 75,
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const NavigationDrawer()),
-                                              );
-                                            },
-                                            child: ClipOval(
-                                              child: SizedBox.fromSize(
-                                                size: const Size.fromRadius(48),
-                                                child: Image.network(
-                                                    AppUser.instance.user!
-                                                            .photoURL ??
-                                                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
-                                                    width: 50,
-                                                    fit: BoxFit.cover),
-                                              ),
+                                          child: ClipOval(
+                                            child: SizedBox.fromSize(
+                                              size: const Size.fromRadius(48),
+                                              child: Image.network(
+                                                  AppUser.instance.user!
+                                                          .photoURL ??
+                                                      'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
+                                                  width: 50,
+                                                  fit: BoxFit.cover),
                                             ),
                                           ),
                                         ),
@@ -1052,13 +1033,12 @@ class _HomePageState extends State<HomePage>
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const NotificationPage(1)),
+                                                  const NotificationPage(2)),
                                         );
                                       },
                                       child: const Icon(
                                         Icons.message,
                                         size: 25,
-                                        color: kBlackColor,
                                       ),
                                     )
                                   ],
@@ -1125,6 +1105,7 @@ class _HomePageState extends State<HomePage>
                                                   'assets/honey.png',
                                                 ),
                                                 size: 60,
+                                                // color: Color(0xFF3A5A98),
                                               ),
                                               label: locale.HH!,
                                               onPress: () {
@@ -1268,6 +1249,7 @@ class _HomePageState extends State<HomePage>
                                                   'assets/tahajjud.png',
                                                 ),
                                                 size: 60,
+                                                // color: Color(0xFF3A5A98),
                                               ),
                                               label: locale.tahajjudcategory!,
                                               onPress: () {
@@ -1289,25 +1271,23 @@ class _HomePageState extends State<HomePage>
                                                                     horizontal:
                                                                         20),
                                                             color: white,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            child: Column(
-                                                              children: [
-                                                                ListTile(
-                                                                  // leading: const Icon(
-                                                                  //     Icons
-                                                                  //         .keyboard_arrow_down_outlined),
-                                                                  title: Text(
-                                                                    locale
-                                                                        .tahajjudReminder!,
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                  subtitle: (d !=
-                                                                          '')
+                                                            child:
+                                                                ExpansionTile(
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined),
+                                                              title: Text(
+                                                                locale
+                                                                    .tahajjudReminder!,
+                                                                style: const TextStyle(
+                                                                    color:
+                                                                        black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              subtitle:
+                                                                  (d != '')
                                                                       ? Text(
                                                                           '${locale.timeReminder!} $d',
                                                                           style:
@@ -1318,77 +1298,86 @@ class _HomePageState extends State<HomePage>
                                                                           style:
                                                                               const TextStyle(color: black),
                                                                         ),
-                                                                  trailing:
-                                                                      Switch(
-                                                                    value:
-                                                                        isSwitched4,
-                                                                    onChanged:
-                                                                        (value) async {
+                                                              trailing: Switch(
+                                                                value:
+                                                                    isSwitched4,
+                                                                onChanged:
+                                                                    (value) async {
+                                                                  SharedPreferences
+                                                                      prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  await prefs
+                                                                      .setBool(
+                                                                          'T${AppUser.instance.user!.uid}',
+                                                                          value);
+
+                                                                  firstTimeTahajjud =
+                                                                      prefs.getBool(
+                                                                              'firstTahajjud') ??
+                                                                          true;
+                                                                  setState(() {
+                                                                    isSwitched4 =
+                                                                        value;
+                                                                  });
+
+                                                                  if (isSwitched4 ==
+                                                                      true) {
+                                                                    if (firstTimeTahajjud ==
+                                                                        true) {
                                                                       SharedPreferences
                                                                           prefs =
                                                                           await SharedPreferences
                                                                               .getInstance();
-                                                                      await prefs.setBool(
-                                                                          'T${AppUser.instance.user!.uid}',
-                                                                          value);
-
-                                                                      firstTimeTahajjud =
-                                                                          prefs.getBool('firstTahajjud') ??
-                                                                              true;
-                                                                      setState(
-                                                                          () {
-                                                                        isSwitched4 =
-                                                                            value;
-                                                                      });
-
-                                                                      if (isSwitched4 ==
-                                                                          true) {
-                                                                        if (firstTimeTahajjud ==
-                                                                            true) {
-                                                                          SharedPreferences
-                                                                              prefs =
-                                                                              await SharedPreferences.getInstance();
-                                                                          CoolAlert.show(
-                                                                              onCancelBtnTap: () async {
-                                                                                Navigator.pop(context);
-                                                                                await SharedPreferences.getInstance();
-                                                                                await prefs.setBool('T${AppUser.instance.user!.uid}', false);
-                                                                                setState(() {
-                                                                                  isSwitched4 = false;
-                                                                                });
-                                                                              },
-                                                                              title: locale.tahajjudReminder!,
-                                                                              onConfirmBtnTap: () {
-                                                                                Navigator.pop(context);
-                                                                                _selectTimes(context, DateTime.now(), 'tahajjud');
-                                                                              },
-                                                                              context: context,
-                                                                              type: CoolAlertType.info,
-                                                                              text: hadis ? locale.strongHadisT : locale.strongQuranT,
-                                                                              showCancelBtn: true,
-                                                                              cancelBtnText: locale.back!,
-                                                                              confirmBtnText: locale.selectTime!);
-                                                                          hadis =
-                                                                              !hadis;
-                                                                        } else {
-                                                                          getTime(
-                                                                              'tahajjud');
-                                                                        }
-                                                                      }
-                                                                      if (isSwitched4 ==
-                                                                          false) {
-                                                                        Provider.of<CancelNotificationProvider>(context,
-                                                                                listen: false)
-                                                                            .cancel('tahajjud');
-                                                                      }
-                                                                    },
-                                                                    activeColor:
-                                                                        kPrimaryColor,
-                                                                    inactiveThumbColor:
-                                                                        Colors
-                                                                            .white,
-                                                                  ),
-                                                                ),
+                                                                      CoolAlert.show(
+                                                                          onCancelBtnTap: () async {
+                                                                            Navigator.pop(context);
+                                                                            await SharedPreferences.getInstance();
+                                                                            await prefs.setBool('T${AppUser.instance.user!.uid}',
+                                                                                false);
+                                                                            setState(() {
+                                                                              isSwitched4 = false;
+                                                                            });
+                                                                          },
+                                                                          title: locale.tahajjudReminder!,
+                                                                          onConfirmBtnTap: () {
+                                                                            Navigator.pop(context);
+                                                                            _selectTimes(
+                                                                                context,
+                                                                                DateTime.now(),
+                                                                                'tahajjud');
+                                                                          },
+                                                                          context: context,
+                                                                          type: CoolAlertType.info,
+                                                                          text: hadis ? locale.strongHadisT : locale.strongQuranT,
+                                                                          showCancelBtn: true,
+                                                                          cancelBtnText: locale.back!,
+                                                                          confirmBtnText: locale.selectTime!);
+                                                                      hadis =
+                                                                          !hadis;
+                                                                    } else {
+                                                                      getTime(
+                                                                          'tahajjud');
+                                                                    }
+                                                                  }
+                                                                  if (isSwitched4 ==
+                                                                      false) {
+                                                                    Provider.of<CancelNotificationProvider>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .cancel(
+                                                                            'tahajjud');
+                                                                  }
+                                                                },
+                                                                activeColor:
+                                                                    kPrimaryColor,
+                                                                inactiveThumbColor:
+                                                                    Colors
+                                                                        .white,
+                                                              ),
+                                                              children: <
+                                                                  Widget>[
                                                                 ListTile(
                                                                   title:
                                                                       Tooltip(
@@ -1445,6 +1434,7 @@ class _HomePageState extends State<HomePage>
                                                   'assets/water.png',
                                                 ),
                                                 size: 60,
+                                                // color: Color(0xFF3A5A98),
                                               ),
                                               label: locale.water2!,
                                               onPress: () {
@@ -1456,197 +1446,192 @@ class _HomePageState extends State<HomePage>
                                                         Consumer<WaterProvider>(
                                                             builder: (context,
                                                                 water, child) {
-                                                      return Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Card(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                            color: white,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            child: Column(
-                                                              children: [
-                                                                ListTile(
-                                                                  title: Text(
-                                                                    locale
-                                                                        .waterReminder!,
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                  subtitle:
-                                                                      Text(
-                                                                    '$waterPerday ${locale.glassOfWater!} ($bℓ)',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                                  ),
-                                                                  trailing:
-                                                                      Switch(
-                                                                    value:
-                                                                        isSwitched2,
-                                                                    onChanged:
-                                                                        (value) async {
-                                                                      if (waterPerday !=
-                                                                          0) {
-                                                                        SharedPreferences
-                                                                            prefs =
-                                                                            await SharedPreferences.getInstance();
-                                                                        await prefs.setBool(
-                                                                            'W${AppUser.instance.user!.uid}',
-                                                                            value);
-                                                                        firstTimeWater =
-                                                                            prefs.getBool('firstWater') ??
-                                                                                true;
-                                                                        setState(
-                                                                            () {
-                                                                          isSwitched2 =
-                                                                              value;
-                                                                        });
+                                                      return Card(
+                                                        color: white,
+                                                        child: ExpansionTile(
+                                                          leading: const Icon(Icons
+                                                              .keyboard_arrow_down_outlined),
+                                                          title: Text(
+                                                            locale
+                                                                .waterReminder!,
+                                                            style: const TextStyle(
+                                                                color: black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          subtitle: Text(
+                                                            '$waterPerday ${locale.glassOfWater!} ($bℓ)',
+                                                            style:
+                                                                const TextStyle(
+                                                                    color:
+                                                                        black),
+                                                          ),
+                                                          trailing: Switch(
+                                                            value: isSwitched2,
+                                                            onChanged:
+                                                                (value) async {
+                                                              if (waterPerday !=
+                                                                  0) {
+                                                                SharedPreferences
+                                                                    prefs =
+                                                                    await SharedPreferences
+                                                                        .getInstance();
+                                                                await prefs.setBool(
+                                                                    'W${AppUser.instance.user!.uid}',
+                                                                    value);
+                                                                firstTimeWater =
+                                                                    prefs.getBool(
+                                                                            'firstWater') ??
+                                                                        true;
+                                                                setState(() {
+                                                                  isSwitched2 =
+                                                                      value;
+                                                                });
 
-                                                                        if (isSwitched2 ==
-                                                                            true) {
-                                                                          bool
-                                                                              h =
-                                                                              await showDialog(
-                                                                            barrierDismissible:
-                                                                                false,
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (BuildContext context) {
-                                                                              return MyDialog(waterPerday);
-                                                                            },
-                                                                          );
-                                                                          setState(
-                                                                              () {
-                                                                            isSwitched2 =
-                                                                                h;
-                                                                            prefs.setBool('W${AppUser.instance.user!.uid}',
-                                                                                h);
-                                                                          });
-                                                                          checkTime();
-                                                                        }
-                                                                        if (isSwitched2 ==
-                                                                            false) {
-                                                                          water
-                                                                              .cancelNotifications();
-                                                                          Fluttertoast.showToast(
-                                                                              msg: locale.cancelWaterReminder!);
-                                                                        }
-                                                                      } else {
-                                                                        showDialog(
-                                                                            builder: (BuildContext
-                                                                                context) {
-                                                                              return AlertDialog(
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.pop(context);
-                                                                                      },
-                                                                                      child: Text(locale.back!)),
-                                                                                  TextButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.pop(context);
-                                                                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
-                                                                                      },
-                                                                                      child: Text(locale.update_profile!))
-                                                                                ],
-                                                                                title: Text(locale.beforeWaterReminder!),
-                                                                              );
-                                                                            },
-                                                                            context:
-                                                                                context);
-                                                                      }
+                                                                if (isSwitched2 ==
+                                                                    true) {
+                                                                  bool h =
+                                                                      await showDialog(
+                                                                    barrierDismissible:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return MyDialog(
+                                                                          waterPerday);
                                                                     },
-                                                                    activeColor:
-                                                                        kPrimaryColor,
-                                                                    inactiveThumbColor:
-                                                                        Colors
-                                                                            .white,
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  title:
-                                                                      ElevatedButton(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      if (waterPerday !=
-                                                                          0) {
-                                                                        SharedPreferences
-                                                                            prefs =
-                                                                            await SharedPreferences.getInstance();
-                                                                        bool h =
-                                                                            await showDialog(
-                                                                          barrierDismissible:
-                                                                              false,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (BuildContext context) {
-                                                                            return MyDialog(
-                                                                              waterPerday,
-                                                                            );
-                                                                          },
+                                                                  );
+                                                                  setState(() {
+                                                                    isSwitched2 =
+                                                                        h;
+                                                                    prefs.setBool(
+                                                                        'W${AppUser.instance.user!.uid}',
+                                                                        h);
+                                                                  });
+                                                                  checkTime();
+                                                                }
+                                                                if (isSwitched2 ==
+                                                                    false) {
+                                                                  water
+                                                                      .cancelNotifications();
+                                                                  Fluttertoast.showToast(
+                                                                      msg: locale
+                                                                          .cancelWaterReminder!);
+                                                                }
+                                                              } else {
+                                                                showDialog(
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        actions: [
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                              },
+                                                                              child: Text(locale.back!)),
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
+                                                                              },
+                                                                              child: Text(locale.update_profile!))
+                                                                        ],
+                                                                        title: Text(
+                                                                            locale.beforeWaterReminder!),
+                                                                      );
+                                                                    },
+                                                                    context:
+                                                                        context);
+                                                              }
+                                                            },
+                                                            activeColor:
+                                                                kPrimaryColor,
+                                                            inactiveThumbColor:
+                                                                Colors.white,
+                                                          ),
+                                                          children: [
+                                                            ListTile(
+                                                              title:
+                                                                  ElevatedButton(
+                                                                onPressed:
+                                                                    () async {
+                                                                  if (waterPerday !=
+                                                                      0) {
+                                                                    SharedPreferences
+                                                                        prefs =
+                                                                        await SharedPreferences
+                                                                            .getInstance();
+                                                                    bool h =
+                                                                        await showDialog(
+                                                                      barrierDismissible:
+                                                                          false,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (BuildContext
+                                                                              context) {
+                                                                        return MyDialog(
+                                                                          waterPerday,
                                                                         );
-                                                                        setState(
-                                                                            () {
-                                                                          isSwitched2 =
-                                                                              h;
-                                                                          prefs.setBool(
-                                                                              'W${AppUser.instance.user!.uid}',
-                                                                              h);
-                                                                        });
-                                                                      } else {
-                                                                        showDialog(
-                                                                            builder: (BuildContext
+                                                                      },
+                                                                    );
+                                                                    setState(
+                                                                        () {
+                                                                      isSwitched2 =
+                                                                          h;
+                                                                      prefs.setBool(
+                                                                          'W${AppUser.instance.user!.uid}',
+                                                                          h);
+                                                                    });
+                                                                  } else {
+                                                                    showDialog(
+                                                                        builder:
+                                                                            (BuildContext
                                                                                 context) {
-                                                                              return AlertDialog(
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.pop(context);
-                                                                                      },
-                                                                                      child: Text(locale.back!)),
-                                                                                  TextButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.pop(context);
-                                                                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
-                                                                                      },
-                                                                                      child: Text(locale.update_profile!))
-                                                                                ],
-                                                                                title: Text(locale.beforeWaterReminder!),
-                                                                              );
-                                                                            },
-                                                                            context:
-                                                                                context);
-                                                                      }
-                                                                    },
-                                                                    child: Text(
-                                                                      locale
-                                                                          .showAllReminder!,
-                                                                      style: const TextStyle(
-                                                                          fontWeight: FontWeight
+                                                                          return AlertDialog(
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                  onPressed: () {
+                                                                                    Navigator.pop(context);
+                                                                                  },
+                                                                                  child: Text(locale.back!)),
+                                                                              TextButton(
+                                                                                  onPressed: () {
+                                                                                    Navigator.pop(context);
+                                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile()));
+                                                                                  },
+                                                                                  child: Text(locale.update_profile!))
+                                                                            ],
+                                                                            title:
+                                                                                Text(locale.beforeWaterReminder!),
+                                                                          );
+                                                                        },
+                                                                        context:
+                                                                            context);
+                                                                  }
+                                                                },
+                                                                child: Text(
+                                                                  locale
+                                                                      .showAllReminder!,
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
                                                                               .bold,
-                                                                          color:
-                                                                              Colors.black),
-                                                                    ),
-                                                                    style: TextButton.styleFrom(
+                                                                      color: Colors
+                                                                          .black),
+                                                                ),
+                                                                style: TextButton
+                                                                    .styleFrom(
                                                                         backgroundColor:
                                                                             kPrimaryColor),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
                                                       );
                                                     }),
                                                   ),
@@ -1670,6 +1655,7 @@ class _HomePageState extends State<HomePage>
                                                   'assets/sadaqahh.png',
                                                 ),
                                                 size: 60,
+                                                // color: Color(0xFF3A5A98),
                                               ),
                                               label: locale.sadaqah1!,
                                               onPress: () {
@@ -1691,22 +1677,23 @@ class _HomePageState extends State<HomePage>
                                                                     horizontal:
                                                                         20),
                                                             color: white,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            child: Column(
-                                                              children: [
-                                                                ListTile(
-                                                                  title: Text(
-                                                                    locale
-                                                                        .sadaqahReminder!,
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                  subtitle: (c !=
-                                                                          '')
+                                                            child:
+                                                                ExpansionTile(
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined),
+                                                              title: Text(
+                                                                locale
+                                                                    .sadaqahReminder!,
+                                                                style: const TextStyle(
+                                                                    color:
+                                                                        black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              subtitle:
+                                                                  (c != '')
                                                                       ? Text(
                                                                           '${locale.timeReminder!} $c',
                                                                           style:
@@ -1717,76 +1704,85 @@ class _HomePageState extends State<HomePage>
                                                                           style:
                                                                               const TextStyle(color: black),
                                                                         ),
-                                                                  trailing:
-                                                                      Switch(
-                                                                    value:
-                                                                        isSwitched3,
-                                                                    onChanged:
-                                                                        (value) async {
+                                                              trailing: Switch(
+                                                                value:
+                                                                    isSwitched3,
+                                                                onChanged:
+                                                                    (value) async {
+                                                                  SharedPreferences
+                                                                      prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  await prefs
+                                                                      .setBool(
+                                                                          'S${AppUser.instance.user!.uid}',
+                                                                          value);
+                                                                  firstTimeSadaqah =
+                                                                      prefs.getBool(
+                                                                              'firstSadaqah') ??
+                                                                          true;
+                                                                  setState(() {
+                                                                    isSwitched3 =
+                                                                        value;
+                                                                  });
+
+                                                                  if (isSwitched3 ==
+                                                                      true) {
+                                                                    if (firstTimeSadaqah ==
+                                                                        true) {
                                                                       SharedPreferences
                                                                           prefs =
                                                                           await SharedPreferences
                                                                               .getInstance();
-                                                                      await prefs.setBool(
-                                                                          'S${AppUser.instance.user!.uid}',
-                                                                          value);
-                                                                      firstTimeSadaqah =
-                                                                          prefs.getBool('firstSadaqah') ??
-                                                                              true;
-                                                                      setState(
-                                                                          () {
-                                                                        isSwitched3 =
-                                                                            value;
-                                                                      });
-
-                                                                      if (isSwitched3 ==
-                                                                          true) {
-                                                                        if (firstTimeSadaqah ==
-                                                                            true) {
-                                                                          SharedPreferences
-                                                                              prefs =
-                                                                              await SharedPreferences.getInstance();
-                                                                          CoolAlert.show(
-                                                                              title: locale.sadaqahReminder!,
-                                                                              onCancelBtnTap: () async {
-                                                                                Navigator.pop(context);
-                                                                                await SharedPreferences.getInstance();
-                                                                                await prefs.setBool('S${AppUser.instance.user!.uid}', false);
-                                                                                setState(() {
-                                                                                  isSwitched3 = false;
-                                                                                });
-                                                                              },
-                                                                              onConfirmBtnTap: () {
-                                                                                Navigator.pop(context);
-                                                                                _selectTimes(context, DateTime.now(), 'sadaqah');
-                                                                              },
-                                                                              context: context,
-                                                                              type: CoolAlertType.info,
-                                                                              text: hadis ? locale.strongHadisS : locale.strongQuranS,
-                                                                              showCancelBtn: true,
-                                                                              cancelBtnText: locale.back!,
-                                                                              confirmBtnText: locale.selectTime!);
-                                                                          hadis =
-                                                                              !hadis;
-                                                                        } else {
-                                                                          getTime(
-                                                                              'sadaqah');
-                                                                        }
-                                                                      }
-                                                                      if (isSwitched3 ==
-                                                                          false) {
-                                                                        Provider.of<CancelNotificationProvider>(context,
-                                                                                listen: false)
-                                                                            .cancel('sadaqah');
-                                                                      }
-                                                                    },
-                                                                    activeColor:
-                                                                        kPrimaryColor,
-                                                                    inactiveThumbColor:
-                                                                        Colors
-                                                                            .white,
-                                                                  ),
-                                                                ),
+                                                                      CoolAlert.show(
+                                                                          title: locale.sadaqahReminder!,
+                                                                          onCancelBtnTap: () async {
+                                                                            Navigator.pop(context);
+                                                                            await SharedPreferences.getInstance();
+                                                                            await prefs.setBool('S${AppUser.instance.user!.uid}',
+                                                                                false);
+                                                                            setState(() {
+                                                                              isSwitched3 = false;
+                                                                            });
+                                                                          },
+                                                                          onConfirmBtnTap: () {
+                                                                            Navigator.pop(context);
+                                                                            _selectTimes(
+                                                                                context,
+                                                                                DateTime.now(),
+                                                                                'sadaqah');
+                                                                          },
+                                                                          context: context,
+                                                                          type: CoolAlertType.info,
+                                                                          text: hadis ? locale.strongHadisS : locale.strongQuranS,
+                                                                          showCancelBtn: true,
+                                                                          cancelBtnText: locale.back!,
+                                                                          confirmBtnText: locale.selectTime!);
+                                                                      hadis =
+                                                                          !hadis;
+                                                                    } else {
+                                                                      getTime(
+                                                                          'sadaqah');
+                                                                    }
+                                                                  }
+                                                                  if (isSwitched3 ==
+                                                                      false) {
+                                                                    Provider.of<CancelNotificationProvider>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .cancel(
+                                                                            'sadaqah');
+                                                                  }
+                                                                },
+                                                                activeColor:
+                                                                    kPrimaryColor,
+                                                                inactiveThumbColor:
+                                                                    Colors
+                                                                        .white,
+                                                              ),
+                                                              children: <
+                                                                  Widget>[
                                                                 ListTile(
                                                                   title:
                                                                       Tooltip(
@@ -1830,7 +1826,7 @@ class _HomePageState extends State<HomePage>
                                                               ],
                                                             ),
                                                           ),
-                                                          10.height,
+                                                          20.height,
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -1880,24 +1876,37 @@ class _HomePageState extends State<HomePage>
                                                                   label:
                                                                       'Sadaqah Now',
                                                                   textStyle:
-                                                                      textStyleSmall,
+                                                                      textStyleBoldSmall,
+                                                                  decoration: BoxDecoration(
+                                                                      color:
+                                                                          kPrimaryColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              16)),
                                                                 ),
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 15,
                                                               ),
                                                             ],
                                                           ),
                                                           SizedBox(
                                                             width: 100,
-                                                            height: 40,
+                                                            height: 50,
                                                             child:
                                                                 DefaultButton(
                                                               onPress: () {
                                                                 Navigator.pop(
                                                                     context);
                                                               },
-                                                              label:
-                                                                  locale.back!,
+                                                              label: 'Back',
                                                               textStyle:
                                                                   textStyleNormalGrey,
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              16)),
                                                             ),
                                                           ),
                                                         ],
@@ -1913,6 +1922,7 @@ class _HomePageState extends State<HomePage>
                                                   'assets/medicine.png',
                                                 ),
                                                 size: 60,
+                                                // color: Color(0xFF3A5A98),
                                               ),
                                               label: locale.medicine1!,
                                               onPress: () {
@@ -1935,113 +1945,124 @@ class _HomePageState extends State<HomePage>
                                                                     horizontal:
                                                                         20),
                                                             color: white,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            child: Column(
-                                                              children: [
-                                                                ListTile(
-                                                                  title: locale
-                                                                              .reminder ==
-                                                                          'Peringatan'
-                                                                      ? Text(
-                                                                          '${locale.reminder!} ${medicine1.name ?? name1}',
-                                                                          style: const TextStyle(
-                                                                              color: black,
-                                                                              fontWeight: FontWeight.bold),
-                                                                        )
-                                                                      : Text(
-                                                                          '${medicine1.name ?? name1} ${locale.reminder!}',
-                                                                          style: const TextStyle(
-                                                                              color: black,
-                                                                              fontWeight: FontWeight.bold),
-                                                                        ),
-                                                                  subtitle:
-                                                                      Text(
-                                                                    '${medicine1.intake} ${locale.intake!}',
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black),
-                                                                  ),
-                                                                  trailing:
-                                                                      Switch(
-                                                                    value: medicine1
-                                                                        .medSwitch,
-                                                                    onChanged:
-                                                                        (value) async {
-                                                                      SharedPreferences
-                                                                          prefs =
-                                                                          await SharedPreferences
-                                                                              .getInstance();
-                                                                      medicine1
-                                                                          .changeSwitch();
-                                                                      firstMed1 =
-                                                                          prefs.getBool('firstMed1') ??
-                                                                              true;
-                                                                      setState(
-                                                                          () {
-                                                                        med1 =
-                                                                            value;
-                                                                      });
-                                                                      if (med1 ==
-                                                                          true) {
-                                                                        if (firstMed1 ==
-                                                                            true) {
-                                                                          if (medicine1.intake ==
-                                                                              0) {
-                                                                            await prefs.setBool('m1${AppUser.instance.user!.uid}',
-                                                                                false);
-                                                                            setState(() {
-                                                                              Timer(const Duration(seconds: 2), back1);
-                                                                            });
-                                                                            Fluttertoast.showToast(msg: locale.water1 == 'air' ? 'Sila tetapkan bilangan ubat yang perlu diambil dalam sehari dahulu' : 'Please set number of medicine(s) intake in a day first');
-                                                                          } else {
-                                                                            CoolAlert.show(
-                                                                                title: "${locale.takeYour} ${box.read('medicine1') ?? locale.medicineNo1!}",
-                                                                                onCancelBtnTap: () async {
-                                                                                  Navigator.pop(context);
-                                                                                  await SharedPreferences.getInstance();
-                                                                                  await prefs.setBool('m1${AppUser.instance.user!.uid}', false);
-                                                                                  setState(() {
-                                                                                    med1 = false;
-                                                                                  });
-                                                                                },
-                                                                                onConfirmBtnTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                  medicine1.selectTimes(context, DateTime.now(), intake: 0);
-                                                                                },
-                                                                                context: context,
-                                                                                type: CoolAlertType.info,
-                                                                                text: hadis ? locale.strongHadisM : locale.strongQuranM,
-                                                                                showCancelBtn: true,
-                                                                                cancelBtnText: locale.back!,
-                                                                                confirmBtnText: locale.selectTime!);
-                                                                            hadis =
-                                                                                !hadis;
-                                                                          }
-                                                                        } else {
-                                                                          medicine1
-                                                                              .getTime();
-                                                                        }
-                                                                      } else {
-                                                                        medicine1
-                                                                            .cancelNotifications();
+                                                            child:
+                                                                ExpansionTile(
+                                                              leading: const Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_outlined),
+                                                              title: locale
+                                                                          .reminder ==
+                                                                      'Peringatan'
+                                                                  ? Text(
+                                                                      '${locale.reminder!} ${medicine1.name ?? name1}',
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    )
+                                                                  : Text(
+                                                                      '${medicine1.name ?? name1} ${locale.reminder!}',
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              black,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    ),
+                                                              subtitle: Text(
+                                                                '${medicine1.intake} ${locale.intake!}',
+                                                                style: const TextStyle(
+                                                                    color:
+                                                                        black),
+                                                              ),
+                                                              trailing: Switch(
+                                                                value: medicine1
+                                                                    .medSwitch,
+                                                                onChanged:
+                                                                    (value) async {
+                                                                  SharedPreferences
+                                                                      prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  medicine1
+                                                                      .changeSwitch();
+                                                                  firstMed1 =
+                                                                      prefs.getBool(
+                                                                              'firstMed1') ??
+                                                                          true;
+                                                                  setState(() {
+                                                                    med1 =
+                                                                        value;
+                                                                  });
+                                                                  if (med1 ==
+                                                                      true) {
+                                                                    if (firstMed1 ==
+                                                                        true) {
+                                                                      if (medicine1
+                                                                              .intake ==
+                                                                          0) {
+                                                                        await prefs.setBool(
+                                                                            'm1${AppUser.instance.user!.uid}',
+                                                                            false);
+                                                                        setState(
+                                                                            () {
+                                                                          Timer(
+                                                                              const Duration(seconds: 2),
+                                                                              back1);
+                                                                        });
                                                                         Fluttertoast.showToast(
+                                                                            msg: locale.water1 == 'air'
+                                                                                ? 'Sila tetapkan bilangan ubat yang perlu diambil dalam sehari dahulu'
+                                                                                : 'Please set number of medicine(s) intake in a day first');
+                                                                      } else {
+                                                                        CoolAlert.show(
+                                                                            title: "${locale.takeYour} ${box.read('medicine1') ?? locale.medicineNo1!}",
+                                                                            onCancelBtnTap: () async {
+                                                                              Navigator.pop(context);
+                                                                              await SharedPreferences.getInstance();
+                                                                              await prefs.setBool('m1${AppUser.instance.user!.uid}', false);
+                                                                              setState(() {
+                                                                                med1 = false;
+                                                                              });
+                                                                            },
+                                                                            onConfirmBtnTap: () {
+                                                                              Navigator.pop(context);
+                                                                              medicine1.selectTimes(context, DateTime.now(), intake: 0);
+                                                                            },
+                                                                            context: context,
+                                                                            type: CoolAlertType.info,
+                                                                            text: hadis ? locale.strongHadisM : locale.strongQuranM,
+                                                                            showCancelBtn: true,
+                                                                            cancelBtnText: locale.back!,
+                                                                            confirmBtnText: locale.selectTime!);
+                                                                        hadis =
+                                                                            !hadis;
+                                                                      }
+                                                                    } else {
+                                                                      medicine1
+                                                                          .getTime();
+                                                                    }
+                                                                  } else {
+                                                                    medicine1
+                                                                        .cancelNotifications();
+                                                                    Fluttertoast
+                                                                        .showToast(
                                                                             msg:
                                                                                 locale.cancelReminder1!);
-                                                                      }
-                                                                    },
-                                                                    activeColor:
-                                                                        kPrimaryColor,
-                                                                    inactiveThumbColor:
-                                                                        Colors
-                                                                            .white,
-                                                                  ),
-                                                                ),
+                                                                  }
+                                                                },
+                                                                activeColor:
+                                                                    kPrimaryColor,
+                                                                inactiveThumbColor:
+                                                                    Colors
+                                                                        .white,
+                                                              ),
+                                                              children: [
                                                                 Padding(
                                                                   padding: const EdgeInsets
                                                                           .symmetric(
                                                                       horizontal:
-                                                                          35.0),
+                                                                          70.0),
                                                                   child: Text(
                                                                     locale
                                                                         .takeMedicine!,
@@ -2288,10 +2309,7 @@ class _HomePageState extends State<HomePage>
                                           ],
                                         ),
                                       ],
-                                    )),
-                                const SizedBox(
-                                  height: 25,
-                                ),
+                                    ))
                               ],
                             ),
                           )))
@@ -2977,8 +2995,7 @@ class _MyDialogState extends State<MyDialog> {
               Fluttertoast.showToast(msg: locale.cancelWaterReminder!);
               Navigator.pop(context, false);
             },
-            child:
-                Text(locale.back!, style: const TextStyle(color: Colors.black)),
+            child: Text(locale.back!),
             style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
           ),
           ElevatedButton(
@@ -2996,8 +3013,7 @@ class _MyDialogState extends State<MyDialog> {
                 );
               }
             },
-            child: Text(locale.done1!,
-                style: const TextStyle(color: Colors.black)),
+            child: Text(locale.done1!),
             style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
           ),
         ],

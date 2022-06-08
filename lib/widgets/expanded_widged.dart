@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/constants/constant.dart';
-import '../Locale/locales.dart';
 import '../screen/all.hadis.dart';
 
 class ExpandedWidget extends StatefulWidget {
@@ -22,7 +21,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.text.length > 150) {
+    if (widget.text.length > 300) {
       firstHalf = widget.text.substring(0, 300);
       secondHalf = widget.text.substring(301, widget.text.length);
     } else {
@@ -33,9 +32,9 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var locale = AppLocalizations.of(context)!;
+    //var locale = AppLocalizations.of(context)!;
     return Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             secondHalf.length == ""
@@ -50,22 +49,6 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                       ),
                       Text(
                         widget.text,
-                        style: textStyleNormal,
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: textStyleBoldSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        flag ? firstHalf : widget.text,
                         style: textStyleNormal,
                         textAlign: TextAlign.justify,
                       ),
@@ -85,7 +68,24 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         ),
                       ),
                     ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: textStyleBoldSmall,
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        flag ? firstHalf : widget.text,
+                        style: textStyleNormal,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
                   ),
+            const SizedBox(height: 15),
             Align(
                 alignment: Alignment.bottomRight,
                 child: Row(
