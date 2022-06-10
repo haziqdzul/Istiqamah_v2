@@ -37,7 +37,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            secondHalf.length == ""
+            secondHalf.length != null
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -48,7 +48,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        widget.text,
+                        flag ? firstHalf : widget.text,
                         style: textStyleNormal,
                         textAlign: TextAlign.justify,
                       ),
@@ -79,7 +79,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        flag ? firstHalf : widget.text,
+                        widget.text,
                         style: textStyleNormal,
                         textAlign: TextAlign.justify,
                       ),
