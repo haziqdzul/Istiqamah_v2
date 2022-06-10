@@ -10,6 +10,7 @@ import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
 
+//
 class WalktroughPage extends StatefulWidget {
   const WalktroughPage({Key? key}) : super(key: key);
 

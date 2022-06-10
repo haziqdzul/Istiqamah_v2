@@ -38,6 +38,7 @@ import 'package:istiqamah_app/Locale/locales.dart';
 import 'package:async/async.dart';
 import 'notification_page.dart';
 
+//
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 

@@ -1,5 +1,6 @@
 library simple_gesture_detector;
 
+//
 import 'package:flutter/material.dart';
 
 class SimpleGestureDetector extends StatefulWidget {
