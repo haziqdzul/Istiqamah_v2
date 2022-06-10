@@ -19,6 +19,7 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Utils/shimmer.dart';
+import '../calendar/calendar_page.dart';
 import '../components/alert_button.dart';
 import '../components/default_circle.dart';
 import '../components/default_dialog.dart';
@@ -2228,40 +2229,16 @@ class _HomePageState extends State<HomePage>
                                             ),
                                             DefaultCircleCard(
                                               icon: const Icon(
-                                                Icons.grid_view,
+                                                Icons.calendar_month_rounded,
                                                 size: 40,
                                               ),
-                                              label: locale.other!,
+                                              label: "Calendar",
                                               onPress: () {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) =>
-                                                      DefaultDialog(
-                                                    body: StatefulBuilder(
-                                                        builder: (context,
-                                                            setState) {
-                                                      return Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          dialogBody(
-                                                              'Coming Soon'),
-                                                          dialogButton(
-                                                            'Close',
-                                                            ' ',
-                                                            () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                            () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                          )
-                                                        ],
-                                                      );
-                                                    }),
-                                                  ),
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CalendarScreen()),
                                                 );
                                               },
                                             ),

@@ -78,6 +78,7 @@ class _MyAppState extends State<MyApp> {
             return FeatureDiscovery(
               child: MaterialApp(
                 theme: ThemeData(
+                  primarySwatch: Colors.amber,
                   fontFamily: 'lato',
                 ),
                 debugShowCheckedModeBanner: false,

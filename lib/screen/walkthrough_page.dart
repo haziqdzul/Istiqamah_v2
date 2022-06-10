@@ -167,7 +167,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                                                 (Route<dynamic> route) =>
                                                     false);
                                       },
-                                      label: "Skip",
+                                      label: locale.skip!,
                                     ),
                                     WalkButton(
                                       onPress: () {
