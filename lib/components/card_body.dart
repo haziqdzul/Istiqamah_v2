@@ -19,8 +19,8 @@ class CardBody extends StatelessWidget {
       elevation: 5,
       shadowColor: Colors.black,
       shape: shape ?? BoxShape.rectangle,
-      child: child,
       borderRadius: radius,
+      child: child,
     );
   }
 }

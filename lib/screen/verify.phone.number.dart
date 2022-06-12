@@ -54,6 +54,9 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
               actions: [
                 if (controller.codeSent)
                   TextButton(
+                    onPressed: controller.timerIsActive
+                        ? null
+                        : () async => await controller.sendOTP(),
                     child: Text(
                       controller.timerIsActive
                           ? "${controller.timerCount.inSeconds}s"
@@ -63,9 +66,6 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-                    onPressed: controller.timerIsActive
-                        ? null
-                        : () async => await controller.sendOTP(),
                   ),
                 const SizedBox(width: 5),
               ],

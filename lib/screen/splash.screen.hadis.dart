@@ -67,7 +67,7 @@ class _MLSplashScreenState extends State<MLSplashScreenHadis> {
                         ])),
                 child: Column(
                   children: [
-                    Text("${locale.companyHadith!}",
+                    Text(locale.companyHadith!,
                             textAlign: TextAlign.center,
                             style: boldTextStyle(color: Colors.white, size: 20))
                         .center(),

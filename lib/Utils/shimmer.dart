@@ -146,10 +146,10 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
       animation: _controller,
       child: widget.child,
       builder: (BuildContext context, Widget? child) => _Shimmer(
-        child: child,
         direction: widget.direction,
         gradient: widget.gradient,
         percent: _controller.value,
+        child: child,
       ),
     );
   }

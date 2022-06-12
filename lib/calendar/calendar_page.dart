@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'flutter_neat_and_clean_calendar.dart';
-import 'islamic.event.dart';
+import 'package:istiqamah_app/calendar/flutter_neat_and_clean_calendar.dart';
+import 'package:istiqamah_app/calendar/islamic.event.dart';
+
 //
 class CalendarScreen extends StatefulWidget {
   @override
@@ -36,13 +37,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _eventList = eventList();
+    final eventList = eventLists();
     return Scaffold(
       body: SafeArea(
         child: Calendar(
           startOnMonday: true,
           weekDays: const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          eventsList: _eventList,
+          eventsList: eventLists(),
           isExpandable: true,
           eventDoneColor: Colors.green[400],
           selectedColor: Colors.lime[900],

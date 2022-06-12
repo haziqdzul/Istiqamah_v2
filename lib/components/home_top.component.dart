@@ -159,7 +159,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('habbatus_madu')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -171,14 +171,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('habbatus_madu')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -190,7 +190,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -198,7 +198,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('penyakit')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -210,14 +210,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('penyakit')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -229,7 +229,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -237,7 +237,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -249,14 +249,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -268,7 +268,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -276,7 +276,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('air')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -288,14 +288,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -311,7 +311,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -366,7 +366,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('doa_zikir')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -382,14 +382,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('doa_zikir')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -405,7 +405,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -413,7 +413,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('istiqamah')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -429,14 +429,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('istiqamah')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -452,7 +452,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -460,7 +460,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
               .collection('makanan_halal')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -476,14 +476,14 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('makanan_halal')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -499,7 +499,7 @@ class _MLHomeTopComponentState extends State<MLHomeTopComponent> {
                   });
                 }
               }
-            });
+            }
           });
         }
         print(_list.length);

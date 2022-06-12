@@ -22,7 +22,7 @@ class NeatCleanCalendarTile extends StatelessWidget {
   final Color? eventColor;
   final Color? eventDoneColor;
 //
-  NeatCleanCalendarTile({
+  const NeatCleanCalendarTile({
     this.onDateSelected,
     this.date,
     this.child,
@@ -125,8 +125,8 @@ class NeatCleanCalendarTile extends StatelessWidget {
     //TODO If a child widget was passed as parameter, this widget gets used to be rendered to display weekday or date
     if (child != null) {
       return InkWell(
-        child: child,
         onTap: onDateSelected,
+        child: child,
       );
     }
     return Container(

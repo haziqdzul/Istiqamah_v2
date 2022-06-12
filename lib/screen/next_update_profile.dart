@@ -66,16 +66,16 @@ class _NextUpdateProfileScreenState extends State<NextUpdateProfileScreen> {
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
     Widget closebutton = ElevatedButton(
-      child: Text(
-        locale.close ?? '',
-        style: const TextStyle(color: Colors.black),
-        textAlign: TextAlign.center,
-      ),
       style: ElevatedButton.styleFrom(
           fixedSize: const Size(390, 40), primary: const Color(0xFFFFE080)),
       onPressed: () {
         Navigator.pop(context);
       },
+      child: Text(
+        locale.close ?? '',
+        style: const TextStyle(color: Colors.black),
+        textAlign: TextAlign.center,
+      ),
     );
     return loading
         ? const Loading()
@@ -126,7 +126,7 @@ class _NextUpdateProfileScreenState extends State<NextUpdateProfileScreen> {
                                         children: [
                                           const TextSpan(text: ' '),
                                           TextSpan(
-                                              text: locale.termCondition! + " ",
+                                              text: "${locale.termCondition!} ",
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold),
                                               recognizer: TapGestureRecognizer()
@@ -185,9 +185,9 @@ class _NextUpdateProfileScreenState extends State<NextUpdateProfileScreen> {
                                                     },
                                                   );
                                                 }),
-                                          TextSpan(text: locale.and! + " "),
+                                          TextSpan(text: "${locale.and!} "),
                                           TextSpan(
-                                              text: locale.privacyPolicy! + " ",
+                                              text: "${locale.privacyPolicy!} ",
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold),
                                               recognizer: TapGestureRecognizer()

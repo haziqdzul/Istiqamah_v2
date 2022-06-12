@@ -201,13 +201,13 @@ class _RegisterPage2State extends State<RegisterPage2> {
 
                         //Password
                         AppTextField(
-                          onChanged: (_pass) {
+                          onChanged: (pass) {
                             setState(() {
-                              textLength = _pass.length;
+                              textLength = pass.length;
                             });
                             if (!RegExp(
                                     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
-                                .hasMatch(_pass)) {
+                                .hasMatch(pass)) {
                               setState(() {
                                 pass1IsValid = true;
                                 validate = true;
@@ -255,11 +255,11 @@ class _RegisterPage2State extends State<RegisterPage2> {
 
                         //Confirm password
                         AppTextField(
-                          onChanged: (_pass2) {
+                          onChanged: (pass2) {
                             setState(() {
-                              textLength2 = _pass2.length;
+                              textLength2 = pass2.length;
                             });
-                            if (_pass.text != _pass2 || _pass2 == '') {
+                            if (_pass.text != pass2 || pass2 == '') {
                               setState(() {
                                 pass2IsValid = true;
                               });

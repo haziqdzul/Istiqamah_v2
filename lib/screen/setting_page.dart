@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/components/alert_button.dart';
@@ -19,7 +18,7 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   late LanguageCubit _languageCubit;
-  bool _switch = false;
+  final bool _switch = false;
 
   Language? selectedLanguage;
   @override

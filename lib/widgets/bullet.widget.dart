@@ -31,7 +31,7 @@ class UnorderedListItem extends StatelessWidget {
       children: <Widget>[
         const Text(
           "• ",
-          style: const TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20),
         ),
         Expanded(
           child: Text(

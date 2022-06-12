@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -165,7 +164,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                           (_gender == "Male" ||
                                                               _gender ==
                                                                   "Lelaki")
-                                                              ? Container(
+                                                              ? SizedBox(
                                                                 height: MediaQuery.of(context)
                                                                     .size
                                                                     .height /
@@ -203,7 +202,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                             child: Material(
                                                                               borderRadius: BorderRadius.circular(25.0),
                                                                               color: Colors.white,
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width / 5,
                                                                                 height: MediaQuery.of(context).size.width / 5,
                                                                                 child: Image.asset(
@@ -229,7 +228,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                             child: Material(
                                                                               borderRadius: BorderRadius.circular(25.0),
                                                                               color: Colors.white,
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width / 5,
                                                                                 height: MediaQuery.of(context).size.width / 5,
                                                                                 child: Image.asset(
@@ -255,7 +254,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                             child: Material(
                                                                               borderRadius: BorderRadius.circular(25.0),
                                                                               color: Colors.white,
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width / 5,
                                                                                 height: MediaQuery.of(context).size.width / 5,
                                                                                 child: Image.asset(
@@ -281,7 +280,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                             child: Material(
                                                                               borderRadius: BorderRadius.circular(25.0),
                                                                               color: Colors.white,
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width / 5,
                                                                                 height: MediaQuery.of(context).size.width / 5,
                                                                                 child: Image.asset(
@@ -307,7 +306,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                             child: Material(
                                                                               borderRadius: BorderRadius.circular(25.0),
                                                                               color: Colors.white,
-                                                                              child: Container(
+                                                                              child: SizedBox(
                                                                                 width: MediaQuery.of(context).size.width / 5,
                                                                                 height: MediaQuery.of(context).size.width / 5,
                                                                                 child: Image.asset(
@@ -323,7 +322,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                   ],
                                                                 ),
                                                           )
-                                                              : Container(
+                                                              : SizedBox(
                                                             height: MediaQuery.of(context)
                                                                 .size
                                                                 .height /
@@ -361,7 +360,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                         child: Material(
                                                                           borderRadius: BorderRadius.circular(25.0),
                                                                           color: Colors.white,
-                                                                          child: Container(
+                                                                          child: SizedBox(
                                                                             width: MediaQuery.of(context).size.width / 5,
                                                                             height: MediaQuery.of(context).size.width / 5,
                                                                             child: Image.asset(
@@ -387,7 +386,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                         child: Material(
                                                                           borderRadius: BorderRadius.circular(25.0),
                                                                           color: Colors.white,
-                                                                          child: Container(
+                                                                          child: SizedBox(
                                                                             width: MediaQuery.of(context).size.width / 5,
                                                                             height: MediaQuery.of(context).size.width / 5,
                                                                             child: Image.asset(
@@ -413,7 +412,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                         child: Material(
                                                                           borderRadius: BorderRadius.circular(25.0),
                                                                           color: Colors.white,
-                                                                          child: Container(
+                                                                          child: SizedBox(
                                                                             width: MediaQuery.of(context).size.width / 5,
                                                                             height: MediaQuery.of(context).size.width / 5,
                                                                             child: Image.asset(
@@ -439,7 +438,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                         child: Material(
                                                                           borderRadius: BorderRadius.circular(25.0),
                                                                           color: Colors.white,
-                                                                          child: Container(
+                                                                          child: SizedBox(
                                                                             width: MediaQuery.of(context).size.width / 5,
                                                                             height: MediaQuery.of(context).size.width / 5,
                                                                             child: Image.asset(
@@ -465,7 +464,7 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                                                                         child: Material(
                                                                           borderRadius: BorderRadius.circular(25.0),
                                                                           color: Colors.white,
-                                                                          child: Container(
+                                                                          child: SizedBox(
                                                                             width: MediaQuery.of(context).size.width / 5,
                                                                             height: MediaQuery.of(context).size.width / 5,
                                                                             child: Image.asset(

@@ -2,7 +2,6 @@ import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils/src/extensions/widget_extensions.dart';
 
 import '../Locale/locales.dart';
 
@@ -25,7 +24,7 @@ class _ShowByCatergoryState extends State<ShowByCatergory> {
   void initState() {
     // TODO: implement initState
     init();
-    SchedulerBinding.instance!.addPostFrameCallback((Duration duration) {
+    SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
       FeatureDiscovery.discoverFeatures(
         context,
         const <String>{

@@ -582,14 +582,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                                                         text: locale.general ==
                                                                                 'umum'
                                                                             ? TextSpan(children: [
-                                                                                TextSpan(text: locale.bmi!, style: TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: ' ${locale.who!} ', style: TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: locale.general!, style: TextStyle(color: Colors.blue)),
+                                                                                TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
+                                                                                TextSpan(text: ' ${locale.who!} ', style: const TextStyle(color: Colors.black)),
+                                                                                TextSpan(text: locale.general!, style: const TextStyle(color: Colors.blue)),
                                                                               ])
                                                                             : TextSpan(children: [
-                                                                                TextSpan(text: locale.who!, style: TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: ' ${locale.general!} ', style: TextStyle(color: Colors.blue)),
-                                                                                TextSpan(text: locale.bmi!, style: TextStyle(color: Colors.black)),
+                                                                                TextSpan(text: locale.who!, style: const TextStyle(color: Colors.black)),
+                                                                                TextSpan(text: ' ${locale.general!} ', style: const TextStyle(color: Colors.blue)),
+                                                                                TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
                                                                               ]),
                                                                       )),
                                                                     ],

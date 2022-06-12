@@ -83,19 +83,19 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
 
   void _loadUserEmailPassword() async {
     try {
-      SharedPreferences _prefs = await SharedPreferences.getInstance();
-      var _email = _prefs.getString("email") ?? "";
-      var _password = _prefs.getString("password") ?? "";
-      var _rememberMe = _prefs.getBool("remember_me") ?? false;
-      print(_rememberMe);
-      print(_email);
-      print(_password);
-      if (_rememberMe) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var email = prefs.getString("email") ?? "";
+      var password = prefs.getString("password") ?? "";
+      var rememberMe = prefs.getBool("remember_me") ?? false;
+      print(rememberMe);
+      print(email);
+      print(password);
+      if (rememberMe) {
         setState(() {
           _isChecked = true;
         });
-        emailController.text = _email;
-        passwordController.text = _password;
+        emailController.text = email;
+        passwordController.text = password;
       }
     } catch (e) {
       print(e);

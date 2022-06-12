@@ -141,7 +141,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                         style: boldTextStyle(
                                             size: 14, color: Colors.blue))
                                     .expand(),
-                                (status != null && status != '')
+                                (status != '')
                                     ? Container(
                                         padding: const EdgeInsets.all(2.0),
                                         decoration:
@@ -189,7 +189,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                         style: boldTextStyle(
                                             size: 14, color: Colors.blue))
                                     .expand(),
-                                (status != null && status != '')
+                                (status != '')
                                     ? Container(
                                         padding: const EdgeInsets.all(2.0),
                                         decoration:
@@ -237,7 +237,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                         style: boldTextStyle(
                                             size: 14, color: Colors.blue))
                                     .expand(),
-                                (status != null && status != '')
+                                (status != '')
                                     ? Container(
                                         padding: const EdgeInsets.all(2.0),
                                         decoration:
@@ -285,7 +285,7 @@ class MLNotificationComponentState extends State<MLNotificationComponent> {
                                         style: boldTextStyle(
                                             size: 14, color: Colors.blue))
                                     .expand(),
-                                (status != null && status != '')
+                                (status != '')
                                     ? Container(
                                         padding: const EdgeInsets.all(2.0),
                                         decoration:

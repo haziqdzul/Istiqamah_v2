@@ -205,9 +205,9 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
                             print('yes selected');
                             exit(0);
                           },
-                          child: Text(locale.yes!),
                           style: ElevatedButton.styleFrom(
                               primary: Colors.red.shade800),
+                          child: Text(locale.yes!),
                         ),
                       ),
                       const SizedBox(width: 15),
@@ -217,11 +217,11 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
                           print('no selected');
                           Navigator.of(context).pop();
                         },
-                        child: Text(locale.no!,
-                            style: const TextStyle(color: Colors.black)),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                         ),
+                        child: Text(locale.no!,
+                            style: const TextStyle(color: Colors.black)),
                       ))
                     ],
                   )

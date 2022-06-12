@@ -42,9 +42,9 @@ class _WalktroughPageState extends State<WalktroughPage> {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
           onTap: null,
+          value: "",
           child: Text(locale.selectLanguage!,
-              style: boldTextStyle(size: 15, color: Colors.white)),
-          value: ""),
+              style: boldTextStyle(size: 15, color: Colors.white))),
       DropdownMenuItem(
           onTap: () {
             var box = GetStorage();
@@ -53,9 +53,9 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 .changeLocale('En');
             _languageCubit.selectEngLanguage();
           },
+          value: "en",
           child: Text("English",
-              style: boldTextStyle(size: 15, color: Colors.white)),
-          value: "en"),
+              style: boldTextStyle(size: 15, color: Colors.white))),
       DropdownMenuItem(
           onTap: () {
             var box = GetStorage();
@@ -64,9 +64,9 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 .changeLocale('My');
             _languageCubit.selectIndonesianLanguage();
           },
+          value: "id",
           child: Text("Bahasa Malaysia",
-              style: boldTextStyle(size: 15, color: Colors.white)),
-          value: "id"),
+              style: boldTextStyle(size: 15, color: Colors.white))),
     ];
     return menuItems;
   }

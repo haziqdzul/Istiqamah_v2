@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/components/alert_button.dart';
-import 'package:istiqamah_app/components/corner_body.dart';
-import 'package:istiqamah_app/components/default_scaffold.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 
 class SadaqahDetails extends StatefulWidget {
@@ -23,7 +21,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
         elevation: 0,
         // automaticallyImplyLeading: true,
       ),
@@ -31,7 +29,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
         padding: EdgeInsets.only(top: statusbar),
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: height * .2 + (appbarSize),
               width: width,
               // color: kPrimaryColor,
@@ -44,7 +42,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                 child: Container(
                     margin: EdgeInsets.only(top: height * .2),
                     child: Container(
-                      padding: EdgeInsets.only(top: 30, left: 20, right: 30),
+                      padding: const EdgeInsets.only(top: 30, left: 20, right: 30),
                       height: height,
                       width: width,
                       decoration: const BoxDecoration(
@@ -55,7 +53,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                       ),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             'Universiti Teknologi Mara',
                             style: TextStyle(
                               color: Colors.black,
@@ -65,14 +63,14 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                           ),
                           Container(
                             width: width,
-                            padding: EdgeInsets.all(16),
-                            margin: EdgeInsets.only(top: 30),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.only(top: 30),
+                            decoration: const BoxDecoration(
                               color: kPrimaryColor,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              children: const [
                                 Text(
                                   'Bantuan khas untuk pelajar yang kurang berkemampuan. ',
                                   style: textStyleBoldSmall,
@@ -89,25 +87,25 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                           ),
                           Container(
                             width: width,
-                            padding: EdgeInsets.all(16),
-                            margin: EdgeInsets.only(top: 15),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.only(top: 15),
+                            decoration: const BoxDecoration(
                               color: kPrimaryColor,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Total Payment MYR',
                                   style: textStyleBoldSmall,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 TextFormField(
                                   initialValue: '10',
-                                  style: TextStyle(fontSize: 30),
-                                  decoration: InputDecoration(
+                                  style: const TextStyle(fontSize: 30),
+                                  decoration: const InputDecoration(
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black),
@@ -118,10 +116,10 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'Amount for Bantuan khas untuk pelajar yang kurang berkemampuan. ',
                                   style: textStyleNormal,
                                 ),
@@ -130,21 +128,21 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                           ),
                           Container(
                             width: width,
-                            padding: EdgeInsets.all(16),
-                            margin: EdgeInsets.only(top: 15),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.only(top: 15),
+                            decoration: const BoxDecoration(
                               color: kPrimaryColor,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Your Name',
                                   style: textStyleBoldSmall,
                                 ),
                                 TextFormField(
                                   style: textStyleNormal,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: 'Enter Your Name',
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide:
@@ -156,16 +154,16 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'Mobile No.',
                                   style: textStyleBoldSmall,
                                 ),
                                 TextFormField(
                                   style: textStyleNormal,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: 'Enter Your Mobile No.',
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide:
@@ -177,16 +175,16 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'Email Address',
                                   style: textStyleBoldSmall,
                                 ),
                                 TextFormField(
                                   style: textStyleNormal,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: 'Enter Your Email Address',
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide:
@@ -225,7 +223,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                           ),
                           Container(
                             width: width * .5,
-                            margin: EdgeInsets.only(top: 20),
+                            margin: const EdgeInsets.only(top: 20),
                             child: DefaultButton(
                                 label: 'Sadaqah Now',
                                 textStyle: textStyleBoldSmall,

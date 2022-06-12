@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'neat_and_clean_calendar_event.dart';
 
 //
-List<NeatCleanCalendarEvent> eventList() {
+List<NeatCleanCalendarEvent> eventLists() {
   //TODO EVENT LIST
   final eventList = [
     //sambutan dan perayaan

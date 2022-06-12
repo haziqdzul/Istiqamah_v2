@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/screen/home_page.dart';
-import 'package:istiqamah_app/screen/verify.screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';

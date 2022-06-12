@@ -1,11 +1,10 @@
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:timer_button/timer_button.dart';
 
 import '../Locale/locales.dart';
-import '../providers/user.provider.dart';
 import '../screen/update_profile.screen.dart';
 
 class Loading extends StatelessWidget {
@@ -80,21 +79,21 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   )),
-              TimerButton(
-                label: locale.loadingBack!,
-                timeOutInSeconds: 20,
-                onPressed: () async {
-                  await AppUser.instance.signOut();
-                  Navigator.pop(context);
-                },
-                disabledColor: Colors.grey,
-                color: Colors.cyan,
-                buttonType: ButtonType.OutlinedButton,
-                disabledTextStyle:
-                    const TextStyle(fontSize: 16.0, color: Colors.grey),
-                activeTextStyle:
-                    const TextStyle(fontSize: 16.0, color: Colors.cyan),
-              )
+              // TimerButton(
+              //   label: locale.loadingBack!,
+              //   timeOutInSeconds: 20,
+              //   onPressed: () async {
+              //     await AppUser.instance.signOut();
+              //     Navigator.pop(context);
+              //   },
+              //   disabledColor: Colors.grey,
+              //   color: Colors.cyan,
+              //   buttonType: ButtonType.ElevatedButton,
+              //   disabledTextStyle:
+              //       const TextStyle(fontSize: 16.0, color: Colors.grey),
+              //   activeTextStyle:
+              //       const TextStyle(fontSize: 16.0, color: Colors.cyan),
+              // )
             ],
           ),
         ),

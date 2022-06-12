@@ -138,26 +138,26 @@ class _HomePageState extends State<HomePage>
 
   Future<dynamic> countUnReadDocuments() async {
     await Future.delayed(const Duration(seconds: 2));
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance
+    QuerySnapshot myDoc = await FirebaseFirestore.instance
         .collection('users')
         .doc(AppUser.instance.user!.uid)
         .collection("notifications")
         .where("read", isEqualTo: false)
         .get();
-    QuerySnapshot _allDoc = await FirebaseFirestore.instance
+    QuerySnapshot allDoc = await FirebaseFirestore.instance
         .collection('users')
         .doc(AppUser.instance.user!.uid)
         .collection("notifications")
         .get();
-    List<DocumentSnapshot> _allDocCount = _allDoc.docs;
-    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    int ii = _myDocCount.length; // Count of Documents in Collection
+    List<DocumentSnapshot> allDocCount = allDoc.docs;
+    List<DocumentSnapshot> myDocCount = myDoc.docs;
+    int ii = myDocCount.length; // Count of Documents in Collection
 
     setState(() {
       i = ii;
     });
 
-    if (_allDocCount.isEmpty) {
+    if (allDocCount.isEmpty) {
       setState(() {
         empty = true;
       });
@@ -1611,6 +1611,9 @@ class _HomePageState extends State<HomePage>
                                                                                 context);
                                                                       }
                                                                     },
+                                                                    style: TextButton.styleFrom(
+                                                                        backgroundColor:
+                                                                            kPrimaryColor),
                                                                     child: Text(
                                                                       locale
                                                                           .showAllReminder!,
@@ -1620,9 +1623,6 @@ class _HomePageState extends State<HomePage>
                                                                           color:
                                                                               Colors.black),
                                                                     ),
-                                                                    style: TextButton.styleFrom(
-                                                                        backgroundColor:
-                                                                            kPrimaryColor),
                                                                   ),
                                                                 ),
                                                               ],
@@ -2474,7 +2474,7 @@ class _HomePageState extends State<HomePage>
               .collection('habbatus_madu')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2486,14 +2486,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('habbatus_madu')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -2505,7 +2505,7 @@ class _HomePageState extends State<HomePage>
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2513,7 +2513,7 @@ class _HomePageState extends State<HomePage>
               .collection('penyakit')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2525,14 +2525,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('penyakit')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -2544,7 +2544,7 @@ class _HomePageState extends State<HomePage>
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2552,7 +2552,7 @@ class _HomePageState extends State<HomePage>
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2564,14 +2564,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -2583,7 +2583,7 @@ class _HomePageState extends State<HomePage>
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2591,7 +2591,7 @@ class _HomePageState extends State<HomePage>
               .collection('air')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2603,14 +2603,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2626,7 +2626,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2681,7 +2681,7 @@ class _HomePageState extends State<HomePage>
               .collection('doa_zikir')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2697,14 +2697,14 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('doa_zikir')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2720,7 +2720,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2728,7 +2728,7 @@ class _HomePageState extends State<HomePage>
               .collection('istiqamah')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2744,14 +2744,14 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('istiqamah')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2767,7 +2767,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2775,7 +2775,7 @@ class _HomePageState extends State<HomePage>
               .collection('makanan_halal')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2791,14 +2791,14 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         } else {
           await FirebaseFirestore.instance
               .collection('makanan_halal')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
+            for (var doc in querySnapshot.docs) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2814,7 +2814,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            });
+            }
           });
         }
         print(_list.length);
@@ -2932,8 +2932,8 @@ class _MyDialogState extends State<MyDialog> {
               Fluttertoast.showToast(msg: locale.cancelWaterReminder!);
               Navigator.pop(context, false);
             },
-            child: Text(locale.back!),
             style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
+            child: Text(locale.back!),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -2950,8 +2950,8 @@ class _MyDialogState extends State<MyDialog> {
                 );
               }
             },
-            child: Text(locale.done1!),
             style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
+            child: Text(locale.done1!),
           ),
         ],
       );

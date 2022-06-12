@@ -52,26 +52,26 @@ class NotificationPageState extends State<NotificationPage> {
 
   Future<dynamic> countUnReadDocuments() async {
     await Future.delayed(const Duration(seconds: 2));
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance
+    QuerySnapshot myDoc = await FirebaseFirestore.instance
         .collection('users')
         .doc(AppUser.instance.user!.uid)
         .collection("notifications")
         .where("read", isEqualTo: false)
         .get();
-    QuerySnapshot _allDoc = await FirebaseFirestore.instance
+    QuerySnapshot allDoc = await FirebaseFirestore.instance
         .collection('users')
         .doc(AppUser.instance.user!.uid)
         .collection("notifications")
         .get();
-    List<DocumentSnapshot> _allDocCount = _allDoc.docs;
-    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    int ii = _myDocCount.length; // Count of Documents in Collection
+    List<DocumentSnapshot> allDocCount = allDoc.docs;
+    List<DocumentSnapshot> myDocCount = myDoc.docs;
+    int ii = myDocCount.length; // Count of Documents in Collection
 
     setState(() {
       i = ii;
     });
 
-    if (_allDocCount.isEmpty) {
+    if (allDocCount.isEmpty) {
       setState(() {
         empty = true;
       });

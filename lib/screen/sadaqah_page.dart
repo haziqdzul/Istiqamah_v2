@@ -27,16 +27,16 @@ class _SadaqahPageState extends State<SadaqahPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Sadaqah',
               style: textStyleBold,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
               height: height * .07,
-              child: Text(
+              child: const Text(
                 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it',
                 style: textStyleNormal,
               ),
@@ -45,10 +45,10 @@ class _SadaqahPageState extends State<SadaqahPage> {
               color: kSecondaryColor,
               radius: BorderRadius.circular(16),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 width: width,
                 // height: height * 0.3,
-                child: Text(
+                child: const Text(
                   kDefaultText,
                   style: textStyleNormal,
                 ),
