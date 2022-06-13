@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:country_list_pick/country_list_pick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:country_list_pick/country_list_pick.dart';
+
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
 import '../models/states.dart';
@@ -14,8 +15,10 @@ import 'country_pIcker.component.dart';
 
 class MLProfileFormComponent extends StatefulWidget {
   static String tag = '/MLProfileFormComponent';
+  final bool update;
 
-  const MLProfileFormComponent({Key? key}) : super(key: key);
+  const MLProfileFormComponent({required this.update, Key? key})
+      : super(key: key);
 
   @override
   MLProfileFormComponentState createState() => MLProfileFormComponentState();
@@ -55,6 +58,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
 
   Future<void> init() async {
     getAllState();
+    if (userData.state != null) {
+      getAllCity(userData.state!);
+    }
     //
   }
 
@@ -183,7 +189,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
         if (locale.gender == 'Gender')
           DropdownButton(
             isExpanded: true,
-            value: gender,
+            value: items.contains(userData.gender)
+                ? userData.gender ?? gender
+                : gender,
             icon: const Icon(Icons.keyboard_arrow_down),
             items: items.map((String items) {
               return DropdownMenuItem(value: items, child: Text(items));
@@ -198,7 +206,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
           ),
         if (locale.gender == 'Jantina')
           DropdownButton(
-            value: jantina,
+            value: itemss.contains(userData.gender)
+                ? userData.gender ?? jantina
+                : jantina,
             isExpanded: true,
             icon: const Icon(Icons.arrow_drop_down),
             items: itemss.map((String items) {
@@ -223,10 +233,16 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
           children: [
             // _buildItem("Datuk/Datin", 1, _focusNodes[0]),
             // 5.width,
-            if (gender == 'Male' || jantina == 'Lelaki')
+            if (gender == 'Male' ||
+                jantina == 'Lelaki' ||
+                userData.gender == 'Male' ||
+                userData.gender == 'Lelaki')
               _buildItem(locale.mr!, 2, _focusNodes[1]),
 
-            if (gender == 'Female' || jantina == 'Perempuan')
+            if (gender == 'Female' ||
+                jantina == 'Perempuan' ||
+                userData.gender == 'Female' ||
+                userData.gender == 'Perempuan')
               _buildItem(locale.mrs!, 2, _focusNodes[1]),
             5.width,
             _buildItem(locale.other!, 3, _focusNodes[2]),
@@ -267,7 +283,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
           readOnly: true,
           textFieldType: TextFieldType.OTHER,
           decoration: InputDecoration(
-            hintText: _date,
+            hintText: userData.dob ?? _date,
             hintStyle: secondaryTextStyle(size: 16),
             suffixIcon: InkWell(
                 onTap: () {
@@ -419,7 +435,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
               userData.city = selectedCity;
             }),
             decoration: InputDecoration(
-              hintText: locale.enterCity,
+              hintText: userData.city ?? locale.enterCity,
               hintStyle: secondaryTextStyle(size: 16),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: kGreyColor),
@@ -431,7 +447,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
         Visibility(
           visible: _district.length > 1 && country == 'Malaysia' ? true : false,
           child: DropdownButton(
-            value: districtValue,
+            value: _district.contains(userData.city)
+                ? userData.city ?? districtValue
+                : districtValue,
             isExpanded: true,
             icon: const Padding(
               padding: EdgeInsets.only(left: 15.0),
@@ -476,7 +494,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             decoration: InputDecoration(
-              hintText: locale.enterPostCode,
+              hintText: userData.postcode ?? locale.enterPostCode,
               hintStyle: secondaryTextStyle(size: 16),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: kGreyColor),
@@ -504,7 +522,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
               userData.address1 = v;
             }),
             decoration: InputDecoration(
-              hintText: locale.enterAddress1,
+              hintText: userData.address1 != ''
+                  ? userData.address1 ?? locale.enterAddress1
+                  : locale.enterAddress1,
               hintStyle: secondaryTextStyle(size: 16),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: kGreyColor),
@@ -532,7 +552,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
               userData.address2 = v;
             }),
             decoration: InputDecoration(
-              hintText: locale.enterAddress2,
+              hintText: userData.address2 != ''
+                  ? userData.address2 ?? locale.enterAddress2
+                  : locale.enterAddress2,
               hintStyle: secondaryTextStyle(size: 16),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: kGreyColor),
@@ -560,7 +582,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
               userData.address3 = v;
             }),
             decoration: InputDecoration(
-              hintText: locale.enterAddress3,
+              hintText: userData.address3 != ''
+                  ? userData.address3 ?? locale.enterAddress3
+                  : locale.enterAddress3,
               hintStyle: secondaryTextStyle(size: 16),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: kGreyColor),
@@ -570,7 +594,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
         ),
         16.height,
         Visibility(
-          visible: _district.length > 1 ? true : false,
+          visible: _district.length > 1 && !widget.update ? true : false,
           child: Row(
             children: [
               Text(locale.phoneNumber!, style: boldTextStyle()),
@@ -579,7 +603,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
           ),
         ),
         Visibility(
-          visible: _district.length > 1 ? true : false,
+          visible: _district.length > 1 && !widget.update ? true : false,
           child: Row(
             children: [
               const MLCountryPickerComponent(),
@@ -594,7 +618,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
-                  hintText: 'e.g: 12 345 6789',
+                  hintText: userData.phoneNo ?? 'e.g: 12 345 6789',
                   labelStyle: secondaryTextStyle(size: 16),
                   enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: kGreyColor),

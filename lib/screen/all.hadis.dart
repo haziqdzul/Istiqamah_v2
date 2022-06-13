@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feature_discovery/feature_discovery.dart';
+import 'package:flutter/foundation.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:istiqamah_app/components/home_top.component.dart';
 import 'package:istiqamah_app/screen/view.hadis.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:istiqamah_app/components/home_top.component.dart';
-import '../Locale/locales.dart';
 
+import '../Locale/locales.dart';
 
 class AllHadis extends StatefulWidget {
   const AllHadis({Key? key}) : super(key: key);
@@ -305,18 +306,19 @@ class _AllHadisState extends State<AllHadis> {
                                                     if (_bookmark.contains(
                                                             '$search') ==
                                                         false) {
-                                                      _bookmark
-                                                          .add('$search');
+                                                      _bookmark.add('$search');
                                                     } else {
                                                       setState(() {
-                                                        _bookmark.remove(
-                                                            '$search');
+                                                        _bookmark
+                                                            .remove('$search');
                                                       });
                                                     }
                                                     prefs.setStringList(
                                                         'bookMarks', _bookmark);
-                                                    print(prefs.getStringList(
-                                                        'bookMarks'));
+                                                    if (p.kDebugMode) {
+                                                      print(prefs.getStringList(
+                                                          'bookMarks'));
+                                                    }
                                                   },
                                                 ),
                                               ),

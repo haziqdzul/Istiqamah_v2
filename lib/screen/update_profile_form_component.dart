@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:country_list_pick/country_list_pick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/components/country_pIcker.component.dart';
-import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:country_list_pick/country_list_pick.dart';
+
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
 import '../models/states.dart';
@@ -108,8 +108,6 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
     'Lelaki',
     'Perempuan',
   ];
-
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
@@ -644,35 +642,5 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
       }
       print(_district.length);
     });
-  }
-
-  Future<void> update(
-      String gender,
-      String title,
-      String dob,
-      String country,
-      String state,
-      String city,
-      String postcode,
-      String address1,
-      String address2,
-      String address3) {
-    return users
-        // existing document in 'users' collection: "ABC123"
-        .doc(AppUser.instance.user!.uid)
-        .set({
-          'gender': gender,
-          'title': title,
-          'dob': dob,
-          'country': country,
-          'state': state,
-          'city': city,
-          'postcode': postcode,
-          'address1': address1,
-          'address2': address2,
-          'address3': address3,
-        }, SetOptions(merge: true))
-        .then((value) => print("'bmi' merged with existing data!"))
-        .catchError((error) => print("Failed to merge data: $error"));
   }
 }

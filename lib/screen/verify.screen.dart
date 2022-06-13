@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
+
 import '../../Locale/locales.dart';
 import '../../models/user.model.dart';
 import '../constants/constant.dart';
@@ -136,7 +137,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                                   verificationId: verificationId!,
                                   smsCode: _enteredOTP!);
                           await FirebaseAuth.instance.currentUser!
-                              .linkWithCredential(credential);
+                              .updatePhoneNumber(credential);
                           _showSnackBar(
                             context,
                             locale.successVerified!,

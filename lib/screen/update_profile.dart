@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/home_page.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
 import '../Locale/locales.dart';
 import '../components/profile_form.component.dart';
 import '../constants/constant.dart';
 import '../models/user.model.dart';
+import '../providers/user.provider.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({Key? key}) : super(key: key);
@@ -23,6 +25,22 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   }
 
   Future<void> init() async {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(AppUser().user!.uid)
+        .get()
+        .then((value) => setState(() {
+              userData.gender = value.get('gender');
+              userData.title = value.get('title');
+              userData.dob = value.get('date of birth');
+              userData.country = value.get('country');
+              userData.state = value.get('state');
+              userData.city = value.get('city');
+              userData.postcode = value.get('postcode');
+              userData.address1 = value.get('address line 1');
+              userData.address2 = value.get('address line 2');
+              userData.address3 = value.get('address line 3');
+            }));
     //
   }
 
@@ -51,7 +69,9 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                     Text(locale.updateYourInformation!,
                         style: boldTextStyle(size: 24)),
                     32.height,
-                    const MLProfileFormComponent(),
+                    const MLProfileFormComponent(
+                      update: true,
+                    ),
                     42.height,
                   ],
                 ),
@@ -77,20 +97,27 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                       userData.state != null &&
                       userData.city != null &&
                       userData.postcode != null &&
-                      // userData.address1 != null &&
-                      userData.phoneNo != null &&
-                      userData.complete == true) {
+                      userData.address1 != null &&
+                      userData.address2 != null &&
+                      userData.address3 != null) {
+                    update(
+                        userData.gender!,
+                        userData.title!,
+                        userData.dob!,
+                        userData.country!,
+                        userData.state!,
+                        userData.city!,
+                        userData.postcode!,
+                        userData.address1!,
+                        userData.address2!,
+                        userData.address3!);
                     showTopSnackBar(
                       context,
                       CustomSnackBar.success(
                         message: locale.success_profile!,
                       ),
                     );
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ));
+                    Navigator.pop(context);
                   } else {
                     showTopSnackBar(
                       context,
@@ -107,5 +134,37 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         ),
       ),
     );
+  }
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  Future<void> update(
+      String gender,
+      String title,
+      String dob,
+      String country,
+      String state,
+      String city,
+      String postcode,
+      String address1,
+      String address2,
+      String address3) {
+    return users
+        // existing document in 'users' collection: "ABC123"
+        .doc(AppUser.instance.user!.uid)
+        .set({
+          'gender': gender,
+          'title': title,
+          'dob': dob,
+          'country': country,
+          'state': state,
+          'city': city,
+          'postcode': postcode,
+          'address1': address1,
+          'address2': address2,
+          'address3': address3,
+        }, SetOptions(merge: true))
+        .then((value) => print("Update merged with existing data!"))
+        .catchError((error) => print("Failed to merge data: $error"));
   }
 }

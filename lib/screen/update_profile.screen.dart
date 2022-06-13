@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/verify.screen.dart';
+import 'package:istiqamah_app/screen/verify.phone.number.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
 import '../Locale/locales.dart';
 import '../components/profile_form.component.dart';
 import '../constants/constant.dart';
@@ -51,7 +52,9 @@ class _MLUpdateProfileScreenState extends State<MLUpdateProfileScreen> {
                     Text(locale.updateYourInformation!,
                         style: boldTextStyle(size: 24)),
                     32.height,
-                    const MLProfileFormComponent(),
+                    const MLProfileFormComponent(
+                      update: false,
+                    ),
                     42.height,
                   ],
                 ),
