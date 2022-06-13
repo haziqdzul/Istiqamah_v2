@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/constants/constant.dart';
+import '../Locale/locales.dart';
 import '../screen/all.hadis.dart';
 
 class ExpandedWidget extends StatefulWidget {
@@ -32,7 +33,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //var locale = AppLocalizations.of(context)!;
+    var locale = AppLocalizations.of(context)!;
     return Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -61,8 +62,8 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                           });
                         },
                         child: Row(
-                          children: const [
-                            Text("more", style: textStyleNormalGrey)
+                          children: [
+                            Text(locale.readmore!, style: textStyleNormalGrey)
                             //Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                           ],
                         ),
@@ -99,9 +100,10 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                                 builder: (context) => const AllHadis()));
                       },
                       child: Row(
-                        children: const [
-                          Text('More Collection', style: textStyleNormalGrey),
-                          Icon(
+                        children: [
+                          Text(locale.morecollection!,
+                              style: textStyleNormalGrey),
+                          const Icon(
                             Icons.arrow_forward_ios,
                             size: 15,
                             color: Colors.grey,

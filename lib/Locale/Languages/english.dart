@@ -3,6 +3,14 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> english() {
   final box = GetStorage();
   return {
+    'puasawajib': 'The day on which it is obligatory to fast',
+    'puasasunat': 'The day the circumcised fasts',
+    'puasaharam': 'The forbidden day of fasting',
+    'sadaqahnow': 'Sadaqah Now',
+    'calendar': 'Calendar',
+    'morecollection': 'More Collection',
+    'updateBmi': 'Update BMI',
+    'readmore': 'More',
     'update_error': 'Please fill in both weight and height!',
     'setting_profile': 'Settings',
     'update_profile': 'Update Profile',
@@ -58,13 +66,13 @@ Map<String, String> english() {
     'hadithNarrated':
         'Whoever revives my sunnah then he has loved me. And whoever loves me. He shall be with me in paradise. \n[Hadith narrated by Al-Tarmizi (2678)]',
     'asSunnahApp': 'Istiqamah App',
-    'enterCorrentOTP':'Please enter the correct OTP sent to',
-    'verifyPhoneNumber':'Verify phone number',
-    'verifyDescription':'We have sent an SMS with a verification code to',
-    'listeningOTP':'Listening for OTP',
-    'or':'Or',
-    'enterOTP':'Enter OTP',
-    'sendingOTP':'Sending OTP',
+    'enterCorrentOTP': 'Please enter the correct OTP sent to',
+    'verifyPhoneNumber': 'Verify phone number',
+    'verifyDescription': 'We have sent an SMS with a verification code to',
+    'listeningOTP': 'Listening for OTP',
+    'or': 'Or',
+    'enterOTP': 'Enter OTP',
+    'sendingOTP': 'Sending OTP',
     'resetPasswordSent': 'Reset password sent',
     'inputCorrectEmail': 'Please input correct email address',
     'yourEmail': 'Your email',
@@ -72,7 +80,8 @@ Map<String, String> english() {
     'resetPasswordDesc':
         'Enter your email address and we will send you a link to reset your password.',
     'verificationCode': 'Verification Code',
-    'otpDescription': 'Please enter the OTP sent\non your registered phone number',
+    'otpDescription':
+        'Please enter the OTP sent\non your registered phone number',
     'resentOTP': 'Resend',
     'successVerified': 'Your account is successfully verified',
     'authenticationFailed': 'Authentication failed',
@@ -98,7 +107,8 @@ Map<String, String> english() {
     'snoozeSadaqah': 'Sadaqah reminder snooze',
     'snoozeWater': 'Water reminder snooze',
     'snoozeMedicine': '${box.read('medicine') ?? 'medicine 1'} reminder snooze',
-    'snoozeMedicine2': '${box.read('medicine2') ?? 'medicine 2'} reminder snooze',
+    'snoozeMedicine2':
+        '${box.read('medicine2') ?? 'medicine 2'} reminder snooze',
     'takeWaterReminderToday': 'Don\'t forget to take water, today',
     'delete': 'Delete',
     'skipToday': 'skip, today',
@@ -132,8 +142,10 @@ Map<String, String> english() {
     'cancelWaterReminder': 'Water reminder is cancel',
     'cancelTahajjudReminder': 'Tahajjud reminder is cancel',
     'cancelSadaqahReminder': 'Sadaqah reminder is cancel',
-    'cancelReminder1': '${box.read('medicine') ?? 'medicine 1'} reminder is cancel',
-    'cancelReminder2': '${box.read('medicine2') ?? 'medicine 2'} reminder is cancel',
+    'cancelReminder1':
+        '${box.read('medicine') ?? 'medicine 1'} reminder is cancel',
+    'cancelReminder2':
+        '${box.read('medicine2') ?? 'medicine 2'} reminder is cancel',
     'update': 'Update',
     'medicineNameUpdated': 'Medicine Name Updated',
     'medicineUpdated': 'Medicine Updated',

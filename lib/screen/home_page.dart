@@ -2233,7 +2233,7 @@ class _HomePageState extends State<HomePage>
                                                 Icons.calendar_month_rounded,
                                                 size: 40,
                                               ),
-                                              label: "Calendar",
+                                              label: locale.calendar!,
                                               onPress: () {
                                                 Navigator.push(
                                                   context,
@@ -2244,6 +2244,9 @@ class _HomePageState extends State<HomePage>
                                               },
                                             ),
                                           ],
+                                        ),
+                                        const SizedBox(
+                                          height: 30,
                                         ),
                                       ],
                                     ))

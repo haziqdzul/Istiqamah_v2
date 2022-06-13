@@ -33,13 +33,46 @@ class AppLocalizations {
     'sw': swahili(),
     // 'ms': malaysian()
   };
+  String? get sadaqahnow {
+    return _localizedValues[locale.languageCode]!['sadaqahnow'];
+  }
+
+  String? get puasaharam {
+    return _localizedValues[locale.languageCode]!['puasaharam'];
+  }
+
+  String? get puasasunat {
+    return _localizedValues[locale.languageCode]!['puasasunat'];
+  }
+
+  String? get puasawjib {
+    return _localizedValues[locale.languageCode]!['puasawjib'];
+  }
+
+  String? get morecollection {
+    return _localizedValues[locale.languageCode]!['morecollection'];
+  }
+
+  String? get readmore {
+    return _localizedValues[locale.languageCode]!['readmore'];
+  }
+
+  String? get updateBmi {
+    return _localizedValues[locale.languageCode]!['updateBmi'];
+  }
+
+  String? get calendar {
+    return _localizedValues[locale.languageCode]!['calendar'];
+  }
 
   String? get setting_profile {
     return _localizedValues[locale.languageCode]!['setting_profile'];
   }
+
   String? get update_error {
     return _localizedValues[locale.languageCode]!['update_error'];
   }
+
   String? get dayAgo {
     return _localizedValues[locale.languageCode]!['dayAgo'];
   }
@@ -1232,6 +1265,7 @@ class AppLocalizations {
   String? get sendingOTP {
     return _localizedValues[locale.languageCode]!['sendingOTP'];
   }
+
   String? get resetPasswordSent {
     return _localizedValues[locale.languageCode]!['resetPasswordSent'];
   }

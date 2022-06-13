@@ -761,8 +761,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   color: Colors.black,
                   size: 20,
                 ),
-                title: const Text(
-                  "Update BMI",
+                title: Text(
+                  locale.updateBmi!,
                   style: textStyleNormal,
                 ),
                 onTap: () {
