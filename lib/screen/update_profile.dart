@@ -160,9 +160,9 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
           'state': state,
           'city': city,
           'postcode': postcode,
-          'address1': address1,
-          'address2': address2,
-          'address3': address3,
+          'address line 1': address1,
+          'address line 2': address2,
+          'address line 3': address3,
         }, SetOptions(merge: true))
         .then((value) => print("Update merged with existing data!"))
         .catchError((error) => print("Failed to merge data: $error"));
