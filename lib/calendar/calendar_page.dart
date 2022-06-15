@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:istiqamah_app/calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:istiqamah_app/calendar/islamic.event.dart';
 
-//
 class CalendarScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -11,6 +11,7 @@ class CalendarScreen extends StatefulWidget {
 }
 
 class _CalendarScreenState extends State<CalendarScreen> {
+  var hSelectedHijriDate = HijriCalendar.now();
   final List<NeatCleanCalendarEvent> _todaysEvents = [
     NeatCleanCalendarEvent('Event A',
         startTime: DateTime(

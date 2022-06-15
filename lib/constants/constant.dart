@@ -33,5 +33,19 @@ const kSecondaryColor = Color(0xFFFED885);
 
 const kTertiaryColor = Color(0xFFFDEB68);
 
+const kPurple = Color(0xFFAB47BC);
+
+const kOrange = Color(0xFFFFA726);
+
+const kRed = Color(0xFFB71C1C);
+
+const kTeal = Color(0xFF26A69A);
+
+const kLime = Color(0xFFD4E157);
+
+const kIndigo = Color(0xFF7986CB);
+
+const kPink = Color(0xFFEC407A);
+
 const kDefaultText =
     'but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';

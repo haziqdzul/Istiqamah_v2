@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
@@ -61,6 +62,7 @@ class Calendar extends StatefulWidget {
   final String? expandableDateFormat;
   final TextStyle? displayMonthTextStyle;
   final DatePickerConfig? datePickerConfig;
+  final HijriCalendar? hSelectedHijriDate;
 
   const Calendar({
     this.onMonthChanged,
@@ -99,6 +101,7 @@ class Calendar extends StatefulWidget {
     this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
     this.displayMonthTextStyle,
     this.datePickerConfig,
+    this.hSelectedHijriDate,
   });
 //
   @override
@@ -106,6 +109,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  var hSelectedHijriDate = HijriCalendar.now();
   final calendarUtils = Utils();
   late List<DateTime> selectedMonthsDays;
   late Iterable<DateTime> selectedWeekDays;
@@ -469,16 +473,25 @@ class _CalendarState extends State<Calendar> {
               widget.bottomBarColor ?? const Color.fromRGBO(200, 200, 200, 0.2),
           height: 40,
           margin: const EdgeInsets.only(top: 8.0),
-          padding: const EdgeInsets.all(0),
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               const SizedBox(width: 40.0),
-              Text(
-                DateFormat(widget.expandableDateFormat, widget.locale)
-                    .format(_selectedDate),
-                style:
-                    widget.bottomBarTextStyle ?? const TextStyle(fontSize: 13),
+              Column(
+                children: [
+                  Text(
+                    DateFormat(widget.expandableDateFormat, widget.locale)
+                        .format(_selectedDate),
+                    style: widget.bottomBarTextStyle ??
+                        const TextStyle(fontSize: 13),
+                  ),
+                  Text(
+                    hSelectedHijriDate.toFormat("dd MMMM yyyy"),
+                    style: widget.bottomBarTextStyle ??
+                        const TextStyle(fontSize: 13),
+                  ),
+                ],
               ),
               IconButton(
                 onPressed: toggleExpanded,
