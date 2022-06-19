@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+
+import 'package:async/async.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
@@ -12,12 +14,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:istiqamah_app/Locale/locales.dart';
+import 'package:istiqamah_app/screen/getapi.dart';
 import 'package:istiqamah_app/widgets/expanded_widged.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../Utils/shimmer.dart';
 import '../calendar/calendar_page.dart';
 import '../components/alert_button.dart';
@@ -34,8 +39,6 @@ import '../providers/user.provider.dart';
 import '../providers/water.provider.dart';
 import '../widgets/colors.dart';
 import 'NavigationDrawer.dart';
-import 'package:istiqamah_app/Locale/locales.dart';
-import 'package:async/async.dart';
 import 'notification_page.dart';
 
 //
@@ -1369,6 +1372,40 @@ class _HomePageState extends State<HomePage>
                                                                     inactiveThumbColor:
                                                                         Colors
                                                                             .white,
+                                                                  ),
+                                                                ),
+                                                                Visibility(
+                                                                  visible:
+                                                                      visible,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(
+                                                                        16.0),
+                                                                    child:
+                                                                        RichText(
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .justify,
+                                                                      text: TextSpan(
+                                                                          children: [
+                                                                            //TODO : change locales
+                                                                            const TextSpan(
+                                                                                text: "Boleh solat tahajjud di antara selepas solat Isya' hingga masuknya solat Subuh. ", //afiyah des
+                                                                                style: TextStyle(color: Colors.black)),
+                                                                            const TextSpan(
+                                                                                text: "Klik untuk melihat waktu solat ",
+                                                                                style: TextStyle(color: Colors.black)),
+                                                                            TextSpan(
+                                                                                recognizer: TapGestureRecognizer()
+                                                                                  ..onTap = () => Navigator.push(
+                                                                                        context,
+                                                                                        MaterialPageRoute(builder: (context) => const GetApi()),
+                                                                                      ),
+                                                                                text: "(Waktu Solat)",
+                                                                                style: const TextStyle(color: Colors.blueAccent)),
+                                                                          ]),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                                 ListTile(
