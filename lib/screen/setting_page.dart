@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/components/alert_button.dart';
 import 'package:istiqamah_app/components/corner_body.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 import 'package:provider/provider.dart';
+import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
 
@@ -18,26 +20,32 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   late LanguageCubit _languageCubit;
-  final bool _switch = false;
-
   Language? selectedLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    _languageCubit = BlocProvider.of<LanguageCubit>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalizations.of(context)!;
     return CornerBody(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                'Setting',
+                locale.setting_profile!,
                 style: textStyleBold,
               ),
-              Icon(
-                Icons.more_vert,
-                size: 20,
-              ),
+              // const Icon(
+              //   Icons.more_vert,
+              //   size: 20,
+              // ),
             ],
           ),
           Padding(
@@ -70,35 +78,12 @@ class _SettingPageState extends State<SettingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Language',
+                Text(
+                  locale.selectLanguage!,
                   style: textStyleBold,
                 ),
                 const SizedBox(
                   height: 25,
-                ),
-                DefaultButton(
-                  label: 'Bahasa Melayu',
-                  textStyle: textStyleNormal,
-                  decoration: BoxDecoration(
-                      color: selectedLanguage == Language.bm
-                          ? kPrimaryColor
-                          : kGreyColor,
-                      borderRadius: BorderRadius.circular(16)),
-                  onPress: () {
-                    var box = GetStorage();
-                    box.write('lang', 'id');
-                    Provider.of<LanguageProvider>(context, listen: false)
-                        .changeLocale('My');
-                    _languageCubit.selectIndonesianLanguage();
-
-                    setState(() {
-                      selectedLanguage = Language.bm;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 DefaultButton(
                   label: 'English',
@@ -114,11 +99,34 @@ class _SettingPageState extends State<SettingPage> {
                     Provider.of<LanguageProvider>(context, listen: false)
                         .changeLocale('En');
                     _languageCubit.selectEngLanguage();
-
                     setState(() {
                       selectedLanguage = Language.english;
                     });
                   },
+                  value: "en",
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefaultButton(
+                  label: 'Bahasa Melayu',
+                  textStyle: textStyleNormal,
+                  decoration: BoxDecoration(
+                      color: selectedLanguage == Language.bm
+                          ? kPrimaryColor
+                          : kGreyColor,
+                      borderRadius: BorderRadius.circular(16)),
+                  onPress: () {
+                    var box = GetStorage();
+                    box.write('lang', 'id');
+                    Provider.of<LanguageProvider>(context, listen: false)
+                        .changeLocale('My');
+                    _languageCubit.selectIndonesianLanguage();
+                    setState(() {
+                      selectedLanguage = Language.bm;
+                    });
+                  },
+                  value: "id",
                 ),
               ],
             ),

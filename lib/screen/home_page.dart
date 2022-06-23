@@ -40,6 +40,7 @@ import '../providers/water.provider.dart';
 import '../widgets/colors.dart';
 import 'NavigationDrawer.dart';
 import 'notification_page.dart';
+import 'sadaqah_page.dart';
 
 //
 class HomePage extends StatefulWidget {
@@ -1402,7 +1403,7 @@ class _HomePageState extends State<HomePage>
                                                                                         context,
                                                                                         MaterialPageRoute(builder: (context) => const GetApi()),
                                                                                       ),
-                                                                                text: "(Waktu Solat)",
+                                                                                text: locale.prayertime!,
                                                                                 style: const TextStyle(color: Colors.blueAccent)),
                                                                           ]),
                                                                     ),
@@ -1859,45 +1860,45 @@ class _HomePageState extends State<HomePage>
                                                                 child:
                                                                     DefaultButton(
                                                                   onPress: () {
-                                                                    showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (context) =>
-                                                                              DefaultDialog(
-                                                                        body: StatefulBuilder(builder:
-                                                                            (context,
-                                                                                setState) {
-                                                                          return Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            children: [
-                                                                              dialogBody('Coming Soon'),
-                                                                              dialogButton(
-                                                                                'Close',
-                                                                                ' ',
-                                                                                () {
-                                                                                  Navigator.pop(context);
-                                                                                },
-                                                                                () {
-                                                                                  Navigator.pop(context);
-                                                                                },
-                                                                              )
-                                                                            ],
-                                                                          );
-                                                                        }),
-                                                                      ),
-                                                                    );
-                                                                    // Navigator.push(
-                                                                    //   context,
-                                                                    //   MaterialPageRoute(
-                                                                    //       builder:
-                                                                    //           (context) =>
-                                                                    //               const SadaqahPage()),
+                                                                    // showDialog(
+                                                                    //   context:
+                                                                    //       context,
+                                                                    //   builder:
+                                                                    //       (context) =>
+                                                                    //           DefaultDialog(
+                                                                    //     body: StatefulBuilder(builder:
+                                                                    //         (context,
+                                                                    //             setState) {
+                                                                    //       return Column(
+                                                                    //         mainAxisSize:
+                                                                    //             MainAxisSize.min,
+                                                                    //         children: [
+                                                                    //           dialogBody('Coming Soon'),
+                                                                    //           dialogButton(
+                                                                    //             'Close',
+                                                                    //             ' ',
+                                                                    //             () {
+                                                                    //               Navigator.pop(context);
+                                                                    //             },
+                                                                    //             () {
+                                                                    //               Navigator.pop(context);
+                                                                    //             },
+                                                                    //           )
+                                                                    //         ],
+                                                                    //       );
+                                                                    //     }),
+                                                                    //   ),
                                                                     // );
+                                                                    Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              const SadaqahPage()),
+                                                                    );
                                                                   },
-                                                                  label:
-                                                                      'Sadaqah Now',
+                                                                  label: locale
+                                                                      .sadaqahnow!,
                                                                   textStyle:
                                                                       textStyleSmall,
                                                                 ),

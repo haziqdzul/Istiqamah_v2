@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> english() {
   final box = GetStorage();
   return {
+    'prayertime': 'Prayer Time',
     'puasawajib': 'The day on which it is obligatory to fast',
     'puasasunat': 'The day the circumcised fasts',
     'puasaharam': 'The forbidden day of fasting',

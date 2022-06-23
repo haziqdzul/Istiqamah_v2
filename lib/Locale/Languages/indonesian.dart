@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> indonesian() {
   final box = GetStorage();
   return {
+    'prayertime': 'Waktu Solat',
     'sadaqahnow': 'Sedekah Sekarang',
     'puasawajib': 'Hari yang diwajibkan berpuasa',
     'puasasunat': 'Hari yang disunatkan berpuasa',

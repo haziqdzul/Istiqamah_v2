@@ -33,6 +33,11 @@ class AppLocalizations {
     'sw': swahili(),
     // 'ms': malaysian()
   };
+
+  String? get prayertime {
+    return _localizedValues[locale.languageCode]!['prayertime'];
+  }
+
   String? get sadaqahnow {
     return _localizedValues[locale.languageCode]!['sadaqahnow'];
   }
