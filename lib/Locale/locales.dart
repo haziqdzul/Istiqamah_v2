@@ -33,6 +33,61 @@ class AppLocalizations {
     'sw': swahili(),
     // 'ms': malaysian()
   };
+  String? get today {
+    return _localizedValues[locale.languageCode]!['today'];
+  }
+
+  String? get arafah {
+    return _localizedValues[locale.languageCode]!['arafah'];
+  }
+
+  String? get hariputih {
+    return _localizedValues[locale.languageCode]!['hariputih'];
+  }
+
+  String? get asyura {
+    return _localizedValues[locale.languageCode]!['asyura'];
+  }
+
+  String? get adha {
+    return _localizedValues[locale.languageCode]!['adha'];
+  }
+
+  String? get fitr {
+    return _localizedValues[locale.languageCode]!['fitr'];
+  }
+
+  String? get tasyrik {
+    return _localizedValues[locale.languageCode]!['tasyrik'];
+  }
+
+  String? get puasasunat {
+    return _localizedValues[locale.languageCode]!['puasasunat'];
+  }
+
+  String? get puasaharam {
+    return _localizedValues[locale.languageCode]!['puasaharam'];
+  }
+
+  String? get puasawajib {
+    return _localizedValues[locale.languageCode]!['puasawajib'];
+  }
+
+  String? get puasaisnin {
+    return _localizedValues[locale.languageCode]!['puasaisnin'];
+  }
+
+  String? get puasakhamis {
+    return _localizedValues[locale.languageCode]!['puasakhamis'];
+  }
+
+  String? get tahajjuddes {
+    return _localizedValues[locale.languageCode]!['tahajjuddes'];
+  }
+
+  String? get tahajjudklik {
+    return _localizedValues[locale.languageCode]!['tahajjudklik'];
+  }
 
   String? get prayertime {
     return _localizedValues[locale.languageCode]!['prayertime'];
@@ -40,18 +95,6 @@ class AppLocalizations {
 
   String? get sadaqahnow {
     return _localizedValues[locale.languageCode]!['sadaqahnow'];
-  }
-
-  String? get puasaharam {
-    return _localizedValues[locale.languageCode]!['puasaharam'];
-  }
-
-  String? get puasasunat {
-    return _localizedValues[locale.languageCode]!['puasasunat'];
-  }
-
-  String? get puasawjib {
-    return _localizedValues[locale.languageCode]!['puasawjib'];
   }
 
   String? get morecollection {
@@ -1167,8 +1210,8 @@ class AppLocalizations {
     return _localizedValues[locale.languageCode]!['wed'];
   }
 
-  String? get thr {
-    return _localizedValues[locale.languageCode]!['thr'];
+  String? get thu {
+    return _localizedValues[locale.languageCode]!['thu'];
   }
 
   String? get fri {

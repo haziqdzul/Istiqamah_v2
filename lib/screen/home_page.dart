@@ -42,7 +42,6 @@ import 'NavigationDrawer.dart';
 import 'notification_page.dart';
 import 'sadaqah_page.dart';
 
-//
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -950,16 +949,6 @@ class _HomePageState extends State<HomePage>
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
-          // automaticallyImplyLeading: true,
-          // leading: Builder(
-          //   builder: (context) => IconButton(
-          //     icon: new Icon(
-          //       Icons.menu,
-          //       color: kBlackColor,
-          //     ),
-          //     onPressed: () => Scaffold.of(context).openDrawer(),
-          //   ),
-          // ),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),
@@ -1391,12 +1380,12 @@ class _HomePageState extends State<HomePage>
                                                                       text: TextSpan(
                                                                           children: [
                                                                             //TODO : change locales
-                                                                            const TextSpan(
-                                                                                text: "Boleh solat tahajjud di antara selepas solat Isya' hingga masuknya solat Subuh. ", //afiyah des
-                                                                                style: TextStyle(color: Colors.black)),
-                                                                            const TextSpan(
-                                                                                text: "Klik untuk melihat waktu solat ",
-                                                                                style: TextStyle(color: Colors.black)),
+                                                                            TextSpan(
+                                                                                text: locale.tahajjuddes!,
+                                                                                style: const TextStyle(color: Colors.black)),
+                                                                            TextSpan(
+                                                                                text: locale.tahajjudklik!,
+                                                                                style: const TextStyle(color: Colors.black)),
                                                                             TextSpan(
                                                                                 recognizer: TapGestureRecognizer()
                                                                                   ..onTap = () => Navigator.push(

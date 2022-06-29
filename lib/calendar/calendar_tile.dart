@@ -1,42 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import './date_utils.dart';
-import './neat_and_clean_calendar_event.dart';
+import 'clean_calendar_event.dart';
 
-class NeatCleanCalendarTile extends StatelessWidget {
+class CalendarTile extends StatelessWidget {
   final VoidCallback? onDateSelected;
   final DateTime? date;
   final String? dayOfWeek;
   final bool isDayOfWeek;
   final bool isSelected;
   final bool inMonth;
-  final List<NeatCleanCalendarEvent>? events;
+  final List<CleanCalendarEvent>? events;
   final TextStyle? dayOfWeekStyle;
   final TextStyle? dateStyles;
   final Widget? child;
-  final Color? defaultDayColor;
-  final Color? defaultOutOfMonthDayColor;
   final Color? selectedColor;
-  final Color? selectedTodayColor;
   final Color? todayColor;
   final Color? eventColor;
   final Color? eventDoneColor;
-//
-  const NeatCleanCalendarTile({
+
+  CalendarTile({
     this.onDateSelected,
     this.date,
     this.child,
     this.dateStyles,
     this.dayOfWeek,
     this.dayOfWeekStyle,
-    this.isDayOfWeek = false,
-    this.isSelected = false,
-    this.inMonth = true,
+    this.isDayOfWeek: false,
+    this.isSelected: false,
+    this.inMonth: true,
     this.events,
-    this.defaultDayColor,
-    this.defaultOutOfMonthDayColor,
     this.selectedColor,
-    this.selectedTodayColor,
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
@@ -54,18 +48,22 @@ class NeatCleanCalendarTile extends StatelessWidget {
         ),
       );
     } else {
+      // Here the date tiles get rendered. Initially eventCount is set to 0.
+      // Every date tile can show up to three dots representing an event.
       int eventCount = 0;
       return InkWell(
         onTap: onDateSelected, // react on tapping
         child: Padding(
           padding: const EdgeInsets.all(1.0),
           child: Container(
+            // If this tile is the selected date, draw a colored circle on it. The circle is filled with
+            // the color passed with the selectedColor parameter or red color.
             decoration: isSelected && date != null
                 ? BoxDecoration(
                     shape: BoxShape.circle,
                     color: selectedColor != null
                         ? Utils.isSameDay(date!, DateTime.now())
-                            ? selectedTodayColor ?? Colors.red
+                            ? Colors.orangeAccent[200]
                             : selectedColor
                         : Theme.of(context).primaryColor,
                   )
@@ -85,11 +83,12 @@ class NeatCleanCalendarTile extends StatelessWidget {
                           : Utils.isSameDay(date!, DateTime.now())
                               ? todayColor
                               : inMonth
-                                  ? defaultDayColor ?? Colors.black
-                                  : (defaultOutOfMonthDayColor ?? Colors.grey)),
+                                  ? Colors.black
+                                  : Colors
+                                      .grey), // Grey color for previous or next months dates
                 ),
-                //TODO Dots for the events
-                events != null && events!.isNotEmpty
+                // Dots for the events
+                events != null && events!.length > 0
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: events!.map((event) {
@@ -104,10 +103,13 @@ class NeatCleanCalendarTile extends StatelessWidget {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: (() {
+                                  if (event.isDone) {
+                                    return eventDoneColor ??
+                                        Theme.of(context).primaryColor;
+                                  }
                                   if (isSelected) return Colors.white;
                                   return eventColor ??
-                                      event.color ??
-                                      Theme.of(context).colorScheme.secondary;
+                                      Theme.of(context).accentColor;
                                 }())),
                           );
                         }).toList())
@@ -122,7 +124,8 @@ class NeatCleanCalendarTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO If a child widget was passed as parameter, this widget gets used to be rendered to display weekday or date
+    // If a child widget was passed as parameter, this widget gets used to
+    // be rendered to display weekday or date
     if (child != null) {
       return InkWell(
         onTap: onDateSelected,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-//
+
 enum MultiDaySegement {
   first,
   middle,
   last,
 }
 
-class NeatCleanCalendarEvent {
+class CleanCalendarEvent {
   String summary;
   String description;
   String location;
@@ -18,7 +18,7 @@ class NeatCleanCalendarEvent {
   MultiDaySegement? multiDaySegement;
   bool isDone;
 
-  NeatCleanCalendarEvent(this.summary,
+  CleanCalendarEvent(this.summary,
       {this.description = '',
       this.location = '',
       required this.startTime,

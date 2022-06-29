@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class DefaultButton extends StatelessWidget {
-  DefaultButton(
-      {required this.label,
-      required this.textStyle,
-      this.decoration,
-      this.onPress});
+  DefaultButton({
+    required this.label,
+    required this.textStyle,
+    this.decoration,
+    this.onPress,
+    this.value,
+  });
 
   BoxDecoration? decoration;
   final String label;
   final TextStyle? textStyle;
   VoidCallback? onPress;
+  String? value;
 
   @override
   Widget build(BuildContext context) {
