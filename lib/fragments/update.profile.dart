@@ -645,8 +645,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                const HomePage(),
+                                            builder: (context) => HomePage(),
                                           ));
                                     } else {
                                       showTopSnackBar(

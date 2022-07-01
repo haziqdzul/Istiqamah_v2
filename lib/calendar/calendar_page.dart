@@ -54,7 +54,39 @@ class _CalendarScreenState extends State<CalendarScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => Dialog(
+              insetPadding: const EdgeInsets.all(15),
+              child: StatefulBuilder(builder: (context, setState) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Icon(
+                      Icons.timelapse_outlined,
+                    ),
+                    Text("Coming Soon"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Sunnah Fasting Reminder",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                );
+              }),
+            ),
+          );
+        },
         backgroundColor: kPrimaryColor,
         child: const Icon(Icons.notifications_none_rounded),
       ),

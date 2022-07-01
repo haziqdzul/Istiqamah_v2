@@ -8,6 +8,9 @@ import 'package:http/http.dart' as http;
 import 'package:istiqamah_app/models/azan.model.dart';
 import 'package:istiqamah_app/screen/time_in_hour_and_minute.dart';
 
+import '../Locale/locales.dart';
+import '../constants/constant.dart';
+
 class GetApi extends StatefulWidget {
   const GetApi({Key? key}) : super(key: key);
 
@@ -17,23 +20,14 @@ class GetApi extends StatefulWidget {
 
 class _GetAPIState extends State<GetApi> {
   String? fajr;
-
   String? imsak;
-
   String? sunrise;
-
   String? dhuhr;
-
   String? asr;
-
   String? susnset;
-
   String? maghrib;
-
   String? isha;
-
   String? midnight;
-
   Position? currentPosition;
   String currentAddress = 'My Location';
   static double? pLat;
@@ -116,8 +110,22 @@ class _GetAPIState extends State<GetApi> {
 
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalizations.of(context)!;
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          // leading: InkWell(
+          //   onTap: () {
+          //     Navigator.of(context)
+          //         .push(MaterialPageRoute(builder: (context) => HomePage()));
+          //   },
+          //   child: const Icon(
+          //     Icons.arrow_back,
+          //     size: 20,
+          //   ),
+          // ),
+          title: Text(locale.prayertime!, textAlign: TextAlign.center),
+          backgroundColor: kSecondaryColor,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
@@ -143,7 +151,6 @@ class _GetAPIState extends State<GetApi> {
                               setState(() {
                                 // getPrayerTimes(currentPosition!.latitude,
                                 //     currentPosition!.longitude);
-
                                 getResponse(
                                     DateTime.now().day - 1,
                                     DateTime.now().month,
@@ -153,7 +160,8 @@ class _GetAPIState extends State<GetApi> {
                               });
                             });
                           },
-                          child: const Text('Update'))
+                          child: Text(locale.update!,
+                              style: const TextStyle(color: kPrimaryColor)))
                     ],
                   ),
                 ],
@@ -173,55 +181,55 @@ class _GetAPIState extends State<GetApi> {
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.access_alarm),
-                title: const Text('Imsak'),
+                title: Text(locale.imsak!),
                 subtitle: Text('$imsak'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.access_alarm),
-                title: const Text('Fajar'),
+                title: Text(locale.fajr!),
                 subtitle: Text('$fajr'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.sunny_snowing),
-                title: const Text('Sunrise'),
+                title: Text(locale.sunrise!),
                 subtitle: Text('$sunrise'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.access_alarm),
-                title: const Text('Zohor'),
+                title: Text(locale.dhuhr!),
                 subtitle: Text('$dhuhr'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.access_alarm),
-                title: const Text('Asar'),
+                title: Text(locale.asr!),
                 subtitle: Text('$asr'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.sunny),
-                title: const Text('Sunset'),
+                title: Text(locale.sunset!),
                 subtitle: Text('$susnset'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.access_alarm),
-                title: const Text('Maghrib'),
+                title: Text(locale.maghrib!),
                 subtitle: Text('$maghrib'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.access_alarm),
-                title: const Text('Isya'),
+                title: Text(locale.isha!),
                 subtitle: Text('$isha'),
               )),
               Card(
                   child: ListTile(
                 leading: const Icon(Icons.nightlight_round),
-                title: const Text('Midnight'),
+                title: Text(locale.midnight!),
                 subtitle: Text('$midnight'),
               )),
             ],

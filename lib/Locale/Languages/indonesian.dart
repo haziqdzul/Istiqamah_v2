@@ -3,6 +3,20 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> indonesian() {
   final box = GetStorage();
   return {
+    'rDay': 'Hari Keagamaan',
+    'navigationTracker': 'Penjejak Solat',
+    'tracker': 'Penjejak Solat',
+    'religiousday': 'Peristiwa Dalam Islam',
+    'sunset': 'Matahari Terbenam',
+    'sunrise': 'Matahari Terbit',
+    'midnight': 'Tengah Malam',
+    'subuh': 'Subuh : ',
+    'fajr': 'Subuh',
+    'imsak': 'Imsak',
+    'dhuhr': 'Zohor',
+    'asr': 'Asar',
+    'maghrib': 'Maghrib',
+    'isha': 'Isyak',
     'mon': 'Isn',
     'tue': 'Sel',
     'wed': 'Rab',
@@ -24,7 +38,7 @@ Map<String, String> indonesian() {
     'puasakhamis': 'Puasa sunnah Khamis',
     'tahajjuddes':
         'Solat Tahajjud adalah solat malam yang dilaksanakan setelah bangun tidur hingga masuknya waktu solat Subuh. ',
-    'tahajjudklik': 'Klik untuk melihat waktu solat ',
+    'tahajjudklik': 'Klik untuk melihat waktu solat, ',
     'prayertime': 'Waktu Solat',
     'sadaqahnow': 'Sedekah Sekarang',
     'calendar': 'Kalendar',

@@ -277,6 +277,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       fontWeight: FontWeight.bold,
                       fontSize: 22),
                 ).paddingOnly(left: 12, right: 12),
+                30.height,
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 20.0, horizontal: 20),
@@ -321,7 +322,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           shape: BoxShape.rectangle,
                         ),
                       ),
-                150.height,
+                130.height,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: RichText(
@@ -345,7 +346,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                               fontSize: 18, color: Colors.black))
                     ]),
                   ),
-                )
+                ),
+                50.height,
               ],
             ),
           ),
@@ -453,7 +455,7 @@ class _AcknowledgementScreenState extends State<AcknowledgementScreen> {
                     child: Text(
                       locale.Acknowledgement_text!,
                       textAlign: TextAlign.justify,
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ),
                   Padding(

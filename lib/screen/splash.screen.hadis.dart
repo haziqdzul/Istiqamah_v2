@@ -5,6 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
+import 'NavigationDrawer.dart';
 
 class MLSplashScreenHadis extends StatefulWidget {
   const MLSplashScreenHadis({Key? key}) : super(key: key);
@@ -90,7 +91,8 @@ class _MLSplashScreenState extends State<MLSplashScreenHadis> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomePage()));
+                                  builder: (context) =>
+                                      const NavigationDrawer()));
                         },
                         child: Text(locale.proceed!))
                   ],

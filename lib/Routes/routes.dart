@@ -23,7 +23,7 @@ class PageRoutes {
     return {
       setting: (context) => const SettingPage(),
       login: (context) => const MLLoginScreen(),
-      homepage: (context) => const HomePage(),
+      homepage: (context) => HomePage(),
       notification: (context) => const NotificationPage(2),
     };
   }

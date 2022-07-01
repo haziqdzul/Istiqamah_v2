@@ -3,6 +3,20 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> english() {
   final box = GetStorage();
   return {
+    'rDay': 'Religious Day',
+    'navigationTracker': 'Prayer Tracker',
+    'tracker': 'Missed Prayer Tracker',
+    'religiousday': 'Islamic Religious Day',
+    'sunset': 'Sunset',
+    'sunrise': 'Sunrise',
+    'midnight': 'Midnight',
+    'subuh': 'Fajr : ',
+    'fajr': 'Fajr',
+    'imsak': 'Imsak',
+    'dhuhr': 'Dhuhr',
+    'asr': 'Asr',
+    'maghrib': 'Maghrib',
+    'isha': 'Isha',
     'mon': 'Mon',
     'tue': 'Tue',
     'wed': 'Wed',
@@ -24,7 +38,7 @@ Map<String, String> english() {
     'puasakhamis': 'Thursday sunnah fast',
     'tahajjuddes':
         'Tahajjud prayer is a night prayer that is performed after waking up until the Fajr prayer. ',
-    'tahajjudklik': 'Click to see prayer times ',
+    'tahajjudklik': 'Click to see prayer times, ',
     'prayertime': 'Prayer Time',
     'sadaqahnow': 'Sadaqah Now',
     'calendar': 'Calendar',

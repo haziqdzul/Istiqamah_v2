@@ -33,6 +33,62 @@ class AppLocalizations {
     'sw': swahili(),
     // 'ms': malaysian()
   };
+  String? get tracker {
+    return _localizedValues[locale.languageCode]!['tracker'];
+  }
+
+  String? get rDay {
+    return _localizedValues[locale.languageCode]!['rDay'];
+  }
+
+  String? get navigationTracker {
+    return _localizedValues[locale.languageCode]!['navigationTracker'];
+  }
+
+  String? get religiousday {
+    return _localizedValues[locale.languageCode]!['religiousday'];
+  }
+
+  String? get subuh {
+    return _localizedValues[locale.languageCode]!['subuh'];
+  }
+
+  String? get fajr {
+    return _localizedValues[locale.languageCode]!['fajr'];
+  }
+
+  String? get imsak {
+    return _localizedValues[locale.languageCode]!['imsak'];
+  }
+
+  String? get midnight {
+    return _localizedValues[locale.languageCode]!['midnight'];
+  }
+
+  String? get sunrise {
+    return _localizedValues[locale.languageCode]!['sunrise'];
+  }
+
+  String? get isha {
+    return _localizedValues[locale.languageCode]!['isha'];
+  }
+
+  String? get maghrib {
+    return _localizedValues[locale.languageCode]!['maghrib'];
+  }
+
+  String? get asr {
+    return _localizedValues[locale.languageCode]!['asr'];
+  }
+
+  String? get dhuhr {
+    return _localizedValues[locale.languageCode]!['dhuhr'];
+  }
+
+  String? get sunset {
+    return _localizedValues[locale.languageCode]!['sunset'];
+  }
+
   String? get today {
     return _localizedValues[locale.languageCode]!['today'];
   }

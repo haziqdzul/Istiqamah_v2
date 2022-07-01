@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:async/async.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
@@ -38,12 +37,12 @@ import '../providers/medicine2.provider.dart';
 import '../providers/user.provider.dart';
 import '../providers/water.provider.dart';
 import '../widgets/colors.dart';
-import 'NavigationDrawer.dart';
 import 'notification_page.dart';
-import 'sadaqah_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -81,6 +80,8 @@ class _HomePageState extends State<HomePage>
   bool firstMed1 = false;
   bool firstMed2 = false;
   late TabController _tabController;
+  String? fajr;
+  //GetApi(this.fajr);
 
   //final _name = TextEditingController();
   final _detailM = TextEditingController();
@@ -943,12 +944,23 @@ class _HomePageState extends State<HomePage>
     return WillPopScope(
       onWillPop: () async => showExitPopup(),
       child: Scaffold(
-        drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
+        //drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
         key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
+          leading: Align(
+              child: InkWell(
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
+            child: const Icon(
+              Icons.menu,
+              size: 25,
+              color: kBlackColor,
+            ),
+          )),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),
@@ -1269,9 +1281,6 @@ class _HomePageState extends State<HomePage>
                                                             child: Column(
                                                               children: [
                                                                 ListTile(
-                                                                  // leading: const Icon(
-                                                                  //     Icons
-                                                                  //         .keyboard_arrow_down_outlined),
                                                                   title: Text(
                                                                     locale
                                                                         .tahajjudReminder!,
@@ -1373,28 +1382,50 @@ class _HomePageState extends State<HomePage>
                                                                             .all(
                                                                         16.0),
                                                                     child:
+                                                                        Column(
+                                                                      children: [
                                                                         RichText(
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .justify,
-                                                                      text: TextSpan(
-                                                                          children: [
+                                                                          textAlign:
+                                                                              TextAlign.justify,
+                                                                          text:
+                                                                              TextSpan(children: [
                                                                             //TODO : change locales
                                                                             TextSpan(
                                                                                 text: locale.tahajjuddes!,
                                                                                 style: const TextStyle(color: Colors.black)),
+
                                                                             TextSpan(
                                                                                 text: locale.tahajjudklik!,
                                                                                 style: const TextStyle(color: Colors.black)),
-                                                                            TextSpan(
-                                                                                recognizer: TapGestureRecognizer()
-                                                                                  ..onTap = () => Navigator.push(
-                                                                                        context,
-                                                                                        MaterialPageRoute(builder: (context) => const GetApi()),
-                                                                                      ),
-                                                                                text: locale.prayertime!,
-                                                                                style: const TextStyle(color: Colors.blueAccent)),
+                                                                            // TextSpan(
+                                                                            //     recognizer: TapGestureRecognizer()
+                                                                            //       ..onTap = () => Navigator.push(
+                                                                            //             context,
+                                                                            //             MaterialPageRoute(builder: (context) => const GetApi()),
+                                                                            //           ),
+                                                                            //     text: locale.prayertime!,
+                                                                            //     style: const TextStyle(color: Colors.blueAccent)),
                                                                           ]),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          height:
+                                                                              10,
+                                                                        ),
+                                                                        (fajr ==
+                                                                                null)
+                                                                            ? TextButton(
+                                                                                child: Text(locale.prayertime!),
+                                                                                style: TextButton.styleFrom(primary: Colors.blue),
+                                                                                onPressed: () => Navigator.push(
+                                                                                  context,
+                                                                                  MaterialPageRoute(builder: (context) => const GetApi()),
+                                                                                ),
+                                                                              )
+                                                                            : Text(
+                                                                                '${locale.subuh!} $fajr',
+                                                                                style: const TextStyle(color: black),
+                                                                              )
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1849,42 +1880,50 @@ class _HomePageState extends State<HomePage>
                                                                 child:
                                                                     DefaultButton(
                                                                   onPress: () {
-                                                                    // showDialog(
-                                                                    //   context:
-                                                                    //       context,
-                                                                    //   builder:
-                                                                    //       (context) =>
-                                                                    //           DefaultDialog(
-                                                                    //     body: StatefulBuilder(builder:
-                                                                    //         (context,
-                                                                    //             setState) {
-                                                                    //       return Column(
-                                                                    //         mainAxisSize:
-                                                                    //             MainAxisSize.min,
-                                                                    //         children: [
-                                                                    //           dialogBody('Coming Soon'),
-                                                                    //           dialogButton(
-                                                                    //             'Close',
-                                                                    //             ' ',
-                                                                    //             () {
-                                                                    //               Navigator.pop(context);
-                                                                    //             },
-                                                                    //             () {
-                                                                    //               Navigator.pop(context);
-                                                                    //             },
-                                                                    //           )
-                                                                    //         ],
-                                                                    //       );
-                                                                    //     }),
-                                                                    //   ),
-                                                                    // );
-                                                                    Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              const SadaqahPage()),
+                                                                    showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) =>
+                                                                              Dialog(
+                                                                        insetPadding:
+                                                                            const EdgeInsets.all(15),
+                                                                        child: StatefulBuilder(builder:
+                                                                            (context,
+                                                                                setState) {
+                                                                          return Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: const [
+                                                                              SizedBox(
+                                                                                height: 20,
+                                                                              ),
+                                                                              Icon(
+                                                                                Icons.timelapse_outlined,
+                                                                              ),
+                                                                              Text("Coming Soon"),
+                                                                              SizedBox(
+                                                                                height: 20,
+                                                                              ),
+                                                                              Text(
+                                                                                "Online Sadaqah Payment",
+                                                                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 20,
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        }),
+                                                                      ),
                                                                     );
+                                                                    // Navigator
+                                                                    //     .push(
+                                                                    //   context,
+                                                                    //   MaterialPageRoute(
+                                                                    //       builder: (context) =>
+                                                                    //           const SadaqahPage()),
+                                                                    // );
                                                                   },
                                                                   label: locale
                                                                       .sadaqahnow!,
@@ -2504,7 +2543,7 @@ class _HomePageState extends State<HomePage>
               .collection('habbatus_madu')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2516,14 +2555,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('habbatus_madu')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -2535,7 +2574,7 @@ class _HomePageState extends State<HomePage>
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2543,7 +2582,7 @@ class _HomePageState extends State<HomePage>
               .collection('penyakit')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2555,14 +2594,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('penyakit')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -2574,7 +2613,7 @@ class _HomePageState extends State<HomePage>
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2582,7 +2621,7 @@ class _HomePageState extends State<HomePage>
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2594,14 +2633,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 setState(() {
                   _list.add(
@@ -2613,7 +2652,7 @@ class _HomePageState extends State<HomePage>
                       '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2621,7 +2660,7 @@ class _HomePageState extends State<HomePage>
               .collection('air')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 setState(() {
                   _list.add(
@@ -2633,14 +2672,14 @@ class _HomePageState extends State<HomePage>
                       '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
                 });
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('tahajjud')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2656,7 +2695,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2711,7 +2750,7 @@ class _HomePageState extends State<HomePage>
               .collection('doa_zikir')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2727,14 +2766,14 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('doa_zikir')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2750,7 +2789,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2758,7 +2797,7 @@ class _HomePageState extends State<HomePage>
               .collection('istiqamah')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2774,14 +2813,14 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('istiqamah')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2797,7 +2836,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         }
         if (AppLocalizations.of(context)!.water1 == 'air') {
@@ -2805,7 +2844,7 @@ class _HomePageState extends State<HomePage>
               .collection('makanan_halal')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["terjemahanQuran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2821,14 +2860,14 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         } else {
           await FirebaseFirestore.instance
               .collection('makanan_halal')
               .get()
               .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
+            querySnapshot.docs.forEach((doc) {
               if (doc["translation_quran"] == '') {
                 if (mounted) {
                   setState(() {
@@ -2844,7 +2883,7 @@ class _HomePageState extends State<HomePage>
                   });
                 }
               }
-            }
+            });
           });
         }
         print(_list.length);
