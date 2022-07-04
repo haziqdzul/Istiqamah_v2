@@ -40,9 +40,8 @@ import '../widgets/colors.dart';
 import 'notification_page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({
-    Key? key,
-  }) : super(key: key);
+  var txt;
+  HomePage({Key? key, this.txt}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -1411,7 +1410,7 @@ class _HomePageState extends State<HomePage>
                                                                           height:
                                                                               10,
                                                                         ),
-                                                                        (fajr ==
+                                                                        (widget.txt ==
                                                                                 null)
                                                                             ? TextButton(
                                                                                 child: Text(locale.prayertime!),
@@ -1422,7 +1421,7 @@ class _HomePageState extends State<HomePage>
                                                                                 ),
                                                                               )
                                                                             : Text(
-                                                                                '${locale.subuh!} $fajr',
+                                                                                '${locale.subuh!} ${widget.txt}',
                                                                                 style: const TextStyle(color: black),
                                                                               )
                                                                       ],
@@ -2312,7 +2311,7 @@ class _HomePageState extends State<HomePage>
                                           ],
                                         ),
                                         const SizedBox(
-                                          height: 30,
+                                          height: 150,
                                         ),
                                       ],
                                     ))

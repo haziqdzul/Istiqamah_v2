@@ -117,12 +117,13 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
       children: <Widget>[
         Container(
           height: bar_height,
-          decoration: BoxDecoration(
-              color: barBackgroundColor,
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
-              ]),
+          decoration:
+              BoxDecoration(color: barBackgroundColor, boxShadow: const [
+            BoxShadow(
+              // color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
+              color: Colors.black12, offset: Offset(0, -1),
+            )
+          ]),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,8 @@
-import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get_storage/get_storage.dart';
+import 'package:hijri/hijri_calendar.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
 import '../stepperTouch/stepper_touch.dart';
@@ -13,10 +15,28 @@ class TrackerScreen extends StatefulWidget {
 }
 
 class _TrackerScreenState extends State<TrackerScreen> {
+  final DateTime _selectedDate = DateTime.now();
+  final String? expandableDateFormat = 'EEEE dd MMMM yyyy';
+  late String local = language();
+
+  language() {
+    String? locale;
+    var box = GetStorage();
+    if (box.read('lang') == 'id') {
+      locale = 'ms';
+    } else {
+      locale = 'en';
+    }
+    return locale;
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    initializeDateFormatting(local, null).then((_) => setState(() {
+          DateFormat('MMMM yyyy', local).format(_selectedDate);
+        }));
   }
 
   @override
@@ -38,16 +58,42 @@ class _TrackerScreenState extends State<TrackerScreen> {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
-                DatePicker(
-                  DateTime.now(),
-                  initialSelectedDate: DateTime.now(),
-                  selectionColor: Colors.black,
-                  selectedTextColor: Colors.white,
-                  onDateChange: (date) {
-                    // New date selected
-                    setState(() {});
-                  },
+                Container(
+                  height: 70,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                  decoration: const BoxDecoration(
+                    color: Colors.black12,
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        DateFormat(expandableDateFormat, local)
+                            .format(_selectedDate),
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        HijriCalendar.fromDate(_selectedDate)
+                            .toFormat("dd MMMM yyyy"),
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
                 ),
+                // DatePicker(
+                //   DateTime.now(),
+                //   //initialSelectedDate: DateTime.now(),
+                //   // selectionColor: Colors.black,
+                //   // selectedTextColor: Colors.white,
+                //   // onDateChange: (date) {
+                //   //   // New date selected
+                //   //   setState(() {});
+                //   // },
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -230,24 +276,5 @@ class _TrackerScreenState extends State<TrackerScreen> {
             ),
           ),
         ));
-  }
-
-  Widget _iconText(Icon icon, String title) {
-    SizedBox left = SizedBox(
-      width: 30,
-      height: 30,
-      child: icon,
-    );
-
-    Column right = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(title, style: const TextStyle(color: Colors.black)),
-      ],
-    );
-
-    return Row(
-      children: <Widget>[left, const SizedBox(width: 10), right],
-    );
   }
 }

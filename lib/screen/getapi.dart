@@ -10,6 +10,7 @@ import 'package:istiqamah_app/screen/time_in_hour_and_minute.dart';
 
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
+import 'home_page.dart';
 
 class GetApi extends StatefulWidget {
   const GetApi({Key? key}) : super(key: key);
@@ -32,6 +33,7 @@ class _GetAPIState extends State<GetApi> {
   String currentAddress = 'My Location';
   static double? pLat;
   static double? pLong;
+  late var pssFajr = fajr;
 
   Future<Position> fetchPosition() async {
     bool serviceEnabled;
@@ -113,16 +115,18 @@ class _GetAPIState extends State<GetApi> {
     var locale = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
-          // leading: InkWell(
-          //   onTap: () {
-          //     Navigator.of(context)
-          //         .push(MaterialPageRoute(builder: (context) => HomePage()));
-          //   },
-          //   child: const Icon(
-          //     Icons.arrow_back,
-          //     size: 20,
-          //   ),
-          // ),
+          leading: InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomePage(
+                        txt: pssFajr,
+                      )));
+            },
+            child: const Icon(
+              Icons.arrow_back,
+              size: 20,
+            ),
+          ),
           title: Text(locale.prayertime!, textAlign: TextAlign.center),
           backgroundColor: kSecondaryColor,
         ),
