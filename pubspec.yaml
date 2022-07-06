@@ -16,6 +16,7 @@ dependencies:
 
   intl: ^0.17.0
   hijri: ^3.0.0
+  webview_flutter: ^2.0.4
 
   provider:
   flutter_bloc: ^7.1.0

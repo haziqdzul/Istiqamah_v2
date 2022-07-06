@@ -85,9 +85,7 @@ class _MyAppState extends State<MyApp> {
                 debugShowCheckedModeBanner: false,
                 title: 'Istiqamah',
                 //home: const SplashScreen(),
-                home: locale.languageCode != 'en'
-                    ? const SplashScreen()
-                    : const SplashScreen(),
+                home: const SplashScreen(),
                 themeMode: ThemeMode.light,
                 // theme: !appStore.isDarkModeOn
                 //     ? AppThemeData.lightTheme

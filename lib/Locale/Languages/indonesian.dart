@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> indonesian() {
   final box = GetStorage();
   return {
+    'tahunbaru': 'Tahun Baru Islam',
     'rDay': 'Hari Keagamaan',
     'navigationTracker': 'Penjejak Solat',
     'tracker': 'Penjejak Solat',

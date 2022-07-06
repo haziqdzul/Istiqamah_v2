@@ -38,6 +38,7 @@ import '../providers/user.provider.dart';
 import '../providers/water.provider.dart';
 import '../widgets/colors.dart';
 import 'notification_page.dart';
+import 'webPage.dart';
 
 class HomePage extends StatefulWidget {
   var txt;
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage>
   bool firstMed1 = false;
   bool firstMed2 = false;
   late TabController _tabController;
-  String? fajr;
+  //String? fajr;
   //GetApi(this.fajr);
 
   //final _name = TextEditingController();
@@ -1182,7 +1183,17 @@ class _HomePageState extends State<HomePage>
                                                                                 text: locale.text1!, //afiyah des
                                                                                 style: const TextStyle(color: Colors.black)),
                                                                             TextSpan(
-                                                                                recognizer: TapGestureRecognizer()..onTap = () => launch('http://as-sunnah.com/'),
+                                                                                recognizer: TapGestureRecognizer()
+                                                                                  ..onTap = () {
+                                                                                    Navigator.push(
+                                                                                        context,
+                                                                                        MaterialPageRoute(
+                                                                                            builder: (context) => WikiView(
+                                                                                                  link: 'http://as-sunnah.com',
+                                                                                                  title: "As Sunnah",
+                                                                                                )));
+                                                                                  },
+                                                                                // => launch('http://as-sunnah.com/'),
                                                                                 text: locale.text2!,
                                                                                 style: const TextStyle(color: Colors.blueAccent)),
                                                                             TextSpan(

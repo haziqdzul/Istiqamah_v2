@@ -41,7 +41,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     HomePage(),
     const Rday()
   ];
-
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -54,11 +53,13 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     return Scaffold(
       extendBody: true,
       body: IndexedStack(
-        children: [
-          Center(
-            child: _WidgetOptions.elementAt(_selectedIndex),
-          ),
-        ],
+        index: _selectedIndex,
+        children: _WidgetOptions,
+        // [
+        //   Center(
+        //     child: _WidgetOptions.elementAt(_selectedIndex),
+        //   ),
+        // ],
       ),
       bottomNavigationBar: FancyBottomNavigation(
         tabs: [

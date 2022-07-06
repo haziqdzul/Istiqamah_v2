@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> english() {
   final box = GetStorage();
   return {
+    'tahunbaru': 'Islamic New Year',
     'rDay': 'Religious Day',
     'navigationTracker': 'Prayer Tracker',
     'tracker': 'Missed Prayer Tracker',

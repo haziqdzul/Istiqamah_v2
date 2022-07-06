@@ -33,6 +33,10 @@ class AppLocalizations {
     'sw': swahili(),
     // 'ms': malaysian()
   };
+  String? get tahunbaru {
+    return _localizedValues[locale.languageCode]!['tahunbaru'];
+  }
+
   String? get tracker {
     return _localizedValues[locale.languageCode]!['tracker'];
   }
