@@ -45,7 +45,8 @@ class _SadaqahPageState extends State<SadaqahPage> {
               color: kSecondaryColor,
               radius: BorderRadius.circular(16),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 width: width,
                 // height: height * 0.3,
                 child: const Text(

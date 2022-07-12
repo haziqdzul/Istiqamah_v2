@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+
 import 'package:async/async.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
@@ -36,6 +37,7 @@ import '../providers/medicine1.provider.dart';
 import '../providers/medicine2.provider.dart';
 import '../providers/user.provider.dart';
 import '../providers/water.provider.dart';
+import '../screen/sadaqah_page.dart';
 import '../widgets/colors.dart';
 import 'notification_page.dart';
 import 'webPage.dart';
@@ -1927,13 +1929,13 @@ class _HomePageState extends State<HomePage>
                                                                         }),
                                                                       ),
                                                                     );
-                                                                    // Navigator
-                                                                    //     .push(
-                                                                    //   context,
-                                                                    //   MaterialPageRoute(
-                                                                    //       builder: (context) =>
-                                                                    //           const SadaqahPage()),
-                                                                    // );
+                                                                    Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              const SadaqahPage()),
+                                                                    );
                                                                   },
                                                                   label: locale
                                                                       .sadaqahnow!,

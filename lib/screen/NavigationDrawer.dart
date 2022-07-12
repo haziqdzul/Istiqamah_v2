@@ -1,25 +1,27 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:istiqamah_app/screen/email.screen.dart';
+import 'package:istiqamah_app/screen/religiousDay.dart';
 import 'package:istiqamah_app/screen/setting_page.dart';
 import 'package:istiqamah_app/screen/tracker.dart';
 import 'package:istiqamah_app/screen/update_profile.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
+import '../../providers/profile.provider.dart';
 import '../Locale/locales.dart';
 import '../components/profile_bottom.component.dart';
 import '../constants/constant.dart';
 import '../fancy_btm_navi/fancy_bottom_navigation.dart';
 import '../fragments/update.profile.dart';
-import '../providers/user.provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import '../../providers/profile.provider.dart';
 import 'home_page.dart';
-import 'religiousDay.dart';
 
 class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);

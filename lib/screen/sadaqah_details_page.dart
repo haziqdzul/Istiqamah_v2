@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/components/alert_button.dart';
-import 'package:istiqamah_app/constants/constant.dart';
 
 class SadaqahDetails extends StatefulWidget {
   const SadaqahDetails({Key? key}) : super(key: key);
@@ -42,7 +40,8 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                 child: Container(
                     margin: EdgeInsets.only(top: height * .2),
                     child: Container(
-                      padding: const EdgeInsets.only(top: 30, left: 20, right: 30),
+                      padding:
+                          const EdgeInsets.only(top: 30, left: 20, right: 30),
                       height: height,
                       width: width,
                       decoration: const BoxDecoration(
@@ -54,183 +53,202 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                       child: Column(
                         children: [
                           const Text(
-                            'Universiti Teknologi Mara',
+                            'Screenshot and scan using DuitNow QR Scanner from any Banking mobile app to donate.',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 15,
                               // fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Container(
-                            width: width,
-                            padding: const EdgeInsets.all(16),
-                            margin: const EdgeInsets.only(top: 30),
-                            decoration: const BoxDecoration(
-                              color: kPrimaryColor,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  'Bantuan khas untuk pelajar yang kurang berkemampuan. ',
-                                  style: textStyleBoldSmall,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-                                  style: textStyleNormal,
-                                ),
-                              ],
-                            ),
+                          SizedBox(
+                            height: 10,
                           ),
-                          Container(
-                            width: width,
-                            padding: const EdgeInsets.all(16),
-                            margin: const EdgeInsets.only(top: 15),
-                            decoration: const BoxDecoration(
-                              color: kPrimaryColor,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Total Payment MYR',
-                                  style: textStyleBoldSmall,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                TextFormField(
-                                  initialValue: '10',
-                                  style: const TextStyle(fontSize: 30),
-                                  decoration: const InputDecoration(
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const Text(
-                                  'Amount for Bantuan khas untuk pelajar yang kurang berkemampuan. ',
-                                  style: textStyleNormal,
-                                ),
-                              ],
-                            ),
+                          Image.asset('assets/assunnah.jpg'),
+                          SizedBox(
+                            height: 10,
                           ),
-                          Container(
-                            width: width,
-                            padding: const EdgeInsets.all(16),
-                            margin: const EdgeInsets.only(top: 15),
-                            decoration: const BoxDecoration(
-                              color: kPrimaryColor,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Your Name',
-                                  style: textStyleBoldSmall,
-                                ),
-                                TextFormField(
-                                  style: textStyleNormal,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Enter Your Name',
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const Text(
-                                  'Mobile No.',
-                                  style: textStyleBoldSmall,
-                                ),
-                                TextFormField(
-                                  style: textStyleNormal,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Enter Your Mobile No.',
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const Text(
-                                  'Email Address',
-                                  style: textStyleBoldSmall,
-                                ),
-                                TextFormField(
-                                  style: textStyleNormal,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Enter Your Email Address',
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Radio(
-                                      materialTapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                      value: 1,
-                                      groupValue: val,
-                                      activeColor: Colors.black,
-                                      toggleable: true,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          val = int.parse(value.toString());
-                                        });
-                                      },
-                                    ),
-                                    const Text(
-                                      'Make this an anonymous sadaqah',
-                                      style: textStyleNormal,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                          Text(
+                            'Or clink this link to go to donate on the website',
+                            style: TextStyle(fontSize: 16),
                           ),
-                          Container(
-                            width: width * .5,
-                            margin: const EdgeInsets.only(top: 20),
-                            child: DefaultButton(
-                                label: 'Sadaqah Now',
-                                textStyle: textStyleBoldSmall,
-                                decoration: BoxDecoration(
-                                    color: kPrimaryColor,
-                                    borderRadius: BorderRadius.circular(16))),
-                          )
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'As-Sunnah Global',
+                            style: TextStyle(fontSize: 20, color: Colors.blue),
+                          ),
+
+                          // Container(
+                          //   width: width,
+                          //   padding: const EdgeInsets.all(16),
+                          //   margin: const EdgeInsets.only(top: 30),
+                          //   decoration: const BoxDecoration(
+                          //     color: kPrimaryColor,
+                          //   ),
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: const [
+                          //       Text(
+                          //         'Bantuan khas untuk pelajar yang kurang berkemampuan. ',
+                          //         style: textStyleBoldSmall,
+                          //       ),
+                          //       SizedBox(
+                          //         height: 10,
+                          //       ),
+                          //       Text(
+                          //         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
+                          //         style: textStyleNormal,
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   width: width,
+                          //   padding: const EdgeInsets.all(16),
+                          //   margin: const EdgeInsets.only(top: 15),
+                          //   decoration: const BoxDecoration(
+                          //     color: kPrimaryColor,
+                          //   ),
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       const Text(
+                          //         'Total Payment MYR',
+                          //         style: textStyleBoldSmall,
+                          //       ),
+                          //       const SizedBox(
+                          //         height: 10,
+                          //       ),
+                          //       TextFormField(
+                          //         initialValue: '10',
+                          //         style: const TextStyle(fontSize: 30),
+                          //         decoration: const InputDecoration(
+                          //           enabledBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //           focusedBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       const SizedBox(
+                          //         height: 10,
+                          //       ),
+                          //       const Text(
+                          //         'Amount for Bantuan khas untuk pelajar yang kurang berkemampuan. ',
+                          //         style: textStyleNormal,
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   width: width,
+                          //   padding: const EdgeInsets.all(16),
+                          //   margin: const EdgeInsets.only(top: 15),
+                          //   decoration: const BoxDecoration(
+                          //     color: kPrimaryColor,
+                          //   ),
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       const Text(
+                          //         'Your Name',
+                          //         style: textStyleBoldSmall,
+                          //       ),
+                          //       TextFormField(
+                          //         style: textStyleNormal,
+                          //         decoration: const InputDecoration(
+                          //           hintText: 'Enter Your Name',
+                          //           enabledBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //           focusedBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       const SizedBox(
+                          //         height: 10,
+                          //       ),
+                          //       const Text(
+                          //         'Mobile No.',
+                          //         style: textStyleBoldSmall,
+                          //       ),
+                          //       TextFormField(
+                          //         style: textStyleNormal,
+                          //         decoration: const InputDecoration(
+                          //           hintText: 'Enter Your Mobile No.',
+                          //           enabledBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //           focusedBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       const SizedBox(
+                          //         height: 10,
+                          //       ),
+                          //       const Text(
+                          //         'Email Address',
+                          //         style: textStyleBoldSmall,
+                          //       ),
+                          //       TextFormField(
+                          //         style: textStyleNormal,
+                          //         decoration: const InputDecoration(
+                          //           hintText: 'Enter Your Email Address',
+                          //           enabledBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //           focusedBorder: UnderlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.black),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       Row(
+                          //         mainAxisAlignment: MainAxisAlignment.start,
+                          //         children: [
+                          //           Radio(
+                          //             materialTapTargetSize:
+                          //                 MaterialTapTargetSize.shrinkWrap,
+                          //             value: 1,
+                          //             groupValue: val,
+                          //             activeColor: Colors.black,
+                          //             toggleable: true,
+                          //             onChanged: (value) {
+                          //               setState(() {
+                          //                 val = int.parse(value.toString());
+                          //               });
+                          //             },
+                          //           ),
+                          //           const Text(
+                          //             'Make this an anonymous sadaqah',
+                          //             style: textStyleNormal,
+                          //           ),
+                          //         ],
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
+                          // Container(
+                          //   width: width * .5,
+                          //   margin: const EdgeInsets.only(top: 20),
+                          //   child: DefaultButton(
+                          //       label: 'Sadaqah Now',
+                          //       textStyle: textStyleBoldSmall,
+                          //       decoration: BoxDecoration(
+                          //           color: kPrimaryColor,
+                          //           borderRadius: BorderRadius.circular(16))),
+                          // )
                         ],
                       ),
                     )))
