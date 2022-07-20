@@ -33,7 +33,6 @@ class _GetAPIState extends State<GetApi> {
   String currentAddress = 'My Location';
   static double? pLat;
   static double? pLong;
-  late var pssFajr = fajr;
 
   Future<Position> fetchPosition() async {
     bool serviceEnabled;
@@ -119,7 +118,7 @@ class _GetAPIState extends State<GetApi> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => HomePage(
-                        txt: pssFajr,
+                        fajrtime: fajr,
                       )));
             },
             child: const Icon(

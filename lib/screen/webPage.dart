@@ -62,7 +62,7 @@ Future<bool> _exitApp(BuildContext context) async {
     controllerGlobal.goBack();
   } else {
     Scaffold.of(context).showSnackBar(
-      const SnackBar(content: Text("No back history item")),
+      const SnackBar(content: Text("No previous history")),
     );
   }
   return Future.value(false);
@@ -95,7 +95,7 @@ class NavigationControls extends StatelessWidget {
                         await controller.goBack();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('No back history')),
+                          const SnackBar(content: Text('No previous history')),
                         );
                         return;
                       }

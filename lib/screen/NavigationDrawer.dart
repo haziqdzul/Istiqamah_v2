@@ -24,7 +24,8 @@ import '../fragments/update.profile.dart';
 import 'home_page.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+  var txt = 0;
+  NavigationDrawer({Key? key, required this.txt}) : super(key: key);
 
   @override
   State<NavigationDrawer> createState() => _NavigationDrawerState();
@@ -38,15 +39,23 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
   int _selectedIndex = 1;
   GlobalKey bottomNavigationKey = GlobalKey();
-  final List<Widget> _WidgetOptions = [
-    const TrackerScreen(),
-    HomePage(),
-    const Rday()
-  ];
+  late final List<Widget> screens;
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    init();
+    getGender();
+    super.initState();
+    screens = [
+      const TrackerScreen(),
+      HomePage(fajrtime: widget.txt),
+      const Rday()
+    ];
   }
 
   @override
@@ -56,7 +65,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       extendBody: true,
       body: IndexedStack(
         index: _selectedIndex,
-        children: _WidgetOptions,
+        children: screens,
         // [
         //   Center(
         //     child: _WidgetOptions.elementAt(_selectedIndex),
@@ -914,13 +923,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    init();
-    getGender();
-    super.initState();
   }
 
   Future<void> init() async {

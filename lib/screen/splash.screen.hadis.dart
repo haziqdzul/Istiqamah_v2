@@ -1,6 +1,5 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/home_page.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../Locale/locales.dart';
@@ -91,8 +90,9 @@ class _MLSplashScreenState extends State<MLSplashScreenHadis> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const NavigationDrawer()));
+                                  builder: (context) => NavigationDrawer(
+                                        txt: 0,
+                                      )));
                         },
                         child: Text(locale.proceed!))
                   ],

@@ -21,7 +21,6 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../Utils/shimmer.dart';
 import '../calendar/calendar_page.dart';
@@ -43,8 +42,8 @@ import 'notification_page.dart';
 import 'webPage.dart';
 
 class HomePage extends StatefulWidget {
-  var txt;
-  HomePage({Key? key, this.txt}) : super(key: key);
+  var fajrtime;
+  HomePage({Key? key, this.fajrtime}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -82,8 +81,6 @@ class _HomePageState extends State<HomePage>
   bool firstMed1 = false;
   bool firstMed2 = false;
   late TabController _tabController;
-  //String? fajr;
-  //GetApi(this.fajr);
 
   //final _name = TextEditingController();
   final _detailM = TextEditingController();
@@ -1423,8 +1420,8 @@ class _HomePageState extends State<HomePage>
                                                                           height:
                                                                               10,
                                                                         ),
-                                                                        (widget.txt ==
-                                                                                null)
+                                                                        (widget.fajrtime ==
+                                                                                0)
                                                                             ? TextButton(
                                                                                 child: Text(locale.prayertime!),
                                                                                 style: TextButton.styleFrom(primary: Colors.blue),
@@ -1433,9 +1430,21 @@ class _HomePageState extends State<HomePage>
                                                                                   MaterialPageRoute(builder: (context) => const GetApi()),
                                                                                 ),
                                                                               )
-                                                                            : Text(
-                                                                                '${locale.subuh!} ${widget.txt}',
-                                                                                style: const TextStyle(color: black),
+                                                                            : Column(
+                                                                                children: [
+                                                                                  TextButton(
+                                                                                    child: Text(locale.prayertime!),
+                                                                                    style: TextButton.styleFrom(primary: Colors.grey),
+                                                                                    onPressed: () => Navigator.push(
+                                                                                      context,
+                                                                                      MaterialPageRoute(builder: (context) => const GetApi()),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Text(
+                                                                                    '${locale.subuh!} ${widget.fajrtime}',
+                                                                                    style: const TextStyle(fontWeight: FontWeight.bold, color: black),
+                                                                                  ),
+                                                                                ],
                                                                               )
                                                                       ],
                                                                     ),
