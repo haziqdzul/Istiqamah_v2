@@ -24,7 +24,7 @@ import '../fragments/update.profile.dart';
 import 'home_page.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  var txt = 0;
+  String? txt;
   NavigationDrawer({Key? key, required this.txt}) : super(key: key);
 
   @override
@@ -40,6 +40,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   int _selectedIndex = 1;
   GlobalKey bottomNavigationKey = GlobalKey();
   late final List<Widget> screens;
+
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;

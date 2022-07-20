@@ -10,7 +10,7 @@ import 'package:istiqamah_app/screen/time_in_hour_and_minute.dart';
 
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
-import 'home_page.dart';
+import 'NavigationDrawer.dart';
 
 class GetApi extends StatefulWidget {
   const GetApi({Key? key}) : super(key: key);
@@ -117,8 +117,8 @@ class _GetAPIState extends State<GetApi> {
           leading: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePage(
-                        fajrtime: fajr,
+                  builder: (context) => NavigationDrawer(
+                        txt: fajr,
                       )));
             },
             child: const Icon(

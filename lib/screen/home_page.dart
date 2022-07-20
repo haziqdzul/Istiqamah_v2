@@ -42,7 +42,7 @@ import 'notification_page.dart';
 import 'webPage.dart';
 
 class HomePage extends StatefulWidget {
-  var fajrtime;
+  String? fajrtime;
   HomePage({Key? key, this.fajrtime}) : super(key: key);
 
   @override
@@ -1421,24 +1421,30 @@ class _HomePageState extends State<HomePage>
                                                                               10,
                                                                         ),
                                                                         (widget.fajrtime ==
-                                                                                0)
+                                                                                null)
                                                                             ? TextButton(
                                                                                 child: Text(locale.prayertime!),
                                                                                 style: TextButton.styleFrom(primary: Colors.blue),
-                                                                                onPressed: () => Navigator.push(
-                                                                                  context,
-                                                                                  MaterialPageRoute(builder: (context) => const GetApi()),
-                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  var newFajr = await Navigator.push(
+                                                                                    context,
+                                                                                    MaterialPageRoute(builder: (context) => const GetApi()),
+                                                                                  );
+                                                                                  print(newFajr);
+                                                                                },
                                                                               )
                                                                             : Column(
                                                                                 children: [
                                                                                   TextButton(
                                                                                     child: Text(locale.prayertime!),
                                                                                     style: TextButton.styleFrom(primary: Colors.grey),
-                                                                                    onPressed: () => Navigator.push(
-                                                                                      context,
-                                                                                      MaterialPageRoute(builder: (context) => const GetApi()),
-                                                                                    ),
+                                                                                    onPressed: () async {
+                                                                                      var newFajr = await Navigator.push(
+                                                                                        context,
+                                                                                        MaterialPageRoute(builder: (context) => const GetApi()),
+                                                                                      );
+                                                                                      print(newFajr);
+                                                                                    },
                                                                                   ),
                                                                                   Text(
                                                                                     '${locale.subuh!} ${widget.fajrtime}',
