@@ -235,7 +235,8 @@ Map<String, String> english() {
         'Your password must contain a minimum of 8 characters included with at least 1 upper case, 1 lower case and 1 number',
     'repasswordHandling': 'Please enter the same Password as above',
     'normalWeight': 'Normal Weight',
-    'loadingScreen': 'Please login to your email to verify your account',
+    'loadingScreen':
+        'Please login to your email to verify your account or check your spam folder',
     'loadingBack': 'Back',
     'letgetstarted': 'Register your account',
     'letgetstartedmessage':
