@@ -239,7 +239,7 @@ Map<String, String> indonesian() {
     'repasswordHandling': 'Sila masukkan Kata Laluan yang sama seperti di atas',
     'normalWeight': 'Berat badan normal',
     'loadingScreen':
-        'Log masuk ke akaun e-mel anda \nuntuk mengesahkan akaun anda',
+        'Log masuk ke akaun e-mel anda \nuntuk mengesahkan akaun anda atau memeriksa fail spam',
     'loadingBack': 'Kembali',
     'letgetstarted': 'Daftar Akaun Anda',
     'letgetstartedmessage':
