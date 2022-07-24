@@ -10,6 +10,7 @@ import '../Locale/locales.dart';
 import '../providers/user.provider.dart';
 import '../screen/email.screen.dart';
 import '../screen/next_profile_form_component.dart';
+import '../screen/webPage.dart';
 import '../widgets/bullet.widget.dart';
 import '../widgets/language_cubit.dart';
 
@@ -334,7 +335,15 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                               fontSize: 18, color: Colors.black)),
                       TextSpan(
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => launch('http://as-sunnah.com/'),
+                            ..onTap = () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WikiView(
+                                            link: 'http://as-sunnah.com',
+                                            title: "As Sunnah",
+                                          )));
+                            },
                           text: locale.website_profile!,
                           style: const TextStyle(
                               fontSize: 18,
