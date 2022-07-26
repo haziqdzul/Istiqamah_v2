@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../Locale/locales.dart';
 import '../providers/user.provider.dart';
 import '../screen/email.screen.dart';

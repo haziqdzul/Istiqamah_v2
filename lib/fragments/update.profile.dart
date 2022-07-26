@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:istiqamah_app/screen/home_page.dart';
+import 'package:istiqamah_app/screen/NavigationDrawer.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -645,7 +645,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                       Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => HomePage(),
+                                            builder: (context) =>
+                                                NavigationDrawer(txt: null),
                                           ));
                                     } else {
                                       showTopSnackBar(

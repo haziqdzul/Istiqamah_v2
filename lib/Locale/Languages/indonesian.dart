@@ -6,7 +6,7 @@ Map<String, String> indonesian() {
     'tahunbaru': 'Tahun Baru Islam',
     'rDay': 'Hari Keagamaan',
     'navigationTracker': 'Penjejak Solat',
-    'tracker': 'Penjejak Solat',
+    'tracker': 'Penjejak Solat Yang Terlepas',
     'religiousday': 'Peristiwa Dalam Islam',
     'sunset': 'Matahari Terbenam',
     'sunrise': 'Matahari Terbit',
