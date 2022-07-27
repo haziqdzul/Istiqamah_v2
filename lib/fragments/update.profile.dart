@@ -646,7 +646,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                NavigationDrawer(txt: null),
+                                                NavigationDrawer(),
                                           ));
                                     } else {
                                       showTopSnackBar(

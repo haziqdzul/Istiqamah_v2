@@ -25,7 +25,7 @@ import 'home_page.dart';
 
 class NavigationDrawer extends StatefulWidget {
   String? txt;
-  NavigationDrawer({Key? key, required this.txt}) : super(key: key);
+  NavigationDrawer({Key? key, this.txt}) : super(key: key);
 
   @override
   State<NavigationDrawer> createState() => _NavigationDrawerState();
