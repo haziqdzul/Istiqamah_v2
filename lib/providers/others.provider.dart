@@ -1,13 +1,14 @@
 import 'dart:math';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
-import 'package:bottom_picker/resources/arrays.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:nb_utils/nb_utils.dart';
+
 import '../Locale/locales.dart';
 
 class Medicine2Provider extends ChangeNotifier {
@@ -68,72 +69,70 @@ class Medicine2Provider extends ChangeNotifier {
     DateTime schedule;
     var locale = AppLocalizations.of(context)!;
     var newTime =
-    DateTime(date.year, date.month, date.day, date.hour, date.minute + 2);
+        DateTime(date.year, date.month, date.day, date.hour, date.minute + 2);
     BottomPicker.time(
-        pickerTextStyle: const TextStyle(color: Colors.black, fontSize: 16),
-        initialDateTime: newTime,
-        title: locale.setNotificationTime!,
-        titleStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-            color: Colors.black),
-        onSubmit: (index) {
-          schedule = index;
-          if (schedule != date) {
-            final now = DateTime.now();
-            final dif = schedule.difference(now);
-            String da = dif.toString();
-            var hours = da.substring(0, 1);
-            var minutes = da.substring(2, 4);
-            var seconds = da.substring(5, 7);
-            if (hours == '0') {
-              hours = '';
-            } else {
-              hours = '$hours hours, ';
-            }
-            if (minutes == '00') {
-              minutes = '';
-            } else {
-              minutes = '$minutes minutes, ';
-            }
-            if (seconds == '00') {
-              seconds = '';
-            } else {
-              seconds = '$seconds seconds ';
-            }
-            Fluttertoast.showToast(
-                msg: '$hours$minutes${seconds}time remaining');
-            prefs.setBool('m2${AppUser.instance.user!.uid}', true);
-            var num = int.parse(box.read('medicine2Intake'));
-            var hr = 0;
-            var interval = 0;
-            if (num == 2) {
-              interval = 12;
-            }
-            if (num == 3) {
-              interval = 8;
-            }
-            if (num == 4) {
-              interval = 6;
-            }
-            for (int number = 0; number < num; number++) {
-              var time = DateTime(schedule.year, schedule.month,
-                  schedule.day, schedule.hour + hr, schedule.minute, 0, 0);
-              list.add(DateFormat.jm().format(time));
-              createMedicineReminderNotification(time, number);
-              hr = hr + interval;
-            }
-            prefs.setStringList('medicine2', list);
-            getSchedule();
-            notifyListeners();
-          }
-        },
-        onClose: () {
-          medSwitch = false;
-          notifyListeners();
-        },
-        bottomPickerTheme: BOTTOM_PICKER_THEME.orange,
-        use24hFormat: false)
+            pickerTextStyle: const TextStyle(color: Colors.black, fontSize: 16),
+            initialDateTime: newTime,
+            title: locale.setNotificationTime!,
+            titleStyle: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
+            onSubmit: (index) {
+              schedule = index;
+              if (schedule != date) {
+                final now = DateTime.now();
+                final dif = schedule.difference(now);
+                String da = dif.toString();
+                var hours = da.substring(0, 1);
+                var minutes = da.substring(2, 4);
+                var seconds = da.substring(5, 7);
+                if (hours == '0') {
+                  hours = '';
+                } else {
+                  hours = '$hours hours, ';
+                }
+                if (minutes == '00') {
+                  minutes = '';
+                } else {
+                  minutes = '$minutes minutes, ';
+                }
+                if (seconds == '00') {
+                  seconds = '';
+                } else {
+                  seconds = '$seconds seconds ';
+                }
+                Fluttertoast.showToast(
+                    msg: '$hours$minutes${seconds}time remaining');
+                prefs.setBool('m2${AppUser.instance.user!.uid}', true);
+                var num = int.parse(box.read('medicine2Intake'));
+                var hr = 0;
+                var interval = 0;
+                if (num == 2) {
+                  interval = 12;
+                }
+                if (num == 3) {
+                  interval = 8;
+                }
+                if (num == 4) {
+                  interval = 6;
+                }
+                for (int number = 0; number < num; number++) {
+                  var time = DateTime(schedule.year, schedule.month,
+                      schedule.day, schedule.hour + hr, schedule.minute, 0, 0);
+                  list.add(DateFormat.jm().format(time));
+                  createMedicineReminderNotification(time, number);
+                  hr = hr + interval;
+                }
+                prefs.setStringList('medicine2', list);
+                getSchedule();
+                notifyListeners();
+              }
+            },
+            onClose: () {
+              medSwitch = false;
+              notifyListeners();
+            },
+            // bottomPickerTheme: BOTTOM_PICKER_THEME.orange,
+            use24hFormat: false)
         .show(context);
     medSwitch = true;
     notifyListeners();
@@ -150,20 +149,20 @@ class Medicine2Provider extends ChangeNotifier {
         var time = DateTime(
             d.year, d.month, d.day + index, d.hour, d.minute, d.second, 0, 0);
         var num =
-        random.nextInt(langCode == 'My' ? ubat.length : medicine.length);
+            random.nextInt(langCode == 'My' ? ubat.length : medicine.length);
         var str = langCode == 'My'
             ? ubat[num]
-            .trim()
-            .replaceAll('�', '')
-            .replaceAll('(?)', '')
-            .replaceAll('?\n', '')
-            .replaceAll('Rasulullah ?', 'Rasulullah')
+                .trim()
+                .replaceAll('�', '')
+                .replaceAll('(?)', '')
+                .replaceAll('?\n', '')
+                .replaceAll('Rasulullah ?', 'Rasulullah')
             : medicine[num]
-            .trim()
-            .replaceAll('�', '')
-            .replaceAll('(?)', '')
-            .replaceAll('?\n', '')
-            .replaceAll('Rasulullah ?', 'Rasulullah');
+                .trim()
+                .replaceAll('�', '')
+                .replaceAll('(?)', '')
+                .replaceAll('?\n', '')
+                .replaceAll('Rasulullah ?', 'Rasulullah');
         await AwesomeNotifications().createNotification(
             content: NotificationContent(
               id: 1000 + intake + index,
@@ -173,11 +172,11 @@ class Medicine2Provider extends ChangeNotifier {
                   : '${Emojis.medical_pill} Reminder to take your ${name ?? 'medicine'}',
               body: langCode == 'My'
                   ? ubat.isNotEmpty
-                  ? str
-                  : 'Data not loaded'
+                      ? str
+                      : 'Data not loaded'
                   : medicine.isNotEmpty
-                  ? str
-                  : 'Data not loaded',
+                      ? str
+                      : 'Data not loaded',
               summary: langCode == 'My'
                   ? 'Notifikasi ${name ?? 'Ubat'}'
                   : '${name ?? 'Medicine'} Notification',

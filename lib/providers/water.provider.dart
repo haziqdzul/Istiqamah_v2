@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
-import 'package:bottom_picker/resources/arrays.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -54,9 +53,7 @@ class WaterProvider extends ChangeNotifier {
             minDateTime: newTime,
             title: locale.setNotificationTime!,
             titleStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black),
+                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
             onSubmit: (index) {
               schedule = index;
 
@@ -82,7 +79,7 @@ class WaterProvider extends ChangeNotifier {
                 notifyListeners();
               }
             },
-            bottomPickerTheme: BOTTOM_PICKER_THEME.blue,
+            // bottomPickerTheme: BOTTOM_PICKER_THEME.blue,
             use24hFormat: false)
         .show(context);
   }

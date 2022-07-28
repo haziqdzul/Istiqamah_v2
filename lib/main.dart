@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,10 +20,12 @@ import 'package:istiqamah_app/providers/water.provider.dart';
 import 'package:istiqamah_app/widgets/language_cubit.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
+
 import 'Locale/locales.dart';
 import 'Routes/routes.dart';
 import 'screen/walkthrough_page.dart';
 
+//
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -84,7 +87,9 @@ class _MyAppState extends State<MyApp> {
                 debugShowCheckedModeBanner: false,
                 title: 'Istiqamah',
                 //home: const SplashScreen(),
-                home: const SplashScreen(),
+                home: locale.languageCode != 'en'
+                    ? const SplashScreen()
+                    : const SplashScreen(),
                 themeMode: ThemeMode.light,
                 // theme: !appStore.isDarkModeOn
                 //     ? AppThemeData.lightTheme

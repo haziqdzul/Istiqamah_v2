@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:async/async.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
-import 'package:bottom_picker/resources/arrays.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/cupertino.dart';
@@ -607,7 +606,7 @@ class _HomePageState extends State<HomePage>
                 });
               }
             },
-            bottomPickerTheme: BOTTOM_PICKER_THEME.orange,
+            // bottomPickerTheme: BOTTOM_PICKER_THEME.orange,
             use24hFormat: false)
         .show(context);
   }

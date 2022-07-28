@@ -1,13 +1,14 @@
 import 'dart:math';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
-import 'package:bottom_picker/resources/arrays.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:nb_utils/nb_utils.dart';
+
 import '../Locale/locales.dart';
 
 class Medicine1Provider extends ChangeNotifier {
@@ -74,9 +75,7 @@ class Medicine1Provider extends ChangeNotifier {
             initialDateTime: newTime,
             title: locale.setNotificationTime!,
             titleStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black),
+                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
             onSubmit: (index) {
               schedule = index;
               if (schedule != date) {
@@ -132,7 +131,7 @@ class Medicine1Provider extends ChangeNotifier {
               medSwitch = false;
               notifyListeners();
             },
-            bottomPickerTheme: BOTTOM_PICKER_THEME.orange,
+            // bottomPickerTheme: BOTTOM_PICKER_THEME.orange,
             use24hFormat: false)
         .show(context);
     medSwitch = true;
