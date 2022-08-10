@@ -47,6 +47,7 @@ android {
         applicationId "com.istiqamah.istiqamahv2"
         minSdkVersion 21
         targetSdkVersion 31
+        compileSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

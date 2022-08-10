@@ -23,7 +23,7 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
     return SafeArea(
       child: FirebasePhoneAuthHandler(
         phoneNumber: phoneNumber,
-        autoRetrievalTimeOutDuration: const Duration(seconds: 60),
+        timeOutDuration: const Duration(seconds: 60),
         onLoginSuccess: (userCredential, autoVerified) async {
           _showSnackBar(
             context,
@@ -38,7 +38,7 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
 
           debugPrint("Login Success UID: ${userCredential.user?.uid}");
         },
-        onLoginFailed: (authException, stackTrace) {
+        onLoginFailed: (authException) {
           _showSnackBar(
             context,
             'Something went wrong (${authException.message})',
@@ -54,12 +54,12 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
               actions: [
                 if (controller.codeSent)
                   TextButton(
-                    onPressed: controller.isOtpExpired
+                    onPressed: controller.timerIsActive
                         ? null
                         : () async => await controller.sendOTP(),
                     child: Text(
-                      controller.isOtpExpired
-                          ? "${controller.otpExpirationTimeLeft.inSeconds}s"
+                      controller.timerIsActive
+                          ? "${controller.timerCount.inSeconds}s"
                           : "RESEND",
                       style: const TextStyle(
                         color: Colors.blue,
@@ -84,8 +84,7 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
                       const Divider(),
                       AnimatedContainer(
                         duration: const Duration(seconds: 1),
-                        height:
-                            controller.isListeningForOtpAutoRetrieve ? null : 0,
+                        height: controller.timerIsActive ? null : 0,
                         child: Column(
                           children: const [
                             CircularProgressIndicator.adaptive(),
@@ -117,8 +116,8 @@ class VerifyPhoneNumberScreen extends StatelessWidget {
                         onChanged: (String v) async {
                           _enteredOTP = v;
                           if (_enteredOTP?.length == 6) {
-                            final isValidOTP = await controller.verifyOtp(
-                              _enteredOTP!,
+                            final isValidOTP = await controller.verifyOTP(
+                              otp: _enteredOTP!,
                             );
                             // Incorrect OTP
                             if (!isValidOTP) {

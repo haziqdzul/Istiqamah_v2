@@ -109,8 +109,9 @@ dependencies:
   firebase_auth: ^3.5.1
   firebase_storage: ^10.3.3
   cloud_firestore: ^3.4.1
-  firebase_phone_auth_handler: ^1.0.6
+  firebase_phone_auth_handler: 1.0.4
   auth_with_firebase: ^0.0.25
+  external_app_launcher: ^3.0.0
 
 dev_dependencies:
   flutter_test:

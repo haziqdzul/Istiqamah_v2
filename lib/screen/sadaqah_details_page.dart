@@ -1,3 +1,4 @@
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 
 class SadaqahDetails extends StatefulWidget {
@@ -67,17 +68,83 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                           SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            'Or clink this link to go to donate on the website',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            'As-Sunnah Global',
-                            style: TextStyle(fontSize: 20, color: Colors.blue),
-                          ),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                              ),
+                              onPressed: () async {
+                                var openAppResult = await LaunchApp.openApp(
+                                  androidPackageName: 'com.iexceed.CBS',
+                                  iosUrlScheme: 'pulsesecure://',
+                                  appStoreLink:
+                                      'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
+                                  // openStore: false
+                                );
+                                print(
+                                    'openAppResult => $openAppResult ${openAppResult.runtimeType}');
+                                // Enter thr package name of the App you want to open and for iOS add the URLscheme to the Info.plist file.
+                                // The second arguments decide wether the app redirects PlayStore or AppStore.
+                                // For testing purpose you can enter com.instagram.android
+                              },
+                              child: const Center(
+                                child: Text(
+                                  "Scan using Bank Islam",
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
+                          // ElevatedButton(
+                          //     style: ElevatedButton.styleFrom(
+                          //       primary: Colors.blue,
+                          //     ),
+                          //     onPressed: () async {
+                          //       var openAppResult = await LaunchApp.openApp(
+                          //         androidPackageName:
+                          //             'my.com.maybank2u.m2umobile',
+                          //         iosUrlScheme: 'pulsesecure://',
+                          //         appStoreLink:
+                          //             'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
+                          //         // openStore: false
+                          //       );
+                          //       print(
+                          //           'openAppResult => $openAppResult ${openAppResult.runtimeType}');
+                          //       // Enter thr package name of the App you want to open and for iOS add the URLscheme to the Info.plist file.
+                          //       // The second arguments decide wether the app redirects PlayStore or AppStore.
+                          //       // For testing purpose you can enter com.instagram.android
+                          //     },
+                          //     child: const Center(
+                          //       child: Text(
+                          //         "Scan using Maybank",
+                          //         textAlign: TextAlign.center,
+                          //       ),
+                          //     )),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                              ),
+                              onPressed: () async {
+                                var openAppResult = await LaunchApp.openApp(
+                                  androidPackageName: 'com.cimbmalaysia',
+                                  iosUrlScheme: 'pulsesecure://',
+                                  appStoreLink:
+                                      'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
+                                  // openStore: false
+                                );
+                                print(
+                                    'openAppResult => $openAppResult ${openAppResult.runtimeType}');
+                                // Enter thr package name of the App you want to open and for iOS add the URLscheme to the Info.plist file.
+                                // The second arguments decide wether the app redirects PlayStore or AppStore.
+                                // For testing purpose you can enter com.instagram.android
+                              },
+                              child: const Center(
+                                child: Text(
+                                  "Scan using CIMB",
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
+                          // Text(
+                          //   'As-Sunnah Global',
+                          //   style: TextStyle(fontSize: 20, color: Colors.blue),
+                          // ),
 
                           // Container(
                           //   width: width,
