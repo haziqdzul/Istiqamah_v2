@@ -75,9 +75,9 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                               onPressed: () async {
                                 var openAppResult = await LaunchApp.openApp(
                                   androidPackageName: 'com.iexceed.CBS',
-                                  iosUrlScheme: 'pulsesecure://',
+                                  iosUrlScheme: 'bank-islam://',
                                   appStoreLink:
-                                      'itms-apps://itunes.apple.com/us/app/pulse-secure/id945832041',
+                                      'https://apps.apple.com/my/app/bank-islam/id1483218923',
                                   // openStore: false
                                 );
                                 print(
