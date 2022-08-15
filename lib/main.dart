@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:feature_discovery/feature_discovery.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
       child: BlocProvider<LanguageCubit>(
           create: (context) => LanguageCubit(),
           child: BlocBuilder<LanguageCubit, Locale>(builder: (_, locale) {
-            return FeatureDiscovery(
+            return FirebasePhoneAuthProvider(
               child: MaterialApp(
                 theme: ThemeData(
                   primarySwatch: Colors.amber,

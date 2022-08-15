@@ -59,11 +59,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "793399248157-bs1pdf8onr07qqf5nnohac6ll1ipr77b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.istiqamahv2",
+            "certificate_hash": "af3781a62c6d5bb420894c18b0272fc7225eb273"
+          }
+        },
+        {
           "client_id": "793399248157-h8b0bpcksasdm0lk2ghd5e2af58f8656.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.istiqamah.istiqamahv2",
             "certificate_hash": "cbca6e740ad6864baf2d531b817ccd5710831025"
+          }
+        },
+        {
+          "client_id": "793399248157-m0g1h2in8mcpleav4o4qkuqljltbsj2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.istiqamahv2",
+            "certificate_hash": "2ac74c1f1c8492c4ebae9602518e63c72e1fb05b"
           }
         },
         {
