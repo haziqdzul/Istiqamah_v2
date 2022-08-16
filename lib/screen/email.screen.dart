@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:http/http.dart' as http;
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
 
@@ -103,7 +105,7 @@ class _MLEmailScreenState extends State<MLEmailScreen> {
       'tags': build.tags,
       'type': build.type,
       'isPhysicalDevice': build.isPhysicalDevice,
-      'androidId': build.androidId,
+      // 'androidId': build.androidId,
       'systemFeatures': build.systemFeatures,
     };
   }

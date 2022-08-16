@@ -1,5 +1,8 @@
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:istiqamah_app/models/user.model.dart';
+import 'package:istiqamah_app/screen/next_update_profile.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
@@ -46,6 +49,19 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
           );
 
           debugPrint("Login Success UID: ${userCredential.user?.uid}");
+          await NextUpdateProfileScreen(
+            userData.gender ?? '',
+            userData.title ?? '',
+            userData.dob ?? '',
+            userData.country ?? '',
+            userData.state ?? '',
+            userData.city ?? '',
+            userData.postcode ?? '',
+            userData.address1 ?? '',
+            userData.address2 ?? '',
+            userData.address3 ?? '',
+            '${userData.cc}${userData.phoneNo}',
+          ).launch(context);
         },
         onLoginFailed: (authException, stackTrace) {
           _showSnackBar(
