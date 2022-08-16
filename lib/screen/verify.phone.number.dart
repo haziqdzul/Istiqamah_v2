@@ -101,14 +101,16 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                 ? ListView(
                     padding: const EdgeInsets.all(20),
                     children: [
+                      const SizedBox(height: 25),
                       Text(
-                        "We've sent an SMS with a verification code to ${widget.phoneNumber}",
+                        "${locale.verifyDescription!} ${widget.phoneNumber}",
                         style: const TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 10),
-                      const Divider(),
+                      const SizedBox(height: 20),
+                      //const Divider(),
                       AnimatedContainer(
                         duration: const Duration(seconds: 1),
                         height:
@@ -117,23 +119,23 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                           children: const [
                             CircularProgressIndicator.adaptive(),
                             SizedBox(height: 50),
-                            Text(
-                              "Listening for OTP",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Divider(),
-                            Text("OR", textAlign: TextAlign.center),
-                            Divider(),
+                            // Text(
+                            //   "Listening for OTP",
+                            //   textAlign: TextAlign.center,
+                            //   style: TextStyle(
+                            //     fontSize: 25,
+                            //     fontWeight: FontWeight.w600,
+                            //   ),
+                            // ),
+                            // Divider(),
+                            // Text("OR", textAlign: TextAlign.center),
+                            //Divider(),
                           ],
                         ),
                       ),
-                      const Text(
-                        "Enter OTP",
-                        style: TextStyle(
+                      Text(
+                        locale.enterOTP!,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
@@ -151,7 +153,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                             if (!isValidOTP) {
                               _showSnackBar(
                                 context,
-                                "Please enter the correct OTP sent to ${widget.phoneNumber}",
+                                "${locale.enterCorrectOTP!} ${widget.phoneNumber}",
                               );
                             }
                           }
@@ -162,13 +164,13 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      CircularProgressIndicator.adaptive(),
-                      SizedBox(height: 50),
+                    children: [
+                      const CircularProgressIndicator.adaptive(),
+                      const SizedBox(height: 50),
                       Center(
                         child: Text(
-                          "Sending OTP",
-                          style: TextStyle(fontSize: 25),
+                          locale.sendingOTP!,
+                          style: const TextStyle(fontSize: 25),
                         ),
                       ),
                     ],
