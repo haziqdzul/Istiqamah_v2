@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,7 @@ class _MyAppState extends State<MyApp> {
           create: (context) => LanguageCubit(),
           child: BlocBuilder<LanguageCubit, Locale>(builder: (_, locale) {
             return FirebasePhoneAuthProvider(
+                child: FeatureDiscovery(
               child: MaterialApp(
                 theme: ThemeData(
                   primarySwatch: Colors.amber,
@@ -118,7 +120,7 @@ class _MyAppState extends State<MyApp> {
                 locale: locale,
                 routes: PageRoutes().routes(),
               ),
-            );
+            ));
           })),
     );
   }
