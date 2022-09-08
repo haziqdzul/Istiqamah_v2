@@ -77,7 +77,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                                   androidPackageName: 'com.iexceed.CBS',
                                   iosUrlScheme: 'bank-islam://',
                                   appStoreLink:
-                                      'https://apps.apple.com/my/app/bank-islam/id1483218923',
+                                      'itms-apps://apps.apple.com/my/app/bank-islam/id1483218923',
                                   // openStore: false
                                 );
                                 print(
