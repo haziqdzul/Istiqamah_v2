@@ -6,6 +6,7 @@ import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:istiqamah_app/screen/registerPage.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
+
 import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
@@ -105,118 +106,106 @@ class _WalktroughPageState extends State<WalktroughPage> {
                   )),
               Positioned(
                   bottom: 0,
-                  child: SafeArea(
-                    child: Container(
-                      width: width,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      margin: const EdgeInsets.only(bottom: 20),
-                      child: Column(
-                        children: [
-                          if (_progress == 0)
-                            WalkthroughTitleBody(
-                              title: locale.asSunnahApp,
-                              body: locale.usingTechnology,
-                            ),
-                          if (_progress == 1)
-                            WalkthroughTitleBody(
-                                title: locale.hadith,
-                                body: locale.hadithNarrated),
-                          if (_progress == 2)
-                            WalkthroughTitleBody(
-                                title: locale.letgetstarted,
-                                body: locale.letgetstartedmessage),
-                          Center(
-                            child: Container(
-                              width: 100,
-                              height: 50,
-                              margin:
-                                  const EdgeInsets.only(top: 60, bottom: 30),
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 3,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Row(
-                                      children: [
-                                        CircleProgress(
-                                          color: _progress == index
-                                              ? Colors.white
-                                              : null,
-                                        ),
-                                        const SizedBox(
-                                          width: 15,
-                                        )
-                                      ],
-                                    );
-                                  }),
-                            ),
+                  //safearea
+                  child: Container(
+                    width: width,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
+                    child: Column(
+                      children: [
+                        if (_progress == 0)
+                          WalkthroughTitleBody(
+                            title: locale.asSunnahApp,
+                            body: locale.usingTechnology,
                           ),
-                          _progress != 2
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    WalkButton(
-                                      onPress: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const MLLoginScreen()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      label: locale.skip!,
-                                    ),
-                                    WalkButton(
-                                      onPress: () {
-                                        setState(() {
-                                          _progress = _progress + 1;
-                                        });
-                                      },
-                                      label: locale.next!,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    WalkButton(
-                                      onPress: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const RegisterPage()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      label: locale.getStarted!,
-                                      color: Colors.white,
-                                    ),
-                                    WalkButton(
-                                      onPress: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const MLLoginScreen()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      label: locale.login!,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                )
-                        ],
-                      ),
+                        if (_progress == 1)
+                          WalkthroughTitleBody(
+                              title: locale.hadith,
+                              body: locale.hadithNarrated),
+                        if (_progress == 2)
+                          WalkthroughTitleBody(
+                              title: locale.letgetstarted,
+                              body: locale.letgetstartedmessage),
+                        Center(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            margin: const EdgeInsets.only(top: 60, bottom: 30),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 3,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Row(
+                                    children: [
+                                      CircleProgress(
+                                        color: _progress == index
+                                            ? Colors.white
+                                            : null,
+                                      ),
+                                      const SizedBox(
+                                        width: 15,
+                                      )
+                                    ],
+                                  );
+                                }),
+                          ),
+                        ),
+                        _progress != 2
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  WalkButton(
+                                    onPress: () {
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MLLoginScreen()),
+                                          (Route<dynamic> route) => false);
+                                    },
+                                    label: locale.skip!,
+                                  ),
+                                  WalkButton(
+                                    onPress: () {
+                                      setState(() {
+                                        _progress = _progress + 1;
+                                      });
+                                    },
+                                    label: locale.next!,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  WalkButton(
+                                    onPress: () {
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const RegisterPage()),
+                                          (Route<dynamic> route) => false);
+                                    },
+                                    label: locale.getStarted!,
+                                    color: Colors.white,
+                                  ),
+                                  WalkButton(
+                                    onPress: () {
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MLLoginScreen()),
+                                          (Route<dynamic> route) => false);
+                                    },
+                                    label: locale.login!,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              )
+                      ],
                     ),
                   )),
               Padding(
@@ -263,7 +252,7 @@ class WalkthroughTitleBody extends StatelessWidget {
               textAlign: TextAlign.end,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 38,
+                fontSize: 25,
                 // fontWeight: FontWeight.bold,
               ),
             ),
@@ -276,7 +265,7 @@ class WalkthroughTitleBody extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: 15,
             ),
           ),
         ),
