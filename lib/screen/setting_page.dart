@@ -4,7 +4,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/components/alert_button.dart';
 import 'package:istiqamah_app/components/corner_body.dart';
 import 'package:istiqamah_app/constants/constant.dart';
+import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:provider/provider.dart';
+
 import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
@@ -127,6 +129,59 @@ class _SettingPageState extends State<SettingPage> {
                     });
                   },
                   value: "id",
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Account data',
+                  style: textStyleBold,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                DefaultButton(
+                  label: 'Delete account',
+                  textStyle: textStyleNormal,
+                  decoration: BoxDecoration(
+                      color: kGreyColor,
+                      borderRadius: BorderRadius.circular(16)),
+                  onPress: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                            actions: [
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.redAccent),
+                                  child: Text('Cancel')),
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    AppUser.instance.signOut();
+                                    Navigator.popAndPushNamed(context, 'login');
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.green),
+                                  child: Text('OK')),
+                            ],
+                            title: Text('Delete Account'),
+                            content:
+                                Text('Are you sure to delete your account?'));
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),

@@ -20,6 +20,11 @@ class AppUser extends ChangeNotifier {
   static AppUser get instance => AppUser();
 
   signOut() async {
+    FirebaseAuth.instance.currentUser?.delete();
+    await FirebaseAuth.instance.signOut();
+  }
+
+  logOut() async {
     await FirebaseAuth.instance.signOut();
   }
 

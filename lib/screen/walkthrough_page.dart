@@ -11,7 +11,6 @@ import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
 
-//
 class WalktroughPage extends StatefulWidget {
   const WalktroughPage({Key? key}) : super(key: key);
 
@@ -81,152 +80,160 @@ class _WalktroughPageState extends State<WalktroughPage> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-            width: width,
-            height: height,
-            child: Stack(children: [
-              Positioned(
-                  top: 0,
-                  child: Stack(
-                    children: [
-                      SafeArea(
-                        child: Image.asset(
-                          'assets/wt${_progress + 1}.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  )),
-              Positioned(
-                  bottom: 0,
-                  child: Stack(
-                    children: [
-                      Image.asset('assets/walkthrough_cloud.png'),
-                    ],
-                  )),
-              Positioned(
-                  bottom: 0,
-                  //safearea
+        backgroundColor: Colors.amber,
+        body: SingleChildScrollView(
+          child: Stack(children: [
+            Column(
+              children: [
+                Positioned(
                   child: Container(
-                    width: width,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      children: [
-                        if (_progress == 0)
-                          WalkthroughTitleBody(
-                            title: locale.asSunnahApp,
-                            body: locale.usingTechnology,
-                          ),
-                        if (_progress == 1)
-                          WalkthroughTitleBody(
-                              title: locale.hadith,
-                              body: locale.hadithNarrated),
-                        if (_progress == 2)
-                          WalkthroughTitleBody(
-                              title: locale.letgetstarted,
-                              body: locale.letgetstartedmessage),
-                        Center(
-                          child: Container(
-                            width: 100,
-                            height: 50,
-                            margin: const EdgeInsets.only(top: 60, bottom: 30),
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 3,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Row(
-                                    children: [
-                                      CircleProgress(
-                                        color: _progress == index
-                                            ? Colors.white
-                                            : null,
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      )
-                                    ],
-                                  );
-                                }),
-                          ),
-                        ),
-                        _progress != 2
-                            ? Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  WalkButton(
-                                    onPress: () {
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MLLoginScreen()),
-                                          (Route<dynamic> route) => false);
-                                    },
-                                    label: locale.skip!,
-                                  ),
-                                  WalkButton(
-                                    onPress: () {
-                                      setState(() {
-                                        _progress = _progress + 1;
-                                      });
-                                    },
-                                    label: locale.next!,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              )
-                            : Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  WalkButton(
-                                    onPress: () {
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const RegisterPage()),
-                                          (Route<dynamic> route) => false);
-                                    },
-                                    label: locale.getStarted!,
-                                    color: Colors.white,
-                                  ),
-                                  WalkButton(
-                                    onPress: () {
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MLLoginScreen()),
-                                          (Route<dynamic> route) => false);
-                                    },
-                                    label: locale.login!,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              )
-                      ],
-                    ),
-                  )),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: DropdownButton(
-                      dropdownColor: Colors.grey,
-                      underline: Container(),
-                      elevation: 2,
-                      value: selectedValue,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          selectedValue = newValue!;
-                        });
-                      },
-                      items: dropdownItems),
+                    height: height * 0.6,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/wt${_progress + 1}.png"),
+                            fit: BoxFit.cover),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(530))),
+                  ),
                 ),
+                Positioned(
+                    // top: 150,
+                    bottom: 0,
+                    child: Container(
+                      width: width,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Column(
+                        children: [
+                          if (_progress == 0)
+                            WalkthroughTitleBody(
+                              title: locale.asSunnahApp,
+                              body: locale.usingTechnology,
+                            ),
+                          if (_progress == 1)
+                            WalkthroughTitleBody(
+                                title: locale.hadith,
+                                body: locale.hadithNarrated),
+                          if (_progress == 2)
+                            WalkthroughTitleBody(
+                                title: locale.letgetstarted,
+                                body: locale.letgetstartedmessage),
+                          Center(
+                            child: Container(
+                              width: 100,
+                              height: 50,
+                              margin:
+                                  const EdgeInsets.only(top: 60, bottom: 30),
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 3,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Row(
+                                      children: [
+                                        CircleProgress(
+                                          color: _progress == index
+                                              ? Colors.white
+                                              : null,
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        )
+                                      ],
+                                    );
+                                  }),
+                            ),
+                          ),
+                          _progress != 2
+                              ? Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    WalkButton(
+                                      onPress: () {
+                                        Navigator.of(
+                                                context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const MLLoginScreen()),
+                                                (Route<dynamic> route) =>
+                                                    false);
+                                      },
+                                      label: locale.skip!,
+                                    ),
+                                    WalkButton(
+                                      onPress: () {
+                                        setState(() {
+                                          _progress = _progress + 1;
+                                        });
+                                      },
+                                      label: locale.next!,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                )
+                              : Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    WalkButton(
+                                      onPress: () {
+                                        Navigator.of(
+                                                context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const RegisterPage()),
+                                                (Route<dynamic> route) =>
+                                                    false);
+                                      },
+                                      label: locale.getStarted!,
+                                      color: Colors.white,
+                                    ),
+                                    WalkButton(
+                                      onPress: () {
+                                        Navigator.of(
+                                                context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const MLLoginScreen()),
+                                                (Route<dynamic> route) =>
+                                                    false);
+                                      },
+                                      label: locale.login!,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                )
+                        ],
+                      ),
+                    )),
+              ],
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: DropdownButton(
+                    dropdownColor: Colors.grey,
+                    underline: Container(),
+                    elevation: 2,
+                    value: selectedValue,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedValue = newValue!;
+                      });
+                    },
+                    items: dropdownItems),
               ),
-            ])),
+            ),
+          ]),
+        ),
       ),
     );
   }
