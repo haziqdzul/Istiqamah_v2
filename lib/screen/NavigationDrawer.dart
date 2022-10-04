@@ -909,7 +909,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           child: Text(locale.no!)),
                       ElevatedButton(
                           onPressed: () async {
-                            await AppUser.instance.signOut();
+                            await AppUser.instance.logOut();
                             Navigator.popAndPushNamed(context, 'login');
                           },
                           style:

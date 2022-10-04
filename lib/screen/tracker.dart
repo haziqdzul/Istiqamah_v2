@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
 import '../stepperTouch/stepper_touch.dart';
@@ -88,12 +89,20 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 //   DateTime.now(),
                 //   //initialSelectedDate: DateTime.now(),
                 //   // selectionColor: Colors.black,
-                //   // selectedTextColor: Colors.white,
+                //   // selectedTextColor: Colors.white,FF
                 //   // onDateChange: (date) {
                 //   //   // New date selected
                 //   //   setState(() {});
                 //   // },
                 // ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  alignment: Alignment.topCenter,
+                  child:
+                      Text("Swap the circle left or right to update the data"),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
