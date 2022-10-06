@@ -81,139 +81,121 @@ class _WalktroughPageState extends State<WalktroughPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.amber,
-        body: SingleChildScrollView(
+        body: SizedBox(
           child: Stack(children: [
-            Column(
-              children: [
-                Positioned(
-                  child: Container(
-                    height: height * 0.6,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("assets/wt${_progress + 1}.png"),
-                            fit: BoxFit.cover),
-                        color: Colors.black,
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(530))),
-                  ),
-                ),
-                Positioned(
-                    // top: 150,
-                    bottom: 0,
-                    child: Container(
-                      width: width,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      margin: const EdgeInsets.only(bottom: 20),
-                      child: Column(
-                        children: [
-                          if (_progress == 0)
-                            WalkthroughTitleBody(
-                              title: locale.asSunnahApp,
-                              body: locale.usingTechnology,
-                            ),
-                          if (_progress == 1)
-                            WalkthroughTitleBody(
-                                title: locale.hadith,
-                                body: locale.hadithNarrated),
-                          if (_progress == 2)
-                            WalkthroughTitleBody(
-                                title: locale.letgetstarted,
-                                body: locale.letgetstartedmessage),
-                          Center(
-                            child: Container(
-                              width: 100,
-                              height: 50,
-                              margin:
-                                  const EdgeInsets.only(top: 60, bottom: 30),
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 3,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Row(
-                                      children: [
-                                        CircleProgress(
-                                          color: _progress == index
-                                              ? Colors.white
-                                              : null,
-                                        ),
-                                        const SizedBox(
-                                          width: 15,
-                                        )
-                                      ],
-                                    );
-                                  }),
-                            ),
-                          ),
-                          _progress != 2
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    WalkButton(
-                                      onPress: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const MLLoginScreen()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      label: locale.skip!,
-                                    ),
-                                    WalkButton(
-                                      onPress: () {
-                                        setState(() {
-                                          _progress = _progress + 1;
-                                        });
-                                      },
-                                      label: locale.next!,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    WalkButton(
-                                      onPress: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const RegisterPage()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      label: locale.getStarted!,
-                                      color: Colors.white,
-                                    ),
-                                    WalkButton(
-                                      onPress: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const MLLoginScreen()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      label: locale.login!,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                )
-                        ],
-                      ),
-                    )),
-              ],
+            Positioned(
+              //top: 0,
+              child: Container(
+                height: height * 0.55,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/wt${_progress + 1}.png"),
+                        fit: BoxFit.cover),
+                    color: Colors.black,
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(530))),
+              ),
             ),
+            Positioned(
+                bottom: 0,
+                child: Container(
+                  width: width,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  child: Column(
+                    children: [
+                      if (_progress == 0)
+                        WalkthroughTitleBody(
+                          title: locale.asSunnahApp,
+                          body: locale.usingTechnology,
+                        ),
+                      if (_progress == 1)
+                        WalkthroughTitleBody(
+                            title: locale.hadith, body: locale.hadithNarrated),
+                      if (_progress == 2)
+                        WalkthroughTitleBody(
+                            title: locale.letgetstarted,
+                            body: locale.letgetstartedmessage),
+                      Center(
+                        child: Container(
+                          width: 100,
+                          height: 50,
+                          margin: const EdgeInsets.only(top: 60, bottom: 30),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 3,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Row(
+                                  children: [
+                                    CircleProgress(
+                                      color: _progress == index
+                                          ? Colors.white
+                                          : null,
+                                    ),
+                                    const SizedBox(
+                                      width: 15,
+                                    )
+                                  ],
+                                );
+                              }),
+                        ),
+                      ),
+                      _progress != 2
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                WalkButton(
+                                  onPress: () {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const MLLoginScreen()),
+                                        (Route<dynamic> route) => false);
+                                  },
+                                  label: locale.skip!,
+                                ),
+                                WalkButton(
+                                  onPress: () {
+                                    setState(() {
+                                      _progress = _progress + 1;
+                                    });
+                                  },
+                                  label: locale.next!,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                WalkButton(
+                                  onPress: () {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const RegisterPage()),
+                                        (Route<dynamic> route) => false);
+                                  },
+                                  label: locale.getStarted!,
+                                  color: Colors.white,
+                                ),
+                                WalkButton(
+                                  onPress: () {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const MLLoginScreen()),
+                                        (Route<dynamic> route) => false);
+                                  },
+                                  label: locale.login!,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            )
+                    ],
+                  ),
+                )),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
@@ -266,7 +248,7 @@ class WalkthroughTitleBody extends StatelessWidget {
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(top: 80),
+          margin: const EdgeInsets.only(top: 50),
           child: Text(
             body!,
             textAlign: TextAlign.center,
