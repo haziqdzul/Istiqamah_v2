@@ -1906,43 +1906,43 @@ class _HomePageState extends State<HomePage>
                                                                 child:
                                                                     DefaultButton(
                                                                   onPress: () {
-                                                                    showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (context) =>
-                                                                              Dialog(
-                                                                        insetPadding:
-                                                                            const EdgeInsets.all(15),
-                                                                        child: StatefulBuilder(builder:
-                                                                            (context,
-                                                                                setState) {
-                                                                          return Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            children: const [
-                                                                              SizedBox(
-                                                                                height: 20,
-                                                                              ),
-                                                                              Icon(
-                                                                                Icons.timelapse_outlined,
-                                                                              ),
-                                                                              Text("Coming Soon"),
-                                                                              SizedBox(
-                                                                                height: 20,
-                                                                              ),
-                                                                              Text(
-                                                                                "Online Sadaqah Payment",
-                                                                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                                                                              ),
-                                                                              SizedBox(
-                                                                                height: 20,
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        }),
-                                                                      ),
-                                                                    );
+                                                                    // showDialog(
+                                                                    //   context:
+                                                                    //       context,
+                                                                    //   builder:
+                                                                    //       (context) =>
+                                                                    //           Dialog(
+                                                                    //     insetPadding:
+                                                                    //         const EdgeInsets.all(15),
+                                                                    //     child: StatefulBuilder(builder:
+                                                                    //         (context,
+                                                                    //             setState) {
+                                                                    //       return Column(
+                                                                    //         mainAxisSize:
+                                                                    //             MainAxisSize.min,
+                                                                    //         children: const [
+                                                                    //           SizedBox(
+                                                                    //             height: 20,
+                                                                    //           ),
+                                                                    //           Icon(
+                                                                    //             Icons.timelapse_outlined,
+                                                                    //           ),
+                                                                    //           Text("Coming Soon"),
+                                                                    //           SizedBox(
+                                                                    //             height: 20,
+                                                                    //           ),
+                                                                    //           Text(
+                                                                    //             "Online Sadaqah Payment",
+                                                                    //             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                                                    //           ),
+                                                                    //           SizedBox(
+                                                                    //             height: 20,
+                                                                    //           ),
+                                                                    //         ],
+                                                                    //       );
+                                                                    //     }),
+                                                                    //   ),
+                                                                    // );
                                                                     Navigator
                                                                         .push(
                                                                       context,
@@ -2949,7 +2949,7 @@ class ShowModalBody extends StatelessWidget {
           height: 10,
         ),
         const Text(
-          kDefaultText,
+          'kDefaultText',
           style: textStyleNormal,
           textAlign: TextAlign.center,
         ),

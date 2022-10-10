@@ -37,7 +37,7 @@ class _SadaqahPageState extends State<SadaqahPage> {
             SizedBox(
               height: height * .07,
               child: const Text(
-                'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it',
+                '“Sadaqah extinguishes sin as water extinguishes fire.” (Tirmidhi)',
                 style: textStyleNormal,
               ),
             ),
@@ -50,7 +50,7 @@ class _SadaqahPageState extends State<SadaqahPage> {
                 width: width,
                 // height: height * 0.3,
                 child: const Text(
-                  kDefaultText,
+                  'Sadaqah is the term used to describe a voluntary act of charity that is wide-reaching, for example a form of monetary charity or an act of kindness that can be performed in any amount, at any time of the year. ',
                   style: textStyleNormal,
                 ),
               ),
@@ -74,7 +74,41 @@ class _SadaqahPageState extends State<SadaqahPage> {
                         'https://easyuni.com/media/articles/2015/05/28/8114667275_499586079a_b.jpg',
                   ),
                   DefaultImageLabel(
-                      onPress: () {},
+                      onPress: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            insetPadding: const EdgeInsets.all(15),
+                            child:
+                                StatefulBuilder(builder: (context, setState) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Icon(
+                                    Icons.timelapse_outlined,
+                                  ),
+                                  Text("Coming Soon"),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "Community Welfare Sadaqah",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
+                        );
+                      },
                       label: 'Community Welfare',
                       imageUrl:
                           'https://www.newmandala.org/wp-content/uploads/cache/2020/06/LDC-of-Lombok-educating-disabled-people-and-their-families-about-the-pandemic_-Photo-by-LDC-all-rights-reserved_/371280947.jpeg'),
@@ -88,12 +122,80 @@ class _SadaqahPageState extends State<SadaqahPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DefaultImageLabel(
-                      onPress: () {},
+                      onPress: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            insetPadding: const EdgeInsets.all(15),
+                            child:
+                                StatefulBuilder(builder: (context, setState) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Icon(
+                                    Icons.timelapse_outlined,
+                                  ),
+                                  Text("Coming Soon"),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "National Mosque Sadaqah",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
+                        );
+                      },
                       label: 'National Mosque',
                       imageUrl:
                           'https://www.jomjalan.com.my/wp-content/uploads/2016/03/masjid-negara-kuala-lumpur-@faadil.jpg'),
                   DefaultImageLabel(
-                      onPress: () {},
+                      onPress: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            insetPadding: const EdgeInsets.all(15),
+                            child:
+                                StatefulBuilder(builder: (context, setState) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Icon(
+                                    Icons.timelapse_outlined,
+                                  ),
+                                  Text("Coming Soon"),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "Association Sadaqah",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
+                        );
+                      },
                       label: 'Malaysian Idle Animals Association',
                       imageUrl:
                           'https://app-production-sumbangan-oss1.oss-ap-southeast-3.aliyuncs.com/sumbangan.com/public/campaigns/detail/62280f3d7c82a6.18210066.jpeg'),
