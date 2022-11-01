@@ -82,201 +82,211 @@ class NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
-    return SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [kSecondaryColor, kPrimaryColor])),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: FutureBuilder(
-              future: countUnReadDocuments(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (!snapshot.hasData) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 60.0),
-                    child: Container(
-                      decoration: boxDecorationWithRoundedCorners(
-                        borderRadius: radiusOnly(topRight: 32),
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(locale.notification_history!,
-                                      style: boldTextStyle(size: 20)),
-                                ],
-                              ).expand(),
-                            ],
-                          ).paddingAll(16.0),
-                          Shimmer.fromColors(
-                            baseColor: Colors.grey[300],
-                            highlightColor: Colors.grey[100],
-                            child: SingleChildScrollView(
-                              child: Column(children: [
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                      top: 8.0, bottom: 8.0),
-                                  padding: const EdgeInsets.all(16.0),
-                                  decoration: boxDecorationRoundedWithShadow(8),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text('', style: primaryTextStyle()),
-                                          8.height,
-                                          Row(
-                                            children: [
-                                              Text('',
-                                                      style: boldTextStyle(
-                                                          size: 14,
-                                                          color: Colors.blue))
-                                                  .expand(),
-                                              Container(
-                                                padding:
-                                                    const EdgeInsets.all(2.0),
-                                                decoration:
-                                                    boxDecorationWithRoundedCorners(
-                                                  borderRadius: radius(10),
-                                                ),
-                                                child: Text('',
-                                                        style:
-                                                            secondaryTextStyle(
-                                                                color: white))
-                                                    .paddingOnly(
-                                                        left: 8.0, right: 8.0),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ).expand(),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                      top: 8.0, bottom: 8.0),
-                                  padding: const EdgeInsets.all(16.0),
-                                  decoration: boxDecorationRoundedWithShadow(8),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text('', style: primaryTextStyle()),
-                                          8.height,
-                                          Text('', style: secondaryTextStyle()),
-                                          Row(
-                                            children: [
-                                              Text('',
-                                                      style: boldTextStyle(
-                                                          size: 14,
-                                                          color: Colors.blue))
-                                                  .expand(),
-                                              Container(
-                                                padding:
-                                                    const EdgeInsets.all(2.0),
-                                                decoration:
-                                                    boxDecorationWithRoundedCorners(
-                                                  borderRadius: radius(10),
-                                                ),
-                                                child: Text('',
-                                                        style:
-                                                            secondaryTextStyle(
-                                                                color: white))
-                                                    .paddingOnly(
-                                                        left: 8.0, right: 8.0),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ).expand(),
-                                    ],
-                                  ),
-                                ),
-                              ]).paddingOnly(right: 16.0, left: 16.0),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                } else {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 60.0),
-                    child: Container(
-                      decoration: boxDecorationWithRoundedCorners(
-                        borderRadius: radiusOnly(topRight: 32),
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(locale.notification_history!,
-                                      style: boldTextStyle(size: 20)),
-                                  8.width,
-                                  checked == false && snapshot.data != 0
-                                      ? Container(
-                                          padding: const EdgeInsets.all(8.0),
-                                          decoration:
-                                              boxDecorationWithRoundedCorners(
-                                            backgroundColor: Colors.red,
-                                            boxShape: BoxShape.circle,
-                                          ),
-                                          child: Text('${snapshot.data}',
-                                              style: secondaryTextStyle(
-                                                  color: white)),
-                                        )
-                                      : Container(),
-                                  const Spacer(),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.more_vert,
-                                      color: Colors.blueAccent,
-                                    ),
-                                    onPressed: () {
-                                      openBottomSheet();
-                                    },
-                                  )
-                                ],
-                              ).expand(),
-                            ],
-                          ).paddingAll(16.0),
-                          empty
-                              ? locale.water1 == 'air'
-                                  ? const Text('Tiada sejarah pemberitahuan')
-                                  : const Text('No reminder history')
-                              : Container(),
-                          const MLNotificationComponent().expand(),
-                          8.height,
-                        ],
-                      ),
-                    ),
-                  );
-                }
-              }),
+    return Container(
+      decoration: const BoxDecoration(
+        color: kSecondaryColor,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: Align(
+              child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_ios,
+              //size: 20,
+              color: Colors.white,
+            ),
+          )),
+
+          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+          elevation: 0,
+          // automaticallyImplyLeading: true,
         ),
+        body: FutureBuilder(
+            future: countUnReadDocuments(),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.only(top: 10.0, left: 8.0, right: 8.0),
+                  child: Container(
+                    decoration: boxDecorationWithRoundedCorners(
+                      borderRadius: radiusOnly(topRight: 32),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(locale.notification_history!,
+                                    style: boldTextStyle(size: 20)),
+                              ],
+                            ).expand(),
+                          ],
+                        ).paddingAll(16.0),
+                        Shimmer.fromColors(
+                          baseColor: Colors.grey[300],
+                          highlightColor: Colors.grey[100],
+                          child: SingleChildScrollView(
+                            child: Column(children: [
+                              Container(
+                                margin: const EdgeInsets.only(
+                                    top: 8.0, bottom: 8.0),
+                                padding: const EdgeInsets.all(16.0),
+                                decoration: boxDecorationRoundedWithShadow(8),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('', style: primaryTextStyle()),
+                                        8.height,
+                                        Row(
+                                          children: [
+                                            Text('',
+                                                    style: boldTextStyle(
+                                                        size: 14,
+                                                        color: Colors.blue))
+                                                .expand(),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
+                                              decoration:
+                                                  boxDecorationWithRoundedCorners(
+                                                borderRadius: radius(10),
+                                              ),
+                                              child: Text('',
+                                                      style: secondaryTextStyle(
+                                                          color: white))
+                                                  .paddingOnly(
+                                                      left: 8.0, right: 8.0),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ).expand(),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(
+                                    top: 8.0, bottom: 8.0),
+                                padding: const EdgeInsets.all(16.0),
+                                decoration: boxDecorationRoundedWithShadow(8),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('', style: primaryTextStyle()),
+                                        8.height,
+                                        Text('', style: secondaryTextStyle()),
+                                        Row(
+                                          children: [
+                                            Text('',
+                                                    style: boldTextStyle(
+                                                        size: 14,
+                                                        color: Colors.blue))
+                                                .expand(),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
+                                              decoration:
+                                                  boxDecorationWithRoundedCorners(
+                                                borderRadius: radius(10),
+                                              ),
+                                              child: Text('',
+                                                      style: secondaryTextStyle(
+                                                          color: white))
+                                                  .paddingOnly(
+                                                      left: 8.0, right: 8.0),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ).expand(),
+                                  ],
+                                ),
+                              ),
+                            ]).paddingOnly(right: 16.0, left: 16.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Container(
+                    decoration: boxDecorationWithRoundedCorners(
+                      borderRadius: radiusOnly(topRight: 32),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(locale.notification_history!,
+                                    style: boldTextStyle(size: 20)),
+                                8.width,
+                                checked == false && snapshot.data != 0
+                                    ? Container(
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration:
+                                            boxDecorationWithRoundedCorners(
+                                          backgroundColor: Colors.red,
+                                          boxShape: BoxShape.circle,
+                                        ),
+                                        child: Text('${snapshot.data}',
+                                            style: secondaryTextStyle(
+                                                color: white)),
+                                      )
+                                    : Container(),
+                                const Spacer(),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.more_vert,
+                                    color: Colors.blueAccent,
+                                  ),
+                                  onPressed: () {
+                                    openBottomSheet();
+                                  },
+                                )
+                              ],
+                            ).expand(),
+                          ],
+                        ).paddingAll(16.0),
+                        empty
+                            ? locale.water1 == 'air'
+                                ? const Text('Tiada sejarah pemberitahuan')
+                                : const Text('No reminder history')
+                            : Container(),
+                        const MLNotificationComponent().expand(),
+                        8.height,
+                      ],
+                    ),
+                  ),
+                );
+              }
+            }),
       ),
     );
   }

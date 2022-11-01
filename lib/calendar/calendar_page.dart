@@ -24,33 +24,52 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
     return Scaffold(
+      appBar: AppBar(
+        leading: Align(
+            child: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            //size: 20,
+            color: Colors.black,
+          ),
+        )),
+        backgroundColor: Colors.grey[50],
+        elevation: 0,
+        //automaticallyImplyLeading: true,
+      ),
       body: SafeArea(
-        child: Calendar(
-          startOnMonday: true,
-          weekDays: [
-            locale.mon!,
-            locale.tue!,
-            locale.wed!,
-            locale.thu!,
-            locale.fri!,
-            locale.sat!,
-            locale.sun!
-          ],
-          eventsList: eventLists(context),
-          onRangeSelected: (range) =>
-              print('Range is ${range.from}, ${range.to}'),
-          onDateSelected: (date) => _handleNewDate(date),
-          isExpandable: true,
-          eventDoneColor: Colors.green[400],
-          selectedColor: Colors.lime[400],
-          todayColor: Colors.orange,
-          eventColor: null,
-          locale: language(),
-          todayButtonText: locale.today!,
-          isExpanded: true,
-          expandableDateFormat: 'EEEE, dd. MMMM yyyy',
-          dayOfWeekStyle: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w800, fontSize: 11),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Calendar(
+            startOnMonday: true,
+            weekDays: [
+              locale.mon!,
+              locale.tue!,
+              locale.wed!,
+              locale.thu!,
+              locale.fri!,
+              locale.sat!,
+              locale.sun!
+            ],
+            eventsList: eventLists(context),
+            onRangeSelected: (range) =>
+                print('Range is ${range.from}, ${range.to}'),
+            onDateSelected: (date) => _handleNewDate(date),
+            isExpandable: true,
+            eventDoneColor: Colors.green[400],
+            selectedColor: Colors.lime[400],
+            todayColor: Colors.orange,
+            eventColor: null,
+            locale: language(),
+            todayButtonText: locale.today!,
+            isExpanded: true,
+            expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+            dayOfWeekStyle: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w800, fontSize: 11),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

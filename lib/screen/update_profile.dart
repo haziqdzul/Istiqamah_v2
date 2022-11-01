@@ -41,7 +41,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
               userData.address2 = value.get('address line 2');
               userData.address3 = value.get('address line 3');
             }));
-    //
   }
 
   @override
@@ -53,6 +52,23 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: Align(
+              child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_ios,
+              //size: 20,
+              color: Colors.white,
+            ),
+          )),
+
+          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+          elevation: 0,
+          // automaticallyImplyLeading: true,
+        ),
         body: Stack(
           children: [
             Container(

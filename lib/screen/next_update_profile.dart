@@ -359,59 +359,60 @@ class _NextUpdateProfileScreenState extends State<NextUpdateProfileScreen> {
                   ),
                   // Positioned(top: 45, child: mlBackToPrevious(context, blackColor)),
                   Positioned(
-                    bottom: 8,
-                    left: 16,
-                    right: 16,
-                    child: (_enabled)
-                        ? AppButton(
-                            height: 50,
-                            width: context.width(),
-                            color: ManyColors.textColor2,
-                            onTap: () async {
-                              setState(() {
-                                loading = true;
-                              });
-                              if (us.userData.phoneNo != null) {
-                                await DatabaseService(
-                                        uid: AppUser.instance.user!.uid)
-                                    .userData(
-                                  us.userData.gender ?? widget.gender,
-                                  us.userData.title ?? widget.title,
-                                  us.userData.dob ?? widget.dob,
-                                  us.userData.country ?? widget.country,
-                                  us.userData.state ?? widget.state,
-                                  us.userData.city ?? widget.city,
-                                  us.userData.postcode ?? widget.postcode,
-                                  us.userData.address1 ?? widget.address1,
-                                  us.userData.address2 ?? widget.address2,
-                                  us.userData.address3 ?? widget.address3,
-                                  us.userData.ethnicity ?? 'No data',
-                                  widget.phoneNo,
-                                  us.userData.height ?? 'No data',
-                                  us.userData.weight ?? 'No data',
-                                  us.userData.bmi ?? 'No data',
-                                );
-                                setState(() {
-                                  loading = false;
-                                });
-                                const MLSplashScreenHadis().launch(context);
-                              } else {
-                                showTopSnackBar(
-                                  context,
-                                  CustomSnackBar.error(
-                                    message: locale.fillAllInformation!,
-                                  ),
-                                );
-                                setState(() {
-                                  loading = false;
-                                });
-                              }
-                            },
-                            child: Text(locale.save!,
-                                style: boldTextStyle(color: black)),
-                          )
-                        : Container(),
-                  ),
+                      bottom: 8,
+                      left: 16,
+                      right: 16,
+                      child:
+                          //(_enabled)
+                          AppButton(
+                        height: 50,
+                        width: context.width(),
+                        color: ManyColors.color10,
+                        onTap: () async {
+                          setState(() {
+                            loading = true;
+                          });
+                          if (us.userData.phoneNo != null) {
+                            await DatabaseService(
+                                    uid: AppUser.instance.user!.uid)
+                                .userData(
+                              us.userData.gender ?? widget.gender,
+                              us.userData.title ?? widget.title,
+                              us.userData.dob ?? widget.dob,
+                              us.userData.country ?? widget.country,
+                              us.userData.state ?? widget.state,
+                              us.userData.city ?? widget.city,
+                              us.userData.postcode ?? widget.postcode,
+                              us.userData.address1 ?? widget.address1,
+                              us.userData.address2 ?? widget.address2,
+                              us.userData.address3 ?? widget.address3,
+                              us.userData.ethnicity ?? 'No data',
+                              widget.phoneNo,
+                              us.userData.height ?? 'No data',
+                              us.userData.weight ?? 'No data',
+                              us.userData.bmi ?? 'No data',
+                            );
+                            setState(() {
+                              loading = false;
+                            });
+                            const MLSplashScreenHadis().launch(context);
+                          } else {
+                            showTopSnackBar(
+                              context,
+                              CustomSnackBar.error(
+                                message: locale.fillAllInformation!,
+                              ),
+                            );
+                            setState(() {
+                              loading = false;
+                            });
+                          }
+                        },
+                        child: Text(locale.save!,
+                            style: boldTextStyle(color: black)),
+                      )
+                      // : Container(),
+                      ),
                 ],
               ),
             ),
