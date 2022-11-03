@@ -562,7 +562,7 @@ class _HomePageState extends State<HomePage>
                     setState(() {
                       isSwitched4 = true;
                     });
-                    d = DateFormat.jm().format(schedule);
+                    d = DateFormat.Hm().format(schedule);
                     createTahajjudReminderNotification(schedule);
                     String? id = AppUser.instance.user!.uid;
                     DocumentReference users = FirebaseFirestore.instance
@@ -724,7 +724,7 @@ class _HomePageState extends State<HomePage>
             Timestamp myTimeStamp = value["time"];
             DateTime myDateTime = myTimeStamp.toDate();
             setState(() {
-              d = DateFormat.jm().format(myDateTime);
+              d = DateFormat.Hm().format(myDateTime);
             });
             DateTime now = DateTime.now();
             DateTime schedule = DateTime(now.year, now.month, now.day,
@@ -843,7 +843,7 @@ class _HomePageState extends State<HomePage>
       DateTime myDateTime = myTimeStamp.toDate();
       setState(() {
         if (type == 'tahajjud') {
-          d = DateFormat.jm().format(myDateTime);
+          d = DateFormat.Hm().format(myDateTime);
         }
         if (type == 'sadaqah') {
           c = DateFormat.jm().format(myDateTime);

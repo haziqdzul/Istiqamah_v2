@@ -224,7 +224,7 @@ class Medicine2Provider extends ChangeNotifier {
         String time = list[i];
         DateTime now = DateTime.now();
         String formatTime = "0${now.year}.${now.month}.${now.day} AD $time";
-        newTime.add(DateFormat('yyyyy.MM.dd GGG hh:mm aaa').parse(formatTime));
+        newTime.add(DateFormat('yyyyy.MM.dd GGG hh:mm').parse(formatTime));
 
         if (newTime[i != 0 ? i - 1 : i].hour >= 22 ||
             newTime[i != 0 ? i - 1 : i].day > newTime[i].day) {

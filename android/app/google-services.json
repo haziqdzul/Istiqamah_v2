@@ -52,6 +52,42 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:793399248157:android:2e1b67ff1e5f8c50370df4",
+        "android_client_info": {
+          "package_name": "com.istiqamah.assunnah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793399248157-nhuap3phkheg0j9u7vj0u78u5rj0oafl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFqh783DdRe0rpWxp4Casf_oBN1y-SG8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793399248157-nhuap3phkheg0j9u7vj0u78u5rj0oafl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "793399248157-6sl94s0c2m61a7j65s9c534757ubf2l7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hhgcAsSunnah"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:793399248157:android:37c61c253f19a078370df4",
         "android_client_info": {
           "package_name": "com.istiqamah.istiqamahv2"
