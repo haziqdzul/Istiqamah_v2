@@ -24,8 +24,15 @@ class _WalktroughPageState extends State<WalktroughPage> {
   late LanguageCubit _languageCubit;
   final PageController controller = PageController();
 
+  getIntro() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('loggedIn', "no");
+  }
+
   @override
   void initState() {
+    getIntro();
+
     super.initState();
     _languageCubit = BlocProvider.of<LanguageCubit>(context);
     controller.addListener(() {

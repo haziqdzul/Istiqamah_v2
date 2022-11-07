@@ -18,6 +18,8 @@ import 'package:istiqamah_app/providers/medicine2.provider.dart';
 import 'package:istiqamah_app/providers/profile.provider.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:istiqamah_app/providers/water.provider.dart';
+import 'package:istiqamah_app/screen/home_page.dart';
+import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:istiqamah_app/widgets/language_cubit.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -211,6 +213,32 @@ class _SplashScreenState extends State<SplashScreen> {
             (Route<dynamic> route) => false);
       });
     });
+    Timer(
+      Duration(seconds: 2),
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+
+        var loggedIn = preferences.getString('loggedIn');
+
+        print(loggedIn);
+        print("succeed");
+
+        if (loggedIn == "yes") {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        }
+//IntroScreen
+        if (loggedIn == "no") {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MLLoginScreen()));
+        } //SignIn
+        if (loggedIn != "yes" && loggedIn == null) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => WalktroughPage()));
+        }
+      },
+    );
   }
 
   @override

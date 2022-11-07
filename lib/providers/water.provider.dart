@@ -167,7 +167,7 @@ class WaterProvider extends ChangeNotifier {
                   key: "ARCHIVE",
                   label: langCode == 'My' ? 'Langkau' : 'Skip',
                   autoDismissible: true,
-                  buttonType: ActionButtonType.Default),
+                  buttonType: ActionButtonType.DisabledAction),
               NotificationActionButton(
                   key: "TAKE",
                   label: langCode == 'My' ? 'Tandakan dibaca' : 'Mark as read',
