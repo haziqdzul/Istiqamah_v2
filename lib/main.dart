@@ -202,6 +202,34 @@ class _SplashScreenState extends State<SplashScreen> {
   bool _visible = true;
   @override
   void initState() {
+    listenActionStream() {
+      AwesomeNotifications().actionStream.listen((receivedAction) {
+        var payload = receivedAction.payload;
+
+        if (receivedAction.channelKey == 'medicine1_channel') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomePage())); //do something here
+        } else if (receivedAction.channelKey == 'medicine2_channel') {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else if (receivedAction.channelKey == 'product_channel') {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else if (receivedAction.channelKey == 'sadaqah_channel') {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else if (receivedAction.channelKey == 'water_channel') {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        }
+      });
+    }
+
     super.initState();
     Timer(const Duration(seconds: 2), () {
       setState(() {
@@ -239,6 +267,14 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       },
     );
+  }
+
+  @override
+  void dispose() {
+    AwesomeNotifications().actionSink.close();
+    AwesomeNotifications().createdSink.close();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
