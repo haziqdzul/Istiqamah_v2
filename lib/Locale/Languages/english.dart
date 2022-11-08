@@ -240,7 +240,7 @@ Map<String, String> english() {
     'loadingBack': 'Back',
     'letgetstarted': 'Register your account',
     'letgetstartedmessage':
-        'For first time user, lets "Register" by creating your account.',
+        "For first time user, let's register by creating your account.",
     'login': 'Login',
     'forgotPassword': 'Forgot password?',
     'dontHaveAnAccount': 'Dont have an account?',
