@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:istiqamah_app/constants/constant.dart';
 import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:istiqamah_app/screen/registerPage.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
@@ -19,10 +19,13 @@ class WalktroughPage extends StatefulWidget {
 }
 
 class _WalktroughPageState extends State<WalktroughPage> {
-  int _progress = 0;
-  int currentIndex = 0;
   late LanguageCubit _languageCubit;
-  final PageController controller = PageController();
+  final controller = PageController();
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   getIntro() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -35,13 +38,6 @@ class _WalktroughPageState extends State<WalktroughPage> {
 
     super.initState();
     _languageCubit = BlocProvider.of<LanguageCubit>(context);
-    controller.addListener(() {
-      if (controller.page!.round() != currentIndex) {
-        setState(() {
-          currentIndex = controller.page!.round();
-        });
-      }
-    });
   }
 
   List<DropdownMenuItem<String>> get dropdownItems {
@@ -85,146 +81,231 @@ class _WalktroughPageState extends State<WalktroughPage> {
     var locale = AppLocalizations.of(context)!;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.amber,
-        body: SizedBox(
-          child: Stack(children: [
-            Positioned(
-              //top: 0,
-              child: Container(
-                height: height * 0.55,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/wt${_progress + 1}.png"),
-                        fit: BoxFit.cover),
-                    color: Colors.black,
-                    borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(530))),
-              ),
-            ),
-            Positioned(
-                bottom: 0,
-                child: Container(
-                  width: width,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  margin: const EdgeInsets.only(bottom: 20),
-                  child: Column(
-                    children: [
-                      if (_progress == 0)
-                        WalkthroughTitleBody(
-                          title: locale.asSunnahApp,
-                          body: locale.usingTechnology,
-                        ),
-                      if (_progress == 1)
-                        WalkthroughTitleBody(
-                            title: locale.hadith, body: locale.hadithNarrated),
-                      if (_progress == 2)
-                        WalkthroughTitleBody(
-                            title: locale.letgetstarted,
-                            body: locale.letgetstartedmessage),
-                      Center(
-                        child: Container(
-                          width: 100,
-                          height: 50,
-                          margin: const EdgeInsets.only(top: 60, bottom: 30),
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Row(
-                                  children: [
-                                    CircleProgress(
-                                      color: _progress == index
-                                          ? Colors.white
-                                          : null,
-                                    ),
-                                    const SizedBox(
-                                      width: 15,
-                                    )
-                                  ],
-                                );
-                              }),
-                        ),
+        child: Scaffold(
+            backgroundColor: Colors.amber,
+            body: PageView(
+              controller: controller,
+              children: [
+                SizedBox(
+                  child: Stack(children: [
+                    Positioned(
+                      //top: 0,
+                      child: Container(
+                        height: height * 0.55,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/wt1.png"),
+                                fit: BoxFit.cover),
+                            color: Colors.black,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(530))),
                       ),
-                      _progress != 2
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                WalkButton(
-                                  onPress: () {
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MLLoginScreen()),
-                                        (Route<dynamic> route) => false);
-                                  },
-                                  label: locale.skip!,
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        child: Container(
+                          width: width,
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            children: [
+                              WalkthroughTitleBody(
+                                title: locale.asSunnahApp,
+                                body: locale.usingTechnology,
+                              ),
+                              Center(
+                                child: Container(
+                                  width: 100,
+                                  height: 50,
+                                  margin: const EdgeInsets.only(
+                                      top: 60, bottom: 30),
                                 ),
-                                WalkButton(
-                                  onPress: () {
-                                    setState(() {
-                                      _progress = _progress + 1;
-                                    });
-                                  },
-                                  label: locale.next!,
-                                  color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 16),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: DropdownButton(
+                            dropdownColor: Colors.grey,
+                            underline: Container(),
+                            elevation: 2,
+                            value: selectedValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValue = newValue!;
+                              });
+                            },
+                            items: dropdownItems),
+                      ),
+                    ),
+                  ]),
+                ),
+                SizedBox(
+                  child: Stack(children: [
+                    Positioned(
+                      //top: 0,
+                      child: Container(
+                        height: height * 0.55,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/wt2.png"),
+                                fit: BoxFit.cover),
+                            color: Colors.black,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(530))),
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        child: Container(
+                          width: width,
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            children: [
+                              WalkthroughTitleBody(
+                                  title: locale.hadith,
+                                  body: locale.hadithNarrated),
+                              Center(
+                                child: Container(
+                                  width: 100,
+                                  height: 50,
+                                  margin: const EdgeInsets.only(
+                                      top: 60, bottom: 30),
                                 ),
-                              ],
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                WalkButton(
-                                  onPress: () {
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const RegisterPage()),
-                                        (Route<dynamic> route) => false);
-                                  },
-                                  label: locale.getStarted!,
-                                  color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 16),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: DropdownButton(
+                            dropdownColor: Colors.grey,
+                            underline: Container(),
+                            elevation: 2,
+                            value: selectedValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValue = newValue!;
+                              });
+                            },
+                            items: dropdownItems),
+                      ),
+                    ),
+                  ]),
+                ),
+                SizedBox(
+                  child: Stack(children: [
+                    Positioned(
+                      //top: 0,
+                      child: Container(
+                        height: height * 0.55,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/wt3.png"),
+                                fit: BoxFit.cover),
+                            color: Colors.black,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(530))),
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        child: Container(
+                          width: width,
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            children: [
+                              WalkthroughTitleBody(
+                                  title: locale.letgetstarted,
+                                  body: locale.letgetstartedmessage),
+                              Center(
+                                child: Container(
+                                  width: 100,
+                                  height: 50,
+                                  margin: const EdgeInsets.only(
+                                      top: 60, bottom: 30),
                                 ),
-                                WalkButton(
-                                  onPress: () {
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MLLoginScreen()),
-                                        (Route<dynamic> route) => false);
-                                  },
-                                  label: locale.login!,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            )
-                    ],
-                  ),
-                )),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: DropdownButton(
-                    dropdownColor: Colors.grey,
-                    underline: Container(),
-                    elevation: 2,
-                    value: selectedValue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedValue = newValue!;
-                      });
-                    },
-                    items: dropdownItems),
-              ),
+                              ),
+                            ],
+                          ),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 16),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: DropdownButton(
+                            dropdownColor: Colors.grey,
+                            underline: Container(),
+                            elevation: 2,
+                            value: selectedValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValue = newValue!;
+                              });
+                            },
+                            items: dropdownItems),
+                      ),
+                    ),
+                  ]),
+                ),
+              ],
             ),
-          ]),
-        ),
-      ),
-    );
+            bottomSheet: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                color: Colors.amber,
+                height: 80,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        WalkButton(
+                          onPress: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MLLoginScreen()),
+                                (Route<dynamic> route) => false);
+                          },
+                          label: locale.skip!,
+                        ),
+                        Center(
+                          child: SmoothPageIndicator(
+                            controller: controller,
+                            count: 3,
+                            effect: const SwapEffect(
+                                spacing: 10,
+                                dotColor: Colors.grey,
+                                activeDotColor: Colors.white),
+                            onDotClicked: (index) => controller.animateToPage(
+                                index,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn),
+                          ),
+                        ),
+                        WalkButton(
+                          onPress: () => controller.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut),
+                          label: locale.next!,
+                          color: Colors.white,
+                        ),
+                      ],
+                    )
+                  ],
+                ))));
   }
 }
 
@@ -270,31 +351,6 @@ class WalkthroughTitleBody extends StatelessWidget {
   }
 }
 
-class CircleProgress extends StatelessWidget {
-  CircleProgress({Key? key, this.color}) : super(key: key);
-
-  Color? color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(1.5),
-      width: 20,
-      height: 20,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: kGreyColor, width: 2),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: color,
-        ),
-      ),
-    );
-  }
-}
-
 class WalkButton extends StatelessWidget {
   WalkButton({Key? key, required this.label, this.onPress, this.color})
       : super(key: key);
@@ -308,10 +364,8 @@ class WalkButton extends StatelessWidget {
       onTap: onPress,
       child: Container(
         alignment: Alignment.center,
-        width: 125,
+        width: 100,
         padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(16)),
         child: Text(
           label,
           style: const TextStyle(fontSize: 16),
