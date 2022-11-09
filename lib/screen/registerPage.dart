@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../Locale/locales.dart';
-import '../Utils/common.dart';
 import '../constants/constant.dart';
 import '../models/user.model.dart';
 import '../providers/user.provider.dart';
@@ -69,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
           body: Stack(
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.only(top: 150),
+                margin: const EdgeInsets.only(top: 100),
                 padding: const EdgeInsets.only(right: 16.0, left: 16.0),
                 decoration: boxDecorationWithRoundedCorners(
                     borderRadius: radiusOnly(topRight: 32)),
@@ -386,10 +385,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               22.height,
-              Positioned(
-                top: 30,
-                child: mlBackToPrevious(context, blackColor),
-              ),
             ],
           ).center(),
         ),
