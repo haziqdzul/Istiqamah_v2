@@ -172,7 +172,7 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                 body: Stack(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(top: 150),
+                      margin: const EdgeInsets.only(top: 100),
                       height: context.height(),
                       decoration: boxDecorationWithRoundedCorners(
                           borderRadius: radiusOnly(topRight: 32)),

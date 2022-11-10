@@ -21,6 +21,7 @@ class WalktroughPage extends StatefulWidget {
 class _WalktroughPageState extends State<WalktroughPage> {
   late LanguageCubit _languageCubit;
   final controller = PageController();
+  bool isLastPage = false;
   @override
   void dispose() {
     controller.dispose();
@@ -35,7 +36,6 @@ class _WalktroughPageState extends State<WalktroughPage> {
   @override
   void initState() {
     getIntro();
-
     super.initState();
     _languageCubit = BlocProvider.of<LanguageCubit>(context);
   }
@@ -87,6 +87,9 @@ class _WalktroughPageState extends State<WalktroughPage> {
             backgroundColor: Colors.amber,
             body: PageView(
               controller: controller,
+              onPageChanged: (index) {
+                setState(() => isLastPage = index == 2);
+              },
               children: [
                 SizedBox(
                   child: Stack(children: [
@@ -262,50 +265,101 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 ),
               ],
             ),
-            bottomSheet: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
-                color: Colors.amber,
-                height: 80,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            bottomSheet: isLastPage
+                ? Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
+                    color: Colors.amber,
+                    height: 80,
+                    child: Column(
                       children: [
-                        WalkButton(
-                          onPress: () {
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MLLoginScreen()),
-                                (Route<dynamic> route) => false);
-                          },
-                          label: locale.skip!,
-                        ),
-                        Center(
-                          child: SmoothPageIndicator(
-                            controller: controller,
-                            count: 3,
-                            effect: const SwapEffect(
-                                spacing: 10,
-                                dotColor: Colors.grey,
-                                activeDotColor: Colors.white),
-                            onDotClicked: (index) => controller.animateToPage(
-                                index,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeIn),
-                          ),
-                        ),
-                        WalkButton(
-                          onPress: () => controller.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut),
-                          label: locale.next!,
-                          color: Colors.white,
-                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            WalkButton(
+                              onPress: () {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MLLoginScreen()),
+                                    (Route<dynamic> route) => false);
+                              },
+                              label: locale.skip!,
+                            ),
+                            Center(
+                              child: SmoothPageIndicator(
+                                controller: controller,
+                                count: 3,
+                                effect: const SwapEffect(
+                                    spacing: 10,
+                                    dotColor: Colors.grey,
+                                    activeDotColor: Colors.white),
+                                onDotClicked: (index) =>
+                                    controller.animateToPage(index,
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        curve: Curves.easeIn),
+                              ),
+                            ),
+                            WalkButton(
+                              onPress: () {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterPage()),
+                                    (Route<dynamic> route) => false);
+                              },
+                              label: locale.getStarted!,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ))));
+                    ))
+                : Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 35),
+                    color: Colors.amber,
+                    height: 80,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            WalkButton(
+                              onPress: () {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MLLoginScreen()),
+                                    (Route<dynamic> route) => false);
+                              },
+                              label: locale.skip!,
+                            ),
+                            Center(
+                              child: SmoothPageIndicator(
+                                controller: controller,
+                                count: 3,
+                                effect: const SwapEffect(
+                                    spacing: 10,
+                                    dotColor: Colors.grey,
+                                    activeDotColor: Colors.white),
+                                onDotClicked: (index) =>
+                                    controller.animateToPage(index,
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        curve: Curves.easeIn),
+                              ),
+                            ),
+                            WalkButton(
+                              onPress: () => controller.nextPage(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut),
+                              label: locale.next!,
+                              color: Colors.white,
+                            ),
+                          ],
+                        )
+                      ],
+                    ))));
   }
 }
 

@@ -243,7 +243,7 @@ Map<String, String> indonesian() {
     'loadingBack': 'Kembali',
     'letgetstarted': 'Daftar Akaun Anda',
     'letgetstartedmessage':
-        'Untuk pengguna kali pertama, sila "Daftar" dengan membuka akaun anda.',
+        'Untuk pengguna kali pertama, sila Daftar dengan membuka akaun anda.',
     'hadith': 'Menghidupkan Sunnah',
     'hadithNarrated':
         'Sesiapa yang menghidupkan sunnahku, sesungguhnya dia mencintaiku dan sesiapa yang mencintaiku akan bersama denganku di syurga. \n [(Hadis riwayat Al-Tarmizi (2678)]',
