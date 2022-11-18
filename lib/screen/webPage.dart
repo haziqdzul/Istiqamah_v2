@@ -61,7 +61,7 @@ Future<bool> _exitApp(BuildContext context) async {
     print("onwill goback");
     controllerGlobal.goBack();
   } else {
-    Scaffold.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("No previous history")),
     );
   }
