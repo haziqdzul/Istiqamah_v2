@@ -139,14 +139,14 @@ class _SettingPageState extends State<SettingPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Account data',
+                  locale.accountData!,
                   style: textStyleBold,
                 ),
                 const SizedBox(
                   height: 25,
                 ),
                 DefaultButton(
-                  label: 'Delete account',
+                  label: locale.deleteAccount!,
                   textStyle: textStyleNormal,
                   decoration: BoxDecoration(
                       color: kGreyColor,

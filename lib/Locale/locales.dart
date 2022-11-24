@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show SynchronousFuture;
-import 'dart:async';
+import 'package:flutter/material.dart';
+
 import 'Languages/arabic.dart';
 import 'Languages/english.dart';
 import 'Languages/french.dart';
@@ -2008,6 +2010,14 @@ class AppLocalizations {
 
   String? get privacy20 {
     return _localizedValues[locale.languageCode]!['privacy20'];
+  }
+
+  String? get accountData {
+    return _localizedValues[locale.languageCode]!['accountData'];
+  }
+
+  String? get deleteAccount {
+    return _localizedValues[locale.languageCode]!['deleteAccount'];
   }
 }
 

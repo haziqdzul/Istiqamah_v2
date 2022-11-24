@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/constants/constant.dart';
+
 import '../Locale/locales.dart';
 import '../screen/all.hadis.dart';
 

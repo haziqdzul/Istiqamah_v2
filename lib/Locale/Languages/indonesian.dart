@@ -231,7 +231,8 @@ Map<String, String> indonesian() {
     'required': 'Diperlukan',
     'helpdesk': 'Meja bantuan',
     'sentEmail': '(Hantar e-mel)',
-    'categoryBMItable': 'Rujuk jadual BMI untuk \nmenyemak kategori anda',
+    'categoryBMItable':
+        'Pilih jenis bangsa sebelum merujuk jadual BMI untuk \nmenyemak kategori anda',
     'emailHandling': 'Masukkan e-mel yang betul (e.g: a@gmail.com)',
     'fullnameHandling': 'Hanya abjad dibenarkan',
     'passwordHandling':
@@ -246,7 +247,7 @@ Map<String, String> indonesian() {
         'Untuk pengguna kali pertama, sila Daftar dengan membuka akaun anda.',
     'hadith': 'Menghidupkan Sunnah',
     'hadithNarrated':
-        'Sesiapa yang menghidupkan sunnahku, sesungguhnya dia mencintaiku dan sesiapa yang mencintaiku akan bersama denganku di syurga. \n [(Hadis riwayat Al-Tarmizi (2678)]',
+        'Sesiapa yang menghidupkan sunnahku, sesungguhnya dia mencintaiku dan sesiapa yang mencintaiku akan bersama denganku di syurga. \n [Hadis riwayat Al-Tarmizi (2678)]',
     'login': 'Log Masuk',
     'forgotPassword': 'Terlupa kata laluan?',
     'dontHaveAnAccount': 'Tiada akaun lagi?',
@@ -399,5 +400,7 @@ Map<String, String> indonesian() {
     'secondAgo': 'saat yang lalu',
     'justNow': 'sebentar tadi',
     'selectLanguage': 'Pilih bahasa',
+    'accountData': 'Data akaun',
+    'deleteAccount': 'Padam akaun',
   };
 }

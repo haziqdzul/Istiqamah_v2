@@ -26,7 +26,6 @@ import 'package:provider/provider.dart';
 
 import 'Locale/locales.dart';
 import 'Routes/routes.dart';
-import 'screen/walkthrough_page.dart';
 
 //
 void main() async {
@@ -237,7 +236,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
       Timer(const Duration(seconds: 2), () {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const WalktroughPage()),
+            MaterialPageRoute(builder: (context) => HomePage()),
             (Route<dynamic> route) => false);
       });
     });
@@ -262,8 +261,8 @@ class _SplashScreenState extends State<SplashScreen> {
               MaterialPageRoute(builder: (context) => MLLoginScreen()));
         } //SignIn
         if (loggedIn != "yes" && loggedIn == null) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WalktroughPage()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
         }
       },
     );
