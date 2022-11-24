@@ -1,6 +1,8 @@
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 
+import '../Locale/locales.dart';
+
 class SadaqahDetails extends StatefulWidget {
   const SadaqahDetails({Key? key}) : super(key: key);
 
@@ -12,6 +14,7 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
   int val = 0;
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalizations.of(context)!;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double appbarSize = AppBar().preferredSize.height;
@@ -53,9 +56,9 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                     ),
                     child: Column(
                       children: [
-                        const Text(
-                          'Screenshot and scan using DuitNow QR Scanner from any Banking mobile app to donate.',
-                          style: TextStyle(
+                        Text(
+                          locale.screenshotandscan!,
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 15,
                             // fontWeight: FontWeight.bold,
@@ -87,9 +90,9 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                               // The second arguments decide wether the app redirects PlayStore or AppStore.
                               // For testing purpose you can enter com.instagram.android
                             },
-                            child: const Center(
+                            child: Center(
                               child: Text(
-                                "Scan using Maybank",
+                                locale.scanMaybank!,
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -111,9 +114,9 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                               // The second arguments decide wether the app redirects PlayStore or AppStore.
                               // For testing purpose you can enter com.instagram.android
                             },
-                            child: const Center(
+                            child: Center(
                               child: Text(
-                                "Scan using Bank Islam",
+                                locale.scanBankIslam!,
                                 textAlign: TextAlign.center,
                               ),
                             )),
@@ -160,9 +163,9 @@ class _SadaqahDetailsState extends State<SadaqahDetails> {
                               // The second arguments decide wether the app redirects PlayStore or AppStore.
                               // For testing purpose you can enter com.instagram.android
                             },
-                            child: const Center(
+                            child: Center(
                               child: Text(
-                                "Scan using CIMB",
+                                locale.scanCIMB!,
                                 textAlign: TextAlign.center,
                               ),
                             )),

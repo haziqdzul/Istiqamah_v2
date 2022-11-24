@@ -3,6 +3,24 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> indonesian() {
   final box = GetStorage();
   return {
+    'screenshotandscan':
+        'Tangkapan skrin dan imbasan menggunakan Pengimbas QR DuitNow daripada mana-mana aplikasi mudah alih Perbankan untuk menderma.',
+    'scanCIMB': 'Imbas menggunakan CIMB',
+    'scanBankIslam': 'Imbas menggunakan Bank Islam',
+    'scanMaybank': 'Imbas menggunakan Maybank',
+    'communitywelfare2': 'Sedekah untuk Kebajikan Masyarakat',
+    'communitywelfare': 'Kebajikan Masyarakat',
+    'nationalmosque': 'Masjid Negara',
+    'nationalmosque2': 'Sedekah untuk Masjid Negara',
+    'animalsassociation': 'Persatuan Haiwan Terbiar Malaysia',
+    'associationsadaqah': 'Sedekah Persatuan',
+    'sadaqahpagedesc1':
+        '“Sedekah dapat memadamkan dosa sebagaimana air memadamkan api.” (Tirmizi)',
+    'sadaqahpagedesc2':
+        'Sedekah ialah istilah yang digunakan untuk menggambarkan sedekah sukarela yang meluas, contohnya sedekah berbentuk wang atau kebaikan yang boleh dilakukan dalam apa jua jumlah, pada bila-bila masa sepanjang tahun.',
+    'swap': 'Luncurkan bulatan ke kiri atau kanan untuk mengemas kini data',
+    'fastingreminder': 'Peringatan Puasa Sunnah',
+    'soon': 'Akan Datang',
     'tahunbaru': 'Tahun Baru Islam',
     'rDay': 'Hari Keagamaan',
     'navigationTracker': 'Penjejak Solat',
