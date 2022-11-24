@@ -81,23 +81,23 @@ class _CalendarScreenState extends State<CalendarScreen> {
               child: StatefulBuilder(builder: (context, setState) {
                 return Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(
+                  children: const [
+                    SizedBox(
                       height: 20,
                     ),
-                    const Icon(
+                    Icon(
                       Icons.timelapse_outlined,
                     ),
-                    Text(locale.soon!),
-                    const SizedBox(
+                    Text("Coming Soon"),
+                    SizedBox(
                       height: 20,
                     ),
                     Text(
-                      locale.fastingreminder!,
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold),
+                      "Sunnah Fasting Reminder",
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                   ],
