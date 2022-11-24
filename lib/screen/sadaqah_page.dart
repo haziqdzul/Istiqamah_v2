@@ -3,6 +3,7 @@ import 'package:istiqamah_app/components/default_scaffold.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 import 'package:istiqamah_app/screen/sadaqah_details_page.dart';
 
+import '../Locale/locales.dart';
 import '../components/card_body.dart';
 import '../components/image_label.dart';
 
@@ -16,6 +17,7 @@ class SadaqahPage extends StatefulWidget {
 class _SadaqahPageState extends State<SadaqahPage> {
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalizations.of(context)!;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return DefaultBody(
@@ -27,8 +29,8 @@ class _SadaqahPageState extends State<SadaqahPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Sadaqah',
+            Text(
+              locale.sadaqah1!,
               style: textStyleBold,
             ),
             const SizedBox(
@@ -36,8 +38,8 @@ class _SadaqahPageState extends State<SadaqahPage> {
             ),
             SizedBox(
               height: height * .07,
-              child: const Text(
-                '“Sadaqah extinguishes sin as water extinguishes fire.” (Tirmidhi)',
+              child: Text(
+                locale.sadaqahpagedesc1!,
                 style: textStyleNormal,
               ),
             ),
@@ -49,8 +51,8 @@ class _SadaqahPageState extends State<SadaqahPage> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 width: width,
                 // height: height * 0.3,
-                child: const Text(
-                  'Sadaqah is the term used to describe a voluntary act of charity that is wide-reaching, for example a form of monetary charity or an act of kindness that can be performed in any amount, at any time of the year. ',
+                child: Text(
+                  locale.sadaqahpagedesc2!,
                   style: textStyleNormal,
                 ),
               ),
@@ -83,24 +85,24 @@ class _SadaqahPageState extends State<SadaqahPage> {
                                 StatefulBuilder(builder: (context, setState) {
                               return Column(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  SizedBox(
+                                children: [
+                                  const SizedBox(
                                     height: 20,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.timelapse_outlined,
                                   ),
-                                  Text("Coming Soon"),
-                                  SizedBox(
+                                  Text(locale.soon!),
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   Text(
-                                    "Community Welfare Sadaqah",
-                                    style: TextStyle(
+                                    locale.communitywelfare2!,
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                 ],
@@ -109,7 +111,7 @@ class _SadaqahPageState extends State<SadaqahPage> {
                           ),
                         );
                       },
-                      label: 'Community Welfare',
+                      label: locale.communitywelfare!,
                       imageUrl:
                           'https://www.newmandala.org/wp-content/uploads/cache/2020/06/LDC-of-Lombok-educating-disabled-people-and-their-families-about-the-pandemic_-Photo-by-LDC-all-rights-reserved_/371280947.jpeg'),
                 ],
@@ -131,24 +133,24 @@ class _SadaqahPageState extends State<SadaqahPage> {
                                 StatefulBuilder(builder: (context, setState) {
                               return Column(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  SizedBox(
+                                children: [
+                                  const SizedBox(
                                     height: 20,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.timelapse_outlined,
                                   ),
-                                  Text("Coming Soon"),
-                                  SizedBox(
+                                  Text(locale.soon!),
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   Text(
-                                    "National Mosque Sadaqah",
-                                    style: TextStyle(
+                                    locale.nationalmosque2!,
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                 ],
@@ -157,7 +159,7 @@ class _SadaqahPageState extends State<SadaqahPage> {
                           ),
                         );
                       },
-                      label: 'National Mosque',
+                      label: locale.nationalmosque!,
                       imageUrl:
                           'https://www.jomjalan.com.my/wp-content/uploads/2016/03/masjid-negara-kuala-lumpur-@faadil.jpg'),
                   DefaultImageLabel(
@@ -170,24 +172,24 @@ class _SadaqahPageState extends State<SadaqahPage> {
                                 StatefulBuilder(builder: (context, setState) {
                               return Column(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  SizedBox(
+                                children: [
+                                  const SizedBox(
                                     height: 20,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.timelapse_outlined,
                                   ),
-                                  Text("Coming Soon"),
-                                  SizedBox(
+                                  Text(locale.soon!),
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   Text(
-                                    "Association Sadaqah",
-                                    style: TextStyle(
+                                    locale.associationsadaqah!,
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                 ],
@@ -196,7 +198,7 @@ class _SadaqahPageState extends State<SadaqahPage> {
                           ),
                         );
                       },
-                      label: 'Malaysian Idle Animals Association',
+                      label: locale.animalsassociation!,
                       imageUrl:
                           'https://app-production-sumbangan-oss1.oss-ap-southeast-3.aliyuncs.com/sumbangan.com/public/campaigns/detail/62280f3d7c82a6.18210066.jpeg'),
                 ],

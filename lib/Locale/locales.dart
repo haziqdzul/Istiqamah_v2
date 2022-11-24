@@ -35,6 +35,67 @@ class AppLocalizations {
     'sw': swahili(),
     // 'ms': malaysian()
   };
+
+  String? get screenshotandscan {
+    return _localizedValues[locale.languageCode]!['screenshotandscan'];
+  }
+
+  String? get scanCIMB {
+    return _localizedValues[locale.languageCode]!['scanCIMB'];
+  }
+
+  String? get scanBankIslam {
+    return _localizedValues[locale.languageCode]!['scanBankIslam'];
+  }
+
+  String? get scanMaybank {
+    return _localizedValues[locale.languageCode]!['scanMaybank'];
+  }
+
+  String? get communitywelfare2 {
+    return _localizedValues[locale.languageCode]!['communitywelfare2'];
+  }
+
+  String? get communitywelfare {
+    return _localizedValues[locale.languageCode]!['communitywelfare'];
+  }
+
+  String? get nationalmosque2 {
+    return _localizedValues[locale.languageCode]!['nationalmosque2'];
+  }
+
+  String? get nationalmosque {
+    return _localizedValues[locale.languageCode]!['nationalmosque'];
+  }
+
+  String? get animalsassociation {
+    return _localizedValues[locale.languageCode]!['animalsassociation'];
+  }
+
+  String? get associationsadaqah {
+    return _localizedValues[locale.languageCode]!['associationsadaqah'];
+  }
+
+  String? get sadaqahpagedesc1 {
+    return _localizedValues[locale.languageCode]!['sadaqahpagedesc1'];
+  }
+
+  String? get sadaqahpagedesc2 {
+    return _localizedValues[locale.languageCode]!['sadaqahpagedesc2'];
+  }
+
+  String? get swap {
+    return _localizedValues[locale.languageCode]!['swap'];
+  }
+
+  String? get fastingreminder {
+    return _localizedValues[locale.languageCode]!['fastingreminder'];
+  }
+
+  String? get soon {
+    return _localizedValues[locale.languageCode]!['soon'];
+  }
+
   String? get tahunbaru {
     return _localizedValues[locale.languageCode]!['tahunbaru'];
   }

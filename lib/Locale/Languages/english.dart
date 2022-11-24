@@ -3,6 +3,24 @@ import 'package:get_storage/get_storage.dart';
 Map<String, String> english() {
   final box = GetStorage();
   return {
+    'screenshotandscan':
+        'Screenshot and scan using DuitNow QR Scanner from any Banking mobile app to donate.',
+    'scanCIMB': 'Scan using CIMB',
+    'ScanBankIslam': 'Scan using Bank Islam',
+    'scanMaybank': 'Scan using Maybank',
+    'communitywelfare': 'Community Welfare Sadaqah',
+    'communitywelfare': 'Community Welfare',
+    'nationalmosque': 'National Mosque',
+    'nationalmosque2': 'National Mosque Sadaqah',
+    'animalsassociation': 'Malaysian Idle Animals Association',
+    'associationsadaqah': 'Association Sadaqah',
+    'sadaqahpagedesc1':
+        '“Sadaqah extinguishes sin as water extinguishes fire.” (Tirmidhi)',
+    'sadaqahpagedesc2':
+        'Sadaqah is the term used to describe a voluntary act of charity that is wide-reaching, for example a form of monetary charity or an act of kindness that can be performed in any amount, at any time of the year. ',
+    'swap': 'Swap the circle left or right to update the data',
+    'fastingreminder': 'Sunnah Fasting Reminder',
+    'soon': 'Coming Soon',
     'tahunbaru': 'Islamic New Year',
     'rDay': 'Religious Day',
     'navigationTracker': 'Prayer Tracker',
