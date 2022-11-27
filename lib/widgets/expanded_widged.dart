@@ -40,7 +40,8 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
         child: Column(
           children: [
             secondHalf.length != null
-                ? Column(
+                ? Text(widget.text)
+                : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -64,29 +65,30 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         },
                         child: Row(
                           children: [
-                            Text(locale.readmore!, style: textStyleNormalGrey)
+                            Text(flag ? locale.readmore! : " ",
+                                style: textStyleNormalGrey)
                             //Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                           ],
                         ),
                       ),
                     ],
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: textStyleBoldSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        widget.text,
-                        style: textStyleNormal,
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
                   ),
+            // : Column(
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [
+            //       Text(
+            //         widget.title,
+            //         style: textStyleBoldSmall,
+            //         textAlign: TextAlign.center,
+            //       ),
+            //       Text(
+            //         widget.text,
+            //         style: textStyleNormal,
+            //         textAlign: TextAlign.justify,
+            //       ),
+            //     ],
+            //   ),
             const SizedBox(height: 15),
             Align(
                 alignment: Alignment.bottomRight,
