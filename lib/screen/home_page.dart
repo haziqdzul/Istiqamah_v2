@@ -1260,7 +1260,7 @@ class _HomePageState extends State<HomePage>
                                             DefaultCircleCard(
                                               icon: const ImageIcon(
                                                 AssetImage(
-                                                  'assets/tahajjud.png',
+                                                  'assets/tahajjud2.png',
                                                 ),
                                                 size: 60,
                                               ),
@@ -1508,7 +1508,7 @@ class _HomePageState extends State<HomePage>
                                             DefaultCircleCard(
                                               icon: const ImageIcon(
                                                 AssetImage(
-                                                  'assets/water.png',
+                                                  'assets/water2.png',
                                                 ),
                                                 size: 60,
                                               ),
