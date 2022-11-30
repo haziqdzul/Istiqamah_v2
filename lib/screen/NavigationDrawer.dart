@@ -81,7 +81,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           ),
           TabData(
             iconData: Icons.home,
-            title: locale.navigationHome!,
+            title: '',
           ),
           TabData(
             iconData: Icons.date_range_rounded,

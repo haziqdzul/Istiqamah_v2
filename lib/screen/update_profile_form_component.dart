@@ -39,9 +39,9 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
 
   var stateValue;
 
-  List _district = ['Select City/Pilih bandar'];
+  List _district = ['Select City'];
 
-  var districtValue = 'Select City/Pilih bandar';
+  var districtValue = 'Select City';
 
   var updated = false;
 
@@ -80,22 +80,22 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
   String dropdownvalue3 = 'Choose/Pilih';
 
   var selectedState = 'Choose state/Pilih negeri';
-  String selectedCity = 'Choose city/Pilih bandar';
-  String selectedCity1 = 'Choose city/Pilih bandar';
-  String selectedCity2 = 'Choose city/Pilih bandar';
-  String selectedCity3 = 'Choose city/Pilih bandar';
-  String selectedCity4 = 'Choose city/Pilih bandar';
-  String selectedCity5 = 'Choose city/Pilih bandar';
-  String selectedCity6 = 'Choose city/Pilih bandar';
-  String selectedCity7 = 'Choose city/Pilih bandar';
-  String selectedCity8 = 'Choose city/Pilih bandar';
-  String selectedCity9 = 'Choose city/Pilih bandar';
-  String selectedCity10 = 'Choose city/Pilih bandar';
-  String selectedCity11 = 'Choose city/Pilih bandar';
-  String selectedCity12 = 'Choose city/Pilih bandar';
-  String selectedCity13 = 'Choose city/Pilih bandar';
-  String selectedCity14 = 'Choose city/Pilih bandar';
-  String selectedCity15 = 'Choose city/Pilih bandar';
+  String selectedCity = 'Choose city';
+  String selectedCity1 = 'Choose city';
+  String selectedCity2 = 'Choose city';
+  String selectedCity3 = 'Choose city';
+  String selectedCity4 = 'Choose city';
+  String selectedCity5 = 'Choose city';
+  String selectedCity6 = 'Choose city';
+  String selectedCity7 = 'Choose city';
+  String selectedCity8 = 'Choose city';
+  String selectedCity9 = 'Choose city';
+  String selectedCity10 = 'Choose city';
+  String selectedCity11 = 'Choose city';
+  String selectedCity12 = 'Choose city';
+  String selectedCity13 = 'Choose city';
+  String selectedCity14 = 'Choose city';
+  String selectedCity15 = 'Choose city';
 
   var items = [
     'Choose gender',
@@ -112,6 +112,11 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
+
+    List _district = ['Select City'];
+
+    var districtValue = 'Select City';
+
     if (country == 'Malaysia') {
       userData.country = 'Malaysia';
       userData.cc = '+60';
@@ -380,7 +385,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
               onChanged: (Object? e) {
                 //TODO:SET STATE FOR USER IN MALAYSIA
                 setState(() {
-                  districtValue = 'Select City/Pilih bandar';
+                  districtValue = 'Select City';
                   getAllCity(e.toString());
                   stateValue = e.toString();
                   userData.state = e.toString();
@@ -625,7 +630,7 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
 
   Future<void> getAllCity(String code) async {
     setState(() {
-      _district = ['Select City/Pilih bandar'];
+      _district = ['Select City'];
     });
     final collectionState = FirebaseFirestore.instance.collection('postcode');
     await collectionState

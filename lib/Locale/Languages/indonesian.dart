@@ -420,5 +420,6 @@ Map<String, String> indonesian() {
     'selectLanguage': 'Pilih bahasa',
     'accountData': 'Data akaun',
     'deleteAccount': 'Padam akaun',
+    'selectCity': 'Pilih Bandar',
   };
 }

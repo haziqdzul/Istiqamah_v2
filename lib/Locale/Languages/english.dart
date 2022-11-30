@@ -417,5 +417,6 @@ Map<String, String> english() {
     'selectLanguage': 'Select language',
     'accountData': 'Account Data',
     'deleteAccount': 'Delete Account',
+    'selectCity': 'Select City',
   };
 }

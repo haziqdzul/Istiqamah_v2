@@ -2080,6 +2080,10 @@ class AppLocalizations {
   String? get deleteAccount {
     return _localizedValues[locale.languageCode]!['deleteAccount'];
   }
+
+  String? get selectCity {
+    return _localizedValues[locale.languageCode]!['selectCity'];
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
