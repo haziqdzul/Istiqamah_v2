@@ -8,7 +8,7 @@ import 'package:bottom_picker/bottom_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
@@ -39,7 +39,7 @@ import '../providers/water.provider.dart';
 import '../screen/sadaqah_page.dart';
 import '../widgets/colors.dart';
 import 'notification_page.dart';
-import 'webPage.dart';
+//import 'webPage.dart';
 
 class HomePage extends StatefulWidget {
   String? fajrtime;
@@ -1108,159 +1108,159 @@ class _HomePageState extends State<HomePage>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            DefaultCircleCard(
-                                              icon: const ImageIcon(
-                                                AssetImage(
-                                                  'assets/honey.png',
-                                                ),
-                                                size: 60,
-                                              ),
-                                              label: locale.HH!,
-                                              onPress: () {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) =>
-                                                      DefaultDialog(
-                                                    body: StatefulBuilder(
-                                                        builder: (context,
-                                                            setState) {
-                                                      return Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Card(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                            color: white,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            child: Column(
-                                                              children: [
-                                                                ListTile(
-                                                                  // leading: !visible
-                                                                  //     ? const Icon(
-                                                                  //         Icons
-                                                                  //             .keyboard_arrow_down_outlined)
-                                                                  //     : const Icon(
-                                                                  //         Icons
-                                                                  //             .keyboard_arrow_up_outlined),
-                                                                  title: Text(
-                                                                    locale
-                                                                        .afiyahReminder!,
-                                                                    style: const TextStyle(
-                                                                        color:
-                                                                            black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                  subtitle:
-                                                                      Text(
-                                                                    locale.HH!,
-                                                                    style: TextStyle(
-                                                                        color: Colors.grey[
-                                                                            800],
-                                                                        fontSize:
-                                                                            14),
-                                                                  ),
-                                                                ),
-                                                                Visibility(
-                                                                  visible:
-                                                                      visible,
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .all(
-                                                                        16.0),
-                                                                    child:
-                                                                        RichText(
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .justify,
-                                                                      text: TextSpan(
-                                                                          children: [
-                                                                            TextSpan(
-                                                                                text: locale.text1!, //afiyah des
-                                                                                style: const TextStyle(color: Colors.black)),
-                                                                            TextSpan(
-                                                                                recognizer: TapGestureRecognizer()
-                                                                                  ..onTap = () {
-                                                                                    Navigator.push(
-                                                                                        context,
-                                                                                        MaterialPageRoute(
-                                                                                            builder: (context) => WikiView(
-                                                                                                  link: 'http://as-sunnah.com',
-                                                                                                  title: "As Sunnah",
-                                                                                                )));
-                                                                                  },
-                                                                                // => launch('http://as-sunnah.com/'),
-                                                                                text: locale.text2!,
-                                                                                style: const TextStyle(color: Colors.blueAccent)),
-                                                                            TextSpan(
-                                                                                text: locale.text3!,
-                                                                                style: const TextStyle(color: Colors.black)),
-                                                                          ]),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Visibility(
-                                                                  visible:
-                                                                      visible,
-                                                                  child:
-                                                                      ButtonBar(
-                                                                    alignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      ElevatedButton(
-                                                                        style: TextButton.styleFrom(
-                                                                            backgroundColor:
-                                                                                kPrimaryColor),
-                                                                        onPressed:
-                                                                            () {
-                                                                          CoolAlert.show(
-                                                                              onCancelBtnTap: () => Navigator.pop(context),
-                                                                              title: locale.afiyahReminder!,
-                                                                              onConfirmBtnTap: () {
-                                                                                Navigator.pop(context);
-                                                                                _selectTimes(context, DateTime.now(), 'product');
-                                                                              },
-                                                                              context: context,
-                                                                              type: CoolAlertType.info,
-                                                                              text: hadis ? locale.sQuranP : locale.sHadithP,
-                                                                              showCancelBtn: true,
-                                                                              cancelBtnText: locale.back!,
-                                                                              confirmBtnText: locale.selectTime!);
-                                                                          setState(
-                                                                              () {
-                                                                            hadis =
-                                                                                !hadis;
-                                                                          });
-                                                                        },
-                                                                        child:
-                                                                            Text(
-                                                                          locale
-                                                                              .view!,
-                                                                          style: const TextStyle(
-                                                                              fontWeight: FontWeight.bold,
-                                                                              color: Colors.black),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    }),
-                                                  ),
-                                                );
-                                              },
-                                            ),
+                                            // DefaultCircleCard(
+                                            //   icon: const ImageIcon(
+                                            //     AssetImage(
+                                            //       'assets/honey.png',
+                                            //     ),
+                                            //     size: 60,
+                                            //   ),
+                                            //   label: locale.HH!,
+                                            //   onPress: () {
+                                            //     showDialog(
+                                            //       context: context,
+                                            //       builder: (context) =>
+                                            //           DefaultDialog(
+                                            //         body: StatefulBuilder(
+                                            //             builder: (context,
+                                            //                 setState) {
+                                            //           return Column(
+                                            //             mainAxisSize:
+                                            //                 MainAxisSize.min,
+                                            //             children: [
+                                            //               Card(
+                                            //                 margin:
+                                            //                     const EdgeInsets
+                                            //                             .symmetric(
+                                            //                         horizontal:
+                                            //                             20),
+                                            //                 color: white,
+                                            //                 clipBehavior:
+                                            //                     Clip.antiAlias,
+                                            //                 child: Column(
+                                            //                   children: [
+                                            //                     ListTile(
+                                            //                       // leading: !visible
+                                            //                       //     ? const Icon(
+                                            //                       //         Icons
+                                            //                       //             .keyboard_arrow_down_outlined)
+                                            //                       //     : const Icon(
+                                            //                       //         Icons
+                                            //                       //             .keyboard_arrow_up_outlined),
+                                            //                       title: Text(
+                                            //                         locale
+                                            //                             .afiyahReminder!,
+                                            //                         style: const TextStyle(
+                                            //                             color:
+                                            //                                 black,
+                                            //                             fontWeight:
+                                            //                                 FontWeight.bold),
+                                            //                       ),
+                                            //                       subtitle:
+                                            //                           Text(
+                                            //                         locale.HH!,
+                                            //                         style: TextStyle(
+                                            //                             color: Colors.grey[
+                                            //                                 800],
+                                            //                             fontSize:
+                                            //                                 14),
+                                            //                       ),
+                                            //                     ),
+                                            //                     Visibility(
+                                            //                       visible:
+                                            //                           visible,
+                                            //                       child:
+                                            //                           Padding(
+                                            //                         padding: const EdgeInsets
+                                            //                                 .all(
+                                            //                             16.0),
+                                            //                         child:
+                                            //                             RichText(
+                                            //                           textAlign:
+                                            //                               TextAlign
+                                            //                                   .justify,
+                                            //                           text: TextSpan(
+                                            //                               children: [
+                                            //                                 TextSpan(
+                                            //                                     text: locale.text1!, //afiyah des
+                                            //                                     style: const TextStyle(color: Colors.black)),
+                                            //                                 TextSpan(
+                                            //                                     recognizer: TapGestureRecognizer()
+                                            //                                       ..onTap = () {
+                                            //                                         Navigator.push(
+                                            //                                             context,
+                                            //                                             MaterialPageRoute(
+                                            //                                                 builder: (context) => WikiView(
+                                            //                                                       link: 'http://as-sunnah.com',
+                                            //                                                       title: "As Sunnah",
+                                            //                                                     )));
+                                            //                                       },
+                                            //                                     // => launch('http://as-sunnah.com/'),
+                                            //                                     text: locale.text2!,
+                                            //                                     style: const TextStyle(color: Colors.blueAccent)),
+                                            //                                 TextSpan(
+                                            //                                     text: locale.text3!,
+                                            //                                     style: const TextStyle(color: Colors.black)),
+                                            //                               ]),
+                                            //                         ),
+                                            //                       ),
+                                            //                     ),
+                                            //                     Visibility(
+                                            //                       visible:
+                                            //                           visible,
+                                            //                       child:
+                                            //                           ButtonBar(
+                                            //                         alignment:
+                                            //                             MainAxisAlignment
+                                            //                                 .center,
+                                            //                         children: [
+                                            //                           ElevatedButton(
+                                            //                             style: TextButton.styleFrom(
+                                            //                                 backgroundColor:
+                                            //                                     kPrimaryColor),
+                                            //                             onPressed:
+                                            //                                 () {
+                                            //                               CoolAlert.show(
+                                            //                                   onCancelBtnTap: () => Navigator.pop(context),
+                                            //                                   title: locale.afiyahReminder!,
+                                            //                                   onConfirmBtnTap: () {
+                                            //                                     Navigator.pop(context);
+                                            //                                     _selectTimes(context, DateTime.now(), 'product');
+                                            //                                   },
+                                            //                                   context: context,
+                                            //                                   type: CoolAlertType.info,
+                                            //                                   text: hadis ? locale.sQuranP : locale.sHadithP,
+                                            //                                   showCancelBtn: true,
+                                            //                                   cancelBtnText: locale.back!,
+                                            //                                   confirmBtnText: locale.selectTime!);
+                                            //                               setState(
+                                            //                                   () {
+                                            //                                 hadis =
+                                            //                                     !hadis;
+                                            //                               });
+                                            //                             },
+                                            //                             child:
+                                            //                                 Text(
+                                            //                               locale
+                                            //                                   .view!,
+                                            //                               style: const TextStyle(
+                                            //                                   fontWeight: FontWeight.bold,
+                                            //                                   color: Colors.black),
+                                            //                             ),
+                                            //                           )
+                                            //                         ],
+                                            //                       ),
+                                            //                     ),
+                                            //                   ],
+                                            //                 ),
+                                            //               ),
+                                            //             ],
+                                            //           );
+                                            //         }),
+                                            //       ),
+                                            //     );
+                                            //   },
+                                            // ),
                                             DefaultCircleCard(
                                               icon: const ImageIcon(
                                                 AssetImage(
@@ -1723,17 +1723,6 @@ class _HomePageState extends State<HomePage>
                                                 );
                                               },
                                             ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
                                             DefaultCircleCard(
                                               icon: const ImageIcon(
                                                 AssetImage(
@@ -1985,6 +1974,268 @@ class _HomePageState extends State<HomePage>
                                                 );
                                               },
                                             ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            // DefaultCircleCard(
+                                            //   icon: const ImageIcon(
+                                            //     AssetImage(
+                                            //       'assets/sadaqahh.png',
+                                            //     ),
+                                            //     size: 60,
+                                            //   ),
+                                            //   label: locale.sadaqah1!,
+                                            //   onPress: () {
+                                            //     showDialog(
+                                            //       context: context,
+                                            //       builder: (context) =>
+                                            //           DefaultDialog(
+                                            //         body: StatefulBuilder(
+                                            //             builder: (context,
+                                            //                 setState) {
+                                            //           return Column(
+                                            //             mainAxisSize:
+                                            //                 MainAxisSize.min,
+                                            //             children: [
+                                            //               Card(
+                                            //                 margin:
+                                            //                     const EdgeInsets
+                                            //                             .symmetric(
+                                            //                         horizontal:
+                                            //                             20),
+                                            //                 color: white,
+                                            //                 clipBehavior:
+                                            //                     Clip.antiAlias,
+                                            //                 child: Column(
+                                            //                   children: [
+                                            //                     ListTile(
+                                            //                       title: Text(
+                                            //                         locale
+                                            //                             .sadaqahReminder!,
+                                            //                         style: const TextStyle(
+                                            //                             color:
+                                            //                                 black,
+                                            //                             fontWeight:
+                                            //                                 FontWeight.bold),
+                                            //                       ),
+                                            //                       subtitle: (c !=
+                                            //                               '')
+                                            //                           ? Text(
+                                            //                               '${locale.timeReminder!} $c',
+                                            //                               style:
+                                            //                                   const TextStyle(color: black),
+                                            //                             )
+                                            //                           : Text(
+                                            //                               '${locale.timeReminder!} N/A',
+                                            //                               style:
+                                            //                                   const TextStyle(color: black),
+                                            //                             ),
+                                            //                       trailing:
+                                            //                           Switch(
+                                            //                         value:
+                                            //                             isSwitched3,
+                                            //                         onChanged:
+                                            //                             (value) async {
+                                            //                           SharedPreferences
+                                            //                               prefs =
+                                            //                               await SharedPreferences
+                                            //                                   .getInstance();
+                                            //                           await prefs.setBool(
+                                            //                               'S${AppUser.instance.user!.uid}',
+                                            //                               value);
+                                            //                           firstTimeSadaqah =
+                                            //                               prefs.getBool('firstSadaqah') ??
+                                            //                                   true;
+                                            //                           setState(
+                                            //                               () {
+                                            //                             isSwitched3 =
+                                            //                                 value;
+                                            //                           });
+                                            //
+                                            //                           if (isSwitched3 ==
+                                            //                               true) {
+                                            //                             if (firstTimeSadaqah ==
+                                            //                                 true) {
+                                            //                               SharedPreferences
+                                            //                                   prefs =
+                                            //                                   await SharedPreferences.getInstance();
+                                            //                               CoolAlert.show(
+                                            //                                   title: locale.sadaqahReminder!,
+                                            //                                   onCancelBtnTap: () async {
+                                            //                                     Navigator.pop(context);
+                                            //                                     await SharedPreferences.getInstance();
+                                            //                                     await prefs.setBool('S${AppUser.instance.user!.uid}', false);
+                                            //                                     setState(() {
+                                            //                                       isSwitched3 = false;
+                                            //                                     });
+                                            //                                   },
+                                            //                                   onConfirmBtnTap: () {
+                                            //                                     Navigator.pop(context);
+                                            //                                     _selectTimes(context, DateTime.now(), 'sadaqah');
+                                            //                                   },
+                                            //                                   context: context,
+                                            //                                   type: CoolAlertType.info,
+                                            //                                   text: hadis ? locale.strongHadisS : locale.strongQuranS,
+                                            //                                   showCancelBtn: true,
+                                            //                                   cancelBtnText: locale.back!,
+                                            //                                   confirmBtnText: locale.selectTime!);
+                                            //                               hadis =
+                                            //                                   !hadis;
+                                            //                             } else {
+                                            //                               getTime(
+                                            //                                   'sadaqah');
+                                            //                             }
+                                            //                           }
+                                            //                           if (isSwitched3 ==
+                                            //                               false) {
+                                            //                             Provider.of<CancelNotificationProvider>(context,
+                                            //                                     listen: false)
+                                            //                                 .cancel('sadaqah');
+                                            //                           }
+                                            //                         },
+                                            //                         activeColor:
+                                            //                             kPrimaryColor,
+                                            //                         inactiveThumbColor:
+                                            //                             Colors
+                                            //                                 .white,
+                                            //                       ),
+                                            //                     ),
+                                            //                     ListTile(
+                                            //                       title:
+                                            //                           Tooltip(
+                                            //                         message: locale
+                                            //                             .tooltipEdit!,
+                                            //                         child:
+                                            //                             TextButton(
+                                            //                           style: TextButton.styleFrom(
+                                            //                               backgroundColor:
+                                            //                                   kPrimaryColor),
+                                            //                           onPressed:
+                                            //                               () async {
+                                            //                             CoolAlert.show(
+                                            //                                 onCancelBtnTap: () => Navigator.pop(context),
+                                            //                                 title: locale.sadaqahReminder!,
+                                            //                                 onConfirmBtnTap: () {
+                                            //                                   Navigator.pop(context);
+                                            //                                   _selectTimes(context, DateTime.now(), 'sadaqah');
+                                            //                                 },
+                                            //                                 context: context,
+                                            //                                 type: CoolAlertType.info,
+                                            //                                 text: hadis ? locale.strongHadisS : locale.strongQuranS,
+                                            //                                 showCancelBtn: true,
+                                            //                                 cancelBtnText: locale.back!,
+                                            //                                 confirmBtnText: locale.selectTime!);
+                                            //                             hadis =
+                                            //                                 !hadis;
+                                            //                           },
+                                            //                           child:
+                                            //                               Text(
+                                            //                             locale
+                                            //                                 .view!,
+                                            //                             style: const TextStyle(
+                                            //                                 fontWeight:
+                                            //                                     FontWeight.bold,
+                                            //                                 color: Colors.black),
+                                            //                           ),
+                                            //                         ),
+                                            //                       ),
+                                            //                     ),
+                                            //                   ],
+                                            //                 ),
+                                            //               ),
+                                            //               10.height,
+                                            //               Row(
+                                            //                 mainAxisAlignment:
+                                            //                     MainAxisAlignment
+                                            //                         .center,
+                                            //                 children: [
+                                            //                   Expanded(
+                                            //                     child:
+                                            //                         DefaultButton(
+                                            //                       onPress: () {
+                                            //                         // showDialog(
+                                            //                         //   context:
+                                            //                         //       context,
+                                            //                         //   builder:
+                                            //                         //       (context) =>
+                                            //                         //           Dialog(
+                                            //                         //     insetPadding:
+                                            //                         //         const EdgeInsets.all(15),
+                                            //                         //     child: StatefulBuilder(builder:
+                                            //                         //         (context,
+                                            //                         //             setState) {
+                                            //                         //       return Column(
+                                            //                         //         mainAxisSize:
+                                            //                         //             MainAxisSize.min,
+                                            //                         //         children: const [
+                                            //                         //           SizedBox(
+                                            //                         //             height: 20,
+                                            //                         //           ),
+                                            //                         //           Icon(
+                                            //                         //             Icons.timelapse_outlined,
+                                            //                         //           ),
+                                            //                         //           Text("Coming Soon"),
+                                            //                         //           SizedBox(
+                                            //                         //             height: 20,
+                                            //                         //           ),
+                                            //                         //           Text(
+                                            //                         //             "Online Sadaqah Payment",
+                                            //                         //             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                            //                         //           ),
+                                            //                         //           SizedBox(
+                                            //                         //             height: 20,
+                                            //                         //           ),
+                                            //                         //         ],
+                                            //                         //       );
+                                            //                         //     }),
+                                            //                         //   ),
+                                            //                         // );
+                                            //                         Navigator
+                                            //                             .push(
+                                            //                           context,
+                                            //                           MaterialPageRoute(
+                                            //                               builder: (context) =>
+                                            //                                   const SadaqahPage()),
+                                            //                         );
+                                            //                       },
+                                            //                       label: locale
+                                            //                           .sadaqahnow!,
+                                            //                       textStyle:
+                                            //                           textStyleSmall,
+                                            //                     ),
+                                            //                   ),
+                                            //                 ],
+                                            //               ),
+                                            //               SizedBox(
+                                            //                 width: 100,
+                                            //                 height: 40,
+                                            //                 child:
+                                            //                     DefaultButton(
+                                            //                   onPress: () {
+                                            //                     Navigator.pop(
+                                            //                         context);
+                                            //                   },
+                                            //                   label:
+                                            //                       locale.back!,
+                                            //                   textStyle:
+                                            //                       textStyleNormalGrey,
+                                            //                 ),
+                                            //               ),
+                                            //             ],
+                                            //           );
+                                            //         }),
+                                            //       ),
+                                            //     );
+                                            //   },
+                                            // ),
                                             DefaultCircleCard(
                                               icon: const ImageIcon(
                                                 AssetImage(

@@ -70,19 +70,19 @@ class _AllHadisState extends State<AllHadis> {
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
     List<Category> choices = <Category>[
-      Category(
-        title: locale.HH!,
-        icon: 'assets/afiyah.png',
-        path: product.isEmpty
-            ? () {}
-            : () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ShowByCatergory(product, locale.afiyah!)));
-              },
-      ),
+      // Category(
+      //   title: locale.HH!,
+      //   icon: 'assets/afiyah.png',
+      //   path: product.isEmpty
+      //       ? () {}
+      //       : () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) =>
+      //                       ShowByCatergory(product, locale.afiyah!)));
+      //         },
+      // ),
       Category(
         title: locale.tahajjudcategory!,
         icon: 'assets/tahajjud2.png',
