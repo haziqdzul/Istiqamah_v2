@@ -8,7 +8,6 @@ import 'package:bottom_picker/bottom_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
@@ -51,7 +50,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List _list = [];
   final _stopLoad = AsyncMemoizer();
@@ -895,6 +894,7 @@ class _HomePageState extends State<HomePage>
   void dispose() {
     _tabController.dispose();
     super.dispose();
+    super.mounted;
   }
 
   @override
@@ -946,23 +946,24 @@ class _HomePageState extends State<HomePage>
       child: Scaffold(
         drawer: NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
-        // key: scaffoldKey,
+        key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
-          leading: Builder(builder: (context) {
-            return Align(
-                child: InkWell(
-              onTap: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: const Icon(
-                Icons.menu,
-                size: 25,
-                color: kBlackColor,
-              ),
-            ));
-          }),
+          leading: Align(
+            child: Builder(builder: (scaffoldContext) {
+              return InkWell(
+                onTap: () {
+                  Scaffold.of(scaffoldContext).openDrawer();
+                },
+                child: const Icon(
+                  Icons.menu,
+                  size: 25,
+                  color: kBlackColor,
+                ),
+              );
+            }),
+          ),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),
