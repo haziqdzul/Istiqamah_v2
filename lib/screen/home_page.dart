@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:async/async.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/Locale/locales.dart';
-import 'package:istiqamah_app/screen/NavigationDrawer.dart';
 import 'package:istiqamah_app/screen/getapi.dart';
 import 'package:istiqamah_app/widgets/expanded_widged.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -944,26 +942,23 @@ class _HomePageState extends State<HomePage>
     return WillPopScope(
       onWillPop: () async => showExitPopup(),
       child: Scaffold(
-        drawer: NavigationDrawer(), //TODO: OPEN DRAWER
+        //drawer: NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
         key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
           leading: Align(
-            child: Builder(builder: (scaffoldContext) {
-              return InkWell(
-                onTap: () {
-                  Scaffold.of(scaffoldContext).openDrawer();
-                },
-                child: const Icon(
-                  Icons.menu,
-                  size: 25,
-                  color: kBlackColor,
-                ),
-              );
-            }),
-          ),
+              child: InkWell(
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
+            child: const Icon(
+              Icons.menu,
+              size: 25,
+              color: kBlackColor,
+            ),
+          )),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),
