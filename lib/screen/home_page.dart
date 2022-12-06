@@ -1,6 +1,6 @@
-import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+
 import 'package:async/async.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
@@ -48,7 +48,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List _list = [];
   final _stopLoad = AsyncMemoizer();
@@ -942,16 +942,17 @@ class _HomePageState extends State<HomePage>
     return WillPopScope(
       onWillPop: () async => showExitPopup(),
       child: Scaffold(
-        //drawer: NavigationDrawer(), //TODO: OPEN DRAWER
+        // drawer: NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
-        key: scaffoldKey,
+        key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
           leading: Align(
               child: InkWell(
             onTap: () {
-              Scaffold.of(context).openDrawer();
+              // Scaffold.of(context).openDrawer();
+              _scaffoldKey.currentState?.openDrawer();
             },
             child: const Icon(
               Icons.menu,
@@ -2316,7 +2317,7 @@ class _HomePageState extends State<HomePage>
                                                                             await prefs.setBool('m1${AppUser.instance.user!.uid}',
                                                                                 false);
                                                                             setState(() {
-                                                                              Timer(const Duration(seconds: 2), back1);
+                                                                              Future.delayed(const Duration(seconds: 2), back1);
                                                                             });
                                                                             Fluttertoast.showToast(msg: locale.water1 == 'air' ? 'Sila tetapkan bilangan ubat yang perlu diambil dalam sehari dahulu' : 'Please set number of medicine(s) intake in a day first');
                                                                           } else {

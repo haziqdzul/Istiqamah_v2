@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
@@ -24,8 +25,8 @@ import '../fragments/update.profile.dart';
 import 'home_page.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  String? txt;
-  NavigationDrawer({Key? key, this.txt}) : super(key: key);
+  final String? txt;
+  const NavigationDrawer({Key? key, this.txt}) : super(key: key);
 
   @override
   State<NavigationDrawer> createState() => _NavigationDrawerState();
@@ -193,6 +194,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -234,6 +238,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -275,6 +282,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -316,6 +326,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -357,6 +370,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -428,6 +444,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -469,6 +488,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -510,6 +532,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -551,6 +576,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -592,6 +620,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                                                               .user!
                                                                               .updatePhotoURL(d);
                                                                           await init();
+                                                                          if (!mounted) {
+                                                                            return;
+                                                                          }
                                                                           showTopSnackBar(
                                                                             context,
                                                                             CustomSnackBar.success(
@@ -910,6 +941,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       ElevatedButton(
                           onPressed: () async {
                             await AppUser.instance.logOut();
+                            if (!mounted) return;
                             Navigator.popAndPushNamed(context, 'login');
                           },
                           style:
@@ -927,7 +959,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   }
 
   Future<void> init() async {
-    Future.delayed(Duration.zero, () async {
+    await Future.delayed(Duration.zero, () async {
+      if (!mounted) return;
       Provider.of<ProfileProvider>(context, listen: false).getProfile();
     });
   }
@@ -984,15 +1017,19 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           .ref('/UserImages/${AppUser.instance.user!.uid}.png')
           .getDownloadURL();
       await AppUser.instance.user!.updatePhotoURL(d);
+      if (!mounted) return;
       showTopSnackBar(
         context,
         CustomSnackBar.success(
           message: locale.success1!,
         ),
       );
+      if (!mounted) return;
       Provider.of<ProfileProvider>(context, listen: false).getProfile();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       // e.g, e.code == 'canceled'
     }
   }
@@ -1012,7 +1049,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       if (mounted) {
         setState(() {
           _gender = value['gender'];
-          print("Gender $_gender");
+          if (kDebugMode) {
+            print("Gender $_gender");
+          }
         });
       }
     }).catchError((e) {

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class AppUser extends ChangeNotifier {
   // User? user;
@@ -29,13 +29,19 @@ class AppUser extends ChangeNotifier {
   }
 
   Future<void> signIn({required String email, required String password}) async {
-    print('Email: $email');
-    print('Password: $password');
+    if (kDebugMode) {
+      print('Email: $email');
+    }
+    if (kDebugMode) {
+      print('Password: $password');
+    }
 
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      print('Sign in Succesful');
+      if (kDebugMode) {
+        print('Sign in Succesful');
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw ('No user found for that email.');

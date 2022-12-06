@@ -252,15 +252,18 @@ class _SplashScreenState extends State<SplashScreen> {
         print("succeed");
 
         if (loggedIn == "yes") {
+          if (!mounted) return;
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomePage()));
         }
 //IntroScreen
         if (loggedIn == "no") {
+          if (!mounted) return;
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => MLLoginScreen()));
         } //SignIn
         if (loggedIn != "yes" && loggedIn == null) {
+          if (!mounted) return;
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomePage()));
         }
