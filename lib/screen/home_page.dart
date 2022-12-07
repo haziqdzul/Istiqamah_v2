@@ -948,18 +948,23 @@ class _HomePageState extends State<HomePage>
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
-          leading: Align(
-              child: InkWell(
-            onTap: () {
-              // Scaffold.of(context).openDrawer();
-              _scaffoldKey.currentState?.openDrawer();
-            },
-            child: const Icon(
-              Icons.menu,
-              size: 25,
-              color: kBlackColor,
-            ),
-          )),
+          leading: Builder(builder: (context) {
+            return Align(
+                child: InkWell(
+              onTap: () {
+                if (!mounted) {
+                  return;
+                }
+                Scaffold.of(context).openDrawer();
+                // _scaffoldKey.currentState?.openDrawer();
+              },
+              child: const Icon(
+                Icons.menu,
+                size: 25,
+                color: kBlackColor,
+              ),
+            ));
+          }),
         ),
         body: FutureBuilder(
           future: countUnReadDocuments(),

@@ -28,14 +28,14 @@ class _WalktroughPageState extends State<WalktroughPage> {
     super.dispose();
   }
 
-  getIntro() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString('loggedIn', "no");
-  }
+  // getIntro() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   preferences.setString('loggedIn', "no");
+  // }
 
   @override
   void initState() {
-    getIntro();
+    // getIntro();
     super.initState();
     _languageCubit = BlocProvider.of<LanguageCubit>(context);
   }
