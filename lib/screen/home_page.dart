@@ -6,12 +6,14 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/Locale/locales.dart';
+import 'package:istiqamah_app/screen/NavigationDrawer.dart';
 import 'package:istiqamah_app/screen/getapi.dart';
 import 'package:istiqamah_app/widgets/expanded_widged.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -48,7 +50,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List _list = [];
   final _stopLoad = AsyncMemoizer();
@@ -124,8 +126,11 @@ class _HomePageState extends State<HomePage>
     med2Load = Provider.of<Medicine2Provider>(context, listen: false).load;
     code = Provider.of<LanguageProvider>(context, listen: false).local;
     init();
-    checkTime();
-    checkWaterIntake();
+    if (FirebaseAuth.instance.currentUser != null) {
+      checkTime();
+      checkWaterIntake();
+    }
+
     _tabController = TabController(length: 1, vsync: this);
     getAllHadis();
   }
@@ -133,61 +138,72 @@ class _HomePageState extends State<HomePage>
   final List _product = [];
   final List _tahajjud = [];
   final List _sedekah = [];
-
+  late Future<dynamic> _future;
   int i = 0;
   bool empty = false;
 
   Future<dynamic> countUnReadDocuments() async {
     await Future.delayed(const Duration(seconds: 2));
-    QuerySnapshot myDoc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(AppUser.instance.user!.uid)
-        .collection("notifications")
-        .where("read", isEqualTo: false)
-        .get();
-    QuerySnapshot allDoc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(AppUser.instance.user!.uid)
-        .collection("notifications")
-        .get();
-    List<DocumentSnapshot> allDocCount = allDoc.docs;
-    List<DocumentSnapshot> myDocCount = myDoc.docs;
-    int ii = myDocCount.length; // Count of Documents in Collection
+    var id = FirebaseAuth.instance.currentUser?.uid;
 
-    setState(() {
-      i = ii;
-    });
+    if (id != null) {
+      try {
+        QuerySnapshot myDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .collection("notifications")
+            .where("read", isEqualTo: false)
+            .get();
+        QuerySnapshot allDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .collection("notifications")
+            .get();
+        List<DocumentSnapshot> allDocCount = allDoc.docs;
+        List<DocumentSnapshot> myDocCount = myDoc.docs;
 
-    if (allDocCount.isEmpty) {
-      setState(() {
-        empty = true;
-      });
+        if (allDocCount.isEmpty) {
+          setState(() {
+            empty = true;
+          });
+        }
+        setState(() {
+          i = myDocCount.length;
+        });
+      } catch (e) {
+        print(e);
+      }
     }
-    return ii;
+
+    return i;
   }
 
   Future<void> init() async {
-    countUnReadDocuments();
+    var id = AppUser.instance.user?.uid;
+    _future = countUnReadDocuments();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('new', false);
-    Provider.of<Medicine1Provider>(context, listen: false).getMedicine();
-    Provider.of<Medicine2Provider>(context, listen: false).getMedicine();
-    var hasProduct = prefs.getBool('P${AppUser.instance.user!.uid}') ?? false;
-    var hasWater = prefs.getBool('W${AppUser.instance.user!.uid}') ?? false;
-    var hasSadaqah = prefs.getBool('S${AppUser.instance.user!.uid}') ?? false;
-    var hasTahajjud = prefs.getBool('T${AppUser.instance.user!.uid}') ?? false;
-    m1 = prefs.getBool('m1${AppUser.instance.user!.uid}') ?? false;
-    m2 = prefs.getBool('m2${AppUser.instance.user!.uid}') ?? false;
-    if (mounted) {
-      setState(() {
-        isSwitched = hasProduct;
-        isSwitched2 = hasWater;
-        isSwitched3 = hasSadaqah;
-        isSwitched4 = hasTahajjud;
-        med1 = m1!;
-        med2 = m2!;
-        currentDateSelectedIndex = DateTime.now().weekday - 1;
-      });
+    print('id $id');
+    if (id != null && id != '') {
+      Provider.of<Medicine1Provider>(context, listen: false).getMedicine();
+      Provider.of<Medicine2Provider>(context, listen: false).getMedicine();
+      var hasProduct = prefs.getBool('P$id') ?? false;
+      var hasWater = prefs.getBool('W$id') ?? false;
+      var hasSadaqah = prefs.getBool('S$id') ?? false;
+      var hasTahajjud = prefs.getBool('T$id') ?? false;
+      m1 = prefs.getBool('m1$id') ?? false;
+      m2 = prefs.getBool('m2$id') ?? false;
+      if (mounted) {
+        setState(() {
+          isSwitched = hasProduct;
+          isSwitched2 = hasWater;
+          isSwitched3 = hasSadaqah;
+          isSwitched4 = hasTahajjud;
+          med1 = m1!;
+          med2 = m2!;
+          currentDateSelectedIndex = DateTime.now().weekday - 1;
+        });
+      }
     }
   }
 
@@ -802,6 +818,7 @@ class _HomePageState extends State<HomePage>
       Provider.of<Medicine2Provider>(context, listen: false)
           .getHadisAndQuranVerse(code);
     }
+
     Provider.of<WaterProvider>(context, listen: false).getSchedule();
     Provider.of<Medicine2Provider>(context, listen: false).getSchedule();
     Provider.of<Medicine1Provider>(context, listen: false).getSchedule();
@@ -891,8 +908,8 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _tabController.dispose();
+    _future.timeout(Duration(seconds: 1));
     super.dispose();
-    super.mounted;
   }
 
   @override
@@ -942,17 +959,17 @@ class _HomePageState extends State<HomePage>
     return WillPopScope(
       onWillPop: () async => showExitPopup(),
       child: Scaffold(
-        // drawer: NavigationDrawer(), //TODO: OPEN DRAWER
+        drawer: const NavigationDrawer(), //TODO: OPEN DRAWER
         extendBodyBehindAppBar: true,
-        key: _scaffoldKey,
+        // key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           elevation: 0,
           leading: Align(
               child: InkWell(
             onTap: () {
-              // Scaffold.of(context).openDrawer();
-              _scaffoldKey.currentState?.openDrawer();
+              Scaffold.of(context).openDrawer();
+              // _scaffoldKey.currentState?.openDrawer();
             },
             child: const Icon(
               Icons.menu,
@@ -1006,8 +1023,8 @@ class _HomePageState extends State<HomePage>
                                             child: SizedBox.fromSize(
                                               size: const Size.fromRadius(48),
                                               child: Image.network(
-                                                  AppUser.instance.user!
-                                                          .photoURL ??
+                                                  AppUser.instance.user
+                                                          ?.photoURL ??
                                                       'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg',
                                                   width: 50,
                                                   fit: BoxFit.cover),
@@ -1019,8 +1036,8 @@ class _HomePageState extends State<HomePage>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                                AppUser.instance.user!
-                                                        .displayName ??
+                                                AppUser.instance.user
+                                                        ?.displayName ??
                                                     '',
                                                 style: boldTextStyle(
                                                     color: black)),
@@ -1421,9 +1438,8 @@ class _HomePageState extends State<HomePage>
                                                                               10,
                                                                         ),
                                                                         (widget.fajrtime ==
-                                                                                null)
+                                                                                'None')
                                                                             ? TextButton(
-                                                                                child: Text(locale.prayertime!),
                                                                                 style: TextButton.styleFrom(primary: Colors.blue),
                                                                                 onPressed: () async {
                                                                                   var newFajr = await Navigator.push(
@@ -1432,11 +1448,11 @@ class _HomePageState extends State<HomePage>
                                                                                   );
                                                                                   print(newFajr);
                                                                                 },
+                                                                                child: Text(locale.prayertime!),
                                                                               )
                                                                             : Column(
                                                                                 children: [
                                                                                   TextButton(
-                                                                                    child: Text(locale.prayertime!),
                                                                                     style: TextButton.styleFrom(primary: Colors.grey),
                                                                                     onPressed: () async {
                                                                                       var newFajr = await Navigator.push(
@@ -1445,6 +1461,7 @@ class _HomePageState extends State<HomePage>
                                                                                       );
                                                                                       print(newFajr);
                                                                                     },
+                                                                                    child: Text(locale.prayertime!),
                                                                                   ),
                                                                                   Text(
                                                                                     '${locale.subuh!} ${widget.fajrtime}',

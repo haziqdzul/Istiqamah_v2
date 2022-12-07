@@ -131,9 +131,8 @@ class MLProfileFragmentState extends State<MLProfileFragment> {
                           CircleAvatar(
                               radius: 48,
                               child: CircleAvatar(
-                                backgroundImage: NetworkImage(data.url != ''
-                                    ? data.url
-                                    : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
+                                backgroundImage: NetworkImage(data.url
+                                    ?? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
                                 radius: 55,
                                 child: Stack(
                                   alignment: Alignment.topRight,

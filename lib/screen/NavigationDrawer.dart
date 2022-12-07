@@ -25,8 +25,9 @@ import '../fragments/update.profile.dart';
 import 'home_page.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  final String? txt;
-  const NavigationDrawer({Key? key, this.txt}) : super(key: key);
+  const NavigationDrawer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<NavigationDrawer> createState() => _NavigationDrawerState();
@@ -53,11 +54,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     init();
     getGender();
     super.initState();
-    screens = [
-      const TrackerScreen(),
-      HomePage(fajrtime: widget.txt),
-      const Rday()
-    ];
+    screens = [const TrackerScreen(), HomePage(fajrtime: 'None'), const Rday()];
   }
 
   @override
@@ -128,9 +125,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         width: 75,
                         height: 75,
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage(data.url != ''
-                              ? data.url
-                              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
+                          backgroundImage: NetworkImage(data.url ??
+                              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
                           radius: 55,
                           child: Stack(
                             alignment: Alignment.topRight,
@@ -940,9 +936,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           child: Text(locale.no!)),
                       ElevatedButton(
                           onPressed: () async {
-                            await AppUser.instance.logOut();
-                            if (!mounted) return;
-                            Navigator.popAndPushNamed(context, 'login');
+                            await AppUser.instance.logOut(context);
                           },
                           style:
                               ElevatedButton.styleFrom(primary: Colors.green),
@@ -1041,25 +1035,28 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   Future<void> getGender() async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    await firestore
-        .collection('users')
-        .doc(AppUser.instance.user!.uid)
-        .get()
-        .then((value) {
-      if (mounted) {
-        setState(() {
-          _gender = value['gender'];
-          if (kDebugMode) {
-            print("Gender $_gender");
-          }
-        });
-      }
-    }).catchError((e) {
+    try {
+      await firestore
+          .collection('users')
+          .doc(AppUser.instance.user!.uid)
+          .get()
+          .then((value) {
+        if (mounted) {
+          setState(() {
+            _gender = value['gender'];
+            if (kDebugMode) {
+              print("Gender $_gender");
+            }
+          });
+        }
+      });
+    } catch (e) {
+      print(e);
       if (mounted) {
         setState(() {
           _gender = '';
         });
       }
-    });
+    }
   }
 }

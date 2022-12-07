@@ -26,6 +26,7 @@ import 'package:provider/provider.dart';
 
 import 'Locale/locales.dart';
 import 'Routes/routes.dart';
+import 'screen/landing.page.dart';
 
 //
 void main() async {
@@ -204,27 +205,28 @@ class _SplashScreenState extends State<SplashScreen> {
     listenActionStream() {
       AwesomeNotifications().actionStream.listen((receivedAction) {
         var payload = receivedAction.payload;
-
-        if (receivedAction.channelKey == 'medicine1_channel') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => HomePage())); //do something here
-        } else if (receivedAction.channelKey == 'medicine2_channel') {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        } else if (receivedAction.channelKey == 'product_channel') {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        } else if (receivedAction.channelKey == 'sadaqah_channel') {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        } else if (receivedAction.channelKey == 'water_channel') {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        } else {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+        if (FirebaseAuth.instance.currentUser != null) {
+          if (receivedAction.channelKey == 'medicine1_channel') {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HomePage())); //do something here
+          } else if (receivedAction.channelKey == 'medicine2_channel') {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          } else if (receivedAction.channelKey == 'product_channel') {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          } else if (receivedAction.channelKey == 'sadaqah_channel') {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          } else if (receivedAction.channelKey == 'water_channel') {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          } else {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          }
         }
       });
     }
@@ -234,39 +236,17 @@ class _SplashScreenState extends State<SplashScreen> {
       setState(() {
         _visible = false;
       });
-      Timer(const Duration(seconds: 2), () {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => HomePage()),
-            (Route<dynamic> route) => false);
-      });
+      // Timer(const Duration(seconds: 2), () {
+      //   Navigator.of(context).pushAndRemoveUntil(
+      //       MaterialPageRoute(builder: (context) => HomePage()),
+      //       (Route<dynamic> route) => false);
+      // });
     });
     Timer(
-      Duration(seconds: 2),
-      () async {
-        WidgetsFlutterBinding.ensureInitialized();
-        SharedPreferences preferences = await SharedPreferences.getInstance();
-
-        var loggedIn = preferences.getString('loggedIn');
-
-        print(loggedIn);
-        print("succeed");
-
-        if (loggedIn == "yes") {
-          if (!mounted) return;
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        }
-//IntroScreen
-        if (loggedIn == "no") {
-          if (!mounted) return;
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => MLLoginScreen()));
-        } //SignIn
-        if (loggedIn != "yes" && loggedIn == null) {
-          if (!mounted) return;
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
-        }
+      const Duration(seconds: 2),
+      () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LandingPage()));
       },
     );
   }

@@ -114,18 +114,17 @@ class _GetAPIState extends State<GetApi> {
     var locale = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => NavigationDrawer(
-                        txt: fajr,
-                      )));
-            },
-            child: const Icon(
-              Icons.arrow_back,
-              size: 20,
-            ),
-          ),
+          leading: fajr == null
+              ? Container()
+              : InkWell(
+                  onTap: () {
+                    Navigator.pop(context, fajr);
+                  },
+                  child: const Icon(
+                    Icons.arrow_back,
+                    size: 20,
+                  ),
+                ),
           title: Text(locale.prayertime!, textAlign: TextAlign.center),
           backgroundColor: kSecondaryColor,
         ),

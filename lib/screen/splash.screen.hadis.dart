@@ -90,9 +90,7 @@ class _MLSplashScreenState extends State<MLSplashScreenHadis> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => NavigationDrawer(
-                                        txt: null,
-                                      )));
+                                  builder: (context) => NavigationDrawer()));
                         },
                         child: Text(locale.proceed!))
                   ],

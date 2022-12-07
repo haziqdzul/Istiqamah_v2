@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class AppUser extends ChangeNotifier {
   // User? user;
@@ -24,7 +25,8 @@ class AppUser extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
   }
 
-  logOut() async {
+  logOut(context) async {
+    Navigator.popAndPushNamed(context, 'login');
     await FirebaseAuth.instance.signOut();
   }
 
