@@ -25,7 +25,7 @@ class _LandingPageState extends State<LandingPage> {
         if (app.user == null) {
           return const MLLoginScreen();
         } else {
-          return MLSplashScreenHadis();
+          return const MLSplashScreenHadis();
         }
       }),
     );
