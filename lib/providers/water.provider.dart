@@ -19,6 +19,7 @@ class WaterProvider extends ChangeNotifier {
   String langCode = 'My';
 
   Future<void> getSchedule() async {
+    
     final prefs = await SharedPreferences.getInstance();
     List<String>? list = prefs.getStringList('waters') ?? [];
     if (list.isNotEmpty) {

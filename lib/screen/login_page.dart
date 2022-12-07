@@ -296,20 +296,25 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                                                 const VerifyScreen()));
                                   }
                                 } catch (e) {
-                                  showTopSnackBar(
-                                    context,
-                                    CustomSnackBar.error(
-                                      message: locale.error!,
-                                    ),
-                                  );
+                                  if (mounted) {
+                                    showTopSnackBar(
+                                      context,
+                                      CustomSnackBar.error(
+                                        message: locale.error!,
+                                      ),
+                                    );
+                                  }
                                   SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
-                                  setState(() {
-                                    loading = false;
-                                    _isChecked = false;
-                                    preferences.remove(emailController.text);
-                                    preferences.remove(passwordController.text);
-                                  });
+                                  if (mounted) {
+                                    setState(() {
+                                      loading = false;
+                                      _isChecked = false;
+                                      preferences.remove(emailController.text);
+                                      preferences
+                                          .remove(passwordController.text);
+                                    });
+                                  }
                                 }
                               },
                               child: Text(locale.login!,
