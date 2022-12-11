@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:istiqamah_app/screen/forgot_page.dart';
@@ -8,7 +11,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'dart:async';
+
 import '../Locale/locales.dart';
 import '../constants/constant.dart';
 import '../providers/user.provider.dart';
@@ -22,10 +25,10 @@ class MLLoginScreen extends StatefulWidget {
   const MLLoginScreen({Key? key}) : super(key: key);
 
   @override
-  _MLLoginScreenState createState() => _MLLoginScreenState();
+  MLLoginScreenState createState() => MLLoginScreenState();
 }
 
-class _MLLoginScreenState extends State<MLLoginScreen> {
+class MLLoginScreenState extends State<MLLoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -87,9 +90,15 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
       var email = prefs.getString("email") ?? "";
       var password = prefs.getString("password") ?? "";
       var rememberMe = prefs.getBool("remember_me") ?? false;
-      print(rememberMe);
-      print(email);
-      print(password);
+      if (kDebugMode) {
+        print(rememberMe);
+      }
+      if (kDebugMode) {
+        print(email);
+      }
+      if (kDebugMode) {
+        print(password);
+      }
       if (rememberMe) {
         setState(() {
           _isChecked = true;
@@ -98,7 +107,9 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
         passwordController.text = password;
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -274,7 +285,9 @@ class _MLLoginScreenState extends State<MLLoginScreen> {
                                     var exist = await DatabaseService(
                                             uid: AppUser.instance.user!.uid)
                                         .checkData(AppUser.instance.user!.uid);
-                                    print('data $exist');
+                                    if (kDebugMode) {
+                                      print('data $exist');
+                                    }
                                     if (exist) {
                                       Navigator.pushReplacement(
                                           context,

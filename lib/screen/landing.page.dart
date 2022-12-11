@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
-import 'package:istiqamah_app/screen/NavigationDrawer.dart';
-import 'package:istiqamah_app/screen/home_page.dart';
-import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:istiqamah_app/screen/splash.screen.hadis.dart';
+import 'package:istiqamah_app/screen/walkthrough_page.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatefulWidget {
@@ -23,9 +19,9 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       body: Consumer<AppUser>(builder: (context, app, _) {
         if (app.user == null) {
-          return const MLLoginScreen();
+          return const WalkthroughPage();
         } else {
-          return MLSplashScreenHadis();
+          return const MLSplashScreenHadis();
         }
       }),
     );

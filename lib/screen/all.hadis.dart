@@ -180,21 +180,24 @@ class _AllHadisState extends State<AllHadis> {
                     ),
                     Container(
                       color: Colors.transparent,
-                      width: 800,
-                      child: TabBar(labelColor: Colors.black, tabs: [
-                        Tab(
-                          text: locale.categories!,
-                          icon: const Icon(Icons.apps),
-                        ),
-                        Tab(
-                          text: locale.search!,
-                          icon: const Icon(Icons.search),
-                        ),
-                        Tab(
-                          text: locale.bookmarks!,
-                          icon: const Icon(Icons.bookmarks),
-                        ),
-                      ]),
+                      width: 700,
+                      child: TabBar(
+                          labelStyle: TextStyle(fontSize: 13),
+                          labelColor: Colors.black,
+                          tabs: [
+                            Tab(
+                              text: locale.categories!,
+                              icon: const Icon(Icons.apps),
+                            ),
+                            Tab(
+                              text: locale.search!,
+                              icon: const Icon(Icons.search),
+                            ),
+                            Tab(
+                              text: locale.bookmarks!,
+                              icon: const Icon(Icons.bookmarks),
+                            ),
+                          ]),
                     ),
                     Expanded(
                       child: TabBarView(children: [
@@ -278,10 +281,10 @@ class _AllHadisState extends State<AllHadis> {
                                                 tapTarget:
                                                     const Icon(Icons.star),
                                                 // The widget that will be displayed as the tap target.
-                                                title: const Text(
-                                                    'Add to Bookmark'),
-                                                description: const Text(
-                                                    'Tap the star icon to add Quran/Hadith to your bookmark list.'),
+                                                title:
+                                                    Text(locale.addToBookmark!),
+                                                description:
+                                                    Text(locale.tapToFav!),
                                                 backgroundColor:
                                                     Theme.of(context)
                                                         .primaryColor,

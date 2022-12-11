@@ -11,14 +11,14 @@ import '../Locale/locales.dart';
 import '../providers/languages.provider.dart';
 import '../widgets/language_cubit.dart';
 
-class WalktroughPage extends StatefulWidget {
-  const WalktroughPage({Key? key}) : super(key: key);
+class WalkthroughPage extends StatefulWidget {
+  const WalkthroughPage({Key? key}) : super(key: key);
 
   @override
-  State<WalktroughPage> createState() => _WalktroughPageState();
+  State<WalkthroughPage> createState() => _WalkthroughPageState();
 }
 
-class _WalktroughPageState extends State<WalktroughPage> {
+class _WalkthroughPageState extends State<WalkthroughPage> {
   late LanguageCubit _languageCubit;
   final controller = PageController();
   bool isLastPage = false;
@@ -28,14 +28,8 @@ class _WalktroughPageState extends State<WalktroughPage> {
     super.dispose();
   }
 
-  // getIntro() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   preferences.setString('loggedIn', "no");
-  // }
-
   @override
   void initState() {
-    // getIntro();
     super.initState();
     _languageCubit = BlocProvider.of<LanguageCubit>(context);
   }
@@ -82,284 +76,277 @@ class _WalktroughPageState extends State<WalktroughPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: Colors.amber,
-            body: PageView(
-              controller: controller,
-              onPageChanged: (index) {
-                setState(() => isLastPage = index == 2);
-              },
-              children: [
-                SizedBox(
-                  child: Stack(children: [
-                    Positioned(
-                      //top: 0,
-                      child: Container(
-                        height: height * 0.55,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("assets/wt1.png"),
-                                fit: BoxFit.cover),
-                            color: Colors.black,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(530))),
-                      ),
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        child: Container(
-                          width: width,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          margin: const EdgeInsets.only(bottom: 20),
-                          child: Column(
-                            children: [
-                              WalkthroughTitleBody(
-                                title: locale.asSunnahApp,
-                                body: locale.usingTechnology,
-                              ),
-                              Center(
-                                child: Container(
-                                  width: 100,
-                                  height: 50,
-                                  margin: const EdgeInsets.only(
-                                      top: 60, bottom: 30),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 16),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: DropdownButton(
-                            dropdownColor: Colors.grey,
-                            underline: Container(),
-                            elevation: 2,
-                            value: selectedValue,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValue = newValue!;
-                              });
-                            },
-                            items: dropdownItems),
-                      ),
-                    ),
-                  ]),
+    return Scaffold(
+        backgroundColor: Colors.amber,
+        body: PageView(
+          controller: controller,
+          onPageChanged: (index) {
+            setState(() => isLastPage = index == 2);
+          },
+          children: [
+            SizedBox(
+              child: Stack(children: [
+                Positioned(
+                  //top: 0,
+                  child: Container(
+                    height: height * 0.55,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/wt1.png"),
+                            fit: BoxFit.cover),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(530))),
+                  ),
                 ),
-                SizedBox(
-                  child: Stack(children: [
-                    Positioned(
-                      //top: 0,
-                      child: Container(
-                        height: height * 0.55,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("assets/wt2.png"),
-                                fit: BoxFit.cover),
-                            color: Colors.black,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(530))),
-                      ),
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        child: Container(
-                          width: width,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          margin: const EdgeInsets.only(bottom: 20),
-                          child: Column(
-                            children: [
-                              WalkthroughTitleBody(
-                                  title: locale.hadith,
-                                  body: locale.hadithNarrated),
-                              Center(
-                                child: Container(
-                                  width: 100,
-                                  height: 50,
-                                  margin: const EdgeInsets.only(
-                                      top: 60, bottom: 30),
-                                ),
-                              ),
-                            ],
+                Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: width,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Column(
+                        children: [
+                          WalkthroughTitleBody(
+                            title: locale.asSunnahApp,
+                            body: locale.usingTechnology,
                           ),
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 16),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: DropdownButton(
-                            dropdownColor: Colors.grey,
-                            underline: Container(),
-                            elevation: 2,
-                            value: selectedValue,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValue = newValue!;
-                              });
-                            },
-                            items: dropdownItems),
-                      ),
-                    ),
-                  ]),
-                ),
-                SizedBox(
-                  child: Stack(children: [
-                    Positioned(
-                      //top: 0,
-                      child: Container(
-                        height: height * 0.55,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("assets/wt3.png"),
-                                fit: BoxFit.cover),
-                            color: Colors.black,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(530))),
-                      ),
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        child: Container(
-                          width: width,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          margin: const EdgeInsets.only(bottom: 20),
-                          child: Column(
-                            children: [
-                              WalkthroughTitleBody(
-                                  title: locale.letgetstarted,
-                                  body: locale.letgetstartedmessage),
-                              Center(
-                                child: Container(
-                                  width: 100,
-                                  height: 50,
-                                  margin: const EdgeInsets.only(
-                                      top: 60, bottom: 30),
-                                ),
-                              ),
-                            ],
+                          Center(
+                            child: Container(
+                              width: 100,
+                              height: 50,
+                              margin:
+                                  const EdgeInsets.only(top: 60, bottom: 30),
+                            ),
                           ),
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 16),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: DropdownButton(
-                            dropdownColor: Colors.grey,
-                            underline: Container(),
-                            elevation: 2,
-                            value: selectedValue,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValue = newValue!;
-                              });
-                            },
-                            items: dropdownItems),
+                        ],
                       ),
-                    ),
-                  ]),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(35),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: DropdownButton(
+                        dropdownColor: Colors.grey,
+                        underline: Container(),
+                        elevation: 2,
+                        value: selectedValue,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedValue = newValue!;
+                          });
+                        },
+                        items: dropdownItems),
+                  ),
                 ),
-              ],
+              ]),
             ),
-            bottomSheet: isLastPage
-                ? Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 35),
-                    color: Colors.amber,
-                    height: 80,
-                    child: Column(
+            SizedBox(
+              child: Stack(children: [
+                Positioned(
+                  //top: 0,
+                  child: Container(
+                    height: height * 0.55,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/wt2.png"),
+                            fit: BoxFit.cover),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(530))),
+                  ),
+                ),
+                Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: width,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Column(
+                        children: [
+                          WalkthroughTitleBody(
+                              title: locale.hadith,
+                              body: locale.hadithNarrated),
+                          Center(
+                            child: Container(
+                              width: 100,
+                              height: 50,
+                              margin:
+                                  const EdgeInsets.only(top: 60, bottom: 30),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(35),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: DropdownButton(
+                        dropdownColor: Colors.grey,
+                        underline: Container(),
+                        elevation: 2,
+                        value: selectedValue,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedValue = newValue!;
+                          });
+                        },
+                        items: dropdownItems),
+                  ),
+                ),
+              ]),
+            ),
+            SizedBox(
+              child: Stack(children: [
+                Positioned(
+                  //top: 0,
+                  child: Container(
+                    height: height * 0.55,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/wt3.png"),
+                            fit: BoxFit.cover),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(530))),
+                  ),
+                ),
+                Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: width,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Column(
+                        children: [
+                          WalkthroughTitleBody(
+                              title: locale.letgetstarted,
+                              body: locale.letgetstartedmessage),
+                          Center(
+                            child: Container(
+                              width: 100,
+                              height: 50,
+                              margin:
+                                  const EdgeInsets.only(top: 60, bottom: 30),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(35),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: DropdownButton(
+                        dropdownColor: Colors.grey,
+                        underline: Container(),
+                        elevation: 2,
+                        value: selectedValue,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedValue = newValue!;
+                          });
+                        },
+                        items: dropdownItems),
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
+        bottomSheet: isLastPage
+            ? Container(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                color: Colors.amber,
+                height: 80,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            WalkButton(
-                              onPress: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MLLoginScreen()),
-                                    (Route<dynamic> route) => false);
-                              },
-                              label: locale.skip!,
-                            ),
-                            Center(
-                              child: SmoothPageIndicator(
-                                controller: controller,
-                                count: 3,
-                                effect: const SwapEffect(
-                                    spacing: 10,
-                                    dotColor: Colors.grey,
-                                    activeDotColor: Colors.white),
-                                onDotClicked: (index) =>
-                                    controller.animateToPage(index,
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        curve: Curves.easeIn),
-                              ),
-                            ),
-                            WalkButton(
-                              onPress: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const RegisterPage()),
-                                    (Route<dynamic> route) => false);
-                              },
-                              label: locale.getStarted!,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
+                        WalkButton(
+                          onPress: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MLLoginScreen()),
+                                (Route<dynamic> route) => false);
+                          },
+                          label: locale.skip!,
+                        ),
+                        Center(
+                          child: SmoothPageIndicator(
+                            controller: controller,
+                            count: 3,
+                            effect: const SwapEffect(
+                                spacing: 10,
+                                dotColor: Colors.grey,
+                                activeDotColor: Colors.white),
+                            onDotClicked: (index) => controller.animateToPage(
+                                index,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn),
+                          ),
+                        ),
+                        WalkButton(
+                          onPress: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const RegisterPage()),
+                                (Route<dynamic> route) => false);
+                          },
+                          label: locale.getStarted!,
+                          color: Colors.white,
+                        ),
                       ],
-                    ))
-                : Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 35),
-                    color: Colors.amber,
-                    height: 80,
-                    child: Column(
+                    )
+                  ],
+                ))
+            : Container(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                color: Colors.amber,
+                height: 80,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            WalkButton(
-                              onPress: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MLLoginScreen()),
-                                    (Route<dynamic> route) => false);
-                              },
-                              label: locale.skip!,
-                            ),
-                            Center(
-                              child: SmoothPageIndicator(
-                                controller: controller,
-                                count: 3,
-                                effect: const SwapEffect(
-                                    spacing: 10,
-                                    dotColor: Colors.grey,
-                                    activeDotColor: Colors.white),
-                                onDotClicked: (index) =>
-                                    controller.animateToPage(index,
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        curve: Curves.easeIn),
-                              ),
-                            ),
-                            WalkButton(
-                              onPress: () => controller.nextPage(
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut),
-                              label: locale.next!,
-                              color: Colors.white,
-                            ),
-                          ],
-                        )
+                        WalkButton(
+                          onPress: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MLLoginScreen()),
+                                (Route<dynamic> route) => false);
+                          },
+                          label: locale.skip!,
+                        ),
+                        Center(
+                          child: SmoothPageIndicator(
+                            controller: controller,
+                            count: 3,
+                            effect: const SwapEffect(
+                                spacing: 10,
+                                dotColor: Colors.grey,
+                                activeDotColor: Colors.white),
+                            onDotClicked: (index) => controller.animateToPage(
+                                index,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn),
+                          ),
+                        ),
+                        WalkButton(
+                          onPress: () => controller.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut),
+                          label: locale.next!,
+                          color: Colors.white,
+                        ),
                       ],
-                    ))));
+                    )
+                  ],
+                )));
   }
 }
 

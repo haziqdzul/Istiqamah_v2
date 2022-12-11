@@ -165,10 +165,10 @@ class _Stepper2State extends State<StepperTouch>
     bool isHor = widget.direction == Axis.horizontal;
     bool changed = false;
     if (_controller.value <= -0.20) {
-      setState(() => isHor ? _value-- : _value++);
+      setState(() => isHor ? (_value <= 1 ? _value = 0 : _value--) : _value++);
       changed = true;
     } else if (_controller.value >= 0.20) {
-      setState(() => isHor ? _value++ : _value--);
+      setState(() => isHor ? _value++ : (_value < 0 ? _value = 0 : _value--));
       changed = true;
     }
     if (widget.withSpring) {

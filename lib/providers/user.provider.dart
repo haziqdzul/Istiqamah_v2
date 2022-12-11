@@ -20,10 +20,20 @@ class AppUser extends ChangeNotifier {
   factory AppUser() => AppUser._();
   static AppUser get instance => AppUser();
 
-  signOut() async {
-    FirebaseAuth.instance.currentUser?.delete();
-    await FirebaseAuth.instance.signOut();
+  Future deleteAccount(
+      {required String email, required String password}) async {
+    FirebaseAuth.instance.currentUser;
+    AuthCredential credentials =
+        EmailAuthProvider.credential(email: email, password: password);
+    UserCredential result =
+        await user!.reauthenticateWithCredential(credentials);
+    await result.user!.delete();
   }
+
+  // deleteAccount() async {
+  //   FirebaseAuth.instance.currentUser?.delete();
+  //   await FirebaseAuth.instance.signOut();
+  // }
 
   logOut(context) async {
     Navigator.popAndPushNamed(context, 'login');

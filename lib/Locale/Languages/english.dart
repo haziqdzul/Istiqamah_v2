@@ -64,6 +64,7 @@ Map<String, String> english() {
     'morecollection': 'More Collection',
     'updateBmi': 'Update BMI',
     'readmore': 'More',
+    'readless': 'Less',
     'update_error': 'Please fill in both weight and height!',
     'setting_profile': 'Settings',
     'update_profile': 'Update Profile',
@@ -247,7 +248,7 @@ Map<String, String> english() {
     'helpdesk': 'Help desk',
     'sentEmail': '(Send email)',
     'categoryBMItable':
-        'Chose ethnicity first before referring to BMI table to \ncheck your category',
+        'BMI table will be disabled until you choose your ethnicity type.',
     'emailHandling': 'Enter correct email (e.g: a@gmail.com)',
     'fullnameHandling': 'Only alphabets is allowed',
     'passwordHandling':
@@ -418,5 +419,9 @@ Map<String, String> english() {
     'accountData': 'Account Data',
     'deleteAccount': 'Delete Account',
     'selectCity': 'Select City',
+    'trackerInstruction': 'Swipe the circle left or right to update the data',
+    'cancel': 'Cancel',
+    'confirmToDelete':
+        'This operation is sensitive and requires user to relogin, please click OK to relogin to confirm action to delete account on next try.',
   };
 }
