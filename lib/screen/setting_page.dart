@@ -168,10 +168,7 @@ class _SettingPageState extends State<SettingPage> {
                                   child: Text(locale.cancel!)),
                               ElevatedButton(
                                   onPressed: () async {
-                                    AppUser.instance.deleteAccount(
-                                        email: emailController.text.trim(),
-                                        password:
-                                            passwordController.text.trim());
+                                    AppUser.instance.deleteAccount();
                                     AppUser.instance.logOut(context);
                                     // Navigator.popAndPushNamed(context, 'login');
                                   },

@@ -4,7 +4,7 @@ Map<String, String> indonesian() {
   final box = GetStorage();
   return {
     'screenshotandscan':
-        'Tangkapan skrin dan imbasan menggunakan Pengimbas QR DuitNow daripada mana-mana aplikasi mudah alih Perbankan untuk menderma.',
+        'Tangkap skrin dan imbas menggunakan imbasan DuitNow QR untuk menderma.',
     'scanCIMB': 'Imbas menggunakan CIMB',
     'scanBankIslam': 'Imbas menggunakan Bank Islam',
     'scanMaybank': 'Imbas menggunakan Maybank',
@@ -426,6 +426,6 @@ Map<String, String> indonesian() {
         'Leret bulatan nombor ke kiri atau kanan untuk kemas kini data',
     'cancel': 'Batal',
     'confirmToDelete':
-        'Ini merupakan operasi yang sensitif dan memerlukan pengguna untuk log masuk semula, sila tekan OK untuk mengesahkan tindakan bagi memadam akaun pada percubaan seterusnya.',
+        'Ini merupakan operasi yang sensitif dan memerlukan pengguna untuk log masuk semula. Sila tekan OK untuk mengesahkan tindakan bagi memadam akaun pada percubaan seterusnya.',
   };
 }

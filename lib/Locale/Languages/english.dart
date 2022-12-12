@@ -4,11 +4,11 @@ Map<String, String> english() {
   final box = GetStorage();
   return {
     'screenshotandscan':
-        'Screenshot and scan using DuitNow QR Scanner from any Banking mobile app to donate.',
+        'Screenshot and scan using DuitNow QR scanner to donate.',
     'scanCIMB': 'Scan using CIMB',
-    'ScanBankIslam': 'Scan using Bank Islam',
+    'scanBankIslam': 'Scan using Bank Islam',
     'scanMaybank': 'Scan using Maybank',
-    'communitywelfare': 'Community Welfare Sadaqah',
+    'communitywelfare2': 'Community Welfare Sadaqah',
     'communitywelfare': 'Community Welfare',
     'nationalmosque': 'National Mosque',
     'nationalmosque2': 'National Mosque Sadaqah',
