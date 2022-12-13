@@ -64,6 +64,7 @@ Map<String, String> english() {
     'morecollection': 'More Collection',
     'updateBmi': 'Update BMI',
     'readmore': 'More',
+    'readLess': 'Less',
     'update_error': 'Please fill in both weight and height!',
     'setting_profile': 'Settings',
     'update_profile': 'Update Profile',

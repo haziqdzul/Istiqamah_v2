@@ -23,7 +23,7 @@ class _TrackerScreenState extends State<TrackerScreen> {
   language() {
     String? locale;
     var box = GetStorage();
-    if (box.read('lang') == 'id') {
+    if (box.read('lang') == 'My') {
       locale = 'ms';
     } else {
       locale = 'en';

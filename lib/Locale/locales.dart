@@ -227,7 +227,9 @@ class AppLocalizations {
   String? get readmore {
     return _localizedValues[locale.languageCode]!['readmore'];
   }
-
+  String? get readLess {
+    return _localizedValues[locale.languageCode]!['readLess'];
+  }
   String? get updateBmi {
     return _localizedValues[locale.languageCode]!['updateBmi'];
   }

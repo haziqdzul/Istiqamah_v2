@@ -64,6 +64,7 @@ Map<String, String> indonesian() {
     'morecollection': 'Lebih Banyak Koleksi',
     'updateBmi': 'Kemas kini BMI',
     'readmore': 'Lagi',
+    'readLess': 'Tutup',
     'update_error': 'Sila isi berat dan tinggi!',
     'setting_profile': 'Tetapan',
     'update_profile': 'Kemas kini Profil',

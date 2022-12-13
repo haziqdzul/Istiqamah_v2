@@ -34,7 +34,7 @@ class _RdayState extends State<Rday> {
               children: [
                 RdayCard(
                   onPress: () {
-                    if (box.read('lang') == 'en') {
+                    if (box.read('lang') == 'En') {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -70,7 +70,7 @@ class _RdayState extends State<Rday> {
                 ),
                 RdayCard(
                   onPress: () {
-                    if (box.read('lang') == 'en') {
+                    if (box.read('lang') == 'En') {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -105,7 +105,7 @@ class _RdayState extends State<Rday> {
                 ),
                 RdayCard(
                     onPress: () {
-                      if (box.read('lang') == 'en') {
+                      if (box.read('lang') == 'En') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -141,7 +141,7 @@ class _RdayState extends State<Rday> {
                     )),
                 RdayCard(
                     onPress: () {
-                      if (box.read('lang') == 'en') {
+                      if (box.read('lang') == 'En') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -177,7 +177,7 @@ class _RdayState extends State<Rday> {
                     )),
                 RdayCard(
                     onPress: () {
-                      if (box.read('lang') == 'en') {
+                      if (box.read('lang') == 'En') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -214,7 +214,7 @@ class _RdayState extends State<Rday> {
                     )),
                 RdayCard(
                     onPress: () {
-                      if (box.read('lang') == 'en') {
+                      if (box.read('lang') == 'En') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -251,7 +251,7 @@ class _RdayState extends State<Rday> {
                     )),
                 RdayCard(
                     onPress: () {
-                      if (box.read('lang') == 'en') {
+                      if (box.read('lang') == 'En') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -287,7 +287,7 @@ class _RdayState extends State<Rday> {
                     )),
                 RdayCard(
                     onPress: () {
-                      if (box.read('lang') == 'en') {
+                      if (box.read('lang') == 'En') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -129,8 +129,8 @@ class _HomePageState extends State<HomePage>
     waterLoad = Provider.of<WaterProvider>(context, listen: false).load;
     med1Load = Provider.of<Medicine1Provider>(context, listen: false).load;
     med2Load = Provider.of<Medicine2Provider>(context, listen: false).load;
-    code = Provider.of<LanguageProvider>(context, listen: false).local;
-
+    code = Provider.of<LanguageProvider>(context, listen: false).local ?? 'My';
+    Provider.of<LanguageProvider>(context, listen: false).getLocale();
     init();
     if (FirebaseAuth.instance.currentUser != null) {
       checkTime();
@@ -1089,11 +1089,22 @@ class _HomePageState extends State<HomePage>
                                               builder: (context, lang, _) {
                                             var date = DateTime.now();
                                             var random = date.day * date.month;
-                                            return ExpandedWidget(
-                                                title: locale.ofTheDay!,
-                                                text: lang.local == 'My'
-                                                    ? '${_list[random].bmVerse!} ${_list[random].source}'
-                                                    : '${_list[random].englishVerse!} ${_list[random].source}');
+                                            lang.getLocale();
+                                            print(lang.local);
+                                            if (lang.local != null &&
+                                                lang.local == 'En') {
+                                              return ExpandedWidget(
+                                                  title: locale.ofTheDay!,
+                                                  text:
+                                                      '${_list[random].englishVerse} ${_list[random].source}');
+                                            } else if (lang.local != null &&
+                                                lang.local == 'My') {
+                                              return ExpandedWidget(
+                                                  title: locale.ofTheDay!,
+                                                  text:
+                                                      '${_list[random].bmVerse} ${_list[random].source}');
+                                            }
+                                            return Container();
                                           }),
                                         ),
                                       )

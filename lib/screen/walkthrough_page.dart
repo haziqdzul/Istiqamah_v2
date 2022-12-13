@@ -51,7 +51,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
       DropdownMenuItem(
           onTap: () {
             var box = GetStorage();
-            box.write('lang', 'en');
+            box.write('lang', 'En');
             Provider.of<LanguageProvider>(context, listen: false)
                 .changeLocale('En');
             _languageCubit.selectEngLanguage();
@@ -62,7 +62,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
       DropdownMenuItem(
           onTap: () {
             var box = GetStorage();
-            box.write('lang', 'id');
+            box.write('lang', 'My');
             Provider.of<LanguageProvider>(context, listen: false)
                 .changeLocale('My');
             _languageCubit.selectIndonesianLanguage();

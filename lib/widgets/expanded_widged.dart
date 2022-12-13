@@ -18,18 +18,17 @@ class ExpandedWidget extends StatefulWidget {
 class _ExpandedWidgetState extends State<ExpandedWidget> {
   late String firstHalf;
   late String secondHalf;
-  bool flag = true;
+  bool flag = false;
 
   @override
   void initState() {
     super.initState();
-    if (widget.text.length > 300) {
-      firstHalf = widget.text.substring(0, 300);
-      secondHalf = widget.text.substring(301, widget.text.length);
-    } else {
-      firstHalf = widget.text;
-      secondHalf = "";
-    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -39,7 +38,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            secondHalf.length != null
+            widget.text.length < 300
                 ? Text(widget.text)
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +50,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        flag ? firstHalf : widget.text,
+                        flag ? widget.text : widget.text.substring(0, 300),
                         style: textStyleNormal,
                         textAlign: TextAlign.justify,
                       ),
@@ -65,7 +64,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         },
                         child: Row(
                           children: [
-                            Text(flag ? locale.readmore! : " ",
+                            Text(!flag ? locale.readmore! : locale.readLess!,
                                 style: textStyleNormalGrey)
                             //Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                           ],

@@ -6,7 +6,7 @@ class LanguageCubit extends Cubit<Locale> {
   static var box = GetStorage();
 
   LanguageCubit()
-      : super(box.read('lang') == 'en' && box.read('lang') != null
+      : super(box.read('lang') == 'En' && box.read('lang') != null
             ? const Locale('en')
             : const Locale('id'));
 
