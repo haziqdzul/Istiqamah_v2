@@ -1377,7 +1377,8 @@ class _HomePageState extends State<HomePage>
                                                                               text: hadis ? locale.strongHadisT : locale.strongQuranT,
                                                                               showCancelBtn: true,
                                                                               cancelBtnText: locale.back!,
-                                                                              confirmBtnText: locale.selectTime!);
+                                                                              confirmBtnText: locale.selectTime!,
+                                                                              confirmBtnTextStyle: TextStyle(fontSize: 15));
                                                                           hadis =
                                                                               !hadis;
                                                                         } else {
@@ -1497,7 +1498,8 @@ class _HomePageState extends State<HomePage>
                                                                             text: hadis ? locale.strongHadisT : locale.strongQuranT,
                                                                             showCancelBtn: true,
                                                                             cancelBtnText: locale.back!,
-                                                                            confirmBtnText: locale.selectTime!);
+                                                                            confirmBtnText: locale.selectTime!,
+                                                                            confirmBtnTextStyle: TextStyle(fontSize: 15));
                                                                         hadis =
                                                                             !hadis;
                                                                       },
@@ -1838,7 +1840,8 @@ class _HomePageState extends State<HomePage>
                                                                               text: hadis ? locale.strongHadisS : locale.strongQuranS,
                                                                               showCancelBtn: true,
                                                                               cancelBtnText: locale.back!,
-                                                                              confirmBtnText: locale.selectTime!);
+                                                                              confirmBtnText: locale.selectTime!,
+                                                                              confirmBtnTextStyle: TextStyle(fontSize: 15));
                                                                           hadis =
                                                                               !hadis;
                                                                         } else {
@@ -1884,7 +1887,8 @@ class _HomePageState extends State<HomePage>
                                                                             text: hadis ? locale.strongHadisS : locale.strongQuranS,
                                                                             showCancelBtn: true,
                                                                             cancelBtnText: locale.back!,
-                                                                            confirmBtnText: locale.selectTime!);
+                                                                            confirmBtnText: locale.selectTime!,
+                                                                            confirmBtnTextStyle: TextStyle(fontSize: 15));
                                                                         hadis =
                                                                             !hadis;
                                                                       },
@@ -2357,7 +2361,8 @@ class _HomePageState extends State<HomePage>
                                                                                 text: hadis ? locale.strongHadisM : locale.strongQuranM,
                                                                                 showCancelBtn: true,
                                                                                 cancelBtnText: locale.back!,
-                                                                                confirmBtnText: locale.selectTime!);
+                                                                                confirmBtnText: locale.selectTime!,
+                                                                                confirmBtnTextStyle: TextStyle(fontSize: 15));
                                                                             hadis =
                                                                                 !hadis;
                                                                           }
@@ -2431,7 +2436,8 @@ class _HomePageState extends State<HomePage>
                                                                             text: hadis ? locale.strongHadisM : locale.strongQuranM,
                                                                             showCancelBtn: true,
                                                                             cancelBtnText: locale.back!,
-                                                                            confirmBtnText: locale.selectTime!);
+                                                                            confirmBtnText: locale.selectTime!,
+                                                                            confirmBtnTextStyle: TextStyle(fontSize: 15));
                                                                         hadis =
                                                                             !hadis;
                                                                       },
@@ -3363,7 +3369,8 @@ class _MyDialogState extends State<MyDialog> {
                                       : locale.strongHadisW,
                                   showCancelBtn: true,
                                   cancelBtnText: locale.back!,
-                                  confirmBtnText: locale.selectTime!);
+                                  confirmBtnText: locale.selectTime!,
+                                  confirmBtnTextStyle: TextStyle(fontSize: 15));
                               hadis = !hadis;
                             },
                             child: Text(
@@ -3378,21 +3385,23 @@ class _MyDialogState extends State<MyDialog> {
                                 backgroundColor: kPrimaryColor),
                             onPressed: () async {
                               CoolAlert.show(
-                                  title: hadis ? 'Do\'a' : locale.waterReminder,
-                                  onConfirmBtnTap: () {
-                                    Navigator.pop(context);
-                                    water.cancelNotifications();
-                                    water.selectTimes(context, DateTime.now(),
-                                        'waterIntake$index', index);
-                                  },
-                                  context: context,
-                                  type: CoolAlertType.info,
-                                  text: hadis
-                                      ? 'Allahumma inni as aluka ilman naafian wa rizqan waasian wa syifaan min kulli daa in \n\n${locale.doaW}'
-                                      : locale.strongHadisW,
-                                  showCancelBtn: true,
-                                  cancelBtnText: locale.back!,
-                                  confirmBtnText: locale.selectTime!);
+                                title: hadis ? 'Do\'a' : locale.waterReminder,
+                                onConfirmBtnTap: () {
+                                  Navigator.pop(context);
+                                  water.cancelNotifications();
+                                  water.selectTimes(context, DateTime.now(),
+                                      'waterIntake$index', index);
+                                },
+                                context: context,
+                                type: CoolAlertType.info,
+                                text: hadis
+                                    ? 'Allahumma inni as aluka ilman naafian wa rizqan waasian wa syifaan min kulli daa in \n\n${locale.doaW}'
+                                    : locale.strongHadisW,
+                                showCancelBtn: true,
+                                cancelBtnText: locale.back!,
+                                confirmBtnText: locale.selectTime!,
+                                confirmBtnTextStyle: TextStyle(fontSize: 15),
+                              );
                               hadis = !hadis;
                             },
                             child: Text(

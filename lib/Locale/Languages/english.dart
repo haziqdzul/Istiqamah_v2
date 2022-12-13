@@ -118,7 +118,7 @@ Map<String, String> english() {
         'As-Sunnah uses the latest innovations, science and technology to make it easier for Muslims around the world to practice sunnah in istiqamah.',
     'hadith': 'Living The Sunnah',
     'hadithNarrated':
-        'Whoever revives my sunnah, the he has loved me, and whoever loves me, he shall be with me in paradise. \n[Hadith narrated by Al-Tarmizi (2678)]',
+        'Whoever revives my sunnah, then he has loved me, and whoever loves me, he shall be with me in paradise. \n[Hadith narrated by Al-Tarmizi (2678)]',
     'asSunnahApp': 'Istiqamah App',
     'enterCorrentOTP': 'Please enter the correct OTP sent to',
     'verifyPhoneNumber': 'Verify phone number',
@@ -333,7 +333,7 @@ Map<String, String> english() {
     'medicine': 'Reminder to take your ',
     'water': 'Don\'t forget to take a glass of water, today!',
     'companyHadith':
-        'Whoever revives my sunnah, the he has loved me, and whoever loves me, he shall be with me in paradise.\n',
+        'Whoever revives my sunnah, then he has loved me, and whoever loves me, he shall be with me in paradise.\n',
     'companyHadithNarrated': '[Hadith narrated by Al-Tarmizi (2678)]',
     'proceed': 'Proceed',
     'text1':
