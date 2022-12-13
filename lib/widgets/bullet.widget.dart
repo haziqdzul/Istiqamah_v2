@@ -20,7 +20,7 @@ class UnorderedList extends StatelessWidget {
 }
 
 class UnorderedListItem extends StatelessWidget {
-  const UnorderedListItem(this.text);
+  const UnorderedListItem(this.text, {Key? key}) : super(key: key);
 
   final String text;
 

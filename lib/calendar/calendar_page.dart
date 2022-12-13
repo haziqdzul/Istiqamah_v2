@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/calendar/flutter_neat_and_clean_calendar.dart';
@@ -6,6 +7,8 @@ import '../constants/constant.dart';
 import 'islamic.event.dart';
 
 class CalendarScreen extends StatefulWidget {
+  const CalendarScreen({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CalendarScreenState();
@@ -56,6 +59,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
             ],
             eventsList: eventLists(context),
             onRangeSelected: (range) =>
+                // ignore: avoid_print
                 print('Range is ${range.from}, ${range.to}'),
             onDateSelected: (date) => _handleNewDate(date),
             isExpandable: true,
@@ -113,7 +117,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
   }
 
   void _handleNewDate(date) {
-    print('Date selected: $date');
+    if (kDebugMode) {
+      print('Date selected: $date');
+    }
   }
 
   language() {

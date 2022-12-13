@@ -8,8 +8,8 @@ import './simple_gesture_detector.dart';
 import 'calendar_tile.dart';
 import 'clean_calendar_event.dart';
 
-typedef DayBuilder(BuildContext context, DateTime day);
-typedef EventListBuilder(BuildContext context, List<CleanCalendarEvent> events);
+typedef DayBuilder = Function(BuildContext context, DateTime day);
+typedef EventListBuilder = Function(BuildContext context, List<CleanCalendarEvent> events);
 
 class Range {
   final DateTime from;
@@ -49,7 +49,7 @@ class Calendar extends StatefulWidget {
   final Color? bottomBarColor;
   final String? expandableDateFormat;
 
-  Calendar({
+  const Calendar({Key? key, 
     this.eventsList,
     this.onMonthChanged,
     this.onDateSelected,
@@ -80,13 +80,13 @@ class Calendar extends StatefulWidget {
     this.bottomBarArrowColor,
     this.bottomBarColor,
     this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
-  });
+  }) : super(key: key);
 
   @override
-  _CalendarState createState() => _CalendarState();
+  CalendarState createState() => CalendarState();
 }
 
-class _CalendarState extends State<Calendar> {
+class CalendarState extends State<Calendar> {
   final calendarUtils = Utils();
   late List<DateTime> selectedMonthsDays;
   late Iterable<DateTime> selectedWeekDays;
@@ -267,8 +267,7 @@ class _CalendarState extends State<Calendar> {
     List<Widget> dayWidgets = [];
     List<DateTime> calendarDays =
         isExpanded ? selectedMonthsDays : selectedWeekDays as List<DateTime>;
-    widget.weekDays.forEach(
-      (day) {
+    for (var day in widget.weekDays) {
         dayWidgets.add(
           CalendarTile(
             selectedColor: widget.selectedColor,
@@ -286,8 +285,7 @@ class _CalendarState extends State<Calendar> {
                 ),
           ),
         );
-      },
-    );
+      }
 
     bool monthStarted = false;
     bool monthEnded = false;
