@@ -10,9 +10,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/Locale/locales.dart';
+import 'package:istiqamah_app/models/QuranHadisModel.dart';
 import 'package:istiqamah_app/screen/NavigationDrawer.dart';
 import 'package:istiqamah_app/screen/getapi.dart';
 import 'package:istiqamah_app/widgets/expanded_widged.dart';
@@ -37,6 +39,7 @@ import '../providers/user.provider.dart';
 import '../providers/water.provider.dart';
 import '../screen/sadaqah_page.dart';
 import '../widgets/colors.dart';
+import '../widgets/language_cubit.dart';
 import 'notification_page.dart';
 //import 'webPage.dart';
 
@@ -52,7 +55,7 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final List _list = [];
+  final List<QuranHadisModel> _list = [];
   final _stopLoad = AsyncMemoizer();
   List<String> _bookmark = [];
   bool _switch = false;
@@ -106,6 +109,8 @@ class _HomePageState extends State<HomePage>
 
   bool visible = true;
 
+  var loadingFinish = false;
+
   void back1() {
     setState(() {
       med1 = !med1;
@@ -116,7 +121,7 @@ class _HomePageState extends State<HomePage>
   late bool med1Load;
   late bool med2Load;
   late String code;
-
+  late String lang;
   @override
   void initState() {
     super.initState();
@@ -125,6 +130,7 @@ class _HomePageState extends State<HomePage>
     med1Load = Provider.of<Medicine1Provider>(context, listen: false).load;
     med2Load = Provider.of<Medicine2Provider>(context, listen: false).load;
     code = Provider.of<LanguageProvider>(context, listen: false).local;
+
     init();
     if (FirebaseAuth.instance.currentUser != null) {
       checkTime();
@@ -1069,7 +1075,7 @@ class _HomePageState extends State<HomePage>
                                 const SizedBox(
                                   height: 25,
                                 ),
-                                _list.length > 288
+                                loadingFinish
                                     ? Card(
                                         elevation: 10,
                                         color: kGreyColor,
@@ -1079,17 +1085,16 @@ class _HomePageState extends State<HomePage>
                                               BorderRadius.circular(16.0),
                                         ),
                                         child: SingleChildScrollView(
-                                          child: ExpandedWidget(
-                                            title: locale.ofTheDay!,
-                                            text: _list[DateTime.now().month *
-                                                    DateTime.now().day]
-                                                .trim()
-                                                .replaceAll('�', '')
-                                                .replaceAll('(?)', '')
-                                                .replaceAll('?\n', '')
-                                                .replaceAll('Rasulullah ?',
-                                                    'Rasulullah'),
-                                          ),
+                                          child: Consumer<LanguageProvider>(
+                                              builder: (context, lang, _) {
+                                            var date = DateTime.now();
+                                            var random = date.day * date.month;
+                                            return ExpandedWidget(
+                                                title: locale.ofTheDay!,
+                                                text: lang.local == 'My'
+                                                    ? '${_list[random].bmVerse!} ${_list[random].source}'
+                                                    : '${_list[random].englishVerse!} ${_list[random].source}');
+                                          }),
                                         ),
                                       )
                                     : Shimmer.fromColors(
@@ -2833,355 +2838,280 @@ class _HomePageState extends State<HomePage>
         setState(() {
           _bookmark = prefs.getStringList('bookMarks') ?? [];
         });
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('habbatus_madu')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        await FirebaseFirestore.instance
+            .collection('habbatus_madu')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('habbatus_madu')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        });
+        print('[habbatus_madu fetched]');
+        await FirebaseFirestore.instance
+            .collection('penyakit')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('penyakit')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        });
+        print('[penyakit fetched]');
+        await FirebaseFirestore.instance
+            .collection('tahajjud')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('penyakit')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        });
+        print('[tahajjud fetched]');
+        await FirebaseFirestore.instance
+            .collection('air')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('tahajjud')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        });
+        print('[air fetched]');
+        await FirebaseFirestore.instance
+            .collection('sedekah')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('tahajjud')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        });
+        print('[sedekah fetched]');
+        await FirebaseFirestore.instance
+            .collection('doa_zikir')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('air')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                });
-              } else {
-                setState(() {
-                  _list.add(
-                      '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                });
-              }
+        });
+        print('[doa_zikir fetched]');
+        await FirebaseFirestore.instance
+            .collection('istiqamah')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanHadith =
+                '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var kitabDanNomborHadith = '(${doc["kitabDanNomborHadith"]})';
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = doc["terjemahanQuran"] == ''
+                ? kitabDanNomborHadith
+                : surahDanAyat;
+            var bm = doc["terjemahanQuran"] == ''
+                ? terjemahanHadith
+                : terjemahanQuran;
+            var translationHadith =
+                '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = doc["translation_quran"] == ''
+                ? translationHadith
+                : translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('tahajjud')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
+        });
+        print('[istiqamah fetched]');
+        await FirebaseFirestore.instance
+            .collection('makanan_halal')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var terjemahanQuran =
+                '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+
+            var surahDanAyat = '(${doc["surahDanAyat"]})';
+            var source = surahDanAyat;
+            var bm = terjemahanQuran;
+            var translationQuran =
+                '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')}';
+            var en = translationQuran;
+
+            setState(() {
+              _list.add(QuranHadisModel(
+                bmVerse: bm,
+                englishVerse: en,
+                source: source,
+              ));
             });
           });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('sedekah')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
-              if (doc["terjemahanQuran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            }
-          });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('sedekah')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            for (var doc in querySnapshot.docs) {
-              if (doc["translation_quran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            }
-          });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('doa_zikir')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            });
-          });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('doa_zikir')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            });
-          });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('istiqamah')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            });
-          });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('istiqamah')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            });
-          });
-        }
-        if (AppLocalizations.of(context)!.water1 == 'air') {
-          await FirebaseFirestore.instance
-              .collection('makanan_halal')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["terjemahanQuran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanHadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["terjemahanQuran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            });
-          });
-        } else {
-          await FirebaseFirestore.instance
-              .collection('makanan_halal')
-              .get()
-              .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              if (doc["translation_quran"] == '') {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_hadith"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["kitabDanNomborHadith"]})');
-                  });
-                }
-              } else {
-                if (mounted) {
-                  setState(() {
-                    _list.add(
-                        '${doc["translation_quran"].trim().replaceAll('�', '').replaceAll('(?)', '').replaceAll('?\n', '').replaceAll('Rasulullah ?', 'Rasulullah')} (${doc["surahDanAyat"]})');
-                  });
-                }
-              }
-            });
-          });
-        }
-        print(_list.length);
+        });
+        print('[makanan_halal fetched]');
+
+        setState(() {
+          loadingFinish = true;
+          print("Total ${_list.length} quran, hadis and sunnah fetched");
+        });
       });
 }
 
