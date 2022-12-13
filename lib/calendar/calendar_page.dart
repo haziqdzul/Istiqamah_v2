@@ -6,6 +6,8 @@ import '../constants/constant.dart';
 import 'islamic.event.dart';
 
 class CalendarScreen extends StatefulWidget {
+  const CalendarScreen({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CalendarScreenState();
