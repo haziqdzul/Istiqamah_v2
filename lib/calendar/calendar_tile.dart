@@ -19,7 +19,7 @@ class CalendarTile extends StatelessWidget {
   final Color? eventColor;
   final Color? eventDoneColor;
 
-  CalendarTile({
+  const CalendarTile({Key? key, 
     this.onDateSelected,
     this.date,
     this.child,
@@ -34,7 +34,7 @@ class CalendarTile extends StatelessWidget {
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
-  });
+  }) : super(key: key);
 
   Widget renderDateOrDayOfWeek(BuildContext context) {
     if (isDayOfWeek) {
