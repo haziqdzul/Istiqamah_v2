@@ -4,11 +4,11 @@ Map<String, String> english() {
   final box = GetStorage();
   return {
     'screenshotandscan':
-        'Screenshot and scan using DuitNow QR Scanner from any Banking mobile app to donate.',
+        'Screenshot and scan using DuitNow QR scanner to donate.',
     'scanCIMB': 'Scan using CIMB',
-    'ScanBankIslam': 'Scan using Bank Islam',
+    'scanBankIslam': 'Scan using Bank Islam',
     'scanMaybank': 'Scan using Maybank',
-    'communitywelfare': 'Community Welfare Sadaqah',
+    'communitywelfare2': 'Community Welfare Sadaqah',
     'communitywelfare': 'Community Welfare',
     'nationalmosque': 'National Mosque',
     'nationalmosque2': 'National Mosque Sadaqah',
@@ -64,7 +64,7 @@ Map<String, String> english() {
     'morecollection': 'More Collection',
     'updateBmi': 'Update BMI',
     'readmore': 'More',
-    'readLess': 'Less',
+    'readless': 'Less',
     'update_error': 'Please fill in both weight and height!',
     'setting_profile': 'Settings',
     'update_profile': 'Update Profile',
@@ -118,7 +118,7 @@ Map<String, String> english() {
         'As-Sunnah uses the latest innovations, science and technology to make it easier for Muslims around the world to practice sunnah in istiqamah.',
     'hadith': 'Living The Sunnah',
     'hadithNarrated':
-        'Whoever revives my sunnah, the he has loved me, and whoever loves me, he shall be with me in paradise. \n[Hadith narrated by Al-Tarmizi (2678)]',
+        'Whoever revives my sunnah, then he has loved me, and whoever loves me, he shall be with me in paradise. \n[Hadith narrated by Al-Tarmizi (2678)]',
     'asSunnahApp': 'Istiqamah App',
     'enterCorrentOTP': 'Please enter the correct OTP sent to',
     'verifyPhoneNumber': 'Verify phone number',
@@ -248,7 +248,7 @@ Map<String, String> english() {
     'helpdesk': 'Help desk',
     'sentEmail': '(Send email)',
     'categoryBMItable':
-        'Chose ethnicity first before referring to BMI table to \ncheck your category',
+        'BMI table will be disabled until you choose your ethnicity type.',
     'emailHandling': 'Enter correct email (e.g: a@gmail.com)',
     'fullnameHandling': 'Only alphabets is allowed',
     'passwordHandling':
@@ -333,7 +333,7 @@ Map<String, String> english() {
     'medicine': 'Reminder to take your ',
     'water': 'Don\'t forget to take a glass of water, today!',
     'companyHadith':
-        'Whoever revives my sunnah, the he has loved me, and whoever loves me, he shall be with me in paradise.\n',
+        'Whoever revives my sunnah, then he has loved me, and whoever loves me, he shall be with me in paradise.\n',
     'companyHadithNarrated': '[Hadith narrated by Al-Tarmizi (2678)]',
     'proceed': 'Proceed',
     'text1':
@@ -419,5 +419,9 @@ Map<String, String> english() {
     'accountData': 'Account Data',
     'deleteAccount': 'Delete Account',
     'selectCity': 'Select City',
+    'trackerInstruction': 'Swipe the circle left or right to update the data',
+    'cancel': 'Cancel',
+    'confirmToDelete':
+        'This operation is sensitive and requires user to relogin, please click OK to relogin to confirm action to delete account on next try.',
   };
 }

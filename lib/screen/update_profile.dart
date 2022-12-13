@@ -14,10 +14,10 @@ class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({Key? key}) : super(key: key);
 
   @override
-  _UpdateProfilePageState createState() => _UpdateProfilePageState();
+  UpdateProfilePageState createState() => UpdateProfilePageState();
 }
 
-class _UpdateProfilePageState extends State<UpdateProfilePage> {
+class UpdateProfilePageState extends State<UpdateProfilePage> {
   @override
   void initState() {
     super.initState();

@@ -23,6 +23,8 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   late LanguageCubit _languageCubit;
   Language? selectedLanguage;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -163,19 +165,19 @@ class _SettingPageState extends State<SettingPage> {
                                   },
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.redAccent),
-                                  child: Text('Cancel')),
+                                  child: Text(locale.cancel!)),
                               ElevatedButton(
                                   onPressed: () async {
-                                    AppUser.instance.signOut();
-                                    Navigator.popAndPushNamed(context, 'login');
+                                    AppUser.instance.deleteAccount();
+                                    AppUser.instance.logOut(context);
+                                    // Navigator.popAndPushNamed(context, 'login');
                                   },
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.green),
                                   child: Text('OK')),
                             ],
-                            title: Text('Delete Account'),
-                            content:
-                                Text('Are you sure to delete your account?'));
+                            title: Text(locale.deleteAccount!),
+                            content: Text(locale.confirmToDelete!));
                       },
                     );
                   },

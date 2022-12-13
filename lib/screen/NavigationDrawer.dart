@@ -75,7 +75,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         tabs: [
           TabData(
             iconData: Icons.checklist_rounded,
-            title: locale.navigationTracker!,
+            title: '',
           ),
           TabData(
             iconData: Icons.home,
@@ -83,7 +83,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           ),
           TabData(
             iconData: Icons.date_range_rounded,
-            title: locale.rDay!,
+            title: '',
           )
         ],
         currentIndex: _selectedIndex,

@@ -227,9 +227,11 @@ class AppLocalizations {
   String? get readmore {
     return _localizedValues[locale.languageCode]!['readmore'];
   }
-  String? get readLess {
-    return _localizedValues[locale.languageCode]!['readLess'];
+
+  String? get readless {
+    return _localizedValues[locale.languageCode]!['readless'];
   }
+
   String? get updateBmi {
     return _localizedValues[locale.languageCode]!['updateBmi'];
   }
@@ -2081,6 +2083,18 @@ class AppLocalizations {
 
   String? get deleteAccount {
     return _localizedValues[locale.languageCode]!['deleteAccount'];
+  }
+
+  String? get confirmToDelete {
+    return _localizedValues[locale.languageCode]!['confirmToDelete'];
+  }
+
+  String? get trackerInstruction {
+    return _localizedValues[locale.languageCode]!['trackerInstruction'];
+  }
+
+  String? get cancel {
+    return _localizedValues[locale.languageCode]!['cancel'];
   }
 
   String? get selectCity {

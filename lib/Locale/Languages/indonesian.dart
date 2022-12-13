@@ -4,7 +4,7 @@ Map<String, String> indonesian() {
   final box = GetStorage();
   return {
     'screenshotandscan':
-        'Tangkapan skrin dan imbasan menggunakan Pengimbas QR DuitNow daripada mana-mana aplikasi mudah alih Perbankan untuk menderma.',
+        'Tangkap skrin dan imbas menggunakan imbasan DuitNow QR untuk menderma.',
     'scanCIMB': 'Imbas menggunakan CIMB',
     'scanBankIslam': 'Imbas menggunakan Bank Islam',
     'scanMaybank': 'Imbas menggunakan Maybank',
@@ -64,7 +64,7 @@ Map<String, String> indonesian() {
     'morecollection': 'Lebih Banyak Koleksi',
     'updateBmi': 'Kemas kini BMI',
     'readmore': 'Lagi',
-    'readLess': 'Tutup',
+    'readless': 'Tutup',
     'update_error': 'Sila isi berat dan tinggi!',
     'setting_profile': 'Tetapan',
     'update_profile': 'Kemas kini Profil',
@@ -251,7 +251,7 @@ Map<String, String> indonesian() {
     'helpdesk': 'Meja bantuan',
     'sentEmail': '(Hantar e-mel)',
     'categoryBMItable':
-        'Pilih jenis bangsa sebelum merujuk jadual BMI untuk \nmenyemak kategori anda',
+        'Jadual BMI akan dinyahaktif sehingga anda memilih jenis bangsa',
     'emailHandling': 'Masukkan e-mel yang betul (e.g: a@gmail.com)',
     'fullnameHandling': 'Hanya abjad dibenarkan',
     'passwordHandling':
@@ -422,5 +422,10 @@ Map<String, String> indonesian() {
     'accountData': 'Data akaun',
     'deleteAccount': 'Padam akaun',
     'selectCity': 'Pilih Bandar',
+    'trackerInstruction':
+        'Leret bulatan nombor ke kiri atau kanan untuk kemas kini data',
+    'cancel': 'Batal',
+    'confirmToDelete':
+        'Ini merupakan operasi yang sensitif dan memerlukan pengguna untuk log masuk semula. Sila tekan OK untuk mengesahkan tindakan bagi memadam akaun pada percubaan seterusnya.',
   };
 }

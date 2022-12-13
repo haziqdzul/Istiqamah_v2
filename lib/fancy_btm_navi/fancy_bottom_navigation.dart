@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 import 'package:istiqamah_app/fancy_btm_navi/paint/half_clipper.dart';
 import 'package:istiqamah_app/fancy_btm_navi/paint/half_painter.dart';
+
 import 'internal/tab_item.dart';
 
 const double circle_size = 60;

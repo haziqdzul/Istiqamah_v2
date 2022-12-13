@@ -414,9 +414,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             (_message == '' || _message == 'No Data')
-                                ? Text(
-                                    locale.categoryBMItable!,
-                                    textAlign: TextAlign.center,
+                                ? Flexible(
+                                    child: Text(
+                                      locale.categoryBMItable!,
+                                      textAlign: TextAlign.center,
+                                    ),
                                   )
                                 : Text(
                                     _message,
@@ -437,184 +439,183 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   )
                                 : Container(),
                             (_message == '' || _message == 'No Data')
-                                ? RichText(
-                                    textAlign: TextAlign.left,
-                                    text: TextSpan(
-                                        text: locale.BMItable!,
-                                        style:
-                                            const TextStyle(color: Colors.cyan),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            if (ethnicity ==
-                                                    'Asian or South Asian' ||
-                                                bangsa ==
-                                                    'Asia atau Asia Selatan') {
-                                              showDialog(
-                                                context: context,
-                                                barrierDismissible: true,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                    ),
-                                                    scrollable: true,
-                                                    content: Column(
-                                                      children: [
-                                                        Text(locale.BMItable!,
-                                                            style:
-                                                                boldTextStyle()),
-                                                        Container(
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .rectangle),
-                                                            child: Scrollbar(
-                                                              child:
-                                                                  SingleChildScrollView(
-                                                                scrollDirection:
-                                                                    Axis.horizontal,
-                                                                child: DataTable(
-                                                                    columnSpacing: 10,
-                                                                    sortColumnIndex: 1,
-                                                                    sortAscending: true,
-                                                                    columns: [
-                                                                      const DataColumn(
-                                                                          label: Text(
-                                                                              ''),
-                                                                          numeric:
-                                                                              false,
-                                                                          onSort:
-                                                                              null),
-                                                                      DataColumn(
-                                                                          label:
-                                                                              RichText(
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        text: locale.general ==
-                                                                                'umum'
-                                                                            ? TextSpan(children: [
-                                                                                TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: ' ${locale.who!} ', style: const TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: locale.asian!, style: const TextStyle(color: Colors.blue)),
-                                                                              ])
-                                                                            : TextSpan(children: [
-                                                                                TextSpan(text: locale.who!, style: const TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: ' ${locale.asian!} ', style: const TextStyle(color: Colors.blue)),
-                                                                                TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
-                                                                              ]),
-                                                                      )),
-                                                                    ],
-                                                                    rows: dataTable
-                                                                        .map((e) => DataRow(selected: false, cells: [
-                                                                              DataCell(Text(
-                                                                                e.type,
-                                                                                textAlign: TextAlign.center,
-                                                                              )),
-                                                                              DataCell(Text(
-                                                                                e.general,
-                                                                                textAlign: TextAlign.center,
-                                                                              )),
-                                                                            ]))
-                                                                        .toList()),
-                                                              ),
-                                                            ))
-                                                        // Image.asset(bmi_table!),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            } else if (ethnicity == 'Others' ||
-                                                bangsa == 'Lain-lain') {
-                                              showDialog(
-                                                context: context,
-                                                barrierDismissible: true,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                    ),
-                                                    scrollable: true,
-                                                    content: Column(
-                                                      children: [
-                                                        Text(locale.BMItable!,
-                                                            style:
-                                                                boldTextStyle()),
-                                                        Container(
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .rectangle),
-                                                            child: Scrollbar(
-                                                              child:
-                                                                  SingleChildScrollView(
-                                                                scrollDirection:
-                                                                    Axis.horizontal,
-                                                                child: DataTable(
-                                                                    columnSpacing: 10,
-                                                                    sortColumnIndex: 1,
-                                                                    sortAscending: true,
-                                                                    columns: [
-                                                                      const DataColumn(
-                                                                          label: Text(
-                                                                              ''),
-                                                                          numeric:
-                                                                              false,
-                                                                          onSort:
-                                                                              null),
-                                                                      DataColumn(
-                                                                          label:
-                                                                              RichText(
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        text: locale.general ==
-                                                                                'umum'
-                                                                            ? TextSpan(children: [
-                                                                                TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: ' ${locale.who!} ', style: const TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: locale.general!, style: const TextStyle(color: Colors.blue)),
-                                                                              ])
-                                                                            : TextSpan(children: [
-                                                                                TextSpan(text: locale.who!, style: const TextStyle(color: Colors.black)),
-                                                                                TextSpan(text: ' ${locale.general!} ', style: const TextStyle(color: Colors.blue)),
-                                                                                TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
-                                                                              ]),
-                                                                      )),
-                                                                    ],
-                                                                    rows: dataTable2
-                                                                        .map((e) => DataRow(selected: false, cells: [
-                                                                              DataCell(Text(
-                                                                                e.type2,
-                                                                                textAlign: TextAlign.center,
-                                                                              )),
-                                                                              DataCell(Text(
-                                                                                e.asian,
-                                                                                textAlign: TextAlign.center,
-                                                                              )),
-                                                                            ]))
-                                                                        .toList()),
-                                                              ),
-                                                            ))
-                                                        // Image.asset(bmi_table!),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            }
-                                          }),
+                                ? Flexible(
+                                    child: RichText(
+                                      textAlign: TextAlign.left,
+                                      text: TextSpan(
+                                          text: locale.BMItable!,
+                                          style: const TextStyle(
+                                              color: Colors.cyan),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              if (ethnicity ==
+                                                      'Asian or South Asian' ||
+                                                  bangsa ==
+                                                      'Asia atau Asia Selatan') {
+                                                showDialog(
+                                                  context: context,
+                                                  barrierDismissible: true,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
+                                                      ),
+                                                      scrollable: true,
+                                                      content: Column(
+                                                        children: [
+                                                          Text(locale.BMItable!,
+                                                              style:
+                                                                  boldTextStyle()),
+                                                          Container(
+                                                              decoration: const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .rectangle),
+                                                              child: Scrollbar(
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  scrollDirection:
+                                                                      Axis.horizontal,
+                                                                  child: DataTable(
+                                                                      columnSpacing: 10,
+                                                                      sortColumnIndex: 1,
+                                                                      sortAscending: true,
+                                                                      columns: [
+                                                                        const DataColumn(
+                                                                            label: Text(
+                                                                                ''),
+                                                                            numeric:
+                                                                                false,
+                                                                            onSort:
+                                                                                null),
+                                                                        DataColumn(
+                                                                            label:
+                                                                                RichText(
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          maxLines:
+                                                                              2,
+                                                                          text: locale.general == 'umum'
+                                                                              ? TextSpan(children: [
+                                                                                  TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
+                                                                                  TextSpan(text: ' ${locale.who!} ', style: const TextStyle(color: Colors.black)),
+                                                                                  TextSpan(text: locale.asian!, style: const TextStyle(color: Colors.blue)),
+                                                                                ])
+                                                                              : TextSpan(children: [
+                                                                                  TextSpan(text: locale.who!, style: const TextStyle(color: Colors.black)),
+                                                                                  TextSpan(text: ' ${locale.asian!} ', style: const TextStyle(color: Colors.blue)),
+                                                                                  TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
+                                                                                ]),
+                                                                        )),
+                                                                      ],
+                                                                      rows: dataTable
+                                                                          .map((e) => DataRow(selected: false, cells: [
+                                                                                DataCell(Text(
+                                                                                  e.type,
+                                                                                  textAlign: TextAlign.center,
+                                                                                )),
+                                                                                DataCell(Text(
+                                                                                  e.general,
+                                                                                  textAlign: TextAlign.center,
+                                                                                )),
+                                                                              ]))
+                                                                          .toList()),
+                                                                ),
+                                                              ))
+                                                          // Image.asset(bmi_table!),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              } else if (ethnicity ==
+                                                      'Others' ||
+                                                  bangsa == 'Lain-lain') {
+                                                showDialog(
+                                                  context: context,
+                                                  barrierDismissible: true,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
+                                                      ),
+                                                      scrollable: true,
+                                                      content: Column(
+                                                        children: [
+                                                          Text(locale.BMItable!,
+                                                              style:
+                                                                  boldTextStyle()),
+                                                          Container(
+                                                              decoration: const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .rectangle),
+                                                              child: Scrollbar(
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  scrollDirection:
+                                                                      Axis.horizontal,
+                                                                  child: DataTable(
+                                                                      columnSpacing: 10,
+                                                                      sortColumnIndex: 1,
+                                                                      sortAscending: true,
+                                                                      columns: [
+                                                                        const DataColumn(
+                                                                            label: Text(
+                                                                                ''),
+                                                                            numeric:
+                                                                                false,
+                                                                            onSort:
+                                                                                null),
+                                                                        DataColumn(
+                                                                            label:
+                                                                                RichText(
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          maxLines:
+                                                                              2,
+                                                                          text: locale.general == 'umum'
+                                                                              ? TextSpan(children: [
+                                                                                  TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
+                                                                                  TextSpan(text: ' ${locale.who!} ', style: const TextStyle(color: Colors.black)),
+                                                                                  TextSpan(text: locale.general!, style: const TextStyle(color: Colors.blue)),
+                                                                                ])
+                                                                              : TextSpan(children: [
+                                                                                  TextSpan(text: locale.who!, style: const TextStyle(color: Colors.black)),
+                                                                                  TextSpan(text: ' ${locale.general!} ', style: const TextStyle(color: Colors.blue)),
+                                                                                  TextSpan(text: locale.bmi!, style: const TextStyle(color: Colors.black)),
+                                                                                ]),
+                                                                        )),
+                                                                      ],
+                                                                      rows: dataTable2
+                                                                          .map((e) => DataRow(selected: false, cells: [
+                                                                                DataCell(Text(
+                                                                                  e.type2,
+                                                                                  textAlign: TextAlign.center,
+                                                                                )),
+                                                                                DataCell(Text(
+                                                                                  e.asian,
+                                                                                  textAlign: TextAlign.center,
+                                                                                )),
+                                                                              ]))
+                                                                          .toList()),
+                                                                ),
+                                                              ))
+                                                          // Image.asset(bmi_table!),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              }
+                                            }),
+                                    ),
                                   )
                                 : Container(),
                           ]),
@@ -658,43 +659,43 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     }
                                   },
                                   child: Text(locale.update_profile_button!)),
-                              ElevatedButton(
-                                  onPressed: () async {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                            actions: [
-                                              ElevatedButton(
-                                                  onPressed: () async {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary:
-                                                              Colors.redAccent),
-                                                  child: Text(locale.no!)),
-                                              ElevatedButton(
-                                                  onPressed: () async {
-                                                    await AppUser.instance
-                                                        .signOut();
-                                                    Navigator.popAndPushNamed(
-                                                        context, 'login');
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary:
-                                                              Colors.green),
-                                                  child: Text(locale.yes!)),
-                                            ],
-                                            title:
-                                                Text(locale.confirmToLogout!));
-                                      },
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.redAccent),
-                                  child: Text(locale.logout!)),
+                              // ElevatedButton(
+                              //     onPressed: () async {
+                              //       showDialog(
+                              //         context: context,
+                              //         builder: (BuildContext context) {
+                              //           return AlertDialog(
+                              //               actions: [
+                              //                 ElevatedButton(
+                              //                     onPressed: () async {
+                              //                       Navigator.pop(context);
+                              //                     },
+                              //                     style:
+                              //                         ElevatedButton.styleFrom(
+                              //                             primary:
+                              //                                 Colors.redAccent),
+                              //                     child: Text(locale.no!)),
+                              //                 ElevatedButton(
+                              //                     onPressed: () async {
+                              //                       await AppUser.instance
+                              //                           .signOut();
+                              //                       Navigator.popAndPushNamed(
+                              //                           context, 'login');
+                              //                     },
+                              //                     style:
+                              //                         ElevatedButton.styleFrom(
+                              //                             primary:
+                              //                                 Colors.green),
+                              //                     child: Text(locale.yes!)),
+                              //               ],
+                              //               title:
+                              //                   Text(locale.confirmToLogout!));
+                              //         },
+                              //       );
+                              //     },
+                              //     style: ElevatedButton.styleFrom(
+                              //         primary: Colors.redAccent),
+                              //     child: Text(locale.logout!)),
                             ],
                           ),
                         ),

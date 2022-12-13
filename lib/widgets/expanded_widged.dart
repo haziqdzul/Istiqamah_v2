@@ -54,7 +54,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         style: textStyleNormal,
                         textAlign: TextAlign.justify,
                       ),
-                      const SizedBox(height: 5),
+                      // const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
                           print("Tapped");
@@ -64,30 +64,30 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         },
                         child: Row(
                           children: [
-                            Text(!flag ? locale.readmore! : locale.readLess!,
+                            Text(!flag ? locale.readmore! : locale.readless!,
                                 style: textStyleNormalGrey)
                             //Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                           ],
                         ),
                       ),
                     ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: textStyleBoldSmall,
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        widget.text,
+                        style: textStyleNormal,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
                   ),
-            // : Column(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     children: [
-            //       Text(
-            //         widget.title,
-            //         style: textStyleBoldSmall,
-            //         textAlign: TextAlign.center,
-            //       ),
-            //       Text(
-            //         widget.text,
-            //         style: textStyleNormal,
-            //         textAlign: TextAlign.justify,
-            //       ),
-            //     ],
-            //   ),
             const SizedBox(height: 15),
             Align(
                 alignment: Alignment.bottomRight,

@@ -100,8 +100,10 @@ class _TrackerScreenState extends State<TrackerScreen> {
                 ),
                 Container(
                   alignment: Alignment.topCenter,
-                  child:
-                      Text("Swap the circle left or right to update the data"),
+                  child: Text(
+                    locale.trackerInstruction!,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
