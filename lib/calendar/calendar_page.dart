@@ -125,7 +125,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   language() {
     String? locale;
     var box = GetStorage();
-    if (box.read('lang') == 'id') {
+    if (box.read('lang') == 'My') {
       locale = 'ms';
     } else {
       locale = 'en';

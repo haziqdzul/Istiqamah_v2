@@ -99,7 +99,7 @@ class _SettingPageState extends State<SettingPage> {
                       borderRadius: BorderRadius.circular(16)),
                   onPress: () {
                     var box = GetStorage();
-                    box.write('lang', 'en');
+                    box.write('lang', 'En');
                     Provider.of<LanguageProvider>(context, listen: false)
                         .changeLocale('En');
                     _languageCubit.selectEngLanguage();
@@ -122,7 +122,7 @@ class _SettingPageState extends State<SettingPage> {
                       borderRadius: BorderRadius.circular(16)),
                   onPress: () {
                     var box = GetStorage();
-                    box.write('lang', 'id');
+                    box.write('lang', 'My');
                     Provider.of<LanguageProvider>(context, listen: false)
                         .changeLocale('My');
                     _languageCubit.selectIndonesianLanguage();

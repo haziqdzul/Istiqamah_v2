@@ -18,18 +18,17 @@ class ExpandedWidget extends StatefulWidget {
 class _ExpandedWidgetState extends State<ExpandedWidget> {
   late String firstHalf;
   late String secondHalf;
-  bool flag = true;
+  bool flag = false;
 
   @override
   void initState() {
     super.initState();
-    if (widget.text.length > 180) {
-      firstHalf = widget.text.substring(0, 180);
-      secondHalf = widget.text.substring(181, widget.text.length);
-    } else {
-      firstHalf = widget.text;
-      secondHalf = "";
-    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -39,9 +38,9 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            secondHalf.length != null
-                // ? Text(widget.text)
-                ? Column(
+            widget.text.length < 300
+                ? Text(widget.text)
+                : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -51,7 +50,7 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        flag ? ("$firstHalf...") : widget.text,
+                        flag ? widget.text : widget.text.substring(0, 300),
                         style: textStyleNormal,
                         textAlign: TextAlign.justify,
                       ),
@@ -65,10 +64,9 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                         },
                         child: Row(
                           children: [
-                            // Text(locale.readmore!, style: textStyleNormalGrey),
-                            Text(flag ? locale.readmore! : locale.readless!,
-                                style: textStyleNormalGrey),
-                            // Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+                            Text(!flag ? locale.readmore! : locale.readless!,
+                                style: textStyleNormalGrey)
+                            //Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                           ],
                         ),
                       ),

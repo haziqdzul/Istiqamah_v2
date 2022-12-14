@@ -560,7 +560,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         ),
                         onTap: () {
                           var box = GetStorage();
-                          box.write('lang', 'id');
+                          box.write('lang', 'My');
                           _languageCubit.selectIndonesianLanguage();
                           Navigator.pop(context);
                         },
