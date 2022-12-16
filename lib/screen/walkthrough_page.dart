@@ -409,7 +409,7 @@ class WalkButton extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Text(
           label,
-          style: const TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 13),
         ),
       ),
     );
