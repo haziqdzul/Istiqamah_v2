@@ -59,6 +59,46 @@
       },
       "oauth_client": [
         {
+          "client_id": "793399248157-3tjeh1ufqi60hkjuifarab40pn5brviq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "2ac74c1f1c8492c4ebae9602518e63c72e1fb05b"
+          }
+        },
+        {
+          "client_id": "793399248157-7oinr5o5ks3gnqqliau3r6q22afucof8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "cbca6e740ad6864baf2d531b817ccd5710831025"
+          }
+        },
+        {
+          "client_id": "793399248157-9o17p2ubhgo1hg170cl3dqh9fp9faoje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "682bd042c3da9aeb3fe00e96378990a4a0322442"
+          }
+        },
+        {
+          "client_id": "793399248157-a0dfmicgv99nr1u4advarn8n1vn2asta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "e20ae7228401a2015712dbfb7b49ed66dbc2bc66"
+          }
+        },
+        {
+          "client_id": "793399248157-i7ia3p8orn16sq6gua7d8li4kooggooc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "af3781a62c6d5bb420894c18b0272fc7225eb273"
+          }
+        },
+        {
           "client_id": "793399248157-nhuap3phkheg0j9u7vj0u78u5rj0oafl.apps.googleusercontent.com",
           "client_type": 3
         }
