@@ -19,7 +19,6 @@ import 'package:istiqamah_app/providers/profile.provider.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:istiqamah_app/providers/water.provider.dart';
 import 'package:istiqamah_app/screen/home_page.dart';
-import 'package:istiqamah_app/screen/login_page.dart';
 import 'package:istiqamah_app/widgets/language_cubit.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -151,15 +150,15 @@ Future<void> notificationInit() async {
         importance: NotificationImportance.High,
         channelDescription: 'Medicine Notification channel',
       ),
-      NotificationChannel(
-        channelKey: 'product_channel',
-        channelName: 'Product Notifications',
-        defaultColor: Colors.yellow,
-        ledColor: Colors.white,
-        locked: true,
-        importance: NotificationImportance.High,
-        channelDescription: 'Product Notification channel',
-      ),
+      // NotificationChannel(
+      //   channelKey: 'product_channel',
+      //   channelName: 'Product Notifications',
+      //   defaultColor: Colors.yellow,
+      //   ledColor: Colors.white,
+      //   locked: true,
+      //   importance: NotificationImportance.High,
+      //   channelDescription: 'Product Notification channel',
+      // ),
       NotificationChannel(
         channelKey: 'water_channel',
         channelName: 'Water Notifications',
@@ -214,10 +213,12 @@ class _SplashScreenState extends State<SplashScreen> {
           } else if (receivedAction.channelKey == 'medicine2_channel') {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => HomePage()));
-          } else if (receivedAction.channelKey == 'product_channel') {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
-          } else if (receivedAction.channelKey == 'sadaqah_channel') {
+          }
+          // else if (receivedAction.channelKey == 'product_channel') {
+          //   Navigator.push(
+          //       context, MaterialPageRoute(builder: (context) => HomePage()));
+          // }
+          else if (receivedAction.channelKey == 'sadaqah_channel') {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           } else if (receivedAction.channelKey == 'water_channel') {
