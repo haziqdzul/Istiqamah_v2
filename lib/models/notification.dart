@@ -1,6 +1,6 @@
 class Notification {
   static final Notification _notiID = Notification._internal();
-  int? product;
+  // int? product;
   int? tahajjud;
   int? sedekah;
   int? medicine1;
