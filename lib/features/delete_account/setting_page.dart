@@ -178,7 +178,6 @@ class _SettingPageState extends State<SettingPage> {
                                       if (data != null) {
                                         var credential = data as UserCredential;
                                         if (credential.user != null) {
-                                          await user.backupCurrentProfile();
                                           await user.deleteProfile();
                                           await user.deleteAccount();
                                           if (!mounted) return;

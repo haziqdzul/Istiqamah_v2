@@ -99,28 +99,28 @@ class AppUser extends ChangeNotifier {
         .delete();
   }
 
-  Future<void> backupCurrentProfile() async {
-    try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user!.uid)
-          .get()
-          .then((value) {
-        currentData = value.data() as Map<String, dynamic>;
-        notifyListeners();
-      });
-    } catch (e) {
-      currentData = {
-        "uid": user!.uid,
-      };
-      notifyListeners();
-    }
-  }
+  // Future<void> backupCurrentProfile() async {
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(user!.uid)
+  //         .get()
+  //         .then((value) {
+  //       currentData = value.data() as Map<String, dynamic>;
+  //       notifyListeners();
+  //     });
+  //   } catch (e) {
+  //     currentData = {
+  //       "uid": user!.uid,
+  //     };
+  //     notifyListeners();
+  //   }
+  // }
 
-  Future<void> rollBackProfile() async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .set(currentData!);
-  }
+  // Future<void> rollBackProfile() async {
+  //   await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(user!.uid)
+  //       .set(currentData!);
+  // }
 }
