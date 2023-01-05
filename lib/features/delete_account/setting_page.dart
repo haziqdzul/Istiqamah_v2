@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/components/alert_button.dart';
@@ -6,10 +8,11 @@ import 'package:istiqamah_app/components/corner_body.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-import '../Locale/locales.dart';
-import '../providers/languages.provider.dart';
-import '../widgets/language_cubit.dart';
+import '../../Locale/locales.dart';
+import '../../providers/languages.provider.dart';
+import '../../widgets/language_cubit.dart';
 
 enum Language { bm, english }
 
@@ -35,6 +38,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
+    var user = Provider.of<AppUser>(context);
     return CornerBody(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,17 +168,45 @@ class _SettingPageState extends State<SettingPage> {
                                     Navigator.pop(context);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      primary: Colors.redAccent),
+                                      backgroundColor: Colors.redAccent),
                                   child: Text(locale.cancel!)),
                               ElevatedButton(
                                   onPressed: () async {
-                                    AppUser.instance.deleteAccount();
-                                    AppUser.instance.logOut(context);
-                                    // Navigator.popAndPushNamed(context, 'login');
+                                    try {
+                                      var data = await Navigator.pushNamed(
+                                          context, 'reauth');
+                                      if (data != null) {
+                                        var credential = data as UserCredential;
+                                        if (credential.user != null) {
+                                          await user.backupCurrentProfile();
+                                          await user.deleteProfile();
+                                          await user.deleteAccount();
+                                          if (!mounted) return;
+                                          Navigator.pop(context);
+                                          user.logOut(context);
+                                        }
+                                      } else {
+                                        if (!mounted) return;
+                                        Navigator.pop(context);
+
+                                        _showSnackBar(
+                                          context,
+                                          'User cancel delete account',
+                                        );
+                                      }
+                                    } catch (e) {
+                                      if (mounted) {
+                                        Navigator.pop(context);
+                                        _showSnackBar(
+                                          context,
+                                          e.toString(),
+                                        );
+                                      }
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      primary: Colors.green),
-                                  child: Text('OK')),
+                                      backgroundColor: Colors.green),
+                                  child: const Text('OK')),
                             ],
                             title: Text(locale.deleteAccount!),
                             content: Text(locale.confirmToDelete!));
@@ -191,5 +223,9 @@ class _SettingPageState extends State<SettingPage> {
         ],
       ),
     );
+  }
+
+  void _showSnackBar(BuildContext context, String text) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
 }

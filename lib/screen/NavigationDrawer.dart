@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:istiqamah_app/screen/email.screen.dart';
 import 'package:istiqamah_app/screen/religiousDay.dart';
-import 'package:istiqamah_app/screen/setting_page.dart';
+import 'package:istiqamah_app/features/delete_account/setting_page.dart';
 import 'package:istiqamah_app/screen/tracker.dart';
 import 'package:istiqamah_app/screen/update_profile.dart';
 import 'package:nb_utils/nb_utils.dart';

@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
@@ -30,6 +28,7 @@ class DatabaseService {
       String weight,
       String bmi) async {
     return await users.doc(uid).set({
+      'uid': uid,
       'gender': gender,
       'title': title,
       'date of birth': dob,
