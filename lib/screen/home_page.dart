@@ -10,7 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:istiqamah_app/Locale/locales.dart';
@@ -39,7 +38,6 @@ import '../providers/user.provider.dart';
 import '../providers/water.provider.dart';
 import '../screen/sadaqah_page.dart';
 import '../widgets/colors.dart';
-import '../widgets/language_cubit.dart';
 import 'notification_page.dart';
 //import 'webPage.dart';
 
@@ -213,100 +211,100 @@ class _HomePageState extends State<HomePage>
     }
   }
 
-  Future<void> createProductReminderNotification(DateTime d) async {
-    var locale = AppLocalizations.of(context)!;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await FirebaseFirestore.instance
-        .collection('habbatus_madu')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      for (var doc in querySnapshot.docs) {
-        if (mounted) {
-          setState(() {
-            if (AppLocalizations.of(context)!.language != 'Language') {
-              if (doc['terjemahanHadith'] != '' &&
-                  doc['terjemahanHadith'].length < 400) {
-                _product.add(
-                    '${doc['terjemahanHadith']} (${doc['kitabDanNomborHadith']}) ');
-              } else {
-                if (doc['terjemahanQuran'] != '' &&
-                    doc['terjemahanQuran'].length < 400) {
-                  _product.add(
-                      '${doc['terjemahanQuran']} (${doc['surahDanAyat']}) ');
-                }
-              }
-            } else if (AppLocalizations.of(context)!.language == 'Language') {
-              if (doc['translation_hadith'] != '' &&
-                  doc['translation_hadith'].length < 400) {
-                _product.add(
-                    '${doc['translation_hadith']} (${doc['kitabDanNomborHadith']}) ');
-              } else {
-                if (doc['translation_quran'] != '' &&
-                    doc['translation_quran'].length < 400) {
-                  _product.add(
-                      '${doc['translation_quran']} (${doc['surahDanAyat']}) ');
-                }
-              }
-            }
-          });
-        }
-      }
-    });
-    for (int i = 0; i < 30; i++) {
-      var time = DateTime(
-          d.year, d.month, d.day + i, d.hour, d.minute, d.second, 0, 0);
-      if (mounted) {
-        setState(() {
-          Random random = Random();
-          numbP = random.nextInt(_product.length);
-          var str = _product[numbP]
-              .replaceAll('�', '')
-              .replaceAll('(?)', '')
-              .replaceAll('?\n', '')
-              .replaceAll('Rasulullah ?', 'Rasulullah');
-          prefs.setString('PNoti', str);
-        });
-      }
-      await prefs.setBool('firstProduct', false);
-      await AwesomeNotifications().createNotification(
-          content: NotificationContent(
-            id: i,
-            channelKey: 'product_channel',
-            title:
-                '${Emojis.food_honey_pot} ${AppLocalizations.of(context)!.product}',
-            body: '${prefs.getString('PNoti')}',
-            summary: AppLocalizations.of(context)!.afiyahReminder,
-            wakeUpScreen: true,
-            category: NotificationCategory.Reminder,
-            autoDismissible: false,
-            notificationLayout: NotificationLayout.BigText,
-          ),
-          actionButtons: [
-            NotificationActionButton(
-                key: "ARCHIVE",
-                label: locale.skipNotification!,
-                autoDismissible: true,
-                color: kPrimaryColor,
-                buttonType: ActionButtonType.Default),
-            NotificationActionButton(
-                key: "TAKE",
-                label: locale.markAsDone!,
-                color: kPrimaryColor,
-                buttonType: ActionButtonType.Default),
-            NotificationActionButton(
-                key: 'SNOOZE',
-                label: locale.snooze!,
-                color: kPrimaryColor,
-                autoDismissible: true)
-          ],
-          schedule: NotificationCalendar.fromDate(
-            preciseAlarm: true,
-            allowWhileIdle: true,
-            repeats: true,
-            date: time,
-          ));
-    }
-  }
+  // Future<void> createProductReminderNotification(DateTime d) async {
+  //   var locale = AppLocalizations.of(context)!;
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   await FirebaseFirestore.instance
+  //       .collection('habbatus_madu')
+  //       .get()
+  //       .then((QuerySnapshot querySnapshot) {
+  //     for (var doc in querySnapshot.docs) {
+  //       if (mounted) {
+  //         setState(() {
+  //           if (AppLocalizations.of(context)!.language != 'Language') {
+  //             if (doc['terjemahanHadith'] != '' &&
+  //                 doc['terjemahanHadith'].length < 400) {
+  //               _product.add(
+  //                   '${doc['terjemahanHadith']} (${doc['kitabDanNomborHadith']}) ');
+  //             } else {
+  //               if (doc['terjemahanQuran'] != '' &&
+  //                   doc['terjemahanQuran'].length < 400) {
+  //                 _product.add(
+  //                     '${doc['terjemahanQuran']} (${doc['surahDanAyat']}) ');
+  //               }
+  //             }
+  //           } else if (AppLocalizations.of(context)!.language == 'Language') {
+  //             if (doc['translation_hadith'] != '' &&
+  //                 doc['translation_hadith'].length < 400) {
+  //               _product.add(
+  //                   '${doc['translation_hadith']} (${doc['kitabDanNomborHadith']}) ');
+  //             } else {
+  //               if (doc['translation_quran'] != '' &&
+  //                   doc['translation_quran'].length < 400) {
+  //                 _product.add(
+  //                     '${doc['translation_quran']} (${doc['surahDanAyat']}) ');
+  //               }
+  //             }
+  //           }
+  //         });
+  //       }
+  //     }
+  //   });
+  //   for (int i = 0; i < 30; i++) {
+  //     var time = DateTime(
+  //         d.year, d.month, d.day + i, d.hour, d.minute, d.second, 0, 0);
+  //     if (mounted) {
+  //       setState(() {
+  //         Random random = Random();
+  //         numbP = random.nextInt(_product.length);
+  //         var str = _product[numbP]
+  //             .replaceAll('�', '')
+  //             .replaceAll('(?)', '')
+  //             .replaceAll('?\n', '')
+  //             .replaceAll('Rasulullah ?', 'Rasulullah');
+  //         prefs.setString('PNoti', str);
+  //       });
+  //     }
+  //     await prefs.setBool('firstProduct', false);
+  //     await AwesomeNotifications().createNotification(
+  //         content: NotificationContent(
+  //           id: i,
+  //           channelKey: 'product_channel',
+  //           title:
+  //               '${Emojis.food_honey_pot} ${AppLocalizations.of(context)!.product}',
+  //           body: '${prefs.getString('PNoti')}',
+  //           summary: AppLocalizations.of(context)!.afiyahReminder,
+  //           wakeUpScreen: true,
+  //           category: NotificationCategory.Reminder,
+  //           autoDismissible: false,
+  //           notificationLayout: NotificationLayout.BigText,
+  //         ),
+  //         actionButtons: [
+  //           NotificationActionButton(
+  //               key: "ARCHIVE",
+  //               label: locale.skipNotification!,
+  //               autoDismissible: true,
+  //               color: kPrimaryColor,
+  //               buttonType: ActionButtonType.Default),
+  //           NotificationActionButton(
+  //               key: "TAKE",
+  //               label: locale.markAsDone!,
+  //               color: kPrimaryColor,
+  //               buttonType: ActionButtonType.Default),
+  //           NotificationActionButton(
+  //               key: 'SNOOZE',
+  //               label: locale.snooze!,
+  //               color: kPrimaryColor,
+  //               autoDismissible: true)
+  //         ],
+  //         schedule: NotificationCalendar.fromDate(
+  //           preciseAlarm: true,
+  //           allowWhileIdle: true,
+  //           repeats: true,
+  //           date: time,
+  //         ));
+  //   }
+  // }
 
   Future<void> createSadaqahReminderNotification(DateTime d) async {
     var locale = AppLocalizations.of(context)!;
@@ -546,22 +544,22 @@ class _HomePageState extends State<HomePage>
                   Fluttertoast.showToast(
                       msg: '$hours$minutes${seconds}time remaining');
                   print('waiting for $duration s');
-                  if (document == 'product') {
-                    prefs.setBool('P${AppUser.instance.user!.uid}', true);
-                    a = DateFormat.jm().format(schedule);
-                    createProductReminderNotification(schedule);
-                    String? id = AppUser.instance.user!.uid;
-                    DocumentReference users = FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(id)
-                        .collection("schedule")
-                        .doc(document);
-                    users
-                        .set({"time": schedule})
-                        .then((value) => print("schedule save"))
-                        .catchError(
-                            (error) => print("Failed to merge data: $error"));
-                  }
+                  // if (document == 'product') {
+                  //   prefs.setBool('P${AppUser.instance.user!.uid}', true);
+                  //   a = DateFormat.jm().format(schedule);
+                  //   createProductReminderNotification(schedule);
+                  //   String? id = AppUser.instance.user!.uid;
+                  //   DocumentReference users = FirebaseFirestore.instance
+                  //       .collection('users')
+                  //       .doc(id)
+                  //       .collection("schedule")
+                  //       .doc(document);
+                  //   users
+                  //       .set({"time": schedule})
+                  //       .then((value) => print("schedule save"))
+                  //       .catchError(
+                  //           (error) => print("Failed to merge data: $error"));
+                  // }
                   if (document == 'sadaqah') {
                     prefs.setBool('S${AppUser.instance.user!.uid}', true);
                     c = DateFormat.jm().format(schedule);
@@ -634,8 +632,8 @@ class _HomePageState extends State<HomePage>
 
   Future<void> checkTime() => _memoizer.runOnce(() async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        var hasProduct =
-            prefs.getBool('P${AppUser.instance.user!.uid}') ?? false;
+        // var hasProduct =
+        //     prefs.getBool('P${AppUser.instance.user!.uid}') ?? false;
         var hasSadaqah =
             prefs.getBool('S${AppUser.instance.user!.uid}') ?? false;
         var hasTahajjud =
@@ -645,65 +643,65 @@ class _HomePageState extends State<HomePage>
             prefs.getBool('m1${AppUser.instance.user!.uid}') ?? false;
         var hasMedicine2 =
             prefs.getBool('m2${AppUser.instance.user!.uid}') ?? false;
-        if (hasProduct == true) {
-          FirebaseFirestore firestore = FirebaseFirestore.instance;
-          firestore
-              .collection('users')
-              .doc(AppUser.instance.user!.uid)
-              .collection("schedule")
-              .doc("product")
-              .get()
-              .then((value) {
-            Timestamp myTimeStamp = value["time"];
-
-            DateTime myDateTime = myTimeStamp.toDate();
-            if (mounted) {
-              setState(() {
-                a = DateFormat.jm().format(myDateTime);
-              });
-            }
-            DateTime now = DateTime.now();
-            DateTime schedule = DateTime(now.year, now.month, now.day,
-                myDateTime.hour, myDateTime.minute);
-            if (myDateTime.difference(now).inMicroseconds > 0) {
-              createProductReminderNotification(schedule);
-            } else {
-              var date = DateTime(schedule.year, schedule.month,
-                  schedule.day + 1, schedule.hour, schedule.minute, 0);
-              createProductReminderNotification(date);
-            }
-          });
-        } else {
-          if (mounted) {
-            setState(() {
-              a = '9:00 AM';
-            });
-          }
-          DateTime now = DateTime.now();
-          DateTime schedule = DateTime(now.year, now.month, now.day, 9, 0);
-          String? id = AppUser.instance.user!.uid;
-
-          CollectionReference users = FirebaseFirestore.instance
-              .collection('users')
-              .doc(id)
-              .collection("schedule");
-
-          users.doc('product')
-              // existing document in 'users' collection: "ABC123"
-              .set(
-            {
-              'time': schedule,
-            },
-          ).then((value) {
-            if (schedule.difference(now).inMicroseconds > 0) {
-              createProductReminderNotification(schedule);
-            } else {
-              var date = DateTime(schedule.year, schedule.month,
-                  schedule.day + 1, schedule.hour, schedule.minute, 0);
-              createProductReminderNotification(date);
-            }
-          }).catchError((error) => print("Failed to merge data: $error"));
-        }
+        // if (hasProduct == true) {
+        //   FirebaseFirestore firestore = FirebaseFirestore.instance;
+        //   firestore
+        //       .collection('users')
+        //       .doc(AppUser.instance.user!.uid)
+        //       .collection("schedule")
+        //       .doc("product")
+        //       .get()
+        //       .then((value) {
+        //     Timestamp myTimeStamp = value["time"];
+        //
+        //     DateTime myDateTime = myTimeStamp.toDate();
+        //     if (mounted) {
+        //       setState(() {
+        //         a = DateFormat.jm().format(myDateTime);
+        //       });
+        //     }
+        //     DateTime now = DateTime.now();
+        //     DateTime schedule = DateTime(now.year, now.month, now.day,
+        //         myDateTime.hour, myDateTime.minute);
+        //     if (myDateTime.difference(now).inMicroseconds > 0) {
+        //       createProductReminderNotification(schedule);
+        //     } else {
+        //       var date = DateTime(schedule.year, schedule.month,
+        //           schedule.day + 1, schedule.hour, schedule.minute, 0);
+        //       createProductReminderNotification(date);
+        //     }
+        //   });
+        // } else {
+        //   if (mounted) {
+        //     setState(() {
+        //       a = '9:00 AM';
+        //     });
+        //   }
+        //   DateTime now = DateTime.now();
+        //   DateTime schedule = DateTime(now.year, now.month, now.day, 9, 0);
+        //   String? id = AppUser.instance.user!.uid;
+        //
+        //   CollectionReference users = FirebaseFirestore.instance
+        //       .collection('users')
+        //       .doc(id)
+        //       .collection("schedule");
+        //
+        //   users.doc('product')
+        //       // existing document in 'users' collection: "ABC123"
+        //       .set(
+        //     {
+        //       'time': schedule,
+        //     },
+        //   ).then((value) {
+        //     if (schedule.difference(now).inMicroseconds > 0) {
+        //       createProductReminderNotification(schedule);
+        //     } else {
+        //       var date = DateTime(schedule.year, schedule.month,
+        //           schedule.day + 1, schedule.hour, schedule.minute, 0);
+        //       createProductReminderNotification(date);
+        //     }
+        //   }).catchError((error) => print("Failed to merge data: $error"));
+        // }
         if (hasSadaqah == true) {
           FirebaseFirestore firestore = FirebaseFirestore.instance;
           firestore

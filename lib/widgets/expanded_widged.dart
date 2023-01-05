@@ -87,6 +87,22 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                       ),
                     ],
                   ),
+                 // : Column(
+                 //    crossAxisAlignment: CrossAxisAlignment.center,
+                 //    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 //    children: [
+                 //      Text(
+                 //        widget.title,
+                 //        style: textStyleBoldSmall,
+                 //        textAlign: TextAlign.center,
+                 //      ),
+                 //      Text(
+                 //        widget.text,
+                 //        style: textStyleNormal,
+                 //        textAlign: TextAlign.justify,
+                 //      ),
+                 //    ],
+                 //  ),
             const SizedBox(height: 15),
             Align(
                 alignment: Alignment.bottomRight,
