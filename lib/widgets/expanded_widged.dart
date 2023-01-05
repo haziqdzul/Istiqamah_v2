@@ -39,7 +39,22 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
         child: Column(
           children: [
             widget.text.length < 300
-                ? Text(widget.text)
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: textStyleBoldSmall,
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        widget.text,
+                        style: textStyleNormal,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
+                  )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -69,22 +84,6 @@ class _ExpandedWidgetState extends State<ExpandedWidget> {
                             //Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                           ],
                         ),
-                      ),
-                    ],
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: textStyleBoldSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        widget.text,
-                        style: textStyleNormal,
-                        textAlign: TextAlign.justify,
                       ),
                     ],
                   ),
