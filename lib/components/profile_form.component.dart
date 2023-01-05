@@ -259,7 +259,6 @@ class MLProfileFormComponentState extends State<MLProfileFormComponent> {
         if (_groupValue == 3)
           AppTextField(
             onChanged: (value) => setState(() {
-              //TODO : SET TITLE
               userData.title = value;
             }),
             suffix: const Icon(Icons.mode_edit),
