@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:istiqamah_app/screen/verify.phone.number.dart';
+import 'package:istiqamah_app/features/phone_auth/verify.phone.number.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';

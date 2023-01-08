@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class AppUser extends ChangeNotifier {
   User? get user => FirebaseAuth.instance.currentUser;
   factory AppUser() => AppUser._();
   static AppUser get instance => AppUser();
-
+  Map<String, dynamic>? currentData;
   // Future deleteAccount(
   //     {required String email, required String password}) async {
   //   FirebaseAuth.instance.currentUser;
@@ -31,12 +32,12 @@ class AppUser extends ChangeNotifier {
   // }
 
   deleteAccount() async {
-    FirebaseAuth.instance.currentUser?.delete();
+    await user!.delete();
     await FirebaseAuth.instance.signOut();
   }
 
   logOut(context) async {
-    Navigator.popAndPushNamed(context, 'login');
+    Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
     await FirebaseAuth.instance.signOut();
   }
 
@@ -90,4 +91,36 @@ class AppUser extends ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> deleteProfile() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .delete();
+  }
+
+  // Future<void> backupCurrentProfile() async {
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(user!.uid)
+  //         .get()
+  //         .then((value) {
+  //       currentData = value.data() as Map<String, dynamic>;
+  //       notifyListeners();
+  //     });
+  //   } catch (e) {
+  //     currentData = {
+  //       "uid": user!.uid,
+  //     };
+  //     notifyListeners();
+  //   }
+  // }
+
+  // Future<void> rollBackProfile() async {
+  //   await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(user!.uid)
+  //       .set(currentData!);
+  // }
 }

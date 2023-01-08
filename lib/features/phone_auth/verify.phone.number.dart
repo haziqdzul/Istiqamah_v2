@@ -1,11 +1,12 @@
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:istiqamah_app/models/user.model.dart';
+import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:istiqamah_app/screen/next_update_profile.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-import '../Locale/locales.dart';
-import '../constants/constant.dart';
+import '../../Locale/locales.dart';
+import '../../constants/constant.dart';
 
 // ignore: must_be_immutable
 class VerifyPhoneNumberScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
     return SafeArea(
       child: FirebasePhoneAuthHandler(
         phoneNumber: widget.phoneNumber,
+        linkWithExistingUser: true,
         autoRetrievalTimeOutDuration: const Duration(seconds: 60),
         onLoginSuccess: (userCredential, autoVerified) async {
           _showSnackBar(
