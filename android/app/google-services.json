@@ -75,6 +75,14 @@
           }
         },
         {
+          "client_id": "793399248157-80g9hr39dp5aodiu8fi0f9j799hbh7b9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "e68c05d1b4c079ebb2b27ceba070c2f53bf255fa"
+          }
+        },
+        {
           "client_id": "793399248157-9o17p2ubhgo1hg170cl3dqh9fp9faoje.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -88,6 +96,14 @@
           "android_info": {
             "package_name": "com.istiqamah.assunnah",
             "certificate_hash": "e20ae7228401a2015712dbfb7b49ed66dbc2bc66"
+          }
+        },
+        {
+          "client_id": "793399248157-em581o1bmopg31kif071jllnllohifc7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.istiqamah.assunnah",
+            "certificate_hash": "15b0103810f4f150f89fe3a06132464ae0486f04"
           }
         },
         {

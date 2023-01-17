@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:istiqamah_app/components/alert_button.dart';
@@ -8,7 +7,6 @@ import 'package:istiqamah_app/components/corner_body.dart';
 import 'package:istiqamah_app/constants/constant.dart';
 import 'package:istiqamah_app/providers/user.provider.dart';
 import 'package:provider/provider.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../Locale/locales.dart';
 import '../../providers/languages.provider.dart';
@@ -168,7 +166,7 @@ class _SettingPageState extends State<SettingPage> {
                                     Navigator.pop(context);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.redAccent),
+                                      onSurface: Colors.redAccent),
                                   child: Text(locale.cancel!)),
                               ElevatedButton(
                                   onPressed: () async {
@@ -204,7 +202,7 @@ class _SettingPageState extends State<SettingPage> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.green),
+                                      onSurface: Colors.green),
                                   child: const Text('OK')),
                             ],
                             title: Text(locale.deleteAccount!),
